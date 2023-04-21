@@ -37,6 +37,8 @@ CREATE TABLE Ticket (
     FOREIGN KEY (department) REFERENCES Department(id)
 );
 
+DROP TABLE IF EXISTS Change;
+
 CREATE TABLE Change (
     id INTEGER CHECK (id >= 1) PRIMARY KEY,
     fieldChanged TEXT NOT NULL,
@@ -72,6 +74,8 @@ CREATE TABLE Hashtag (
     creationDate DATE NOT NULL,
     creationTime TIME NOT NULL 
 );
+
+DROP TABLE IF EXISTS Ticket_Hashtag;
 
 CREATE TABLE Ticket_Hashtag (
     id INTEGER CHECK (id >= 1) PRIMARY KEY,
