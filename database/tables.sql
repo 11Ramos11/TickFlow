@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS Department;
 
 CREATE TABLE Department (
     id INTEGER CHECK (id >= 1) PRIMARY KEY,
-    name TEXT NOT NULL,
+    name TEXT NOT NULL
 );
 
 DROP TABLE IF EXISTS User;
