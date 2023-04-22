@@ -51,24 +51,24 @@ body {
   }
 }
 
-.nav {
+nav {
     display: flex;
     flex-direction: column;
 }
 
-.nav ul:first-child {
+nav ul:first-child {
     display: flex;
     flex-direction: column;
 }
 
-.nav li {
+nav li {
     padding: 10px;
     list-style: none;
     background-color: #ddd;
     margin-right: 5px;
 }
 
-.nav ul:last-child li:last-child {
-    position:absolute;
-    bottom: 5rem;
+nav ul:last-child li:last-child {
+    position:relative;
+    top: 40rem;
 }
