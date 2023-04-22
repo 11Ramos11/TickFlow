@@ -83,6 +83,7 @@ body {
         0 16px 16px rgba(0, 0, 0, 0.04);
     border-radius: 10px;
     overflow: hidden;
+    height: calc(100vh - 100px); /* Subtract the height of the form wrapper */
 }
 
 /* Style for each chat message */
@@ -166,8 +167,4 @@ button {
     position: absolute;
     bottom: 16px;
     right: 16px;
-}
-
-button:hover {
-    background-color: #006fe6;
 }
