@@ -2,17 +2,28 @@
 <html>
 <head>
 	<title>Chat</title>
-    <link rel="stylesheet" type="text/css" href="chat.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <div id="chat">
-        <div class="msg">
-            lorem...
-        </div>
-        <div class="msg">
-            lorem...
-        </div>
-    </div>
+    <section id="chat">
+        <article class="msg msg-left">
+            <figure class="avatar">
+                <img src="avatar.jpg" alt="Avatar">
+            </figure>
+            <div class="bubble">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vehicula in mauris vel tempus.
+            </div>
+        </article>
+        <article class="msg msg-right">
+            <div class="bubble">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vehicula in mauris vel tempus.
+            </div>
+            <figure class="avatar">
+                <img src="avatar.jpg" alt="Avatar">
+            </figure>
+        </article>
+    </section>
+    
     <form action="/submit-message" method="post">
         <input type="text">
         <button>Reply</button>
