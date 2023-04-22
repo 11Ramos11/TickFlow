@@ -56,7 +56,7 @@ nav{
       /*space between*/
       justify-content: space-between;
       /*height: 100%;*/
-      min-height: 88vh;
+      min-height: 85vh;
      }
   
 nav ul:first-child {
@@ -68,13 +68,9 @@ nav li {
       padding: 10px;
       list-style: none;
       background-color: #ddd;
-      margin-right: 5px;
 }
   
-nav ul:last-child li:last-child {
-      position:relative;
-      top: 40rem;
-}
+
 
   nav ul {
     display: flex;
