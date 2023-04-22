@@ -73,8 +73,7 @@ body {
       top: 40rem;
   }
 
-/*chat*/
-
+/* Style for the chat container */
 #chat {
     max-width: 800px;
     margin: auto;
@@ -124,10 +123,20 @@ body {
     border-top-left-radius: 4px;
 }
 
-form {
+/* Style for the input field and reply button */
+.form-wrapper {
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    width: 100%;
     margin-top: 16px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 16px;
+    background-color: #fff;
+    border-top: 1px solid #ccc;
 }
 
 input[type="text"] {
@@ -139,6 +148,10 @@ input[type="text"] {
     font-size: 16px;
     margin-right: 8px;
     outline: none;
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    right: 84px;
 }
 
 button {
@@ -150,6 +163,9 @@ button {
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
 }
 
 button:hover {
