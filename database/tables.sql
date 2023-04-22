@@ -14,7 +14,7 @@ CREATE TABLE User (
     name TEXT NOT NULL,
     email TEXT NOT NULL,
     password TEXT NOT NULL,
-    permissions TEXT NOT NULL CHECK (permissions == 'Client' || permissions == 'Agent' || permissions == 'Admin'),
+    permissions TEXT NOT NULL CHECK (permissions == 'Client' OR permissions == 'Agent' OR permissions == 'Admin'),
     department Integer NOT NULL,
     FOREIGN KEY (department) REFERENCES Department(id)
 );
@@ -23,8 +23,8 @@ DROP TABLE IF EXISTS Ticket;
 
 CREATE TABLE Ticket (
     id INTEGER CHECK (id >= 1) PRIMARY KEY,
-    status TEXT NOT NULL CHECK (status == 'Pending' || status == 'Opened' || status == 'Closed'),
-    priority TEXT NOT NULL CHECK (priority == 'Immediate' || priority == 'Urgent' || priority == 'Normal'),
+    status TEXT NOT NULL CHECK (status == 'Pending' OR status == 'Opened' OR status == 'Closed'),
+    priority TEXT NOT NULL CHECK (priority == 'Immediate' OR priority == 'Urgent' OR priority == 'Normal'),
     subject TEXT NOT NULL,
     description TEXT NOT NULL,
     creationDate DATE NOT NULL,
@@ -67,7 +67,7 @@ DROP TABLE IF EXISTS Hashtag;
 
 CREATE TABLE Hashtag (
     id INTEGER CHECK (id >= 1) PRIMARY KEY,
-    name TEXT NOT NULL,
+    name TEXT NOT NULL
 );
 
 DROP TABLE IF EXISTS Ticket_Hashtag;
