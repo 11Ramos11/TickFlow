@@ -1,31 +1,36 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>Three-Column Layout with CSS Grid</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	<script src="https://kit.fontawesome.com/a45efa4a81.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
 	<div class="grid-container">
 		<div class="left-sidebar">
 			<header class="header">
-                <h1>TickSy</h1>
-            </header>
-            <nav>
-                <ul>
-                    <li>Home</li>
-                    <li>Dashboard</li>
-                    <li>Chat</li>
-                </ul>
-                <ul>
-                    <li>Profile</li>
-                </ul>
-            </nav>
+				<i class="fa-solid fa-globe"></i>
+				<h1>TickSy</h1>
+			</header>
+			<nav>
+				<ul>
+					<li class="active"><a><i class="fa-solid fa-house"></i>Home</a></li>
+					<li><a><i class="fa-solid fa-ticket"></i>Dashboard</a></li>
+					<li><a><i class="fa-regular fa-comments"></i>Chat</a></li>
+				</ul>
+				<ul>
+					<li><a><i class="fa-regular fa-user"></i>Profile</a></li>
+				</ul>
+			</nav>
 		</div>
 		<main class="middle-column">
 			<section>
 				<h2>Middle Column</h2>
 				<article>
-					<p>This is the content of the middle column.</p>
+					<p>This is the content of the middle column.
+					</p>
 				</article>
 			</section>
 		</main>
@@ -35,4 +40,5 @@
 		</aside>
 	</div>
 </body>
+
 </html>
