@@ -69,7 +69,7 @@ nav ul:first-child li {
 margin: 0.8rem 0;
 }
 
-nav li {
+nav ul li {
   padding: 1.2rem 0.5rem;
   list-style: none;
   display: flex;
@@ -102,16 +102,25 @@ nav li a{
   flex-direction: row;
   align-items: center;
   color: #3F3F3F;
-  
   text-decoration: none;
   font-size: 1.5rem;
   margin-left: 10px;
+
 }
 
 .fa-solid, .fa-regular{
   font-size: 2rem;
   margin-right: 10px;
   color: #9E9E9E;
+}
+
+nav ul li a:hover .fa-solid, nav ul li a:hover .fa-regular{
+  color: #3818D9;
+  transition: 0.3s;
+}
+
+nav ul li.active a:hover .fa-solid, nav ul li.active a:hover .fa-regular{
+  color: #fff;
 }
 
 nav ul:last-child li a{
