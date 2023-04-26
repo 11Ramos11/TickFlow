@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+html{
+  scroll-behavior: smooth;
+}
 body {
   margin: 0;
   padding: 0;
@@ -16,7 +19,6 @@ body {
 .left-sidebar {
   background-color: #fff;
   padding: 1rem 2rem;
-
 }
 
 .middle-column {
@@ -143,8 +145,15 @@ nav ul:last-child li a{
   margin: 0;
 }
 
+.middle-column{
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+
 /* Style for the chat container */
 #chat {
+
   max-width: 800px;
   margin: auto;
   background-color: #e9eaed;
@@ -152,7 +161,6 @@ nav ul:last-child li a{
     0 4px 4px rgba(0, 0, 0, 0.04), 0 8px 8px rgba(0, 0, 0, 0.04),
     0 16px 16px rgba(0, 0, 0, 0.04);
   border-radius: 10px;
-  overflow: hidden;
   height: calc(100vh - 100px);
   /* Subtract the height of the form wrapper */
 }
@@ -204,16 +212,10 @@ nav ul:last-child li a{
 
 /* Style for the input field and reply button */
 form {
-  display: flex;
-  align-items: center;
-  margin-top: 16px;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
   padding: 16px;
   background-color: #fff;
   border-top: 1px solid #ccc;
+  margin: auto;
 }
 
 form input[type="text"] {
