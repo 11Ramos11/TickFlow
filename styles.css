@@ -194,7 +194,7 @@ nav ul:last-child li a{
   padding: 1rem 2rem;
   overflow-y: scroll;
   overflow-x: hidden;
-  height: 50rem;
+  height: 85vh;
 }
 
 /* Style for each chat message */
