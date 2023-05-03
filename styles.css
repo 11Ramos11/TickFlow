@@ -19,16 +19,29 @@ body {
 .left-sidebar {
   background-color: #fff;
   padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
 }
-
+.left-sidebar .profile-button{
+  font-size: 1.5rem;
+  color: #3F3F3F;
+  text-decoration: none;
+  margin: 0.8rem 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: auto;
+}
 .middle-column {
   background-color: #eee;
+  min-height: 100vh;
 
 }
 
 .right-sidebar {
   background-color: #fff;
-
+  padding: 1rem 2rem;
 }
 
 
@@ -55,7 +68,6 @@ nav {
   /*space between*/
   justify-content: space-between;
   /*height: 100%;*/
-  min-height: 82vh;
 }
 
 nav ul {
@@ -145,9 +157,14 @@ nav ul:last-child li a{
   margin: 0;
 }
 
+.middle-column::-webkit-scrollbar {
+  display: none;
+}
 .middle-column{
   overflow-y: scroll;
   height: 100vh;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 .top{
@@ -198,11 +215,24 @@ figure.avatar img{
 
 }
 
+
+/* Hide scrollbar for Google Chrome
+.messages::-webkit-scrollbar{
+  display: none;
+}
+ */
+
 .messages{
   display: flex;
   flex-direction: column;
   padding: 1rem 2rem;
   overflow-y: scroll;
+
+  /* Hide scrollbar for IE, Edge and Firefox 
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
+  */
+
   overflow-x: hidden;
   height: 85vh;
   align-items: center;

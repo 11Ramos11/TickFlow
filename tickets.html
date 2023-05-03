@@ -21,11 +21,9 @@
 					<li class="active"><a href="tickets.html"><i class="fa-solid fa-ticket"></i>Dashboard</a></li>
 					<li><a href="chat.html"><i class="fa-regular fa-comments"></i>Chat</a></li>
 				</ul>
-				<ul>
-					<li><a href="profile.html"><img src="images/profile.png" alt="Profile" class="profile-img"></img>Profile<i
-								class="fa-solid fa-arrow-right-from-bracket"></i></a></li>
-				</ul>
 			</nav>
+			<a href="profile.html" class = "profile-button"><img src="images/profile.png" alt="Profile" class="profile-img"></img>Profile<i class="fa-solid fa-arrow-right-from-bracket"></i>
+			</a>
 		</div>
 		<main class="middle-column">
 
@@ -33,11 +31,29 @@
 				<h2>Tickets</h2>
 				<button class = "button">New Ticket</button>
 			</section>
-			
+
 		</main>
 		<aside class="right-sidebar">
-			<h2>Right Sidebar</h2>
-			<p>This is the content of the right sidebar.</p>
+			<h2>More info</h2>
+			<section class="ticket-info">
+				<h3>Ticket Info</h3>
+				<p>Ticket ID: <span class="id-tag"> #1E233</span></p>
+				<p>Created: 12/12/2021</p>
+				<p>Status: <span class="status-tag">Open</span></p>
+				<p>Priority: <span class="priority-tag">Urgent</span></p>
+			</section>
+
+			<section class ="assigned-to">
+				<h3>Assigned To</h3>
+				<img src="images/profile.png" alt="Profile" class="profile-img"></img>
+				<p>John Doe</p>
+			</section>
+
+			<section class="requester">
+				<h3>Requester Detail</h3>
+				<img src="images/profile.png" alt="Profile" class="profile-img"></img>
+				<p>John Doe</p>
+			</section>
 		</aside>
 	</div>
 </body>
