@@ -44,9 +44,9 @@ body {
   color: #3818D9;
 }
 .middle-column {
-  background-color: #eee;
   min-height: 100vh;
-
+  border-left: solid 1px #ccc;
+  border-right: solid 1px #ccc;
 }
 
 .right-sidebar {
@@ -228,18 +228,14 @@ figure.avatar img{
 }
 
 
-/* Hide scrollbar for Google Chrome
-.messages::-webkit-scrollbar{
-  display: none;
-}
- */
+
 
 .messages{
   display: flex;
   flex-direction: column;
   padding: 1rem 2rem;
-  /*overflow-y: scroll;*/
-
+  overflow-y: scroll;
+  height: 70vh;
   /* Hide scrollbar for IE, Edge and Firefox 
   -ms-overflow-style: none;  
   scrollbar-width: none;  
@@ -249,6 +245,12 @@ figure.avatar img{
   align-items: center;
   justify-content: center;
 }
+
+/* Hide scrollbar for Google Chrome
+.messages::-webkit-scrollbar{
+  display: none;
+}
+*/
 
 /* Style for each chat message */
 .msg {
@@ -286,7 +288,8 @@ figure.avatar img{
 
 
 form.reply {
-  margin: 1.5rem 0;
+
+  margin-bottom: 1.5rem;
   background-color: #fff;
   display: flex;
   padding: 1rem 2rem;
