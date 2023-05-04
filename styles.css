@@ -32,6 +32,16 @@ body {
   align-items: center;
   justify-content: flex-start;
   margin-top: auto;
+
+}
+
+
+.profile-button .fa-solid, .profile-button .fa-regular{
+  transition: 0.3s color ease-in-out;
+}
+.profile-button:hover .fa-solid, .profile-button:hover .fa-regular{
+  transition: 0.3s color ease-in-out;
+  color: #3818D9;
 }
 .middle-column {
   background-color: #eee;
@@ -317,10 +327,69 @@ form.reply button {
 form.reply button:hover {
   background-color: #006fe6;
 }
+.right-sidebar h2{
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 400;
+}
 
+.ticket-info{
+  padding: 1rem 2rem;
+  box-shadow: 0px 5px 7px 0px rgb(0 0 0 / 10%);
+  border-radius: 0.6rem;
+}
 
+.ticket-info h3{
+  font-size: 1.4rem;
+  align-items: center;
+  justify-content: center;
+}
 
+.ticket-info p{
+  line-height: 1.7rem;
+}
+.id-tag{
+  background-color: #ECECEC;
+  border: 1px solid #7E7E7E;
+  padding: 0.3rem 0.5rem;
+  border-radius: 90rem;
+  color: #202020;
+  margin: 0 0.5rem;
+}
 
+.status-tag{
+  background-color: #F0F9F2;
+  border: 1px solid #6DC580;
+  padding: 0.3rem 0.5rem;
+  border-radius: 90rem;
+  color: #03781D;
+  margin: 0 0.5rem;
+}
+
+.priority-tag{
+  
+  /* colors for normal priority 
+  background-color: #FFF5E5;
+  border: 1px solid #FFB366;
+  color: #FF8000;
+
+  */
+
+  /* colors for urgent priority */
+  background-color: #FFF3F3;
+  border: 1px solid #E0B1B1;
+  color: #A31717;
+  padding: 0.3rem 0.5rem;
+  border-radius: 90rem;
+  margin: 0 0.5rem;
+  
+}
+
+.date{
+  color: #343434;
+  font-weight: 400;
+  margin: 0 0.5rem;
+}
 
 @media (max-width: 767px) {
   .grid-container {
