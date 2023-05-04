@@ -508,3 +508,44 @@ form.reply button:hover {
   object-fit: cover;
   margin-bottom: 0.1rem;
 }
+
+.right-sidebar h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: #3818D9;
+}
+
+.right-sidebar p {
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-bottom: 1.5rem;
+}
+
+.right-sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.right-sidebar ul.contact-info li,
+.right-sidebar ul.skills li {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.right-sidebar ul.contact-info li strong,
+.right-sidebar ul.skills li strong {
+  font-weight: 500;
+}
+
+.right-sidebar ul.contact-info li a,
+.right-sidebar ul.skills li a {
+  color: #3818D9;
+  text-decoration: none;
+}
+
+.right-sidebar ul.contact-info li a:hover,
+.right-sidebar ul.skills li a:hover {
+  text-decoration: underline;
+}
+
