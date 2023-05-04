@@ -502,11 +502,11 @@ form.reply button:hover {
 }
 
 #profile-section .profile-picture {
-  width: 400px;
-  height: 400px;
+  width: 600px;
+  height: 600px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 0.1rem;
+  margin-bottom: 1rem;
 }
 
 .right-sidebar h3 {
