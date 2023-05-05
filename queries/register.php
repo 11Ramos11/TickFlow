@@ -19,7 +19,7 @@ $query = $db->prepare("INSERT INTO User (name,email,password) VALUES ('$name','$
 
 if ($query == false){
     $_SESSION["error"] = new MyError("Register", "Email already exists");
-    header("Location: ../auth_page.php");
+    header("Location: ../authentication.php");
     exit();
 }
 
@@ -27,7 +27,7 @@ $result = $query->execute();
 
 if ($result == false){
     $_SESSION["error"] = new MyError("Register", "Email already exists");
-    header("Location: ../auth_page.php");
+    header("Location: ../authentication.php");
     exit();
 }
 

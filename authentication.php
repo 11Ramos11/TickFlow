@@ -4,8 +4,9 @@
 
 	session_start();
 
-	if (isset($_SESSION["email"])){
+	if (isset($_SESSION["user"])){
 		header("Location: landing.php");
+		exit();
 	} 
 
 	if (isset($_SESSION["error"])){
@@ -13,6 +14,8 @@
 	} else {
 		$error = null;
 	}
+
+	
 
 	function register_error($error){
 		if ($error != null) 
@@ -39,7 +42,7 @@
 		<div class="form-container sign-up-container">
 			<form action="queries/register.php" method="post">
 				<h1>Create Account</h1>
-				<input type="text" name="name" placeholder="Name" />
+				<input type="text" name="name" placeholder="Name"/>
 				<input type="email" name="email" placeholder="Email" />
 				<input type="password" name="pwd" placeholder="Password" />
 				<?= register_error($error) ?>
@@ -73,5 +76,5 @@
 		</div>
 	</div>
 </body>     
-<script src="auth_page_animation.js"> </script>
+<script src="authentication_animation.js"> </script>
 </html>  

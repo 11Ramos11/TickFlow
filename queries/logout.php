@@ -5,6 +5,6 @@ session_unset();
 session_destroy();
 
 error_log("Logout");
-header("Location: ../auth_page.php");
+header("Location: ../authentication.php");
 
 ?>
