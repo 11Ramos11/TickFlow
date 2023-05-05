@@ -23,9 +23,9 @@
 			</header>
 			<nav>
 				<ul>
-					<li class="active"><a href="index.html"><i class="fa-solid fa-house"></i>Home</a></li>
-					<li><a href="tickets.html"><i class="fa-solid fa-ticket"></i>Dashboard</a></li>
-					<li><a href="chat.html"><i class="fa-regular fa-comments"></i>Chat</a></li>
+					<li class="active"><a href="index.php"><i class="fa-solid fa-house"></i>Home</a></li>
+					<li><a href="tickets.php"><i class="fa-solid fa-ticket"></i>Dashboard</a></li>
+					<li><a href="chat.php"><i class="fa-regular fa-comments"></i>Chat</a></li>
 				</ul>
 			
 			</nav>
