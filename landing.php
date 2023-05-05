@@ -5,22 +5,47 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+	<title>Three-Column Layout with CSS Grid</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	<script src="https://kit.fontawesome.com/a45efa4a81.js" crossorigin="anonymous"></script>
+	<script src="script.js"></script>
 </head>
+
 <body>
-    <h1>
-        Landing Page
-    </h1>
+	<div class="grid-container" id="#main">
+		<div class="left-sidebar">
+			<header class="header">
+				<img class="logo" src="images/logo.svg" alt="Logo">
+				<h1>TickSy</h1>
+			</header>
+			<nav>
+				<ul>
+					<li class="active"><a href="index.html"><i class="fa-solid fa-house"></i>Home</a></li>
+					<li><a href="tickets.html"><i class="fa-solid fa-ticket"></i>Dashboard</a></li>
+					<li><a href="chat.html"><i class="fa-regular fa-comments"></i>Chat</a></li>
+				</ul>
+			
+			</nav>
 
-    <h2>
-        Welcome, <?= $user->name ?>
-    </h2>
-
-    <button onclick="window.location.href = 'queries/logout.php';">Logout</button>
+			<a href="profile.php" class = "profile-button"><img src="images/profile.png" alt="Profile" class="profile-img"></img>Profile<i class="fa-solid fa-arrow-right-from-bracket"></i>
+			</a>
+		</div>
+		<main class="middle-column">
+			<article>
+				<h2>Middle Column</h2>
+				<p>This is the content of the middle column.
+				</p>
+			</article>
+			
+		</main>
+		<aside class="right-sidebar">
+			<h2>Right Sidebar</h2>
+			<p>This is the content of the right sidebar.</p>
+		</aside>
+	</div>
 </body>
+
 </html>

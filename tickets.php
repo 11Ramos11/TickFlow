@@ -17,12 +17,12 @@
 			</header>
 			<nav>
 				<ul>
-					<li><a href="index.html"><i class="fa-solid fa-house"></i>Home</a></li>
-					<li class="active"><a href="tickets.html"><i class="fa-solid fa-ticket"></i>Dashboard</a></li>
-					<li><a href="chat.html"><i class="fa-regular fa-comments"></i>Chat</a></li>
+					<li><a href="landing.php"><i class="fa-solid fa-house"></i>Home</a></li>
+					<li class="active"><a href="tickets.php"><i class="fa-solid fa-ticket"></i>Dashboard</a></li>
+					<li><a href="chat.php"><i class="fa-regular fa-comments"></i>Chat</a></li>
 				</ul>
 			</nav>
-			<a href="profile.html" class = "profile-button"><img src="images/profile.png" alt="Profile" class="profile-img"></img>Profile<i class="fa-solid fa-arrow-right-from-bracket"></i>
+			<a href="profile.php" class = "profile-button"><img src="images/profile.png" alt="Profile" class="profile-img"></img>Profile<i class="fa-solid fa-arrow-right-from-bracket"></i>
 			</a>
 		</div>
 		<main class="middle-column">
