@@ -54,7 +54,6 @@ if ($result == false){
     exit();
 }
 
-$_SESSION["user"] = new User($email, $name, "user");
-header("Location: ../landing.php");
+header("Location: ../authentication.php");
     
 ?>

@@ -1,3 +1,19 @@
+<?php
+    include_once("util.php");
+	include_once("queries/tickets_queries.php");
+
+    session_start();
+
+	if (!isset($_SESSION["user"])){
+		header("Location: authentication.php");
+		exit();
+	}
+    $user = $_SESSION["user"];
+
+	$tickets = getTicketsForUser($user->id);
+?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -26,18 +42,30 @@
 			</a>
 		</div>
 		<main class="middle-column">
-
 			<section class = "top">
 				<h2>Tickets</h2>
 				<button class = "button">New Ticket</button>
 			</section>
-
+			<section class="content">
+				<?php foreach ($tickets as $ticket) { ?>
+				<section class="ticket-info">
+					<h3><a href="ticket.php"><?=$ticket->subject?></a></h3>
+					<p>Status: <span class="status-tag"><?=$ticket->status?></span></p>
+					<p>Priority: <span class="priority-tag"><?=$ticket->priority?></span></p>
+					<ul class="tags">
+						<?php foreach ($ticket->tags as $tag) { ?>
+						<li> <?= $tag ?> </li>
+						<?php } ?>
+					</ul>
+					<p>	<?=$ticket->description?> </p>
+				</section>
+				<?php } ?>
+			</section>
 		</main>
 		<aside class="right-sidebar">
 			<h2>More info</h2>
-
 			<section class="ticket-info">
-				<h3>Ticket Info</h3>
+				<h3>Ticket Title	</h3>
 				<p>Ticket ID: <span class="id-tag"> #1E233</span></p>
 				<p>Created: <span class="date">12/12/2021</span></p>
 				<p>Status: <span class="status-tag">Open</span></p>
