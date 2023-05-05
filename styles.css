@@ -1,0 +1,554 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+html{
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-rows: 1fr;
+  min-height: 100vh;
+}
+
+.left-sidebar {
+  background-color: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+}
+.left-sidebar .profile-button{
+  font-size: 1.5rem;
+  color: #3F3F3F;
+  text-decoration: none;
+  margin: 0.8rem 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: auto;
+
+}
+
+
+.profile-button .fa-solid, .profile-button .fa-regular{
+  transition: 0.3s color ease-in-out;
+}
+.profile-button:hover .fa-solid, .profile-button:hover .fa-regular{
+  transition: 0.3s color ease-in-out;
+  color: #3818D9;
+}
+.middle-column {
+  min-height: 100vh;
+  border-left: solid 1px #ccc;
+  border-right: solid 1px #ccc;
+}
+
+.right-sidebar {
+  background-color: #fff;
+  padding: 1rem 2rem;
+}
+
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #3818D9;
+  text-align: center;
+  }
+
+  .header h1{
+    font-weight: 500;
+    font-size: 2.5rem;
+
+  }
+  .logo{
+    padding-right: 0.5rem;
+  }
+
+nav {
+  display: flex;
+  flex-direction: column;
+  /*space between*/
+  justify-content: space-between;
+  /*height: 100%;*/
+}
+
+nav ul {
+  display: flex;
+  flex-direction: column;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-inline-start: 0;
+
+}
+
+nav ul:first-child li {
+margin: 0.8rem 0;
+}
+
+nav ul li {
+  padding: 1.2rem 0.5rem;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+}
+
+
+nav ul li.active{
+  background-color: #3818D9;
+  border-radius: 0.4rem;
+}
+
+nav ul li.active a{
+  color: #fff;
+}
+
+nav ul li.active .fa-solid{
+  color: #fff;
+}
+
+nav ul li.active .fa-regular{
+  color: #fff;
+}
+
+
+nav li a{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #3F3F3F;
+  text-decoration: none;
+  font-size: 1.5rem;
+  margin-left: 10px;
+
+}
+
+.fa-solid, .fa-regular{
+  font-size: 2rem;
+  margin-right: 10px;
+  color: #9E9E9E;
+}
+
+nav ul li a .fa-solid, nav ul li a .fa-regular{
+  transition: 0.3s ease-in-out;
+}
+nav ul li a:hover .fa-solid, nav ul li a:hover .fa-regular{
+  color: #3818D9;
+}
+
+nav ul li.active a:hover .fa-solid, nav ul li.active a:hover .fa-regular{
+  color: #fff;
+}
+
+nav ul:last-child li a{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+.fa-arrow-right-from-bracket{
+  font-size: 1.5rem;
+  color: #9E9E9E;
+  margin-right: 0;
+  margin-left: 1rem;
+}
+
+.profile{
+  padding: 0;
+  margin: 0;
+}
+
+.middle-column::-webkit-scrollbar {
+  display: none;
+}
+.middle-column{
+  overflow-y: scroll;
+  height: 100vh;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.top{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+}
+
+
+.top h2{
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+.button{
+  background-color: #3818D9;
+  color: #fff;
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+
+figure.avatar img{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.profile-img{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  padding: 5%;
+}
+
+/* Style for the chat container */
+#chat {
+  margin: auto;
+  border-left: solid 1px #ccc;
+  border-right: solid 1px #ccc;
+  min-height: 100vh;
+  display: flex; 
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+
+
+.messages{
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 2rem;
+  overflow-y: scroll;
+  height: 70vh;
+  /* Hide scrollbar for IE, Edge and Firefox 
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
+  */
+
+  overflow-x: hidden;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hide scrollbar for Google Chrome
+.messages::-webkit-scrollbar{
+  display: none;
+}
+*/
+
+/* Style for each chat message */
+.msg {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+
+.msg:last-child {
+  margin-bottom: 0;
+}
+
+.msg .bubble {
+  background-color: #fff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08), 0 2px 2px rgba(0, 0, 0, 0.08),
+    0 4px 4px rgba(0, 0, 0, 0.08), 0 8px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  padding: 1.5rem 1rem;
+  font-size: 1rem;
+  line-height: 1.4;
+  word-wrap: break-word;
+  text-align: justify;
+  text-justify:  inter-word;
+}
+
+.msg-right .bubble{
+  background-color: #F7F5FF;
+}
+
+
+
+/* Style for the input field and reply button */
+
+
+
+form.reply {
+
+  margin-bottom: 1.5rem;
+  background-color: #fff;
+  display: flex;
+  padding: 1rem 2rem;
+  align-items: center;
+}
+
+form.reply input[type="text"] {
+  flex: 1;
+  border: 1px solid #d8d8d8;
+  border-radius: 999px;
+  background-color: #f3f4f6;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+  outline: none;
+  transition: border 0.3s ease-in-out;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+form.reply input[type="text"]:hover {
+  border: 1px solid #000;
+  
+}
+
+form.reply input[type="text"]:focus {
+  border: 1px solid #000;
+}
+
+form.reply button {
+  background-color: #0084ff;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+form.reply button:hover {
+  background-color: #006fe6;
+}
+.right-sidebar h2{
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 400;
+}
+
+.ticket-info{
+  padding: 1rem 2rem;
+  box-shadow: 0px 5px 7px 0px rgb(0 0 0 / 10%);
+  border-radius: 0.6rem;
+}
+
+.ticket-info h3{
+  font-size: 1.4rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.ticket-info p{
+  line-height: 1.7rem;
+}
+.id-tag{
+  background-color: #ECECEC;
+  border: 1px solid #7E7E7E;
+  padding: 0.3rem 0.5rem;
+  border-radius: 90rem;
+  color: #202020;
+  margin: 0 0.5rem;
+}
+
+.status-tag{
+  background-color: #F0F9F2;
+  border: 1px solid #6DC580;
+  padding: 0.3rem 0.5rem;
+  border-radius: 90rem;
+  color: #03781D;
+  margin: 0 0.5rem;
+}
+
+.priority-tag{
+  
+  /* colors for normal priority 
+  background-color: #FFF5E5;
+  border: 1px solid #FFB366;
+  color: #FF8000;
+
+  */
+
+  /* colors for urgent priority */
+  background-color: #FFF3F3;
+  border: 1px solid #E0B1B1;
+  color: #A31717;
+  padding: 0.3rem 0.5rem;
+  border-radius: 90rem;
+  margin: 0 0.5rem;
+  
+}
+
+.date{
+  color: #343434;
+  font-weight: 400;
+  margin: 0 0.5rem;
+}
+
+
+.assigned-to{
+  margin: 1.5rem auto;
+  padding: 1rem 2rem;
+  box-shadow: 0px 5px 7px 0px rgb(0 0 0 / 10%);
+  border-radius: 0.6rem;
+}
+.assigned-to h3{
+  font-size: 1.4rem;
+
+}
+.person-card{
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.requester{
+  margin: 1.5rem auto;
+  padding: 1rem 2rem;
+  box-shadow: 0px 5px 7px 0px rgb(0 0 0 / 10%);
+  border-radius: 0.6rem;
+}
+.requester h3{
+  font-size: 1.4rem;
+
+}
+@media (max-width: 767px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 3fr auto;
+    min-height: 100vh;
+  }
+
+  .left-sidebar,
+  .right-sidebar {
+    padding: 20px;
+  }
+
+  .middle-column {
+    padding: 20px;
+  }
+
+  .left-sidebar,
+  .middle-column,
+  .right-sidebar {
+    width: 100%;
+  }
+}
+
+/* Add these new rules at the end of your existing CSS */
+
+#profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+#profile-section .profile-info {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 1rem;
+}
+
+#profile-section .profile-info h2 {
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+#profile-section .profile-info p {
+  font-size: 1.1rem;
+  color: #777;
+}
+
+#profile-section .profile-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 600px;
+}
+
+#profile-section .profile-details .detail-card {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: calc(50% - 1rem);
+  margin-bottom: 1rem;
+}
+
+#profile-section .profile-details .detail-card h3 {
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+#profile-section .profile-details .detail-card p {
+  font-size: 1.1rem;
+  color: #777;
+}
+
+#profile-section .profile-picture {
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 0.1rem;
+}
+
+.right-sidebar h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: #3818D9;
+}
+
+.right-sidebar p {
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-bottom: 1.5rem;
+}
+
+.right-sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.right-sidebar ul.contact-info li,
+.right-sidebar ul.skills li {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.right-sidebar ul.contact-info li strong,
+.right-sidebar ul.skills li strong {
+  font-weight: 500;
+}
+
+.right-sidebar ul.contact-info li a,
+.right-sidebar ul.skills li a {
+  color: #3818D9;
+  text-decoration: none;
+}
+
+.right-sidebar ul.contact-info li a:hover,
+.right-sidebar ul.skills li a:hover {
+  text-decoration: underline;
+}
+
