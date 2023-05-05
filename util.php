@@ -9,4 +9,15 @@ class MyError {
         $this->msg = $msg;
     }
 }
+
+class User {
+
+    public $email, $name, $role;
+
+    function __construct($email, $name, $role) {
+        $this->email = $email;
+        $this->name = $name;
+        $this->role = $role;
+    }
+}
 ?>

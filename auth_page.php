@@ -13,6 +13,20 @@
 	} else {
 		$error = null;
 	}
+
+	function register_error($error){
+		if ($error != null) 
+			if ($error->page == "Register") {
+				echo "<p id='register-error' class='error'> $error->msg </p>";
+		}
+	}
+
+	function login_error($error){
+		if ($error != null) 
+			if ($error->page == "Login") {
+				echo "<p id='login-error' class='error'> $error->msg </p>";
+		}
+	}
 ?>
 
 <html>  
@@ -28,11 +42,7 @@
 				<input type="text" name="name" placeholder="Name" />
 				<input type="email" name="email" placeholder="Email" />
 				<input type="password" name="pwd" placeholder="Password" />
-				<?php 
-					if ($error != null) 
-						if ($error->page == "Register") {
-							?> <p id='register-error' class="error"> <?= $error->msg ?>
-				<?php } ?>
+				<?= register_error($error) ?>
 				</p>
 				<button>Sign Up</button>
 			</form>
@@ -42,11 +52,7 @@
 				<h1>Sign in</h1>
 				<input type="email" name="email" placeholder="Email" />
 				<input type="password" name="pwd" placeholder="Password" />
-				<?php 
-					if ($error != null) 
-						if ($error->page == "Login") {
-							?> <p id='login-error' class="error"> <?= $error->msg ?> </p>
-				<?php } ?>
+				<?= login_error($error) ?>
 				<a href="#">Forgot your password?</a>
 				<button>Sign In</button>
 			</form>

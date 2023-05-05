@@ -14,7 +14,7 @@ CREATE TABLE User (
     name TEXT,
     email TEXT UNIQUE NOT NULL,
     password TEXT NOT NULL,
-    permissions TEXT CHECK (permissions == 'Client' OR permissions == 'Agent' OR permissions == 'Admin'),
+    role TEXT CHECK (role == 'Client' OR role == 'Agent' OR role == 'Admin'),
     department Integer,
     FOREIGN KEY (department) REFERENCES Department(id)
 );

@@ -24,8 +24,9 @@ $count = count($users);
 
 if ($count == 1){
 
-    $_SESSION["email"] = $email;
-    $_SESSION["name"] = $users[0]["name"];
+    $user_info = $users[0];
+
+    $_SESSION["user"] = new User($user_info['email'], $user_info['name'], $user_info['role']);
     $_SESSION["error"] = "";
     header("Location: ../landing.php");
     exit();

@@ -1,5 +1,7 @@
 <?php
+    include_once("util.php");
     session_start();
+    $user = $_SESSION["user"];
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +18,7 @@
     </h1>
 
     <h2>
-        Welcome, <?= $_SESSION["name"] ?>
+        Welcome, <?= $user->name ?>
     </h2>
 
     <button onclick="window.location.href = 'queries/logout.php';">Logout</button>

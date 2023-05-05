@@ -31,8 +31,7 @@ if ($result == false){
     exit();
 }
 
-$_SESSION["name"] = $name;
-$_SESSION["email"] = $email;    
+$_SESSION["user"] = new User($email, $name, "user");
 header("Location: ../landing.php");
     
 ?>

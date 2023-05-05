@@ -19,7 +19,7 @@ INSERT INTO FAQ (id, question, answer, department) VALUES
     (11, 'How do I book travel for business trips?', 'To book travel for business trips, please contact the travel coordinator in the HR department. The travel coordinator will work with you to arrange travel and lodging.', 4),
     (12, 'What is the process for requesting a purchase order?', 'To request a purchase order, please submit a request through the purchasing portal. Please include a description of the item or service being requested, as well as the cost.', 4);
 
-INSERT INTO User (id, name, email, password, permissions, department) VALUES 
+INSERT INTO User (id, name, email, password, role, department) VALUES 
   (1, 'John Smith', 'john.smith@company.com', 'password1', 'Admin', 1),
   (2, 'Jane Doe', 'jane.doe@company.com', 'password2', 'Client', 1),
   (3, 'Bob Johnson', 'bob.johnson@company.com', 'password3', 'Agent', 1),
