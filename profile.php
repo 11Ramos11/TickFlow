@@ -1,3 +1,9 @@
+<?php
+    include_once("util.php");
+    session_start();
+    $user = $_SESSION["user"];
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -17,12 +23,12 @@
             </header>
             <nav>
                 <ul>
-                    <li><a href="index.html"><i class="fa-solid fa-house"></i>Home</a></li>
-                    <li><a href="tickets.html"><i class="fa-solid fa-ticket"></i>Dashboard</a></li>
-                    <li><a href="chat.html"><i class="fa-regular fa-comments"></i>Chat</a></li>
+                    <li><a href="landing.php"><i class="fa-solid fa-house"></i>Home</a></li>
+                    <li><a href="tickets.php"><i class="fa-solid fa-ticket"></i>Dashboard</a></li>
+                    <li><a href="chat.php"><i class="fa-regular fa-comments"></i>Chat</a></li>
                 </ul>
             </nav>
-            <a href="profile.html" class="profile-button"><img src="images/profile.png" alt="Profile" class="profile-img">Profile<i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+            <a href="profile.php" class="profile-button"><img src="images/profile.png" alt="Profile" class="profile-img">Profile<i class="fa-solid fa-arrow-right-from-bracket"></i></a>
         </div>
         <main class="middle-column" id="profile-section">
             <section class="profile-section">
@@ -30,8 +36,8 @@
                 <div class="profile-info">
                     <img src="images/profile.png" alt="Profile Picture" class="profile-picture">
                     <div class="user-details">
-                        <h3 class="user-name">John Doe</h3>
-                        <p class="user-email">john.doe@example.com</p>
+                        <h3 class="user-name"><?= $user->name ?></h3>
+                        <p class="user-email"><?= $user->email ?></p>
                     </div>
                 </div>
                 <button class="edit-profile-button">Edit Profile</button>

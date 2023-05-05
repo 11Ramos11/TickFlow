@@ -30,7 +30,7 @@ CREATE TABLE Ticket (
     creationDate DATE NOT NULL,
     creationTime TIME NOT NULL,
     author INTEGER NOT NULL,
-    assignedTo INTEGER NOT NULL,
+    assignedTo INTEGER,
     department INTEGER,
     FOREIGN KEY (author) REFERENCES User(id),
     FOREIGN KEY (assignedTo) REFERENCES User(id),
