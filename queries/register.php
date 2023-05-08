@@ -14,7 +14,7 @@ if (!preg_match("/^[a-zA-Z\sãÃ]+$/", $name)){
 $email = $_POST["email"];
 
 if (!preg_match("/^[a-zA-Z0-9]+@companny.com+$/", $email)){
-    $_SESSION["error"] = new MyError("Register", "Email must be in the format: <name>@companny.com");
+    $_SESSION["error"] = new MyError("Register", "Email must be in the format: <name>@company.com");
     header("Location: ../authentication.php");
     exit();
 }
@@ -54,7 +54,6 @@ if ($result == false){
     exit();
 }
 
-$_SESSION["user"] = new User($email, $name, "user");
-header("Location: ../landing.php");
+header("Location: ../authentication.php");
     
 ?>

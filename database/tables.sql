@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS Ticket;
 
 CREATE TABLE Ticket (
     id INTEGER CHECK (id >= 1) PRIMARY KEY AUTOINCREMENT,
-    status TEXT NOT NULL CHECK (status == 'Pending' OR status == 'Opened' OR status == 'Closed'),
+    status TEXT NOT NULL CHECK (status == 'Pending' OR status == 'Open' OR status == 'Closed') DEFAULT ('Pending'),
     priority TEXT NOT NULL CHECK (priority == 'Immediate' OR priority == 'Urgent' OR priority == 'Normal'),
     subject TEXT NOT NULL,
     description TEXT NOT NULL,
@@ -41,7 +41,7 @@ DROP TABLE IF EXISTS Change;
 
 CREATE TABLE Change (
     id INTEGER CHECK (id >= 1) PRIMARY KEY AUTOINCREMENT,
-    fieldChanged TEXT NOT NULL,
+    fieldChanged TEXT NOT NULL CHECK (fieldChanged == 'status' OR fieldChanged == 'priority' OR fieldChanged == 'subject' OR fieldChanged == 'description' OR fieldChanged == 'assignedTo' OR fieldChanged == 'department'),
     newValue TEXT NOT NULL,
     oldValue TEXT NOT NULL,
     editDate DATE NOT NULL,
@@ -73,9 +73,9 @@ CREATE TABLE Hashtag (
 DROP TABLE IF EXISTS Ticket_Hashtag;
 
 CREATE TABLE Ticket_Hashtag (
-    id INTEGER CHECK (id >= 1) PRIMARY KEY AUTOINCREMENT,
     ticket INTEGER NOT NULL,
     hashtag INTEGER NOT NULL,
+    PRIMARY KEY (ticket, hashtag),
     FOREIGN KEY (ticket) REFERENCES Ticket(id),
     FOREIGN KEY (hashtag) REFERENCES Hashtag(id)
 );

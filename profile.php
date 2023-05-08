@@ -1,6 +1,12 @@
 <?php
     include_once("util.php");
     session_start();
+
+    if (!isset($_SESSION["user"])){
+		header("Location: authentication.php");
+		exit();
+	}
+    
     $user = $_SESSION["user"];
 ?>
 
@@ -41,6 +47,7 @@
                     </div>
                 </div>
                 <button class="edit-profile-button">Edit Profile</button>
+                <a href="queries/logout.php"><button class="logout-button">Logout</button></a>
             </section>
         </main>
         <aside class="right-sidebar">

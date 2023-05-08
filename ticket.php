@@ -10,7 +10,14 @@
 	}
     $user = $_SESSION["user"];
 
-	$tickets = getTicketsForUser($user->id);
+	$ticketId = $_GET["ticket"];
+
+    if (!userHasAccessToTicket($ticketId)){
+        header("Location: tickets.php");
+        exit();
+    }
+
+    $ticket = getTicket($ticketId);
 ?>
 
 
@@ -34,7 +41,7 @@
 			<nav>
 				<ul>
 					<li><a href="landing.php"><i class="fa-solid fa-house"></i>Home</a></li>
-					<li class="active"><a href="tickets.php"><i class="fa-solid fa-ticket"></i>Dashboard</a></li>
+					<li><a href="tickets.php"><i class="fa-solid fa-ticket"></i>Dashboard</a></li>
 					<li><a href="chat.php"><i class="fa-regular fa-comments"></i>Chat</a></li>
 				</ul>
 			</nav>
@@ -43,29 +50,17 @@
 		</div>
 		<main class="middle-column">
 			<section class = "top">
-				<h2>Tickets</h2>
-				<a href="new_ticket.php"><button class = "button"> New Ticket</button> </a>
-			</section>
-			<section class="content">
-				<?php foreach ($tickets as $ticket) { ?>
-				<section class="ticket-info">
-					<h3><a href="ticket.php?ticket=<?=$ticket->id?>"><?=$ticket->subject?></a></h3>
-					<p>Status: <span class="status-tag"><?=$ticket->status?></span></p>
-					<p>Priority: <span class="priority-tag"><?=$ticket->priority?></span></p>
-					<p>Tags:</p>
-					<ul class="tags">
-						<?php foreach ($ticket->tags as $tag) { ?>
-						<li> <?= $tag ?> </li>
-						<?php } ?>
-					</ul>
-					<p>	<?=$ticket->description?> </p>
-				</section>
-				<?php } ?>
+				<h2><?=$ticket->subject?></h2>
+                <div class="ticket-info">
+                    <p>Created: <span class="date"><?=$ticket->date?></span></p>
+                    <p>Status: <span class="status-tag"><?=$ticket->status?></span></p>
+                    <p>Priority: <span class="priority-tag"><?=$ticket->priority?></span></p>
+                </div>
+                <p><?=$ticket->description?></p>
 			</section>
 		</main>
-		<!--
 		<aside class="right-sidebar">
-			<h2>More info</h2>
+			<!--- <h2>More info</h2>
 			<section class="ticket-info">
 				<h3>Ticket Title	</h3>
 				<p>Ticket ID: <span class="id-tag"> #1E233</span></p>
@@ -88,9 +83,8 @@
 					<img src="images/profile.png" alt="Profile" class="profile-img"></img>
 					<p>John Doe</p>
 				</div>
-			</section>
+			</section> --->
 		</aside>
-		-->
 	</div>
 </body>
 

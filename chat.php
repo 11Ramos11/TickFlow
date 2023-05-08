@@ -1,3 +1,15 @@
+<?php
+    include_once("util.php");
+    session_start();
+
+    if (!isset($_SESSION["user"])){
+		header("Location: authentication.php");
+		exit();
+	}
+    
+    $user = $_SESSION["user"];
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
