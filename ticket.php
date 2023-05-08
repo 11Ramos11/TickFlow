@@ -1,6 +1,8 @@
 <?php
     include_once("util.php");
 	include_once("queries/tickets_queries.php");
+	include_once("queries/users_queries.php");
+	include_once("queries/departments_queries.php");
 
     session_start();
 
@@ -18,6 +20,13 @@
     }
 
     $ticket = getTicket($ticketId);
+
+	$author = getUser($ticket->authorID);
+	$assignedTo = getUser($ticket->assignedID);
+
+	$assignedToName = $assignedTo == null ? "Unassigned" : $assignedTo->name;	
+
+	$department = getDepartmentByID($ticket->departmentID);
 ?>
 
 
@@ -62,6 +71,13 @@
 					<?php } ?>
 				</ul>
                 <p><?=$ticket->description?></p>
+				<p>Written by <a href="profile.php?user=<?=$author->id?>"><?=$author->name?></a> </p>
+				<?php if ($assignedTo != null) { ?>
+					<p>Assigned to <a href="profile.php?user=<?=$assignedTo->id?>"><?=$assignedTo->name?></a> </p>
+				<?php } else { ?>
+					<p>Not Assigned </p>
+				<?php } ?>
+				<p>Department: <a><?=$department == null ? "None" : $department->name?></a> </p>
 			</section>
 		</main>
 		<aside class="right-sidebar">
