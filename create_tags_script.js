@@ -1,21 +1,15 @@
+let tags = [];
+
 window.onload = function () {
     const tagsList = document.getElementById("tag-creator");
     const input = document.getElementById("tag-input");
 
-    let tags = [];
-
     function addListItem(){
         tagsList.querySelectorAll("li").forEach(li => li.remove()); 
         tags.forEach(tag =>{
-            let li = `<li class="tag">${tag}<button type="button" onclick="remove(this, '${tag}')"> remove </button></li>`;
+            let li = `<li class="tag">${tag}<button type="button" onclick="remove(this, '${tag}')">x</button></li>`;
             input.insertAdjacentHTML('beforebegin', li);
         })
-    }
-
-    function remove(element, tag){
-        console.log(tag);
-        tags = tags.filter(t => t != tag);
-        element.parentElement.remove();
     }
 
     function addTag(e){
@@ -42,3 +36,10 @@ window.onload = function () {
         tagsInput.value = tags;
     });
 };
+
+
+function remove(element, tag){
+    console.log(tag);
+    tags = tags.filter(t => t != tag);
+    element.parentElement.remove();
+}

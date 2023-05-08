@@ -350,7 +350,7 @@ form.reply button:hover {
 .filter-tab > .filter-dropdown {
   background-color: #fff;
   border: 1px solid #ccc;
-  border-radius: 0.2rem;
+  border-radius: 0.3rem;
   margin: 0.3rem;
   padding: 0.5rem 1rem;
   font-size: 1rem;
@@ -376,6 +376,7 @@ form.reply button:hover {
 .tags {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
   margin-top: 1rem;
@@ -389,7 +390,18 @@ form.reply button:hover {
   padding: 0.3rem 0.5rem;
   border-radius: 90rem;
   color: #3818D9;
-  margin: 0 0.5rem 0 0;
+  margin: 0.5rem;
+}
+
+.tag button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin-left: 0rem;
+  font-size: 1rem;
+  color: #3818D9;
+  transition: color 0.3s ease-in-out;
 }
 
 .tags-searchbar {
@@ -404,8 +416,7 @@ form.reply button:hover {
 .tags-box {
   flex: 1;
   border: 1px solid #d8d8d8;
-  border-radius: 999px;
-  padding: 0.75rem 1rem;
+  border-radius: 1rem;
   font-size: 1rem;
   margin-right: 0.5rem;
   outline: none;
@@ -413,7 +424,11 @@ form.reply button:hover {
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
-.tags-box input {
+.tags-box #tag-input {
+  display: flex;
+  background-color: transparent;
+  flex: 1;
+  margin:  0.75rem 1rem;
   border: none;
   outline: none;
   font-size: 1rem;
