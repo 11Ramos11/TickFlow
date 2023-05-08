@@ -35,7 +35,7 @@
 <html>  
 <head>  
     <title>PHP login system</title>  
-    <link rel = "stylesheet" type = "text/css" href = "style.css">   
+    <link rel = "stylesheet" type = "text/css" href = "auth_style.css">   
 </head>  
 <body>  
 	<div class="container" id="container">
@@ -46,7 +46,6 @@
 				<input type="email" name="email" placeholder="Email" />
 				<input type="password" name="pwd" placeholder="Password" />
 				<?= register_error($error) ?>
-				</p>
 				<button>Sign Up</button>
 			</form>
 		</div>

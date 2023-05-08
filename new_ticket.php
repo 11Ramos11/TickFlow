@@ -1,6 +1,6 @@
 <?php
     include_once("util.php");
-	include_once("queries/tickets_queries.php");
+	include_once("queries/departments_queries.php");
 
     session_start();
 
@@ -10,7 +10,7 @@
 	}
     $user = $_SESSION["user"];
 
-	$tickets = getTicketsForUser($user->id);
+	$departments = getDepartments();
 ?>
 
 
@@ -21,7 +21,6 @@
 	<title>Three-Column Layout with CSS Grid</title>
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	<script src="https://kit.fontawesome.com/a45efa4a81.js" crossorigin="anonymous"></script>
-	<script src="script.js"></script>
 </head>
 
 <body>
@@ -34,7 +33,7 @@
 			<nav>
 				<ul>
 					<li><a href="landing.php"><i class="fa-solid fa-house"></i>Home</a></li>
-					<li class="active"><a href="tickets.php"><i class="fa-solid fa-ticket"></i>Dashboard</a></li>
+					<li><a href="tickets.php"><i class="fa-solid fa-ticket"></i>Dashboard</a></li>
 					<li><a href="chat.php"><i class="fa-regular fa-comments"></i>Chat</a></li>
 				</ul>
 			</nav>
@@ -43,29 +42,38 @@
 		</div>
 		<main class="middle-column">
 			<section class = "top">
-				<h2>Tickets</h2>
-				<a href="new_ticket.php"><button class = "button"> New Ticket</button> </a>
+				<h2>Create a New Ticket</h2>
 			</section>
-			<section class="content">
-				<?php foreach ($tickets as $ticket) { ?>
-				<section class="ticket-info">
-					<h3><a href="ticket.php?ticket=<?=$ticket->id?>"><?=$ticket->subject?></a></h3>
-					<p>Status: <span class="status-tag"><?=$ticket->status?></span></p>
-					<p>Priority: <span class="priority-tag"><?=$ticket->priority?></span></p>
-					<p>Tags:</p>
-					<ul class="tags">
-						<?php foreach ($ticket->tags as $tag) { ?>
-						<li> <?= $tag ?> </li>
-						<?php } ?>
-					</ul>
-					<p>	<?=$ticket->description?> </p>
-				</section>
-				<?php } ?>
+			<section id="ticket_form">
+			<form action="queries/create_ticket.php" method="post">
+				<label for="subject">Subject</label>
+				<input type="text" id="subject" name="subject" placeholder="Subject">
+				<label for="description">Description</label>
+				<textarea id="description" name="description" placeholder="Description"></textarea>
+				<label for="priority">Priority</label>
+				<select id="priority" name="priority">	
+					<option value="Normal">Normal</option>
+					<option value="Urgent">Urgent</option>
+					<option value="Immediate">Immediate</option>	
+				</select>
+				<label for="tags">Tags</label>
+				<ul id="tag-creator">
+					<input type="text" id="tag-input" name="tag" placeholder="Tag">
+				</ul>
+				<input type="hidden" id="tags" name="tags" placeholder="tags">
+				<label for="department">Department</label>
+				<select id="department" name="department">
+				<option value="-1">None</option>
+					<?php foreach ($departments as $department) { ?>
+						<option value="<?= $department->id; ?>"><?= $department->name; ?></option>
+					<?php } ?>
+				</select>
+				<button type="submit" id="submit-button">Submit</button>
+			</form>
 			</section>
 		</main>
-		<!--
 		<aside class="right-sidebar">
-			<h2>More info</h2>
+			<!--- <h2>More info</h2>
 			<section class="ticket-info">
 				<h3>Ticket Title	</h3>
 				<p>Ticket ID: <span class="id-tag"> #1E233</span></p>
@@ -88,10 +96,10 @@
 					<img src="images/profile.png" alt="Profile" class="profile-img"></img>
 					<p>John Doe</p>
 				</div>
-			</section>
+			</section> --->
 		</aside>
-		-->
 	</div>
+	<script src="create_tags_script.js"> </script>
 </body>
 
 </html>

@@ -24,9 +24,10 @@ class User {
 
 class Ticket {
 
-    public $subject, $description, $status, $priority, $tags, $date, $time, $authorID, $assignedID;
+    public $id, $subject, $description, $status, $priority, $tags, $date, $time, $authorID, $assignedID;
 
-    function __construct($subject, $description, $status, $priority, $tags, $date, $time, $authorID, $assignedID){
+    function __construct($id, $subject, $description, $status, $priority, $tags, $date, $time, $authorID, $assignedID){
+        $this->id = $id;
         $this->subject = $subject;
         $this->description = $description;
         $this->status = $status;
@@ -36,6 +37,16 @@ class Ticket {
         $this->time = $time;
         $this->authorID = $authorID;
         $this->assignedID = $assignedID;
+    }
+}
+
+class Department {
+    
+    public $id, $name;
+
+    function __construct($id, $name){
+        $this->id = $id;
+        $this->name = $name;
     }
 }
 ?>

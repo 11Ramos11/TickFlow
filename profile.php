@@ -47,6 +47,7 @@
                     </div>
                 </div>
                 <button class="edit-profile-button">Edit Profile</button>
+                <a href="queries/logout.php"><button class="logout-button">Logout</button></a>
             </section>
         </main>
         <aside class="right-sidebar">
