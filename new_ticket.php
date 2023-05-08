@@ -57,7 +57,7 @@
 					<option value="Immediate">Immediate</option>	
 				</select>
 				<label for="tags">Tags</label>
-				<ul id="tag-creator">
+				<ul class="tags" id="tag-creator">
 					<input type="text" id="tag-input" name="tag" placeholder="Tag">
 				</ul>
 				<input type="hidden" id="tags" name="tags" placeholder="tags">
@@ -99,7 +99,7 @@
 			</section> --->
 		</aside>
 	</div>
-	<script src="create_tags_script.js"> </script>
 </body>
+<script src="create_tags_script.js"> </script>
 
 </html>
