@@ -20,6 +20,7 @@
 <head>
 	<title>Three-Column Layout with CSS Grid</title>
 	<link rel="stylesheet" type="text/css" href="styles.css">
+	<link rel="stylesheet" type="text/css" href="new_ticket.css">
 	<script src="https://kit.fontawesome.com/a45efa4a81.js" crossorigin="anonymous"></script>
 </head>
 
@@ -47,22 +48,23 @@
 			<section id="ticket_form">
 			<form action="queries/create_ticket.php" method="post">
 				<label for="subject">Subject</label>
-				<input type="text" id="subject" name="subject" placeholder="Subject">
+				<input type="text" class="input" id="subject" name="subject" placeholder="Subject">
 				<label for="description">Description</label>
-				<textarea id="description" name="description" placeholder="Description"></textarea>
+				<textarea id="description" class="input" name="description" placeholder="Description"></textarea>
 				<label for="priority">Priority</label>
-				<select id="priority" name="priority">	
+				<select id="priority" class="input" name="priority">	
 					<option value="Normal">Normal</option>
 					<option value="Urgent">Urgent</option>
 					<option value="Immediate">Immediate</option>	
 				</select>
-				<label for="tags">Tags</label>
-				<ul class="tags" id="tag-creator">
-					<input type="text" id="tag-input" name="tag" placeholder="Tag">
+				<section class="tags-searchbar">
+				<ul class="tags-box tags" id="tag-creator">
+					<input type="text" id="tag-input" name="tag" placeholder="Tags">
 				</ul>
 				<input type="hidden" id="tags" name="tags" placeholder="tags">
+				</section>
 				<label for="department">Department</label>
-				<select id="department" name="department">
+				<select id="department" class="input" name="department">
 				<option value="-1">None</option>
 					<?php foreach ($departments as $department) { ?>
 						<option value="<?= $department->id; ?>"><?= $department->name; ?></option>
