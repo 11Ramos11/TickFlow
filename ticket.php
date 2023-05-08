@@ -1,6 +1,8 @@
 <?php
     include_once("util.php");
 	include_once("queries/tickets_queries.php");
+	include_once("queries/users_queries.php");
+	include_once("queries/departments_queries.php");
 
     session_start();
 
@@ -18,6 +20,13 @@
     }
 
     $ticket = getTicket($ticketId);
+
+	$author = getUser($ticket->authorID);
+	$assignedTo = getUser($ticket->assignedID);
+
+	$assignedToName = $assignedTo == null ? "Unassigned" : $assignedTo->name;	
+
+	$department = getDepartmentByID($ticket->departmentID);
 ?>
 
 
@@ -51,12 +60,24 @@
 		<main class="middle-column">
 			<section class = "top">
 				<h2><?=$ticket->subject?></h2>
-                <div class="ticket-info">
-                    <p>Created: <span class="date"><?=$ticket->date?></span></p>
-                    <p>Status: <span class="status-tag"><?=$ticket->status?></span></p>
-                    <p>Priority: <span class="priority-tag"><?=$ticket->priority?></span></p>
-                </div>
+			</section>
+			<section class ="ticketbody">
+				<p>Created: <span class="date"><?=$ticket->date?></span></p>
+				<p>Status: <span class="status-tag"><?=$ticket->status?></span></p>
+				<p>Priority: <span class="priority-tag"><?=$ticket->priority?></span></p>
+				<ul class="tags">
+					<?php foreach ($ticket->tags as $tag) { ?>
+					<li class="tag"> <?= $tag ?> </li>
+					<?php } ?>
+				</ul>
                 <p><?=$ticket->description?></p>
+				<p>Written by <a href="profile.php?user=<?=$author->id?>"><?=$author->name?></a> </p>
+				<?php if ($assignedTo != null) { ?>
+					<p>Assigned to <a href="profile.php?user=<?=$assignedTo->id?>"><?=$assignedTo->name?></a> </p>
+				<?php } else { ?>
+					<p>Not Assigned </p>
+				<?php } ?>
+				<p>Department: <a><?=$department == null ? "None" : $department->name?></a> </p>
 			</section>
 		</main>
 		<aside class="right-sidebar">

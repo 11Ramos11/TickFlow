@@ -1,13 +1,21 @@
 <?php
     include_once("util.php");
+    include_once("queries/users_queries.php");
     session_start();
 
     if (!isset($_SESSION["user"])){
 		header("Location: authentication.php");
 		exit();
 	}
-    
-    $user = $_SESSION["user"];
+
+    $sessionUser = $_SESSION["user"];
+
+    if (!isset($_GET["user"])){
+        $user = $sessionUser;
+    } else {
+        $userID = $_GET["user"];
+        $user = getUser($userID);
+    } 
 ?>
 
 <!DOCTYPE html>
@@ -46,8 +54,10 @@
                         <p class="user-email"><?= $user->email ?></p>
                     </div>
                 </div>
+                <?php if ($sessionUser->id == $user->id) { ?>
                 <button class="edit-profile-button">Edit Profile</button>
                 <a href="queries/logout.php"><button class="logout-button">Logout</button></a>
+                <?php } ?>
             </section>
         </main>
         <aside class="right-sidebar">

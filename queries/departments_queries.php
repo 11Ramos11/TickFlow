@@ -19,3 +19,23 @@ function getDepartments(){
     return $departments;
 }
 
+function getDepartmentByID($departmentID){
+
+    $db = new PDO('sqlite:database/database.db');
+
+    $query = $db->prepare("SELECT * FROM Department WHERE id = '$departmentID'");
+
+    $query->execute();
+
+    $results = $query->fetchAll();
+
+    if (count($results) == 0){
+        return null;
+    }
+
+    $result = $results[0];
+
+    $department = new Department($result['id'], $result['name']);
+
+    return $department;
+}

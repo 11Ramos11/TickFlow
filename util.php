@@ -12,21 +12,21 @@ class MyError {
 
 class User {
 
-    public $email, $name, $role, $id;
+    public $id, $name, $email, $role;
 
-    function __construct($email, $name, $role, $id) {
-        $this->email = $email;
-        $this->name = $name;
-        $this->role = $role;
+    function __construct($id, $name, $email, $role) {
         $this->id = $id;
+        $this->name = $name;
+        $this->email = $email;
+        $this->role = $role;
     }
 }
 
 class Ticket {
 
-    public $id, $subject, $description, $status, $priority, $tags, $date, $time, $authorID, $assignedID;
+    public $id, $subject, $description, $status, $priority, $tags, $date, $time, $authorID, $assignedID, $departmentID;
 
-    function __construct($id, $subject, $description, $status, $priority, $tags, $date, $time, $authorID, $assignedID){
+    function __construct($id, $subject, $description, $status, $priority, $tags, $date, $time, $authorID, $assignedID, $departmentID){
         $this->id = $id;
         $this->subject = $subject;
         $this->description = $description;
@@ -37,6 +37,7 @@ class Ticket {
         $this->time = $time;
         $this->authorID = $authorID;
         $this->assignedID = $assignedID;
+        $this->departmentID = $departmentID;
     }
 }
 

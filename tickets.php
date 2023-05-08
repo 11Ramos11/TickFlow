@@ -1,6 +1,7 @@
 <?php
     include_once("util.php");
 	include_once("queries/tickets_queries.php");
+	include_once("queries/departments_queries.php");
 
     session_start();
 
@@ -11,6 +12,8 @@
     $user = $_SESSION["user"];
 
 	$tickets = getTicketsForUser($user->id);
+
+	$departments = getDepartments();
 ?>
 
 
@@ -19,11 +22,10 @@
 
 <head>
 	<title>Three-Column Layout with CSS Grid</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 	<link rel="stylesheet" type="text/css" href="styles.css">
-	<script src="https://kit.fontawesome.com/a45efa4a81.js" crossorigin="anonymous"></script>
-	<script src="script.js"></script>
+	<script src="create_tags_script.js"> </script>
 </head>
-
 <body>
 	<div class="grid-container" id="#main">
 		<div class="left-sidebar">
@@ -46,20 +48,54 @@
 				<h2>Tickets</h2>
 				<a href="new_ticket.php"><button class = "button"> New Ticket</button> </a>
 			</section>
+			<section class="filter-tab">
+				<select class="filter-dropdown">
+					<option value="All">All Tickets</option>
+					<option value="Open">My Tickets</option>
+					<option value="Closed">Assigned Tickets</option>
+					<option value="Pending">Others' Tickets</option>
+				</select>
+				<select class="filter-dropdown">
+					<option value="All">Status</option>
+					<option value="Open">Open</option>
+					<option value="Closed">Closed</option>
+					<option value="Pending">Pending</option>
+				</select>
+				<select class="filter-dropdown">
+					<option value="All">Priority</option>
+					<option value="Normal">Open</option>
+					<option value="Urgent">Closed</option>
+					<option value="Immeadiate">Pending</option>
+				</select>
+				<select class="filter-dropdown">
+					<option value="-1">Department</option>
+					<?php foreach ($departments as $department) { ?>
+					<option value=<?=$department->id?>> <?=$department->name?> </option>
+					<?php } ?>
+				</select>
+			</section>
+			<section class="tags-searchbar">
+				<ul class="tags-box tags" id="tag-creator">
+					<input type="text" id="tag-input" name="tag" placeholder="Tag">
+				</ul>
+				<input type="hidden" id="tags" name="tags" value="">
+				<button class="button" id="submit-button">Search</button>
+			</section>
 			<section class="content">
 				<?php foreach ($tickets as $ticket) { ?>
+				<a class="ticket-box" href="ticket.php?ticket=<?=$ticket->id?>">
 				<section class="ticket-info">
-					<h3><a href="ticket.php?ticket=<?=$ticket->id?>"><?=$ticket->subject?></a></h3>
+					<h3><?=$ticket->subject?></h3>
 					<p>Status: <span class="status-tag"><?=$ticket->status?></span></p>
 					<p>Priority: <span class="priority-tag"><?=$ticket->priority?></span></p>
-					<p>Tags:</p>
+					<p>	<?=$ticket->description?> </p>
 					<ul class="tags">
 						<?php foreach ($ticket->tags as $tag) { ?>
-						<li> <?= $tag ?> </li>
+						<li class="tag"> <?= $tag ?> </li>
 						<?php } ?>
 					</ul>
-					<p>	<?=$ticket->description?> </p>
 				</section>
+				</a>
 				<?php } ?>
 			</section>
 		</main>

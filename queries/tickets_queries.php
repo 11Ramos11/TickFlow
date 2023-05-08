@@ -70,7 +70,8 @@ function getTicket($ticketID){
         $result['creationDate'], 
         $result['creationTime'], 
         $result['author'], 
-        $result['assignedTo']
+        $result['assignedTo'],
+        $result['department']
     );
  
     return $ticket;
@@ -101,7 +102,8 @@ function getTicketsForUser($userID){
             $row['creationDate'], 
             $row['creationTime'], 
             $row['author'], 
-            $row['assignedTo']
+            $row['assignedTo'],
+            $row['department']
         );
     }
 
