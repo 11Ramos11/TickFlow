@@ -51,11 +51,16 @@
 		<main class="middle-column">
 			<section class = "top">
 				<h2><?=$ticket->subject?></h2>
-                <div class="ticket-info">
-                    <p>Created: <span class="date"><?=$ticket->date?></span></p>
-                    <p>Status: <span class="status-tag"><?=$ticket->status?></span></p>
-                    <p>Priority: <span class="priority-tag"><?=$ticket->priority?></span></p>
-                </div>
+			</section>
+			<section class ="ticketbody">
+				<p>Created: <span class="date"><?=$ticket->date?></span></p>
+				<p>Status: <span class="status-tag"><?=$ticket->status?></span></p>
+				<p>Priority: <span class="priority-tag"><?=$ticket->priority?></span></p>
+				<ul class="tags">
+					<?php foreach ($ticket->tags as $tag) { ?>
+					<li class="tag"> <?= $tag ?> </li>
+					<?php } ?>
+				</ul>
                 <p><?=$ticket->description?></p>
 			</section>
 		</main>
