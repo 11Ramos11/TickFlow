@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
 html{
   scroll-behavior: smooth;
@@ -6,7 +7,7 @@ html{
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Montserrat', sans-serif;/*'Roboto', sans-serif;*/
 }
 
 .grid-container {
@@ -102,7 +103,6 @@ nav ul li {
 
 }
 
-
 nav ul li.active{
   background-color: #3818D9;
   border-radius: 0.4rem;
@@ -127,7 +127,7 @@ nav li a{
   align-items: center;
   color: #3F3F3F;
   text-decoration: none;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   margin-left: 10px;
 
 }
@@ -338,14 +338,126 @@ form.reply button:hover {
   font-weight: 400;
 }
 
-.ticket-info{
+.filter-tab {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
   padding: 1rem 2rem;
-  box-shadow: 0px 5px 7px 0px rgb(0 0 0 / 10%);
+}
+
+.filter-tab > .filter-dropdown {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 0.3rem;
+  margin: 0.3rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  outline: none;
+  transition: border 0.3s ease-in-out;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.filter-tab > .filter-dropdown:hover {
+  border: 1px solid #000;
+}
+
+.filter-tab > .filter-dropdown:focus {
+  border: 1px solid #000;
+}
+
+.filter-tab > .filter-dropdown > option {
+  background-color: #f8f7fc;
+  color: #000;
+}
+
+.tags {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 1rem;
+  padding: 0;
+  list-style-type: none;
+}
+
+.tags .tag {
+  background-color: #eae6ff;
+  border: 1px solid #3818D9;
+  padding: 0.3rem 0.5rem;
+  border-radius: 90rem;
+  color: #3818D9;
+  margin: 0.5rem;
+}
+
+.tag button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin-left: 0rem;
+  font-size: 1rem;
+  color: #3818D9;
+  transition: color 0.3s ease-in-out;
+}
+
+.tags-searchbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  margin-bottom: 1rem;
+}
+
+.tags-box {
+  flex: 1;
+  border: 1px solid #d8d8d8;
+  border-radius: 1rem;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+  outline: none;
+  transition: border 0.3s ease-in-out;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.tags-box #tag-input {
+  display: flex;
+  background-color: transparent;
+  flex: 1;
+  margin:  0.75rem 1rem;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+}
+
+.ticket-box {
+  text-decoration: none;
+  color:#000;
+  margin: 0 2rem;
+}
+
+.ticket-info{
+  margin: 0 2em;
+  padding: 1rem 2rem;
+  box-shadow: 0px 5px 7px 5px rgb(0 0 0 / 10%);
   border-radius: 0.6rem;
 }
 
+.ticket-info:hover {
+  box-shadow: 0px 5px 7px 5px rgb(0 0 0 / 20%);
+  border-radius: 0.6rem;
+  cursor: pointer;
+}
+
 .ticket-info h3{
-  font-size: 1.4rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #3818D9;
   align-items: center;
   justify-content: center;
 }
@@ -353,6 +465,7 @@ form.reply button:hover {
 .ticket-info p{
   line-height: 1.7rem;
 }
+
 .id-tag{
   background-color: #ECECEC;
   border: 1px solid #7E7E7E;
@@ -427,18 +540,13 @@ form.reply button:hover {
   .grid-container {
     grid-template-columns: 1fr;
     grid-template-rows: auto 3fr auto;
-    min-height: 100vh;
   }
 
   .left-sidebar,
   .right-sidebar {
     padding: 20px;
   }
-
-  .middle-column {
-    padding: 20px;
-  }
-
+  
   .left-sidebar,
   .middle-column,
   .right-sidebar {
@@ -552,4 +660,6 @@ form.reply button:hover {
   text-decoration: underline;
 }
 
-/*Test line*/
+.hide {
+  display: none;
+}

@@ -1,0 +1,8 @@
+#ticket_form form {
+    display: flex;
+    flex-direction: column;
+}
+
+#ticket_form form .input {
+    margin-bottom: 10px;
+}
