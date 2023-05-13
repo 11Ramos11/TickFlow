@@ -1,52 +1,13 @@
-<?php
-    include_once("util.php");
-	include_once("queries/departments_queries.php");
+<?php 
 
-    session_start();
+function drawTicketCreator($departments) { ?>
 
-	if (!isset($_SESSION["user"])){
-		header("Location: authentication.php");
-		exit();
-	}
-    $user = $_SESSION["user"];
-
-	$departments = getDepartments();
-?>
-
-
-<!DOCTYPE html>
-<html>
-
-<head>
-	<title>Three-Column Layout with CSS Grid</title>
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	<link rel="stylesheet" type="text/css" href="new_ticket.css">
-	<script src="https://kit.fontawesome.com/a45efa4a81.js" crossorigin="anonymous"></script>
-</head>
-
-<body>
-	<div class="grid-container" id="#main">
-		<div class="left-sidebar">
-			<header class="header">
-				<img class="logo" src="images/logo.svg" alt="Logo">
-				<h1>TickSy</h1>
-			</header>
-			<nav>
-				<ul>
-					<li><a href="landing.php"><i class="fa-solid fa-house"></i>Home</a></li>
-					<li><a href="tickets.php"><i class="fa-solid fa-ticket"></i>Dashboard</a></li>
-					<li><a href="chat.php"><i class="fa-regular fa-comments"></i>Chat</a></li>
-				</ul>
-			</nav>
-			<a href="profile.php" class = "profile-button"><img src="images/profile.png" alt="Profile" class="profile-img"></img>Profile<i class="fa-solid fa-arrow-right-from-bracket"></i>
-			</a>
-		</div>
-		<main class="middle-column">
+    <main class="middle-column">
 			<section class = "top">
 				<h2>Create a New Ticket</h2>
 			</section>
 			<section id="ticket_form">
-			<form action="queries/create_ticket.php" method="post">
+			<form action="../actions/createTicket.action.php" method="post">
 				<label for="subject">Subject</label>
 				<input type="text" class="input" id="subject" name="subject" placeholder="Subject">
 				<label for="description">Description</label>
@@ -100,8 +61,5 @@
 				</div>
 			</section> --->
 		</aside>
-	</div>
-</body>
-<script src="create_tags_script.js"> </script>
 
-</html>
+<?php } ?>

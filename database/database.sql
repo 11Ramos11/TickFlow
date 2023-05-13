@@ -1,3 +1,96 @@
+PRAGMA foreign_keys = ON;
+
+DROP TABLE IF EXISTS Department;
+
+CREATE TABLE Department (
+    id INTEGER CHECK (id >= 1) PRIMARY KEY AUTOINCREMENT,
+    name TEXT UNIQUE NOT NULL
+);
+
+DROP TABLE IF EXISTS User;
+
+CREATE TABLE User (
+    id INTEGER CHECK (id >= 1) PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    email TEXT UNIQUE NOT NULL,
+    password TEXT NOT NULL,
+    role TEXT CHECK (role == 'Client' OR role == 'Agent' OR role == 'Admin') DEFAULT ('Client'),
+    department Integer,
+    FOREIGN KEY (department) REFERENCES Department(id)
+);
+
+DROP TABLE IF EXISTS Ticket;
+
+CREATE TABLE Ticket (
+    id INTEGER CHECK (id >= 1) PRIMARY KEY AUTOINCREMENT,
+    status TEXT NOT NULL CHECK (status == 'Pending' OR status == 'Open' OR status == 'Closed') DEFAULT ('Pending'),
+    priority TEXT NOT NULL CHECK (priority == 'Immediate' OR priority == 'Urgent' OR priority == 'Normal'),
+    subject TEXT NOT NULL,
+    description TEXT NOT NULL,
+    creationDate DATE NOT NULL,
+    creationTime TIME NOT NULL,
+    author INTEGER NOT NULL,
+    assignedTo INTEGER,
+    department INTEGER,
+    FOREIGN KEY (author) REFERENCES User(id),
+    FOREIGN KEY (assignedTo) REFERENCES User(id),
+    FOREIGN KEY (department) REFERENCES Department(id)
+);
+
+DROP TABLE IF EXISTS Change;
+
+CREATE TABLE Change (
+    id INTEGER CHECK (id >= 1) PRIMARY KEY AUTOINCREMENT,
+    fieldChanged TEXT NOT NULL CHECK (fieldChanged == 'status' OR fieldChanged == 'priority' OR fieldChanged == 'subject' OR fieldChanged == 'description' OR fieldChanged == 'assignedTo' OR fieldChanged == 'department'),
+    newValue TEXT NOT NULL,
+    oldValue TEXT NOT NULL,
+    editDate DATE NOT NULL,
+    editTime TIME NOT NULL,
+    ticket INTEGER NOT NULL,
+    FOREIGN KEY (ticket) REFERENCES Ticket(id)
+);
+
+DROP TABLE IF EXISTS Message;
+
+CREATE TABLE Message (
+    id INTEGER CHECK (id >= 1) PRIMARY KEY AUTOINCREMENT,
+    content TEXT NOT NULL,
+    creationDate DATE NOT NULL,
+    creationTime TIME NOT NULL,
+    author INTEGER NOT NULL,
+    ticket INTEGER NOT NULL,
+    FOREIGN KEY (author) REFERENCES User(id),
+    FOREIGN KEY (ticket) REFERENCES Ticket(id)
+);
+
+DROP TABLE IF EXISTS Hashtag;
+
+CREATE TABLE Hashtag (
+    id INTEGER CHECK (id >= 1) PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL
+);
+
+DROP TABLE IF EXISTS Ticket_Hashtag;
+
+CREATE TABLE Ticket_Hashtag (
+    ticket INTEGER NOT NULL,
+    hashtag INTEGER NOT NULL,
+    PRIMARY KEY (ticket, hashtag),
+    FOREIGN KEY (ticket) REFERENCES Ticket(id),
+    FOREIGN KEY (hashtag) REFERENCES Hashtag(id)
+);
+
+DROP TABLE IF EXISTS FAQ;
+
+CREATE TABLE FAQ (
+    id INTEGER CHECK (id >= 1) PRIMARY KEY AUTOINCREMENT,
+    question TEXT NOT NULL,
+    answer TEXT NOT NULL,
+    department INTEGER NOT NULL,
+    FOREIGN KEY (department) REFERENCES Department(id)
+);
+
+
 INSERT INTO Department (id, name) VALUES
   (1, 'Sales Department'),
   (2, 'Marketing Department'),
@@ -19,25 +112,25 @@ INSERT INTO FAQ (id, question, answer, department) VALUES
   (12, 'What is the process for requesting a purchase order?', 'To request a purchase order, please submit a request through the purchasing portal. Please include a description of the item or service being requested, as well as the cost.', 4);
 
 INSERT INTO User (id, name, email, password, role, department) VALUES 
-  (1, 'John Smith', 'john.smith@company.com', 'password1', 'Admin', 1),
-  (2, 'Jane Doe', 'jane.doe@company.com', 'password2', 'Client', 1),
-  (3, 'Bob Johnson', 'bob.johnson@company.com', 'password3', 'Agent', 1),
-  (4, 'Alice Williams', 'alice.williams@company.com', 'password4', 'Client', 2),
-  (5, 'Charlie Brown', 'charlie.brown@company.com', 'password5', 'Agent', 2),
-  (6, 'Emily Davis', 'emily.davis@company.com', 'password6', 'Agent', 2),
-  (7, 'George Rodriguez', 'george.rodriguez@company.com', 'password7', 'Agent', 3),
-  (8, 'Megan Lee', 'megan.lee@company.com', 'password8', 'Agent', 3),
-  (9, 'David Kim', 'david.kim@company.com', 'password9', 'Agent', 3),
-  (10, 'Karen Chen', 'karen.chen@company.com', 'password10', 'Agent', 3),
-  (11, 'Tom Brown', 'tom.brown@company.com', 'password11', 'Agent', 4),
-  (12, 'Emma Wilson', 'emma.wilson@company.com', 'password12', 'Agent', 4),
-  (13, 'Chris Lee', 'chris.lee@company.com', 'password13', 'Agent', 4),
-  (14, 'Lisa Miller', 'lisa.miller@company.com', 'password14', 'Client', 3),
-  (15, 'Mike Davis', 'mike.davis@company.com', 'password15', 'Client', 3),
-  (16, 'Sarah Wilson', 'sarah.wilson@company.com', 'password16', 'Client', 3),
-  (17, 'Steven Miller', 'steven.miller@company.com', 'password17', 'Client', 4),
-  (18, 'Amy Jones', 'amy.jones@company.com', 'password18', 'Client', 4),
-  (19, 'Kevin Davis', 'kevin.davis@company.com', 'password19', 'Client', 4);
+  (1, 'John Smith', 'john.smith@tickflow.com', 'password1', 'Admin', 1),
+  (2, 'Jane Doe', 'jane.doe@tickflow.com', 'password2', 'Client', 1),
+  (3, 'Bob Johnson', 'bob.johnson@tickflow.com', 'password3', 'Agent', 1),
+  (4, 'Alice Williams', 'alice.williams@tickflow.com', 'password4', 'Client', 2),
+  (5, 'Charlie Brown', 'charlie.brown@tickflow.com', 'password5', 'Agent', 2),
+  (6, 'Emily Davis', 'emily.davis@tickflow.com', 'password6', 'Agent', 2),
+  (7, 'George Rodriguez', 'george.rodriguez@tickflow.com', 'password7', 'Agent', 3),
+  (8, 'Megan Lee', 'megan.lee@tickflow.com', 'password8', 'Agent', 3),
+  (9, 'David Kim', 'david.kim@tickflow.com', 'password9', 'Agent', 3),
+  (10, 'Karen Chen', 'karen.chen@tickflow.com', 'password10', 'Agent', 3),
+  (11, 'Tom Brown', 'tom.brown@tickflow.com', 'password11', 'Agent', 4),
+  (12, 'Emma Wilson', 'emma.wilson@tickflow.com', 'password12', 'Agent', 4),
+  (13, 'Chris Lee', 'chris.lee@tickflow.com', 'password13', 'Agent', 4),
+  (14, 'Lisa Miller', 'lisa.miller@tickflow.com', 'password14', 'Client', 3),
+  (15, 'Mike Davis', 'mike.davis@tickflow.com', 'password15', 'Client', 3),
+  (16, 'Sarah Wilson', 'sarah.wilson@tickflow.com', 'password16', 'Client', 3),
+  (17, 'Steven Miller', 'steven.miller@tickflow.com', 'password17', 'Client', 4),
+  (18, 'Amy Jones', 'amy.jones@tickflow.com', 'password18', 'Client', 4),
+  (19, 'Kevin Davis', 'kevin.davis@tickflow.com', 'password19', 'Client', 4);
 
 INSERT INTO Ticket (id, status, priority, subject, description, creationDate, creationTime, author, assignedTo, department) VALUES
   (1, 'Open', 'Normal', 'Printer Not Working', 'I am unable to print from my computer. Please help me resolve the issue.', '2023-04-22', '10:00:00', 4, 7, 3),

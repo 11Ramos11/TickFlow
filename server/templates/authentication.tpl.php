@@ -1,60 +1,29 @@
-<?php
-
-	include_once("util.php");
-
-	session_start();
-
-	if (isset($_SESSION["user"])){
-		header("Location: landing.php");
-		exit();
-	} 
-
-	if (isset($_SESSION["error"])){
-		$error = ($_SESSION["error"]);
-	} else {
-		$error = null;
-	}
-
-	
-
-	function register_error($error){
-		if ($error != null) 
-			if ($error->page == "Register") {
-				echo "<p id='register-error' class='error'> $error->msg </p>";
-		}
-	}
-
-	function login_error($error){
-		if ($error != null) 
-			if ($error->page == "Login") {
-				echo "<p id='login-error' class='error'> $error->msg </p>";
-		}
-	}
-?>
+<?php function drawAuthentication($error){ ?>
 
 <html>  
 <head>  
     <title>PHP login system</title>  
-    <link rel = "stylesheet" type = "text/css" href = "auth_style.css">   
+    <link rel = "stylesheet" type = "text/css" href ="../styles/auth_style.css">   
+    <script src="../scripts/authentication_animation.js"> </script>
 </head>  
 <body>  
 	<div class="container" id="container">
 		<div class="form-container sign-up-container">
-			<form action="queries/register.php" method="post">
+			<form action="../actions/register.action.php" method="post">
 				<h1>Create Account</h1>
 				<input type="text" name="name" placeholder="Name"/>
 				<input type="email" name="email" placeholder="Email" />
 				<input type="password" name="pwd" placeholder="Password" />
-				<?= register_error($error) ?>
+				<?php if ($error != null) $error->draw("reg"); ?>
 				<button>Sign Up</button>
 			</form>
 		</div>
 		<div class="form-container sign-in-container">
-			<form action="queries/login.php" method="post">
+			<form action="../actions/login.action.php" method="post">
 				<h1>Sign in</h1>
 				<input type="email" name="email" placeholder="Email" />
 				<input type="password" name="pwd" placeholder="Password" />
-				<?= login_error($error) ?>
+				<?php if ($error != null) $error->draw("log"); ?>
 				<a href="#">Forgot your password?</a>
 				<button>Sign In</button>
 			</form>
@@ -75,5 +44,6 @@
 		</div>
 	</div>
 </body>     
-<script src="authentication_animation.js"> </script>
 </html>  
+
+<?php } ?>

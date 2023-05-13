@@ -1,16 +1,19 @@
 <?php
 
-include_once("../util.php");
 
-session_start();
+include_once(__DIR__.'/../classes/user.class.php'); 
+include_once(__DIR__.'/../classes/session.class.php'); 
+include_once(__DIR__.'/../classes/my_error.class.php'); 
+include_once(__DIR__.'/../classes/connection.db.php');
 
-if (!isset($_SESSION["user"])){
+$session = new Session();
+
+if (!$session->isLoggedIn()){
     header("Location: authentication.php");
     exit();
 }
-$user = $_SESSION["user"];
 
-error_log($user->name);
+$user = $session->user;
 
 $subject = $_POST['subject'];
 $description = $_POST['description'];
@@ -21,7 +24,7 @@ $creattionDate = date("Y-m-d");
 $creationTime = date("H:i:s");
 $department = $_POST['department'];
 
-$db = new PDO('sqlite:../database/database.db');
+$db = getDatabaseConnection();
 
 if ($department == -1){
     $query = $db->prepare("INSERT INTO Ticket (subject, description, priority, creationDate, creationTime, author) VALUES ('$subject', '$description', '$priority', '$creattionDate', '$creationTime', '$author')");
@@ -34,8 +37,6 @@ $result = $query->execute();
 if ($result == FALSE){
     die("Something went wrong");
 }
-
-error_log($tags);
 
 $ticketID = $db->lastInsertId();
 
@@ -59,6 +60,6 @@ foreach($tags as $tag){
     $query->execute();
 }
 
-header("Location: ../ticket.php?ticket=$ticketID");
+header("Location: ../pages/ticket.php?ticket=$ticketID");
 
 ?>

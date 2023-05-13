@@ -1,52 +1,9 @@
-<?php
-    include_once("util.php");
-	include_once("queries/tickets_queries.php");
-	include_once("queries/departments_queries.php");
+<?php function drawTickets($departments, $tickets) { ?>
 
-    session_start();
-
-	if (!isset($_SESSION["user"])){
-		header("Location: authentication.php");
-		exit();
-	}
-    $user = $_SESSION["user"];
-
-	$tickets = getTicketsForUser($user->id);
-
-	$departments = getDepartments();
-?>
-
-
-<!DOCTYPE html>
-<html>
-
-<head>
-	<title>Three-Column Layout with CSS Grid</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	<script src="create_tags_script.js"> </script>
-</head>
-<body>
-	<div class="grid-container" id="#main">
-		<div class="left-sidebar">
-			<header class="header">
-				<img class="logo" src="images/logo.svg" alt="Logo">
-				<h1>TickSy</h1>
-			</header>
-			<nav>
-				<ul>
-					<li><a href="landing.php"><i class="fa-solid fa-house"></i>Home</a></li>
-					<li class="active"><a href="tickets.php"><i class="fa-solid fa-ticket"></i>Dashboard</a></li>
-					<li><a href="chat.php"><i class="fa-regular fa-comments"></i>Chat</a></li>
-				</ul>
-			</nav>
-			<a href="profile.php" class = "profile-button"><img src="images/profile.png" alt="Profile" class="profile-img"></img>Profile<i class="fa-solid fa-arrow-right-from-bracket"></i>
-			</a>
-		</div>
-		<main class="middle-column">
+    <main class="middle-column">
 			<section class = "top">
 				<h2>Tickets</h2>
-				<a href="new_ticket.php"><button class = "button"> New Ticket</button> </a>
+				<a href="ticketCreator.php"><button class = "button"> New Ticket</button> </a>
 			</section>
 			<section class="filter-tab">
 				<select class="filter-dropdown">
@@ -127,7 +84,5 @@
 			</section>
 		</aside>
 		-->
-	</div>
-</body>
 
-</html>
+<?php } ?>

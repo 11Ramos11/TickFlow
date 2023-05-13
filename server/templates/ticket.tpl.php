@@ -1,63 +1,15 @@
-<?php
-    include_once("util.php");
-	include_once("queries/tickets_queries.php");
-	include_once("queries/users_queries.php");
-	include_once("queries/departments_queries.php");
+<?php 
 
-    session_start();
+include_once(__DIR__.'/../classes/user.class.php');
+include_once(__DIR__.'/../classes/ticket.class.php');
+include_once(__DIR__.'/../classes/department.class.php');
 
-	if (!isset($_SESSION["user"])){
-		header("Location: authentication.php");
-		exit();
-	}
-    $user = $_SESSION["user"];
-
-	$ticketId = $_GET["ticket"];
-
-    if (!userHasAccessToTicket($ticketId)){
-        header("Location: tickets.php");
-        exit();
-    }
-
-    $ticket = getTicket($ticketId);
-
-	$author = getUser($ticket->authorID);
-	$assignedTo = getUser($ticket->assignedID);
-
-	$assignedToName = $assignedTo == null ? "Unassigned" : $assignedTo->name;	
-
-	$department = getDepartmentByID($ticket->departmentID);
+function drawTicket($ticket) { 
+    $author =  User::getUserById($ticket->authorID);
+	$assignedTo = User::getUserById($ticket->assignedID);
+	$department = Department::getDepatmentByID($ticket->departmentID);
 ?>
-
-
-<!DOCTYPE html>
-<html>
-
-<head>
-	<title>Three-Column Layout with CSS Grid</title>
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	<script src="https://kit.fontawesome.com/a45efa4a81.js" crossorigin="anonymous"></script>
-	<script src="script.js"></script>
-</head>
-
-<body>
-	<div class="grid-container" id="#main">
-		<div class="left-sidebar">
-			<header class="header">
-				<img class="logo" src="images/logo.svg" alt="Logo">
-				<h1>TickSy</h1>
-			</header>
-			<nav>
-				<ul>
-					<li><a href="landing.php"><i class="fa-solid fa-house"></i>Home</a></li>
-					<li><a href="tickets.php"><i class="fa-solid fa-ticket"></i>Dashboard</a></li>
-					<li><a href="chat.php"><i class="fa-regular fa-comments"></i>Chat</a></li>
-				</ul>
-			</nav>
-			<a href="profile.php" class = "profile-button"><img src="images/profile.png" alt="Profile" class="profile-img"></img>Profile<i class="fa-solid fa-arrow-right-from-bracket"></i>
-			</a>
-		</div>
-		<main class="middle-column">
+    <main class="middle-column">
 			<section class = "top">
 				<h2><?=$ticket->subject?></h2>
 			</section>
@@ -106,7 +58,5 @@
 				</div>
 			</section> --->
 		</aside>
-	</div>
-</body>
 
-</html>
+<?php } ?>
