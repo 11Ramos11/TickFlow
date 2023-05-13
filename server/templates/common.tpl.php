@@ -33,7 +33,7 @@
 		<div class="left-sidebar">
 			<header class="header">
 				<img class="logo" src="../images/logo.svg" alt="Logo">
-				<h1>TickSy</h1>
+				<h1>TickFlow</h1>
 			</header>
 			<nav>
 				<ul>
