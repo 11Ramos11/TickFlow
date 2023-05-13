@@ -1,3 +1,5 @@
+/* Tags */
+
 let tags = [];
 
 window.onload = function () {
@@ -43,3 +45,5 @@ function remove(element, tag){
     tags = tags.filter(t => t != tag);
     element.parentElement.remove();
 }
+
+/* ------------------------------ */
