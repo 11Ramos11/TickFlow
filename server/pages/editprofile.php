@@ -23,7 +23,9 @@
         }
     }
 
+    $user = User::getUserById($id);
+
 	drawHeader();
-	drawEditProfile();
+	drawEditProfile($user);
 	drawFooter();
 ?>

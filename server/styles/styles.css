@@ -717,7 +717,7 @@ form.reply button:hover {
 .user-card > .dropdown {
   display: none;
   position: absolute;
-  right: -5rem;
+  right: -5.3rem;
   top: 0;
   background-color: white;
   padding: 1rem;
