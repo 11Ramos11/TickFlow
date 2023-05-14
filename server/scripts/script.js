@@ -58,7 +58,7 @@ function encodeForAjax(data) {
 }
 
 async function getFilteredTickets(data) {
-    return fetch('../actions/filterTickets.action.php', {
+    return fetch('../api/filterTickets.api.php', {
       method: 'post',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
@@ -75,10 +75,12 @@ function filterTickets(){
         const searchButton = document.getElementById("search-button");
         searchButton.addEventListener("click", async function () {
 
-            const _ownership = document.getElementById('ownership-filter').value;
+            ownershipFilter = document.getElementById('ownership-filter');
+            const _ownership = ownershipFilter != null ? ownershipFilter.value : 'All';
             const _status = document.getElementById('status-filter').value;
             const _priority = document.getElementById('priority-filter').value;
-            const _department = document.getElementById('department-filter').value;
+            departmentFilter = document.getElementById('department-filter');
+            const _department = departmentFilter != null ? departmentFilter.value : 'All';
             const _tags = tags.join(",");
 
             const response = await getFilteredTickets({
