@@ -24,6 +24,16 @@ $creattionDate = date("Y-m-d");
 $creationTime = date("H:i:s");
 $department = $_POST['department'];
 
+error_log($subject);
+error_log($description);
+error_log($priority);
+error_log($tags);
+error_log($author);
+error_log($creattionDate);
+error_log($creationTime);
+error_log($department);
+
+
 $db = getDatabaseConnection();
 
 if ($department == -1){
@@ -31,6 +41,10 @@ if ($department == -1){
 }
 else {
     $query = $db->prepare("INSERT INTO Ticket (subject, description, priority, creationDate, creationTime, author, department) VALUES ('$subject', '$description', '$priority', '$creattionDate', '$creationTime', '$author', '$department')");
+}
+
+if ($query == false){
+    die("Something went wrong");
 }
 $result = $query->execute();
 

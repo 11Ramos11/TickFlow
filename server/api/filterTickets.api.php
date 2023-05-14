@@ -23,11 +23,7 @@ if ($ownership == 'Assigned'){
 } else if ($ownership == 'Author'){
     $tickets = $user->getAuthoredTickets();
 } else if ($ownership == 'All'){
-    if ($user->role == 'Admin')
-        $tickets = Ticket::getAllTickets();
-    else {
-        $tickets = $user->getAllTickets();
-    }
+    $tickets = $user->getAllTickets();
 } else if ($ownership == 'Others' && $user->role == 'Admin'){
     $tickets = Ticket::getAllTickets();
     $tickets = array_filter($tickets, function($ticket) use ($user){

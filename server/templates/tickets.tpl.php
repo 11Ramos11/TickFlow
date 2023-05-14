@@ -7,12 +7,16 @@
 			</section>
 			<section id="searchBar">
 				<section id="filter-tab">
+					<?php if ($role != "Client") { ?> 
 					<select id="ownership-filter" class="filter-dropdown">
 						<option value="All">All Tickets</option>
 						<option value="Author">My Tickets</option>
 						<option value="Assigned">Assigned Tickets</option>
+						<?php if ($role = "Client") { ?> 
 						<option value="Others">Others' Tickets</option>
+						<?php } ?>	
 					</select>
+					<?php } ?>
 					<select id="status-filter" class="filter-dropdown">
 						<option value="All">Any Status</option>
 						<option value="Open">Open</option>
@@ -25,6 +29,7 @@
 						<option value="Urgent">Urgent</option>
 						<option value="Immediate">Immediate</option>
 					</select>
+					<?php if ($role != "Client") { ?> 
 					<select id="department-filter" class="filter-dropdown">
 						<option value="All">Any Department</option>
 						<?php foreach ($departments as $department) { ?>
@@ -32,6 +37,7 @@
 						<?php } ?>
 						<option value="None">None</option>
 					</select>
+					<?php } ?>
 				</section>
 				<section class="tags-searchbar">
 					<ul class="tags-box tags" id="tag-creator">
