@@ -13,7 +13,7 @@ $password = $_POST['pwd'];
 
 if ($email == "" || $password == ""){
     $session->setError("log", "All fields are required");
-    header("Location: ../authentication.php");
+    header("Location: ../pages/authentication.php");
     exit();
 }
 

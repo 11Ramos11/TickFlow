@@ -338,7 +338,7 @@ form.reply button:hover {
   font-weight: 400;
 }
 
-.filter-tab {
+#filter-tab {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -347,7 +347,7 @@ form.reply button:hover {
   padding: 1rem 2rem;
 }
 
-.filter-tab > .filter-dropdown {
+#filter-tab > .filter-dropdown {
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 0.3rem;
@@ -360,15 +360,15 @@ form.reply button:hover {
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
-.filter-tab > .filter-dropdown:hover {
+#filter-tab > .filter-dropdown:hover {
   border: 1px solid #000;
 }
 
-.filter-tab > .filter-dropdown:focus {
+#filter-tab > .filter-dropdown:focus {
   border: 1px solid #000;
 }
 
-.filter-tab > .filter-dropdown > option {
+#filter-tab > .filter-dropdown > option {
   background-color: #f8f7fc;
   color: #000;
 }

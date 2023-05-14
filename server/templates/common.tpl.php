@@ -22,7 +22,7 @@
 <html>
 
 <head>
-	<title>Three-Column Layout with CSS Grid</title>
+	<title>TickFlow</title>
 	<link rel="stylesheet" type="text/css" href="../styles/styles.css">
 	<script src="https://kit.fontawesome.com/a45efa4a81.js" crossorigin="anonymous"></script>
 	<script src="../scripts/script.js"></script>
