@@ -5,6 +5,7 @@
 				<h2>Tickets</h2>
 				<a href="ticketCreator.php"><button class = "button"> New Ticket</button> </a>
 			</section>
+			
 			<section id="searchBar">
 				<section id="filter-tab">
 					<?php if ($role != "Client") { ?> 
@@ -12,7 +13,7 @@
 						<option value="All">All Tickets</option>
 						<option value="Author">My Tickets</option>
 						<option value="Assigned">Assigned Tickets</option>
-						<?php if ($role = "Client") { ?> 
+						<?php if ($role == "Admin") { ?> 
 						<option value="Others">Others' Tickets</option>
 						<?php } ?>	
 					</select>

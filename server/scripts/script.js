@@ -11,11 +11,16 @@ function remove(element, tag){
 window.onload = function () {
     createTags();
     filterTickets();
+    userDropdown();
 };
 
 function createTags() {
     const tagsList = document.getElementById("tag-creator");
     const input = document.getElementById("tag-input");
+
+    if (tagsList == null || input == null){
+        return;
+    }
 
     function addListItem() {
         tagsList.querySelectorAll("li").forEach(li => li.remove());
@@ -75,13 +80,22 @@ function filterTickets(){
         const searchButton = document.getElementById("search-button");
         searchButton.addEventListener("click", async function () {
 
-            ownershipFilter = document.getElementById('ownership-filter');
+            const ownershipFilter = document.getElementById('ownership-filter');
             const _ownership = ownershipFilter != null ? ownershipFilter.value : 'All';
             const _status = document.getElementById('status-filter').value;
             const _priority = document.getElementById('priority-filter').value;
-            departmentFilter = document.getElementById('department-filter');
+            const departmentFilter = document.getElementById('department-filter');
             const _department = departmentFilter != null ? departmentFilter.value : 'All';
             const _tags = tags.join(",");
+
+            const section = document.querySelector('#tickets');
+            section.innerHTML = '';
+            const loading = document.createElement('i');
+            loading.id = 'loader';
+            loading.classList.add('fa-solid');
+            loading.classList.add('fa-spinner');
+            loading.classList.add('fa-spin');
+            section.appendChild(loading);
 
             const response = await getFilteredTickets({
                 ownership: _ownership,
@@ -152,3 +166,27 @@ function filterTickets(){
         }
     }
 };
+
+function userDropdown() {
+
+    const userCards = document.getElementsByClassName("user-card");
+
+    function hideUserDropdowns(){
+        for (const card of userCards) {
+            const dropdown = card.getElementsByClassName("dropdown")[0];
+            dropdown.classList.remove("active");
+        }
+    }
+    
+    for (const card of userCards) {
+        card.addEventListener("click", function () {
+            hideUserDropdowns();
+            const dropdown = this.getElementsByClassName("dropdown")[0];
+            dropdown.classList.toggle("active");
+        });
+
+        card.addEventListener("mouseleave", function () {
+            hideUserDropdowns();
+        });
+    }
+}

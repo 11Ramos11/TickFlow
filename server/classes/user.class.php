@@ -155,7 +155,7 @@ class User
         return $user;
     }
 
-    static public function getUsers(){
+    static public function getAllUsers(){
 
         $db = getDatabaseConnection();
 

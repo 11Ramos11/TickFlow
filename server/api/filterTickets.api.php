@@ -43,8 +43,6 @@ $tagList = $tags != '' ? explode(',', $tags) : [];
 
 $filteredTickets = array();
 
-error_log("Ownership:".$ownership);
-
 foreach($tickets as $ticket){
     if ($ticket->matches($status, $priority, $departmentID, $tagList)){
         $filteredTickets[] = $ticket;
