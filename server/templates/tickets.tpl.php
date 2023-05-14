@@ -5,6 +5,7 @@
 				<h2>Tickets</h2>
 				<a href="ticketCreator.php"><button class = "button"> New Ticket</button> </a>
 			</section>
+			
 			<section id="searchBar">
 				<section id="filter-tab">
 					<?php if ($role != "Client") { ?> 
