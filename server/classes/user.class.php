@@ -14,11 +14,77 @@ class User {
         $this->role = $role;
     }
 
-    public function getTickets(){
+    public function getAuthoredTickets(){
 
         $db = getDatabaseConnection();
     
         $query = $db->prepare("SELECT * FROM Ticket WHERE author = '$this->id'");
+        $query->execute();
+        
+        $results = $query->fetchAll();
+
+        $tickets = array();
+
+        foreach ($results as $row){
+
+            $tags = Ticket::getTagsById($row['id']);
+
+            $tickets[] = new Ticket(
+                $row['id'],
+                $row['subject'], 
+                $row['description'], 
+                $row['status'], 
+                $row['priority'], 
+                $tags, 
+                $row['creationDate'], 
+                $row['creationTime'], 
+                $row['author'], 
+                $row['assignedTo'],
+                $row['department']
+            );
+        }
+
+        return $tickets;
+    }
+
+    public function getAssignedTickets(){
+
+        $db = getDatabaseConnection();
+    
+        $query = $db->prepare("SELECT * FROM Ticket WHERE assignedTo = '$this->id'");
+        $query->execute();
+        
+        $results = $query->fetchAll();
+
+        $tickets = array();
+
+        foreach ($results as $row){
+
+            $tags = Ticket::getTagsById($row['id']);
+
+            $tickets[] = new Ticket(
+                $row['id'],
+                $row['subject'], 
+                $row['description'], 
+                $row['status'], 
+                $row['priority'], 
+                $tags, 
+                $row['creationDate'], 
+                $row['creationTime'], 
+                $row['author'], 
+                $row['assignedTo'],
+                $row['department']
+            );
+        }
+
+        return $tickets;
+    }
+
+    public function getAllTickets(){
+
+        $db = getDatabaseConnection();
+    
+        $query = $db->prepare("SELECT * FROM Ticket WHERE author = '$this->id' OR assignedTo = '$this->id'");
         $query->execute();
         
         $results = $query->fetchAll();
@@ -53,8 +119,12 @@ class User {
 
     public function hasAccessToTicket($ticketID){
         
-        if ($this->isAdmin())
+        if ($this->isAdmin()){
+            error_log("IS ADMIN LETS GOOOO");
             return true;
+        } else {
+            error_log("ITS NOT ADDMIIN, lETS NOT GOT");
+        }
         
         $userID = $this->id;
 

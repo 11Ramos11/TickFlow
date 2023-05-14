@@ -2,6 +2,7 @@
 include_once(__DIR__.'/../classes/connection.db.php');
 include_once(__DIR__.'/../classes/session.class.php');
 include_once(__DIR__.'/../classes/user.class.php');
+include_once(__DIR__.'/../classes/ticket.class.php');
 
 $session = new Session();
 
@@ -11,9 +12,33 @@ if (!$session->isLoggedIn()) {
 
 $user = $session->user;
 
-$tickets = $user->getTickets();
+if (!isset($_POST['ownership'])){
+    return null;
+}
 
 $ownership = $_POST['ownership'];
+
+if ($ownership == 'Assigned'){
+    $tickets = $user->getAssignedTickets();
+} else if ($ownership == 'Author'){
+    $tickets = $user->getAuthoredTickets();
+} else if ($ownership == 'All'){
+    if ($user->role == 'Admin')
+        $tickets = Ticket::getAllTickets();
+    else {
+        $tickets = $user->getAllTickets();
+    }
+} else if ($ownership == 'Others' && $user->role == 'Admin'){
+    $tickets = Ticket::getAllTickets();
+    $tickets = array_filter($tickets, function($ticket) use ($user){
+        return $ticket->authorID != $user->id && $ticket->assignedID != $user->id;
+    });
+}
+
+if (!isset($_POST['status']) || !isset($_POST['priority']) || !isset($_POST['department']) || !isset($_POST['tags'])){
+    return null;
+}
+
 $status = $_POST['status'];
 $priority = $_POST['priority'];
 $departmentID = $_POST['department'];

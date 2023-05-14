@@ -20,6 +20,39 @@ class Ticket {
         $this->departmentID = $departmentID;
     }
 
+    static public function getAllTickets(){
+
+        $db = getDatabaseConnection();
+    
+        $query = $db->prepare("SELECT * FROM Ticket");
+        $query->execute();
+        
+        $results = $query->fetchAll();
+
+        $tickets = array();
+
+        foreach ($results as $row){
+
+            $tags = Ticket::getTagsById($row['id']);
+
+            $tickets[] = new Ticket(
+                $row['id'],
+                $row['subject'], 
+                $row['description'], 
+                $row['status'], 
+                $row['priority'], 
+                $tags, 
+                $row['creationDate'], 
+                $row['creationTime'], 
+                $row['author'], 
+                $row['assignedTo'],
+                $row['department']
+            );
+        }
+
+        return $tickets;
+    }
+
     static public function getTicketByID($ticketID){
 
         $db = getDatabaseConnection();

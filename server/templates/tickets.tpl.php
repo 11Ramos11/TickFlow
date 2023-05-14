@@ -9,9 +9,9 @@
 				<section id="filter-tab">
 					<select id="ownership-filter" class="filter-dropdown">
 						<option value="All">All Tickets</option>
-						<option value="Open">My Tickets</option>
-						<option value="Closed">Assigned Tickets</option>
-						<option value="Pending">Others' Tickets</option>
+						<option value="Author">My Tickets</option>
+						<option value="Assigned">Assigned Tickets</option>
+						<option value="Others">Others' Tickets</option>
 					</select>
 					<select id="status-filter" class="filter-dropdown">
 						<option value="All">Any Status</option>

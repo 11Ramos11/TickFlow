@@ -15,7 +15,11 @@
 	}
     $user = $session->user;
 
-	$tickets = $user->getTickets();
+	if ($user->role == 'Admin')
+		$tickets = Ticket::getAllTickets();
+	else{
+		$tickets = $user->getAllTickets();
+	}
 
 	$departments = Department::getDepartments();
 
