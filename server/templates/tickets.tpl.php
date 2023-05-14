@@ -1,4 +1,4 @@
-<?php function drawTickets($departments, $tickets) { ?>
+<?php function drawTickets($departments, $tickets, $role) {  ?>
 
     <main class="middle-column">
 			<section class = "top">

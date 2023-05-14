@@ -23,7 +23,9 @@
 
 	$departments = Department::getDepartments();
 
+	$role = $user->role;
+
 	drawHeader("tickets");
-	drawTickets($departments, $tickets);
+	drawTickets($departments, $tickets, $role);
 	drawFooter();
 ?>

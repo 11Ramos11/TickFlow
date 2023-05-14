@@ -158,6 +158,29 @@ class User {
         return $user;
     }
 
+    static public function getUsers(){
+
+        $db = getDatabaseConnection();
+
+        $query = $db->prepare("SELECT * FROM User");
+        $query->execute();
+
+        $results = $query->fetchAll();
+
+        $users = array();
+
+        foreach ($results as $row) {
+
+            $users[] = new User(
+                $row['id'],
+                $row['name'],
+                $row['email'],
+                $row['role']
+            );
+        }
+
+        return $users;
+    }
 }
 
 ?>
