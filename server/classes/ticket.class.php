@@ -74,6 +74,19 @@ class Ticket {
     
         return $tags;
     }
+
+    static public function filterByDepartment($tickets, $departmentID){
+
+        $filteredTickets = array();
+    
+        foreach ($tickets as $ticket){
+            if ($ticket->departmentID == $departmentID){
+                $filteredTickets[] = $ticket;
+            }
+        }
+    
+        return $filteredTickets;
+    }
 }
 
 ?>
