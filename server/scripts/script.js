@@ -48,6 +48,10 @@ window.onload = function () {
     /* ------------------------------ */
     /* Filter Tickets */
 
+    filterTickets();
+};
+
+function filterTickets(){
     const filterTab = document.getElementById("filter-tab");
 
     console.log(filterTab);
@@ -72,14 +76,14 @@ window.onload = function () {
                 subject.textContent = ticket.subject;
 
                 const status = document.createElement('p');
-                status.textContent = ticket.status;
+                status.textContent = "Status:";
                 const statusTag = document.createElement('span');
                 statusTag.classList.add('status-tag');
                 statusTag.textContent = ticket.status;
                 status.appendChild(statusTag);
 
                 const priority = document.createElement('p');
-                priority.textContent = ticket.priority;
+                priority.textContent = "Priority:";
                 const priorityTag = document.createElement('span');
                 priorityTag.classList.add('priority-tag');
                 priorityTag.textContent = ticket.priority;
@@ -107,21 +111,15 @@ window.onload = function () {
             }
         }
 
-    const departmentFilter = document.getElementById('department-filter');
-    departmentFilter.addEventListener('change', async function() {
+        const departmentFilter = document.getElementById('department-filter');
+        departmentFilter.addEventListener('change', async function() {
 
-            console.log("Filtering by department");
+                console.log("Filtering by department");
 
-            const response = await fetch('../actions/filterTickets.action.php?department=' + this.value);
-            const tickets = await response.json();
+                const response = await fetch('../actions/filterTickets.action.php?department=' + this.value);
+                const tickets = await response.json();
 
-            drawTickets(tickets);
-    });
-
-    console.log("Filter Tickets");
+                drawTickets(tickets);
+        });
     }
-
-    console.log("Script loaded");
-
 };
-
