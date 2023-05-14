@@ -11,11 +11,16 @@ function remove(element, tag){
 window.onload = function () {
     createTags();
     filterTickets();
+    userDropdown();
 };
 
 function createTags() {
     const tagsList = document.getElementById("tag-creator");
     const input = document.getElementById("tag-input");
+
+    if (tagsList == null || input == null){
+        return;
+    }
 
     function addListItem() {
         tagsList.querySelectorAll("li").forEach(li => li.remove());
@@ -161,3 +166,27 @@ function filterTickets(){
         }
     }
 };
+
+function userDropdown() {
+
+    const userCards = document.getElementsByClassName("user-card");
+
+    function hideUserDropdowns(){
+        for (const card of userCards) {
+            const dropdown = card.getElementsByClassName("dropdown")[0];
+            dropdown.classList.remove("active");
+        }
+    }
+    
+    for (const card of userCards) {
+        card.addEventListener("click", function () {
+            hideUserDropdowns();
+            const dropdown = this.getElementsByClassName("dropdown")[0];
+            dropdown.classList.toggle("active");
+        });
+
+        card.addEventListener("mouseleave", function () {
+            hideUserDropdowns();
+        });
+    }
+}

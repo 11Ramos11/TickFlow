@@ -1,9 +1,16 @@
 <?php function drawUser($user){ ?>
-    <li class="user">
-            <button> <i class="fa-solid fa-ellipsis-vertical"></i> </button>
+    <li class="user-card">
+            <?php $session = new Session(); if ($session->user->isAdmin()) { ?> 
+            <button class="dropdown-button"> <i class="fa-solid fa-ellipsis-vertical"></i> </button>
+            <div class="dropdown">
+                <a href="edit_user.php?id=<?=$user->id?>">Edit</a>
+                <a href="delete_user.php?id=<?=$user->id?>">Delete</a>
+            </div>
+            <?php } ?>
             <img src="../images/profile.png" alt="Profile" class="profile-img"></img>
             <p class="username"><?=$user->name?></p>
             <p class="email"><?=$user->email?></p>
+            
     </li>
 <?php } ?>
 
