@@ -90,6 +90,11 @@ function filterTickets(){
             });
             const tickets = await response.json();
 
+            if (tickets == null) {
+                alert("Error fetching tickets");
+                return;
+            }
+
             drawTickets(tickets);
         });
 
@@ -100,7 +105,7 @@ function filterTickets(){
 
                 const link = document.createElement('a');
                 link.classList.add('ticket-box');
-                link.href = 'ticket.php?id=' + ticket.id;
+                link.href = 'ticket.php?ticket=' + ticket.id;
 
                 const article = document.createElement('article');
                 article.classList.add('ticket-info');
