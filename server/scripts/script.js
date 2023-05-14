@@ -4,61 +4,94 @@ let tags = [];
 
 
 function remove(element, tag){
-    console.log(tag);
     tags = tags.filter(t => t != tag);
     element.parentElement.remove();
 }
 
 window.onload = function () {
+    createTags();
+    filterTickets();
+};
+
+function createTags() {
     const tagsList = document.getElementById("tag-creator");
     const input = document.getElementById("tag-input");
 
-    function addListItem(){
-        tagsList.querySelectorAll("li").forEach(li => li.remove()); 
-        tags.forEach(tag =>{
+    function addListItem() {
+        tagsList.querySelectorAll("li").forEach(li => li.remove());
+        tags.forEach(tag => {
             let li = `<li class="tag">${tag}<button type="button" onclick="remove(this, '${tag}')">x</button></li>`;
             input.insertAdjacentHTML('beforebegin', li);
-        })
+        });
     }
 
-    function addTag(e){
+    function addTag(e) {
 
-        if (e.code == "Space"){
-            console.log(e.target.value);
+        if (e.code == "Space" || e.code == "Enter") {
             let tag = e.target.value.replace(/\s+/g, ' ');
-            tag.trim();
+            tag = tag.trim();
 
-            if (tag.length > 1 && !tags.includes(tag)){
+            if (tag.length > 1 && !tags.includes(tag)) {
                 tags.push(tag);
             }
             addListItem();
             e.target.value = "";
-        } 
+        }
     }
 
     tagsList.addEventListener("keyup", addTag);
 
     const submitButton = document.getElementById("submit-button");
 
-    submitButton.addEventListener("click", () => {
-        let tagsInput = document.getElementById("tags");
-        tagsInput.value = tags;
+    if (submitButton != null){
+        submitButton.addEventListener("click", () => {
+            let tagsInput = document.getElementById("tags");
+            tagsInput.value = tags;
+        });
+    }
+}
+
+function encodeForAjax(data) {
+    return Object.keys(data).map(function(k){
+      return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
+    }).join('&')
+}
+
+async function getFilteredTickets(data) {
+    return fetch('../actions/filterTickets.action.php', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: encodeForAjax(data)
     });
-
-    /* ------------------------------ */
-    /* Filter Tickets */
-
-    filterTickets();
-};
+}
 
 function filterTickets(){
     const filterTab = document.getElementById("filter-tab");
 
-    console.log(filterTab);
-
     if (filterTab != null) {
 
-        console.log("Filter Tickets");
+        const searchButton = document.getElementById("search-button");
+        searchButton.addEventListener("click", async function () {
+
+            const _ownership = document.getElementById('ownership-filter').value;
+            const _status = document.getElementById('status-filter').value;
+            const _priority = document.getElementById('priority-filter').value;
+            const _department = document.getElementById('department-filter').value;
+            const _tags = tags.join(",");
+
+            const response = await getFilteredTickets({
+                ownership: _ownership,
+                status: _status,
+                priority: _priority,
+                department: _department,
+                tags: _tags
+            });
+            const tickets = await response.json();
+
+            drawTickets(tickets);
+        });
 
         function drawTickets(tickets) {
             const section = document.querySelector('#tickets');
@@ -110,16 +143,5 @@ function filterTickets(){
                 section.appendChild(link);
             }
         }
-
-        const departmentFilter = document.getElementById('department-filter');
-        departmentFilter.addEventListener('change', async function() {
-
-                console.log("Filtering by department");
-
-                const response = await fetch('../actions/filterTickets.action.php?department=' + this.value);
-                const tickets = await response.json();
-
-                drawTickets(tickets);
-        });
     }
 };

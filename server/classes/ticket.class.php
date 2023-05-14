@@ -75,6 +75,30 @@ class Ticket {
         return $tags;
     }
 
+
+    public function matches($status, $priority, $departmentID, $tags){
+
+        foreach($tags as $tag){
+            if (array_search($tag, $this->tags) === false){
+                return false;
+            }
+        }
+
+        if ($departmentID != "All" && $this->departmentID != $departmentID){
+            return false;
+        }
+        if ($departmentID == "None" && $this->departmentID != null){
+            return false;
+        }
+        if ($status != "All" && $this->status != $status){
+            return false;
+        }
+        if ($priority != "All" && $this->priority != $priority){
+            return false;
+        }
+        return true;
+    }
+
     static public function filterByDepartment($tickets, $departmentID){
 
         $filteredTickets = array();

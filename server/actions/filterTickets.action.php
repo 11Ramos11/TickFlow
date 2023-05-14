@@ -13,17 +13,23 @@ $user = $session->user;
 
 $tickets = $user->getTickets();
 
-if (isset($_GET['department'])){
-    $departmentID = $_GET['department'];
-    if ($departmentID != "all"){
-        if ($departmentID == "none"){
-            $tickets = Ticket::filterByDepartment($tickets, null);
-        } else {
-            $tickets = Ticket::filterByDepartment($tickets, $departmentID);
-        }
+$ownership = $_POST['ownership'];
+$status = $_POST['status'];
+$priority = $_POST['priority'];
+$departmentID = $_POST['department'];
+$tags = $_POST['tags'];
+$tagList = $tags != '' ? explode(',', $tags) : [];
+
+$filteredTickets = array();
+
+error_log("Ownership:".$ownership);
+
+foreach($tickets as $ticket){
+    if ($ticket->matches($status, $priority, $departmentID, $tagList)){
+        $filteredTickets[] = $ticket;
     }
 }
 
-echo json_encode($tickets);
+echo json_encode($filteredTickets);
 
 ?>

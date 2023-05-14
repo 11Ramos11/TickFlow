@@ -14,23 +14,23 @@
 						<option value="Pending">Others' Tickets</option>
 					</select>
 					<select id="status-filter" class="filter-dropdown">
-						<option value="All">Status</option>
+						<option value="All">Any Status</option>
 						<option value="Open">Open</option>
 						<option value="Closed">Closed</option>
 						<option value="Pending">Pending</option>
 					</select>
 					<select id="priority-filter" class="filter-dropdown">
-						<option value="All">Priority</option>
-						<option value="Normal">Open</option>
-						<option value="Urgent">Closed</option>
-						<option value="Immeadiate">Pending</option>
+						<option value="All">Any Priority</option>
+						<option value="Normal">Normal</option>
+						<option value="Urgent">Urgent</option>
+						<option value="Immediate">Immediate</option>
 					</select>
 					<select id="department-filter" class="filter-dropdown">
-						<option value="all">Any Department</option>
+						<option value="All">Any Department</option>
 						<?php foreach ($departments as $department) { ?>
 						<option value=<?=$department->id?>> <?=$department->name?> </option>
 						<?php } ?>
-						<option value="none">None</option>
+						<option value="None">None</option>
 					</select>
 				</section>
 				<section class="tags-searchbar">
@@ -38,7 +38,7 @@
 						<input type="text" id="tag-input" name="tag" placeholder="Tag">
 					</ul>
 					<input type="hidden" id="tags" name="tags" value="">
-					<button class="button" id="submit-button">Search</button>
+					<button class="button" id="search-button">Search</button>
 				</section>
 			</section>
 			<section id="tickets" class="content">
@@ -46,8 +46,8 @@
 				<a class="ticket-box" href="ticket.php?ticket=<?=$ticket->id?>">
 				<article class="ticket-info">
 					<h3><?=$ticket->subject?></h3>
-					<p>Status: <span class="status-tag"><?=$ticket->status?></span></p>
-					<p>Priority: <span class="priority-tag"><?=$ticket->priority?></span></p>
+					<p>Status:<span class="status-tag"><?=$ticket->status?></span></p>
+					<p>Priority:<span class="priority-tag"><?=$ticket->priority?></span></p>
 					<p>	<?=$ticket->description?> </p>
 					<ul class="tags">
 						<?php foreach ($ticket->tags as $tag) { ?>
