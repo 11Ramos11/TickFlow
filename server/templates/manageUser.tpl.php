@@ -12,10 +12,15 @@
 			<button id="edit-user-button">Edit</button>
 		</section>
 		<form action="../action/editUser.action.php" id="edit-profile" method="post">
-			<input id="name-editor" class="profile-editor">
-			<input id="email-editor" class="profile-editor">
+			<input id="name-editor" class="profile-editor" name="name">
+			<input id="email-editor" class="profile-editor" name="email">
+
+			<?php if ($session->user->id == $user->id) { ?>
+			<input id="new-password" class="password profile-editor" name="pwd">
+			<input id="confirm-password" class="password profile-editor" name="pwd">
+			<?php } ?>
 			<?php if ($session->user->role == "Admin") { ?>
-			<select id="role-editor" class="profile-editor">
+			<select id="role-editor" class="profile-editor" name="role">
 				<option id="Client" value="Client">Client</option>
 				<option id="Agent" value="Agent">Agent</option>
 				<option id="Admin" value="Admin">Admin</option>	

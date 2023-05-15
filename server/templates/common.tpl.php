@@ -47,7 +47,7 @@
 					<li class="<?=$personnel?>"><a href="personnel.php"><i class="fa-solid fa-users nav-button"></i>Personnel</a></li>
 				</ul>
 			</nav>
-			<a href="profile.php" class = "profile-button">Logout<i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+			<a href="../actions/logout.action.php" class = "profile-button">Logout<i class="fa-solid fa-arrow-right-from-bracket"></i></a>
 		</div>
 
 <?php } ?>
