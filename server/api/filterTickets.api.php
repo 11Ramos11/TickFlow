@@ -10,7 +10,26 @@ if (!$session->isLoggedIn()) {
     header('Location: ../pages/authentication.php');
 }
 
-$user = $session->user;
+if (!isset($_POST['userId'])) {
+    return null;
+}
+
+$userID = $_POST['userId'];
+
+error_log("userID:".$userID);
+
+$user = User::getUserById($userID);
+
+error_log($user->id);
+error_log($user->name);
+
+if ($user == null) {
+    return null;
+}
+
+if ($user->id != $session->user->id && $session->user->role != 'Admin') {
+    return null;
+}
 
 if (!isset($_POST['ownership'])){
     return null;

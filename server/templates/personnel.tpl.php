@@ -3,7 +3,7 @@
             <?php $session = new Session(); if ($session->user->isAdmin()) { ?> 
             <button class="dropdown-button"> <i class="fa-solid fa-ellipsis-vertical"></i> </button>
             <div class="dropdown">
-                <a href="../pages/editProfile.php?id=<?=$user->id?>">Manage</a>
+                <a href="../pages/manageUser.php?id=<?=$user->id?>">Manage</a>
                 <a href="../pages/deleteUser.php?id=<?=$user->id?>">Delete</a>
             </div>
             <?php } ?>

@@ -12,6 +12,7 @@ window.onload = function () {
     createTags();
     filterTickets();
     userDropdown();
+    editProfile();
 };
 
 function createTags() {
@@ -80,6 +81,8 @@ function filterTickets(){
         const searchButton = document.getElementById("search-button");
         searchButton.addEventListener("click", async function () {
 
+            const userIdHolder = document.getElementById('user-id-holder');
+            const _userId = userIdHolder != null ? userIdHolder.textContent : null;
             const ownershipFilter = document.getElementById('ownership-filter');
             const _ownership = ownershipFilter != null ? ownershipFilter.value : 'All';
             const _status = document.getElementById('status-filter').value;
@@ -98,6 +101,7 @@ function filterTickets(){
             section.appendChild(loading);
 
             const response = await getFilteredTickets({
+                userId: _userId,
                 ownership: _ownership,
                 status: _status,
                 priority: _priority,
@@ -187,6 +191,45 @@ function userDropdown() {
 
         card.addEventListener("mouseleave", function () {
             hideUserDropdowns();
+        });
+    }
+}
+
+function editProfile(){
+
+    const profileInfo = document.getElementById("profile-info");
+
+    if (profileInfo != null){
+
+        const editButton = document.getElementById("edit-user-button");
+        const editProfile = document.getElementById("edit-profile");
+        const cancelButton = document.getElementById("cancel-button");
+
+        function toggleProfile(){
+            profileInfo.classList.toggle("active");
+            editProfile.classList.toggle("active");
+        }
+
+        editButton.addEventListener("click", function() {
+            toggleProfile();
+        });
+
+        cancelButton.addEventListener("click", function() {
+
+            const nameInfo = document.getElementById("name-info");
+            const emailInfo = document.getElementById("email-info");
+            const roleInfo = document.getElementById("role-info");
+            const nameEditor = document.getElementById("name-editor");
+            const emailEditor = document.getElementById("email-editor");
+            console.log("|" + roleInfo.textContent + "|")
+            const roleOption = document.getElementById(roleInfo.textContent);
+
+            nameEditor.value = nameInfo.textContent;
+            emailEditor.value = emailInfo.textContent;
+            roleOption.setAttribute("selected",  "selected")
+
+
+            toggleProfile();
         });
     }
 }

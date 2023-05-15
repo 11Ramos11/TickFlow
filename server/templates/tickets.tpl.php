@@ -1,19 +1,24 @@
-<?php function drawTickets($departments, $tickets, $role) {  ?>
+<?php function drawTickets($departments, $tickets, $user, $sessionUser) {  ?>
 
+	<p hidden id="user-id-holder"><?=$user->id?></p>
     <main class="middle-column">
 			<section class = "top">
-				<h2>Tickets</h2>
+				<?php if($user->id == $sessionUser->id) { ?>
+				<h2>My Tickets</h2>
 				<a href="ticketCreator.php"><button class = "button"> New Ticket</button> </a>
+				<?php } else { ?>
+				<h2><?=$user->name?>'s Tickets</h2>
+				<?php } ?>
 			</section>
 			
 			<section id="searchBar">
 				<section id="filter-tab">
-					<?php if ($role != "Client") { ?> 
+					<?php if ($user->role != "Client") { ?> 
 					<select id="ownership-filter" class="filter-dropdown">
 						<option value="All">All Tickets</option>
-						<option value="Author">My Tickets</option>
+						<option value="Author">Created Tickets</option>
 						<option value="Assigned">Assigned Tickets</option>
-						<?php if ($role == "Admin") { ?> 
+						<?php if ($user->role == "Admin" && $sessionUser->id == $user->id) { ?> 
 						<option value="Others">Others' Tickets</option>
 						<?php } ?>	
 					</select>
@@ -30,7 +35,7 @@
 						<option value="Urgent">Urgent</option>
 						<option value="Immediate">Immediate</option>
 					</select>
-					<?php if ($role != "Client") { ?> 
+					<?php if ($user->role != "Client") { ?> 
 					<select id="department-filter" class="filter-dropdown">
 						<option value="All">Any Department</option>
 						<?php foreach ($departments as $department) { ?>

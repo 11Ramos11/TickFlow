@@ -5,7 +5,7 @@
 	include_once(__DIR__.'/../classes/department.class.php');
 	include_once(__DIR__.'/../templates/tickets.tpl.php');
 	include_once(__DIR__.'/../templates/common.tpl.php');
-
+	include_once(__DIR__.'/../templates/manageUser.tpl.php');
 
 	$session = new Session();
 
@@ -23,9 +23,8 @@
 
 	$departments = Department::getDepartments();
 
-	$role = $user->role;
-
 	drawHeader("tickets");
-	drawTickets($departments, $tickets, $role);
+	drawTickets($departments, $tickets, $user, $user);
+	drawUserInfo($user);
 	drawFooter();
 ?>

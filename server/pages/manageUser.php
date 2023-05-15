@@ -2,7 +2,12 @@
 
 	include_once(__DIR__.'/../classes/session.class.php');
 	include_once(__DIR__.'/../templates/common.tpl.php');
-	include_once(__DIR__.'/../templates/editProfile.tpl.php');
+	include_once(__DIR__.'/../templates/manageUser.tpl.php');
+	include_once(__DIR__.'/../templates/tickets.tpl.php');
+    include_once(__DIR__.'/../classes/user.class.php');
+    include_once(__DIR__.'/../classes/ticket.class.php');
+    include_once(__DIR__.'/../classes/department.class.php');
+    
 
 	$session = new Session();
 
@@ -24,8 +29,11 @@
     }
 
     $user = User::getUserById($id);
+	$tickets = $user->getAuthoredTickets();
+    $departments = Department::getDepartments();
 
 	drawHeader();
-	drawEditProfile($user);
+    drawTickets($departments, $tickets, $user, $session->user);
+	drawUserInfo($user);
 	drawFooter();
 ?>

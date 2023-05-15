@@ -704,7 +704,7 @@ form.reply button:hover {
 
 .user-card > button {
   position: absolute;
-  background-color: transparent;
+  background-color: transparent;  
   border: none;
   right: 0.5rem;
   top: 1rem;
@@ -738,4 +738,20 @@ form.reply button:hover {
 
 .user-card > .dropdown > a:hover {
   text-decoration: underline;
+}
+
+#profile-info {
+  display: none;
+}
+
+#profile-info.active {
+  display: block;
+}
+
+#edit-profile {
+  display: none;
+}
+
+#edit-profile.active {
+  display: block;
 }
