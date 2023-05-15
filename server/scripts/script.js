@@ -211,10 +211,6 @@ function editProfile(){
         }
 
         editButton.addEventListener("click", function() {
-            toggleProfile();
-        });
-
-        cancelButton.addEventListener("click", function() {
 
             const nameInfo = document.getElementById("name-info");
             const emailInfo = document.getElementById("email-info");
@@ -228,7 +224,10 @@ function editProfile(){
             emailEditor.value = emailInfo.textContent;
             roleOption.setAttribute("selected",  "selected")
 
+            toggleProfile();
+        });
 
+        cancelButton.addEventListener("click", function() {
             toggleProfile();
         });
     }

@@ -1,21 +1,6 @@
 <?php function drawUserInfo($user){ 
 
-	$clientSelected = "";
-	$agentSelected = "";
-	$adminSelected = "";
-	
-	switch($user->role){
-		case "Client":
-			$clientSelected = "selected";
-			break;
-		case "Agent":
-			$agentSelected = "selected";
-			break;
-		case "Admin":
-			$adminSelected = "selected";
-			break;
-
-	}	
+	$session = new Session();	
 ?>
 	<aside class="right-sidebar">
 		<img src="../images/profile.png" alt="Profile Picture" class="profile-img">
@@ -27,13 +12,13 @@
 			<button id="edit-user-button">Edit</button>
 		</section>
 		<form action="../action/editUser.action.php" id="edit-profile" method="post">
-			<input id="name-editor" class="profile-editor" value="<?= $user->name?>">
-			<input id="email-editor" class="profile-editor" value="<?= $user->email?>">
-			<?php if ($user->role == "Admin") { ?>
+			<input id="name-editor" class="profile-editor">
+			<input id="email-editor" class="profile-editor">
+			<?php if ($session->user->role == "Admin") { ?>
 			<select id="role-editor" class="profile-editor">
-				<option selected="<?=$clientSelected?>" id="Client" value="Client">Client</option>
-				<option selected="<?=$agentSelected?>" id="Agent" value="Agent">Agent</option>
-				<option selected="<?=$adminSelected?>" id="Admin" value="Admin">Admin</option>	
+				<option id="Client" value="Client">Client</option>
+				<option id="Agent" value="Agent">Agent</option>
+				<option id="Admin" value="Admin">Admin</option>	
 			</select> 
 			<?php } ?>
 			<section id="edit-buttons">
