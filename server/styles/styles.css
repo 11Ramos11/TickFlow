@@ -681,27 +681,43 @@ form.reply button:hover {
   margin-bottom: 10px;
 }
 
+.users > h3{
+  margin: 0 2rem;
+  padding: 1rem 2rem;
+  font-size: 1.3rem;
+  color: #3818D9;
+  text-align: center;
+
+}
+
 .users > ul {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  margin: 0 2rem;
-  border-radius: 0.6rem;
-  box-shadow: 0px 5px 7px 0px rgb(0 0 0 / 10%);
-  background-color: #aabbff;
+  justify-content: space-evenly;
+  margin: 1rem 2rem;
+  padding-inline-start: 0;
 }
 
 .user-card {
-  width: 30%;
-  margin: 1rem 0;
-  padding: 1rem 2rem;
   border-radius: 0.6rem;
   box-shadow: 0px 5px 7px 0px rgb(0 0 0 / 10%);
-  background-color: white;
   position: relative;
+  /*
+  background: #3456ff;
+	background: -webkit-linear-gradient(to right, #000a3ebb, #3456ff);
+	background: linear-gradient(to right,#000a3ebb, #3456ff);
+  color: #fff;
+  */
+  background-color: #F7F5FF;
+  padding: 1rem 2rem;
+  width: 30%;
+  margin: 1rem 0;
+  border: 1px solid #3456ff;
 }
-
+.fa-ellipsis-vertical{
+  color: #3456ff;
+}
 .user-card > button {
   position: absolute;
   background-color: transparent;
@@ -723,6 +739,7 @@ form.reply button:hover {
   padding: 1rem;
   border-radius: 0.6rem;
   box-shadow: 0px 5px 7px 0px rgb(0 0 0 / 10%);
+  z-index: 999;
 }
 
 .user-card > .dropdown.active {
@@ -738,4 +755,16 @@ form.reply button:hover {
 
 .user-card > .dropdown > a:hover {
   text-decoration: underline;
+}
+
+.user-card > .username{
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #3818D9;
+}
+
+.user-card > .email{
+  font-size: 1rem;
+  color: #303030;
 }
