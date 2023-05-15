@@ -30,31 +30,30 @@
             
     </main>
     <aside class="right-sidebar">
-            <h2>Chat Information</h2>
-            <div class="chat-info">
-                <h3>User Status</h3>
-                <ul>
-                    <li>Online: <span class="online-status">5</span></li>
-                    <li>Offline: <span class="offline-status">3</span></li>
-                </ul>
-            </div>
-            <div class="active-users">
-                <h3>Active Users</h3>
-                <ul>
-                    <li>User1</li>
-                    <li>User2</li>
-                    <li>User3</li>
-                    <li>User4</li>
-                    <li>User5</li>
-                </ul>
-            </div>
-            <div class="chat-tips">
-                <h3>Chat Tips</h3>
-                <p>1. Be respectful to others in the chat.</p>
-                <p>2. Keep the conversation relevant to the topic.</p>
-                <p>3. Do not share personal information.</p>
-                <p>4. Use appropriate language and avoid offensive content.</p>
-            </div>
-        </aside>
+			<h2>More info</h2>
+			<section class="ticket-info-sidebar">
+				<h3>Ticket Title</h3>
+				<p>Ticket ID: <span class="id-tag"> #1E233</span></p>
+				<p>Created: <span class="date">12/12/2021</span></p>
+				<p>Status: <span class="status-tag">Open</span></p>
+				<p>Priority: <span class="priority-tag">Urgent</span></p>
+			</section>
+
+			<section class ="assigned-to">
+				<h3>Assigned To</h3>
+				<div class = "person-card">
+					<img src="../images/profile.png" alt="Profile" class="profile-img"></img>
+					<p>John Doe</p>
+				</div>
+			</section>
+
+			<section class="requester">
+				<h3>Requester Detail</h3>
+				<div class="person-card">
+					<img src="../images/profile.png" alt="Profile" class="profile-img"></img>
+					<p>John Doe</p>
+				</div>
+			</section>
+	</aside>
 
 <?php } ?>
