@@ -8,6 +8,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Montserrat', sans-serif;/*'Roboto', sans-serif;*/
+  overflow: hidden;
 }
 
 .grid-container {
@@ -52,10 +53,15 @@ body {
 
 .right-sidebar {
   background-color: #fff;
-  padding: 1rem 2rem;
+  padding: 0rem 2rem;
   margin: auto 0;
+  overflow-y: scroll;
+  height: 100vh;
 }
 
+.right-sidebar::-webkit-scrollbar {
+  display: none;
+}
 
 .header {
   display: flex;
@@ -219,39 +225,35 @@ figure.avatar img{
 
 /* Style for the chat container */
 #chat {
+  display: grid;
+  grid-template-rows: [start] 90vh[middle] auto [end];
   margin: auto;
   border-left: solid 1px #ccc;
   border-right: solid 1px #ccc;
   min-height: 100vh;
-  display: flex; 
-  flex-direction: column;
   justify-content: space-between;
 }
 
 
-
-
-.messages{
+#messages{
+  grid-row: start / middle;
   display: flex;
   flex-direction: column;
   padding: 1rem 2rem;
-  overflow-y: scroll;
-  height: 70vh;
-  /* Hide scrollbar for IE, Edge and Firefox 
-  -ms-overflow-style: none;  
-  scrollbar-width: none;  
-  */
-
-  overflow-x: hidden;
-  align-items: center;
-  justify-content: center;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none; 
 }
 
-/* Hide scrollbar for Google Chrome
-.messages::-webkit-scrollbar{
+#messsages::-webkit-scrollbar {
   display: none;
 }
-*/
+
+#messages::-webkit-scrollbar {
+  width: 0; /* Safari and older versions of Chrome */
+  height: 0;
+  display: none;
+}
 
 /* Style for each chat message */
 .msg {
@@ -278,19 +280,20 @@ figure.avatar img{
   text-justify:  inter-word;
 }
 
+.msg-right {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-left: auto;
+}
 .msg-right .bubble{
   background-color: #F7F5FF;
 }
 
 
-
 /* Style for the input field and reply button */
 
-
-
 form.reply {
-
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
   background-color: #fff;
   display: flex;
   padding: 1rem 2rem;
@@ -444,21 +447,28 @@ form.reply button:hover {
   color: #3818D9; 
 }
 
-.ticket-box {
+.ticket-info {
   text-decoration: none;
   color:#000;
   margin: 0 2rem;
 }
 
-.ticket-info{
-  margin: 0 2em;
-  padding: 1rem 2rem;
+.ticket-box {
   box-shadow: 0px 5px 7px 5px rgb(0 0 0 / 10%);
   border-radius: 0.6rem;
 }
 
+.ticket-box.dash{
+  margin:  initial;
+  padding: 0.5rem 1.5rem;
+}
 
-.ticket-info h3{
+.ticket-box.brief {
+  margin: initial;
+  padding: 0.2rem 1rem;
+}
+
+.ticket-box h3{
   font-size: 1.2rem;
   font-weight: 600;
   color: #3818D9;
@@ -466,7 +476,7 @@ form.reply button:hover {
   justify-content: center;
 }
 
-.ticket-info p{
+.ticket-box p{
   line-height: 1.7rem;
 }
 
@@ -979,4 +989,12 @@ form.reply button:hover {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.right-sidebar > :first-child{
+  margin-top: 1rem; 
+}
+
+.right-sidebar > :last-child{
+  margin-bottom: 1rem; 
 }

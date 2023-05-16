@@ -2,7 +2,6 @@
 
     $home = "";
     $tickets = "";
-    $chat = "";
 	$personnel = "";
     
     switch ($activeNavButton){
@@ -11,9 +10,6 @@
             break;
         case "dashboard":
             $tickets = "active";
-            break;
-        case "chat":
-            $chat = "active";
             break;
 		case "personnel":
 			$personnel = "active";
@@ -43,7 +39,6 @@
 				<ul>
 					<li class="<?=$home?>"><a href="home.php"><i class="fa-solid fa-house nav-button"></i>Home</a></li>
 					<li class="<?=$tickets?>"> <a href="dashboard.php"><i class="fa-solid fa-ticket nav-button"></i>Dashboard</a></li>
-					<li class="<?=$chat?>"><a href="chat.php"><i class="fa-regular fa-comments nav-button"></i>Chat</a></li>
 					<li class="<?=$personnel?>"><a href="personnel.php"><i class="fa-solid fa-users nav-button"></i>Personnel</a></li>
 				</ul>
 			</nav>

@@ -30,6 +30,7 @@
     $ticket = Ticket::getTicketByID($ticketId);
 
 	drawHeader();
-	drawTicket($ticket);
+	drawChat($ticket);
+	drawBriefTicket($ticket);
 	drawFooter();
 ?>
