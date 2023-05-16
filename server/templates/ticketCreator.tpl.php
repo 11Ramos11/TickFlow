@@ -1,8 +1,8 @@
 <?php 
 function drawTicketCreator($departments) { ?>
 
-    <article class="form">
-      <section class="title">Create a New Ticket</section>
+    <article class="form" id="create-ticket">
+      <h1 class="title">Create a New Ticket</h1>
       <form action="../actions/createTicket.action.php" method="post">
         <section class="input-container ic1">
           <input id="subject" class="input" type="text" placeholder=" " name="subject" />
