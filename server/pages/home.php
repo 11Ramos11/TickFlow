@@ -18,6 +18,7 @@
 	$changes = Change::getRecentChanges();
 
 	drawHeader("home");
-	drawHome($departments, $changes);
+	drawFAQS($departments);
+	drawRecentChanges($changes);
 	drawFooter();
 ?>
