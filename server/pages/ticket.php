@@ -18,12 +18,12 @@
 	if (isset($_GET["ticket"])){
 		$ticketId = $_GET["ticket"];
 	} else {
-		header("Location: tickets.php");
+		header("Location: dashboard.php");
 		exit();
 	}
 
     if (!$user->hasAccessToTicket($ticketId)){
-        header("Location: tickets.php");
+        header("Location: dashboard.php");
         exit();
     }
 

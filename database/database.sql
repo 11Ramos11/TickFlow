@@ -134,14 +134,14 @@ INSERT INTO User (id, name, email, password, role, department) VALUES
 
 INSERT INTO Ticket (id, status, priority, subject, description, creationDate, creationTime, author, assignedTo, department) VALUES
   (1, 'Open', 'Normal', 'Printer Not Working', 'I am unable to print from my computer. Please help me resolve the issue.', '2023-04-22', '10:00:00', 4, 7, 3),
-  (2, 'Pending', 'Immediate', 'Website Down', 'Our website seems to be down. We need to get it back up and running as soon as possible.', '2023-04-22', '11:30:00', 12, 8, 3),
+  (2, 'Pending', 'Immediate', 'Website Down', 'Our website seems to be down. We need to get it back up and running as soon as possible.', '2023-04-22', '11:30:00', 12, NULL, 3),
   (3, 'Open', 'Urgent', 'Email Account Issue', 'I am having trouble accessing my email account. Please help me resolve the issue as soon as possible.', '2023-04-22', '12:45:00', 5, 8, 3),
   (4, 'Open', 'Normal', 'Need New Laptop', 'My current laptop is old and slow. I need a new laptop to be able to work efficiently.', '2023-04-22', '14:00:00', 3, 12, 4),
-  (5, 'Pending', 'Urgent', 'Cannot Access Shared Drive', 'I am unable to access the Marketing shared drive. This is causing a delay in my work. Please help me resolve the issue as soon as possible.', '2023-04-22', '15:15:00', 1, 6, 2),
+  (5, 'Pending', 'Urgent', 'Cannot Access Shared Drive', 'I am unable to access the Marketing shared drive. This is causing a delay in my work. Please help me resolve the issue as soon as possible.', '2023-04-22', '15:15:00', 1, NULL, 2),
   (6, 'Open', 'Normal', 'Need Additional Monitor', 'I need an additional monitor to be able to work more efficiently.', '2023-04-22', '16:30:00', 8, 11, 4),
   (7, 'Closed', 'Immediate', 'Server Down', 'One of our servers is down. This is affecting multiple employees. We need to get it back up and running as soon as possible.', '2023-04-22', '17:45:00', 2, 10, 3),
   (8, 'Open', 'Normal', 'New Software Request', 'I need new software installed on my computer to be able to complete a project. Please install the software for me.', '2023-04-23', '09:00:00', 5, 9, 3),
-  (9, 'Pending', 'Urgent', 'VPN Connection Issue', 'I am unable to connect to the VPN. This is preventing me from accessing important files. Please help me resolve the issue as soon as possible.', '2023-04-23', '10:30:00', 7, 10, 3),
+  (9, 'Pending', 'Urgent', 'VPN Connection Issue', 'I am unable to connect to the VPN. This is preventing me from accessing important files. Please help me resolve the issue as soon as possible.', '2023-04-23', '10:30:00', 7, NULL, 3),
   (10, 'Open', 'Normal', 'Need New Desk Chair', 'My current desk chair is causing me back pain. I need a new chair to be able to work comfortably.', '2023-04-23', '12:00:00', 6, 13, 4);
 
 INSERT INTO Message (id, content, creationDate, creationTime, author, ticket) VALUES 
@@ -150,7 +150,13 @@ INSERT INTO Message (id, content, creationDate, creationTime, author, ticket) VA
   (3, 'Servers are already back up and running!', '2023-04-22', '17:47:12', 10, 7);
 
 INSERT INTO Change (fieldChanged, newValue, oldValue, editDate, editTime, ticket) VALUES 
-  ('status', 'Closed', 'Open', '2023-04-22', '17:47:12', 7);
+  ('status', 'Closed', 'Open', '2023-04-22', '17:47:12', 7),
+  ('status', 'Open', 'Pending', '2023-04-22', '10:29:21', 1),
+  ('status', 'Open', 'Pending', '2023-04-22', '12:46:04', 3),
+  ('status', 'Open', 'Pending', '2023-04-22', '14:12:53', 4),
+  ('status', 'Open', 'Pending', '2023-04-22', '16:36:12', 6),
+  ('status', 'Open', 'Pending', '2023-04-23', '09:12:43', 8),
+  ('status', 'Open', 'Pending', '2023-04-23', '13:23:17', 10);
 
 INSERT INTO Hashtag (id, name) VALUES 
   (1, 'printer'),
