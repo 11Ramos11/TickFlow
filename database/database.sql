@@ -144,10 +144,21 @@ INSERT INTO Ticket (id, status, priority, subject, description, creationDate, cr
   (9, 'Pending', 'Urgent', 'VPN Connection Issue', 'I am unable to connect to the VPN. This is preventing me from accessing important files. Please help me resolve the issue as soon as possible.', '2023-04-23', '10:30:00', 7, NULL, 3),
   (10, 'Open', 'Normal', 'Need New Desk Chair', 'My current desk chair is causing me back pain. I need a new chair to be able to work comfortably.', '2023-04-23', '12:00:00', 6, 13, 4);
 
-INSERT INTO Message (id, content, creationDate, creationTime, author, ticket) VALUES 
-  (1, 'Hi, we are pleased to inform you that a technician is already on his way to fix the respective printer. We will notify you once it''s fixed.', '2023-04-22', '10:30:23', 7, 1),
-  (2, 'Thank you!', '2023-04-22', '10:31:04', 4, 1),
-  (3, 'Servers are already back up and running!', '2023-04-22', '17:47:12', 10, 7);
+INSERT INTO Message (content, creationDate, creationTime, author, ticket) VALUES 
+  ('Hi, we are pleased to inform you that a technician is already on his way to fix the respective printer. We will notify you once it''s fixed.', '2023-04-22', '10:30:23', 7, 1),
+  ('Thank you!', '2023-04-22', '10:31:04', 4, 1),
+  ('Thank you!', '2023-04-22', '10:31:04', 4, 1),
+  ('Thank you!', '2023-04-22', '10:31:04', 4, 1),
+  ('Thank you!', '2023-04-22', '10:31:04', 4, 1),
+  ('Thank you!', '2023-04-22', '10:31:04', 4, 1),
+  ('Thank you!', '2023-04-22', '10:31:04', 4, 1),
+  ('Thank you!', '2023-04-22', '10:31:04', 4, 1),
+  ('Thank you!', '2023-04-22', '10:31:04', 4, 1),
+  ('Thank you!', '2023-04-22', '10:31:04', 4, 1),
+  ('Thank you!', '2023-04-22', '10:31:04', 4, 1),
+  ('Thank you!', '2023-04-22', '10:31:04', 4, 1),
+  ('Thank you!', '2023-04-22', '10:31:04', 4, 1),
+  ('Servers are already back up and running!', '2023-04-22', '17:47:12', 10, 7);
 
 INSERT INTO Change (fieldChanged, newValue, oldValue, editDate, editTime, ticket) VALUES 
   ('status', 'Closed', 'Open', '2023-04-22', '17:47:12', 7),

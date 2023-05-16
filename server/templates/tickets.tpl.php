@@ -55,8 +55,8 @@
 			</section>
 			<section id="tickets" class="content">
 				<?php foreach ($tickets as $ticket) { ?>
-				<a class="ticket-box" href="ticket.php?ticket=<?=$ticket->id?>">
-				<article class="ticket-info">
+				<a class="ticket-info" href="ticket.php?ticket=<?=$ticket->id?>">
+				<article class="ticket-box dash">
 					<h3><?=$ticket->subject?></h3>
 					<p>Status:<span class="status-tag"><?=$ticket->status?></span></p>
 					<p>Priority:<span class="priority-tag"><?=$ticket->priority?></span></p>

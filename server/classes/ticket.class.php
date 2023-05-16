@@ -1,6 +1,7 @@
 <?php
 
 include_once(__DIR__.'/../classes/connection.db.php');
+include_once(__DIR__.'/../classes/chat.class.php');
 
 class Ticket {
 
@@ -130,6 +131,11 @@ class Ticket {
             return false;
         }
         return true;
+    }
+
+    public function getChat(){
+
+        return new Chat($this->id);
     }
 
     static public function filterByDepartment($tickets, $departmentID){
