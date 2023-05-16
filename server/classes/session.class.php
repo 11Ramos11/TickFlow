@@ -6,7 +6,7 @@ include_once(__DIR__.'/../classes/user.class.php');
 
 class Session {
 
-    public $user;
+    public $userID;
     public $error;
     
     public function __construct() {
@@ -15,15 +15,15 @@ class Session {
             session_start();
         }
         
-        $this->user = null;
+        $this->userID = null;
         $this->error = null;
 
-        if (isset($_SESSION["user"])) {
+        if (isset($_SESSION["userID"])) {
 
-            $user = $_SESSION["user"];
+            $userID = $_SESSION["userID"];
             
-            if ($user instanceof User){
-                $this->user = $_SESSION["user"];
+            if (is_numeric($userID)){
+                $this->userID = $_SESSION["userID"];
             } 
         } 
 
@@ -34,23 +34,27 @@ class Session {
         }
     }
 
-    public function login(User $user) {
-        $_SESSION["user"] = $user;
-        $this->user = $user;
+    public function login(int $userID) {
+        $_SESSION["userID"] = $userID;
+        $this->userID = $userID;
     }
 
     public function logout() {
-        unset($_SESSION["user"]);
-        $this->user = null;
+        unset($_SESSION["userID"]);
+        $this->userID = null;
     }
     
     public function isLoggedIn() {
 
-        return $this->user != null;
+        return $this->userID != null;
+    }
+
+    public function getUser(){
+        return User::getUserById($this->userID);
     }
 
     public function isAdmin() {
-        return $this->isLoggedIn() && $this->user->role == "admin";
+        return $this->isLoggedIn() && $this->getUser()->role == "Admin";
     }
 
     public function setError($code, $msg) {

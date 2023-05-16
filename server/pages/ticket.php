@@ -13,7 +13,7 @@
 		exit();
 	}
 
-    $user = $session->user;
+    $user = $session->getUser();
 
 	if (isset($_GET["ticket"])){
 		$ticketId = $_GET["ticket"];

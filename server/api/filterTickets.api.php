@@ -27,7 +27,9 @@ if ($user == null) {
     return null;
 }
 
-if ($user->id != $session->user->id && $session->user->role != 'Admin') {
+$sessionUser = $session->getUser();
+
+if ($user->id != $sessionUser->id && $sessionUser->role != 'Admin') {
     return null;
 }
 

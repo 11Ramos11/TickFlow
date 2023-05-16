@@ -2,61 +2,60 @@
 
 include_once(__DIR__.'/../classes/session.class.php');
 include_once(__DIR__.'/../classes/my_error.class.php');
+include_once(__DIR__.'/../classes/connection.db.php');
 
 $session = new Session();
+
+$id = $_POST["id"];
 
 $name = $_POST["name"];
 
 if (!preg_match("/^[a-zA-Z\sãÃ]+$/", $name)){
     $session->setError("reg", "Name must only contain letters and spaces");
-    header("Location: ../pages/authentication.php");
+    header("Location: ../pages/manageUser.php");
     exit();
 }
 $email = $_POST["email"];
 
-if (!preg_match("/^[a-zA-Z0-9]+@tickflow.com+$/", $email)){
+if (!preg_match("/^[a-zA-Z0-9._]+@tickflow.com+$/", $email)){
     $session->setError("reg", "Email must be a valid TickFlow email (@tickflow.com)");
-    header("Location: ../pages/authentication.php");
+    error_log("Email must be a valid TickFlow email (@tickflow.com)");
+    header("Location: ../pages/manageUser.php");
     exit();
 }
 
-$password = $_POST["pwd"];
-$uppercase = preg_match('@[A-Z]@', $password);
-$lowercase = preg_match('@[a-z]@', $password);
-$number    = preg_match('@[0-9]@', $password);
-$specialChars = preg_match('@[^\w]@', $password);
+$sessionUser = $session->getUser();
 
-if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8){
+if (!isset($_POST["role"])){
+    $role = $sessionUser->role; 
+} else {
+    $role = $_POST["role"];
+}
 
+if ($sessionUser->role == "Admin" && $role != "Admin" && $sessionUser->id == $id){
+    if (count(User::getAdmins()) == 1){
+        $session->setError("reg", "There must be at least one admin");
+        header("Location: ../pages/manageUser.php");
+        exit();
+    }
+}
 
-    $session->setError("reg", "Password must be have at least 8 characters.\n Must contain at least one upper case letter, one number, and one special character.");
-    header("Location: ../pages/authentication.php");
+if ($sessionUser->role == "Admin" && User::getUserById($id)->role == "Admin" && $sessionUser->id != $id){
+    $session->setError("reg", "Admins cannot edit other admins");
+    header("Location: ../pages/manageUser.php");
     exit();
 }
 
-if ($name == "" || $email == "" || $password == ""){
-    $session->setError("reg", "All fields are required");
-    header("Location: ../pages/authentication.php");
+if ($role != "Admin" && $role != "Agent" && $role != "Client"){
+    $session->setError("reg", "Role must be Admin, Agent or Client");
+    header("Location: ../pages/manageUser.php");
     exit();
 }
 
-$db = new PDO('sqlite:../../database/database.db');
-$query = $db->prepare("INSERT INTO User (name,email,password) VALUES ('$name','$email','$password')");
+$db = getDatabaseConnection();
+$query = $db->prepare("UPDATE User SET name = ?,email = ?,role = ? WHERE id = ?");
+$result =  $query->execute(array($name,$email,$role, $id));
 
-if ($query == false){
-    $session->setError("reg", "Email already exists");
-    header("Location: ../pages/authentication.php");
-    exit();
-}
-
-$result = $query->execute();
-
-if ($result == false){
-    $session->setError("reg", "Email already exists");
-    header("Location: ../pages/authentication.php");
-    exit();
-}
-
-header("Location: ../pages/authentication.php");  
+header("Location: ../pages/manageUser.php?id=$id");  
 
 ?>

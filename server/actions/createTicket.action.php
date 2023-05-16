@@ -13,7 +13,7 @@ if (!$session->isLoggedIn()){
     exit();
 }
 
-$user = $session->user;
+$user = $session->getUser();
 
 $subject = $_POST['subject'];
 $description = $_POST['description'];

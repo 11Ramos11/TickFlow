@@ -14,7 +14,6 @@
 				<input type="text" name="name" placeholder="Name"/>
 				<input type="email" name="email" placeholder="Email" />
 				<input type="password" name="pwd" placeholder="Password" />
-				<?php if ($error != null) $error->draw("reg"); ?>
 				<button>Sign Up</button>
 			</form>
 		</div>
@@ -23,7 +22,6 @@
 				<h1>Sign in</h1>
 				<input type="email" name="email" placeholder="Email" />
 				<input type="password" name="pwd" placeholder="Password" />
-				<?php if ($error != null) $error->draw("log"); ?>
 				<a href="#">Forgot your password?</a>
 				<button>Sign In</button>
 			</form>
@@ -43,6 +41,10 @@
 			</div>
 		</div>
 	</div>
+	</div>
+	<?php if ($error != null) { ?>
+		<div id="error"> <?= $error->msg ?> </div>
+	<?php } ?>
 </body>     
 </html>  
 

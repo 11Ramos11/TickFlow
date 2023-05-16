@@ -42,7 +42,7 @@
 			<nav>
 				<ul>
 					<li class="<?=$home?>"><a href="home.php"><i class="fa-solid fa-house nav-button"></i>Home</a></li>
-					<li class="<?=$tickets?>"> <a href="tickets.php"><i class="fa-solid fa-ticket nav-button"></i>Dashboard</a></li>
+					<li class="<?=$tickets?>"> <a href="dashboard.php"><i class="fa-solid fa-ticket nav-button"></i>Dashboard</a></li>
 					<li class="<?=$chat?>"><a href="chat.php"><i class="fa-regular fa-comments nav-button"></i>Chat</a></li>
 					<li class="<?=$personnel?>"><a href="personnel.php"><i class="fa-solid fa-users nav-button"></i>Personnel</a></li>
 				</ul>
@@ -52,8 +52,22 @@
 
 <?php } ?>
 
-<?php function drawFooter() { ?>
+<?php 
+
+include_once('../classes/my_error.class.php');
+
+function drawFooter() { 
+	
+	$error = null;
+	if (isset($_SESSION['error'])) {
+		$error = $_SESSION['error'];
+		unset($_SESSION['error']);
+	}
+?>
 	</div>
+	<?php if ($error != null) { ?>
+		<div id="error"> <?= $error->msg ?> </div>
+	<?php } ?>
 </body>
 
 </html>

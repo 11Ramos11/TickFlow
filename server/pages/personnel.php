@@ -11,19 +11,11 @@
 		exit();
 	}
 
-    $users = User::getAllUsers();
+    $admins = User::getAdmins();
 
-    $admins = array_filter($users, function($user){
-        return $user->isAdmin();
-    });
+    $agents = User::getAgents();
 
-    $agents = array_filter($users, function($user){
-        return $user->isAgent();
-    });
-
-    $clients = array_filter($users, function($user){
-        return $user->isClient();
-    });
+    $clients = User::getClients();
 
     drawHeader("personnel");
     drawPersonnel($admins, $agents, $clients);
