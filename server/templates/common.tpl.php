@@ -9,7 +9,7 @@
         case "home":
             $home = "active";
             break;
-        case "tickets":
+        case "dashboard":
             $tickets = "active";
             break;
         case "chat":

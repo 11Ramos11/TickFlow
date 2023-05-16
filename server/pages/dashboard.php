@@ -26,19 +26,14 @@
             header("Location: personnel.php");
             exit();
         }
-
-        
-        if ($id == $session->userID){
-            header("Location: tickets.php");
-            exit();
-        }
     }
 
     $user = User::getUserById($id);
     $tickets = $user->getAuthoredTickets();
     $departments = Department::getDepartments();
 
-	drawHeader();
+    $header = $id == $session->userID ? "dashboard" : null;
+	drawHeader($header);
     drawTickets($departments, $tickets, $user, $session->getUser());
 	drawProfile($user);
 	drawFooter();
