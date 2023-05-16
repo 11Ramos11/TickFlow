@@ -3,6 +3,7 @@
 	include_once(__DIR__.'/../classes/session.class.php');
 	include_once(__DIR__.'/../templates/common.tpl.php');
 	include_once(__DIR__.'/../templates/home.tpl.php');
+	include_once(__DIR__.'/../classes/department.class.php');
 
 	$session = new Session();
 
@@ -11,7 +12,9 @@
 		exit();
 	}
 
+	$departments = Department::getDepartments();
+
 	drawHeader("home");
-	drawHome();
+	drawHome($departments);
 	drawFooter();
 ?>
