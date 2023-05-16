@@ -1,5 +1,8 @@
 <?php
 
+include_once(__DIR__.'/../classes/connection.db.php');
+include_once(__DIR__.'/../classes/faq.class.php');
+
 class Department {
     
     public $id, $name;
@@ -7,6 +10,11 @@ class Department {
     function __construct($id, $name){
         $this->id = $id;
         $this->name = $name;
+    }
+
+    public function getFAQs(){
+        
+        return FAQ::getFAQsByDepartment($this->id);
     }
 
     static function getDepartments(){
