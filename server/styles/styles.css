@@ -186,7 +186,24 @@ nav ul:last-child li a{
   scrollbar-width: none;  /* Firefox */
 }
 
-.top{
+#tickets-search{
+  display: grid;
+  grid-template-rows: 35vh 65vh;
+}
+
+#tickets-search #tickets {
+  
+  overflow-y: scroll;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+#tickets-search #tickets::-webkit-scrollbar {
+  display: none;
+}
+
+
+#tickets-search .title{
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -195,7 +212,7 @@ nav ul:last-child li a{
 }
 
 
-.top h2{
+#tickets-search .title h2{
   font-weight: 400;
   font-size: 1.5rem;
 }
@@ -769,7 +786,7 @@ form.reply button:hover {
 }
 
 
-.title {
+#create-ticket .title {
   color: #eee;
   font-family: sans-serif;
   font-size: 36px;
