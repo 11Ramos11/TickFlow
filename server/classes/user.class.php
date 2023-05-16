@@ -16,8 +16,7 @@ class User
         $this->role = $role;
     }
 
-    public function getAuthoredTickets()
-    {
+    public function getAuthoredTickets(){
 
         $db = getDatabaseConnection();
 
@@ -177,5 +176,44 @@ class User
         }
 
         return $users;
+    }
+
+    static public function getUserByRole($role){
+
+        $db = getDatabaseConnection();
+
+        $query = $db->prepare("SELECT * FROM User WHERE role = '$role'");
+        $query->execute();
+
+        $results = $query->fetchAll();
+
+        $users = array();
+
+        foreach ($results as $row) {
+
+            $users[] = new User(
+                $row['id'],
+                $row['name'],
+                $row['email'],
+                $row['role']
+            );
+        }
+
+        return $users;
+    }
+
+    static public function getAdmins(){
+
+        return User::getUserByRole("Admin");
+    }
+
+    static public function getAgents(){
+
+        return User::getUserByRole("Agent");
+    }
+
+    static public function getClients(){
+
+        return User::getUserByRole("Client");
     }
 }

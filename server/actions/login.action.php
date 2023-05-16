@@ -31,7 +31,7 @@ if ($count == 1){
     $user_info = $users[0];
 
     $user = new User( $user_info['id'], $user_info['name'], $user_info['email'], $user_info['role']);
-    $session->login($user);
+    $session->login($user->id);
     $session->unsetError();
     header("Location: ../pages/home.php");
     exit();

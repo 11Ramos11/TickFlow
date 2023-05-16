@@ -1,9 +1,10 @@
 <?php function drawUser($user){ ?>
     <li class="user-card">
-            <?php $session = new Session(); if ($session->user->isAdmin()) { ?> 
+            <?php $session = new Session(); if ($session->isAdmin()) { 
+                error_log("HELLLO");?> 
             <button class="dropdown-button"> <i class="fa-solid fa-ellipsis-vertical"></i> </button>
-            <div class="dropdown">
-                <a href="../pages/editProfile.php?id=<?=$user->id?>">Manage</a>
+            <div class="user-dropdown">
+                <a href="../pages/dashboard.php?id=<?=$user->id?>">Manage</a>
                 <a href="../pages/deleteUser.php?id=<?=$user->id?>">Delete</a>
             </div>
             <?php } ?>
@@ -21,14 +22,20 @@
         </section>
         <section class="users" id="admins">
             <h3> Administrators </h3>
+            <?php if (count($admins) == 0) { ?>
+                <p> There are no administrators. </p>
+            <?php } ?>
             <ul>
             <?php foreach($admins as $admin){ 
                 drawUser($admin);
-             } ?>
+            } ?>
             </ul>
         </section>
         <section class="users" id="agents">
             <h3> Agents </h3>
+            <?php if (count($agents) == 0) { ?>
+                <p> There are no agents. </p>
+            <?php } ?>
             <ul>
             <?php foreach($agents as $agent){
                 drawUser($agent);
@@ -37,6 +44,9 @@
         </section>
         <section class="users" id="clients">
             <h3> Clients </h3>
+            <?php if (count($clients) == 0) { ?>
+                <p> There are no clients. </p>
+            <?php } ?>
             <ul>
             <?php foreach($clients as $client){ 
                 drawUser($client);

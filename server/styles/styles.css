@@ -720,7 +720,7 @@ form.reply button:hover {
 }
 .user-card > button {
   position: absolute;
-  background-color: transparent;
+  background-color: transparent;  
   border: none;
   right: 0.5rem;
   top: 1rem;
@@ -730,7 +730,7 @@ form.reply button:hover {
   cursor: pointer;
 }
 
-.user-card > .dropdown {
+.user-card > .user-dropdown {
   display: none;
   position: absolute;
   right: -5.3rem;
@@ -742,21 +742,85 @@ form.reply button:hover {
   z-index: 999;
 }
 
-.user-card > .dropdown.active {
+.user-card > .user-dropdown.active {
   display: flex;
   flex-direction: column; 
 }
 
-.user-card > .dropdown > a {
+.user-card > .user-dropdown > a {
   margin: 0.5rem 0;
   text-decoration: none;
   color: black;
 }
 
-.user-card > .dropdown > a:hover {
+.user-card > .user-dropdown > a:hover {
   text-decoration: underline;
 }
 
+#profile-info {
+  display: none;
+}
+
+#profile-info.active {
+  display: block;
+}
+
+#edit-profile {
+  display: none;
+}
+
+#edit-profile.active {
+  display: block;
+}
+
+#password-editor {
+  display: none;
+}
+
+#password-editor.active {
+  display: block;
+}
+
+#error {
+  visibility: hidden; 
+  min-width: 250px; 
+  background-color: rgb(255, 110, 110);
+  color: #fff; 
+  text-align: center; 
+  border-radius: 2px; 
+  padding: 1.3rem;
+  position: fixed; 
+  left: 50%;
+  transform: translate(-50%, 0%);
+  z-index: 1; 
+  bottom: 30px; 
+}
+
+#error.show {
+  visibility: visible; 
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 3.5s;
+  animation: fadein 0.5s, fadeout 0.5s 3.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
 .user-card > .username{
   font-size: 1.2rem;
   font-weight: 500;

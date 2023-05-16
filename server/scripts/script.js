@@ -12,6 +12,8 @@ window.onload = function () {
     createTags();
     filterTickets();
     userDropdown();
+    editProfile();
+    showError();
 };
 
 function createTags() {
@@ -80,6 +82,8 @@ function filterTickets(){
         const searchButton = document.getElementById("search-button");
         searchButton.addEventListener("click", async function () {
 
+            const userIdHolder = document.getElementById('user-id-holder');
+            const _userId = userIdHolder != null ? userIdHolder.textContent : null;
             const ownershipFilter = document.getElementById('ownership-filter');
             const _ownership = ownershipFilter != null ? ownershipFilter.value : 'All';
             const _status = document.getElementById('status-filter').value;
@@ -98,6 +102,7 @@ function filterTickets(){
             section.appendChild(loading);
 
             const response = await getFilteredTickets({
+                userId: _userId,
                 ownership: _ownership,
                 status: _status,
                 priority: _priority,
@@ -170,10 +175,15 @@ function filterTickets(){
 function userDropdown() {
 
     const userCards = document.getElementsByClassName("user-card");
+    const dropdowns = document.getElementsByClassName("user-dropdown");
+
+
+    if (dropdowns.length == 0){
+        return;
+    }
 
     function hideUserDropdowns(){
-        for (const card of userCards) {
-            const dropdown = card.getElementsByClassName("dropdown")[0];
+        for (const dropdown of dropdowns) {
             dropdown.classList.remove("active");
         }
     }
@@ -181,7 +191,7 @@ function userDropdown() {
     for (const card of userCards) {
         card.addEventListener("click", function () {
             hideUserDropdowns();
-            const dropdown = this.getElementsByClassName("dropdown")[0];
+            const dropdown = this.getElementsByClassName("user-dropdown")[0];
             dropdown.classList.toggle("active");
         });
 
@@ -190,3 +200,72 @@ function userDropdown() {
         });
     }
 }
+
+function editProfile(){
+
+    const profileInfo = document.getElementById("profile-info");
+
+    if (profileInfo != null){
+
+        const editButton = document.getElementById("edit-user-button");
+        const editProfile = document.getElementById("edit-profile");
+        const cancelButton = document.getElementById("cancel-button");
+
+        function toggleProfile(){
+            profileInfo.classList.toggle("active");
+            editProfile.classList.toggle("active");
+        }
+
+        editButton.addEventListener("click", function() {
+
+            const nameInfo = document.getElementById("name-info");
+            const emailInfo = document.getElementById("email-info");
+            const roleInfo = document.getElementById("role-info");
+
+            const nameEditor = document.getElementById("name-editor");
+            nameEditor.value = nameInfo.textContent;
+
+            const emailEditor = document.getElementById("email-editor");
+            emailEditor.value = emailInfo.textContent;
+
+            const roleSelector = document.getElementById("role-editor");
+            if (roleSelector != null){
+                
+                const roleOption = document.getElementById(roleInfo.textContent);
+                roleOption.setAttribute("selected",  "selected")
+            }
+            console.log(roleInfo.textContent);
+            console.log(roleSelector);
+
+
+            toggleProfile();
+        });
+
+        cancelButton.addEventListener("click", function() {
+            toggleProfile();
+        });
+
+        const showPassword = document.getElementById("change-password-button");
+
+        if (showPassword != null){
+            showPassword.addEventListener("click", function() {
+                const passwordEditor = document.getElementById("password-editor");
+                passwordEditor.classList.toggle("active");
+                console.log(showPassword.textContent);
+                showPassword.textContent = showPassword.textContent == "Change Password" ? "Cancel" : "Change Password";
+            });
+        }
+    }
+}
+
+function showError() {
+    // Get the snackbar DIV
+    var error = document.getElementById("error");
+  
+   if (error == null){
+        return;
+    }
+    error.classList.toggle("show");
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ error.classList.toggle("show"); }, 4000);
+  }
