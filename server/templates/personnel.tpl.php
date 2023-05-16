@@ -1,7 +1,6 @@
 <?php function drawUser($user){ ?>
     <li class="user-card">
-            <?php $session = new Session(); if ($session->isAdmin()) { 
-                error_log("HELLLO");?> 
+            <?php $session = new Session(); if ($session->isAdmin()) { ?> 
             <button class="dropdown-button"> <i class="fa-solid fa-ellipsis-vertical"></i> </button>
             <div class="user-dropdown">
                 <a href="../pages/dashboard.php?id=<?=$user->id?>">Manage</a>
