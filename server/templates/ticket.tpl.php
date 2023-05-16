@@ -11,6 +11,7 @@ include_once(__DIR__.'/../classes/chat.class.php');
 	$author = User::getUserById($ticket->authorID);
 	$assigned = User::getUserById($ticket->assignedID);
 	$messages = $chat->getMessages();
+	$messages = array_reverse($messages);
 ?>
 	<main>
         <section id="chat">

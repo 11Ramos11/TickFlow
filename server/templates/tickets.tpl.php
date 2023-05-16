@@ -10,7 +10,7 @@
 				<h2><?=$user->name?>'s Tickets</h2>
 				<?php } ?>
 			</section>
-			
+					
 			<section id="searchBar">
 				<section id="filter-tab">
 					<?php if ($user->role != "Client") { ?> 
