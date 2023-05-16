@@ -54,7 +54,8 @@ if ($result == FALSE){
 
 $ticketID = $db->lastInsertId();
 
-$tags = explode(",", $tags);
+$tags = trim($tags);
+$tags = $tags == "" ? [] : explode(",", $tags);
 
 foreach($tags as $tag){
 
