@@ -29,7 +29,7 @@
     }
 
     $user = User::getUserById($id);
-    $tickets = $user->getAuthoredTickets();
+    $tickets = $user->getAllTickets();
     $departments = Department::getDepartments();
 
     $header = $id == $session->userID ? "dashboard" : null;
