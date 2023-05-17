@@ -1,8 +1,12 @@
 <?php function drawFAQs($departments){ ?>
 
     <main class="middle-column">
+        <section class = "title">
+            <h2> FAQs </h2>
+        </section>
+        
         <section id="FAQs">
-            <h1> FAQs </h1>
+            
             <?php foreach($departments as $department) {
                 $faqs = $department->getFAQs(); ?>
                 <h2> <?=$department->name ?> </h2>

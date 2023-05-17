@@ -16,7 +16,7 @@
 
 <?php function drawPersonnel($admins, $agents, $clients){ ?>
     <main class="middle-column">
-        <section class = "top">
+        <section class = "title">
             <h2>Personnel</h2>
         </section>
         <section class="users" id="admins">

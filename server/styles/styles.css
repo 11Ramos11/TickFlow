@@ -203,16 +203,16 @@ nav ul:last-child li a{
 }
 
 
-#tickets-search .title{
+.title{
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 2rem;
+  padding: 2rem 2rem;
 }
 
 
-#tickets-search .title h2{
+.title h2{
   font-weight: 400;
   font-size: 1.5rem;
 }
@@ -397,12 +397,13 @@ form.reply button:hover {
 .tags {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
   margin-top: 1rem;
   padding: 0;
   list-style-type: none;
+  max-width: 100%;
+  overflow-x: auto;
 }
 
 .tags .tag {
@@ -439,10 +440,11 @@ form.reply button:hover {
   border: 1px solid #d8d8d8;
   border-radius: 1rem;
   font-size: 1rem;
-  margin-right: 0.5rem;
   outline: none;
   transition: border 0.3s ease-in-out;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  white-space: nowrap;
+  flex-wrap: nowrap;
 }
 
 .tags-box #tag-input {
@@ -795,22 +797,24 @@ form.reply button:hover {
 }
 
 .input-container {
-  height: 50px;
+  height: 3.5rem;
   position: relative;
   width: 100%;
-  margin-top: 30px;
+  margin-top: 2rem;
 }
-
+textarea{
+  resize: none;
+}
 .input {
   background-color: #ffffff;
   border-radius: 12px;
   border: 1px solid #d8d8d8;
   box-sizing: border-box;
   color: #333;
-  font-size: 18px;
+  font-size: 1.2rem;
   height: 100%;
   outline: 0;
-  padding: 4px 20px 0;
+  padding: 1rem;
   width: 100%;
   transition: border 0.3s ease-in-out;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2
@@ -865,7 +869,7 @@ form.reply button:hover {
 }
 
 .input:focus ~ .placeholder {
-  color: #dc2f2f;
+  color: #ffffff;
 }
 
 .submit {
@@ -1015,3 +1019,4 @@ form.reply button:hover {
 .right-sidebar > :last-child{
   margin-bottom: 1rem; 
 }
+
