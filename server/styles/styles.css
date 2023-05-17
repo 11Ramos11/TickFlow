@@ -244,6 +244,7 @@ figure.avatar img{
 #chat {
   display: grid;
   grid-template-rows: [start] 90vh[middle] auto [end];
+  grid-template-columns: [start] 1fr [end];
   margin: auto;
   border-left: solid 1px #ccc;
   border-right: solid 1px #ccc;
