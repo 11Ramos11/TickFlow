@@ -2,7 +2,7 @@
 
 class Message {
 
-    public $id, $content, $date, $time, $author, $ticket;
+    public $id, $content, $date, $time, $author, $ticket, $authorName;
 
     public function __construct($id, $content, $date, $time, $author, $ticket){
         $this->id = $id;
@@ -11,6 +11,9 @@ class Message {
         $this->time = $time;
         $this->author = $author;
         $this->ticket = $ticket;
+
+        $userAuthor = User::getUserByID($author);
+        $this->authorName = $userAuthor->name;
     }
 
     public function belongsToUser($user){
@@ -50,6 +53,17 @@ class Chat {
         }
 
         return $messages;
+    }
+
+    public function addMessage($content, $author){
+        $db = getDatabaseConnection();
+
+        $creationDate = date("Y-m-d");
+        $creationTime = date("H:i:s");
+
+        $query = $db->prepare("INSERT INTO Message (content, creationDate, creationTime, author, ticket) VALUES (?, ?, ?, ?, ?)");
+
+        $query->execute(array($content, $creationDate, $creationTime, $author, $this->ticketID));
     }
 
     static public function getChatByTicketID($ticketID){

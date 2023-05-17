@@ -147,17 +147,6 @@ INSERT INTO Ticket (id, status, priority, subject, description, creationDate, cr
 INSERT INTO Message (content, creationDate, creationTime, author, ticket) VALUES 
   ('Hi, we are pleased to inform you that a technician is already on his way to fix the respective printer. We will notify you once it''s fixed.', '2023-04-22', '10:30:23', 7, 1),
   ('Thank you!', '2023-04-22', '10:31:04', 4, 1),
-  ('Thank you!', '2023-04-22', '10:31:04', 4, 1),
-  ('Thank you!', '2023-04-22', '10:31:04', 4, 1),
-  ('Thank you!', '2023-04-22', '10:31:04', 4, 1),
-  ('Thank you!', '2023-04-22', '10:31:04', 4, 1),
-  ('Thank you!', '2023-04-22', '10:31:04', 4, 1),
-  ('Thank you!', '2023-04-22', '10:31:04', 4, 1),
-  ('Thank you!', '2023-04-22', '10:31:04', 4, 1),
-  ('Thank you!', '2023-04-22', '10:31:04', 4, 1),
-  ('Thank you!', '2023-04-22', '10:31:04', 4, 1),
-  ('Thank you!', '2023-04-22', '10:31:04', 4, 1),
-  ('Thank you!', '2023-04-22', '10:31:04', 4, 1),
   ('Servers are already back up and running!', '2023-04-22', '17:47:12', 10, 7);
 
 INSERT INTO Change (fieldChanged, newValue, oldValue, editDate, editTime, ticket) VALUES 
