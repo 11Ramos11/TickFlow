@@ -9,7 +9,6 @@ include_once(__DIR__.'/../classes/chat.class.php');
 	
 	$chat = $ticket->getChat();
 	$author = User::getUserById($ticket->authorID);
-	$assigned = User::getUserById($ticket->assignedID);
 	$messages = $chat->getMessages();
 	$messages = array_reverse($messages);
 ?>

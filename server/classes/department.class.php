@@ -17,6 +17,31 @@ class Department {
         return FAQ::getFAQsByDepartment($this->id);
     }
 
+    public function getTicketsByStatus($status){
+
+        $db = getDatabaseConnection();
+
+        $query = $db->prepare("SELECT * FROM Ticket WHERE department = ? AND status = ?");
+
+        $query->execute(array($this->id, $status));
+
+        $results = $query->fetchAll();
+
+        return count($results);
+    }
+
+    public function getOpenTickets(){
+        return $this->getTicketsByStatus("Open");
+    }
+
+    public function getPendingTickets(){
+        return $this->getTicketsByStatus("Pending");
+    }
+
+    public function getClosedTickets(){
+        return $this->getTicketsByStatus("Closed");
+    }
+
     static function getDepartments(){
 
         $db = getDatabaseConnection();

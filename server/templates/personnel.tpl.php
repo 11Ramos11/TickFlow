@@ -53,8 +53,23 @@
             </ul>
         </section>
     </main>
+    
+<?php } ?>
+
+<?php function drawDeparmentBar($departments){ ?>
+
     <aside class="right-sidebar">
-        <h2>Right Sidebar</h2>
-        <p>This is the content of the right sidebar.</p>
+        <h2>Departments</h2>
+        
+        <?php foreach($departments as $department){ ?>
+            <article>
+                <h3><?=$department->name?><h3>
+                <section class="department-ticket-info">
+                    <p>Open Tickets: <?=$department->getOpenTickets()?></p>
+                    <p>Pending Tickets: <?=$department->getPendingTickets()?></p>
+                </section>
+            </article>
+        <?php } ?>
     </aside>
+
 <?php } ?>
