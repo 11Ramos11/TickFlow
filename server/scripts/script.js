@@ -125,11 +125,12 @@ function filterTickets(){
             for (const ticket of tickets) {
 
                 const link = document.createElement('a');
-                link.classList.add('ticket-box');
+                link.classList.add('ticket-info');
                 link.href = 'ticket.php?ticket=' + ticket.id;
 
                 const article = document.createElement('article');
-                article.classList.add('ticket-info');
+                article.classList.add('ticket-box');
+                article.classList.add('dash');
 
                 const subject = document.createElement('h3');
                 subject.textContent = ticket.subject;
