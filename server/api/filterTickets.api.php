@@ -16,12 +16,7 @@ if (!isset($_POST['userId'])) {
 
 $userID = $_POST['userId'];
 
-error_log("userID:".$userID);
-
 $user = User::getUserById($userID);
-
-error_log($user->id);
-error_log($user->name);
 
 if ($user == null) {
     return null;

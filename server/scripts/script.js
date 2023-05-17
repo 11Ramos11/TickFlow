@@ -14,6 +14,7 @@ window.onload = function () {
     userDropdown();
     editProfile();
     showError();
+    sendMessage();
 };
 
 function createTags() {
@@ -270,3 +271,8 @@ function showError() {
     // After 3 seconds, remove the show class from DIV
     setTimeout(function(){ error.classList.toggle("show"); }, 4000);
   }
+
+function sendMessage(){
+
+    
+}
