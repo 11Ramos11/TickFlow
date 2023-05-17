@@ -5,36 +5,55 @@ include_once(__DIR__.'/../classes/department.class.php');
 include_once(__DIR__.'/../classes/chat.class.php');
 ?>
 
+<?php function getArticleTag($message, $sessionUser, $author) {
+	if ($sessionUser->id == $author->id) { ?>
+		<?php if ($message->belongsToUser($author)) { ?>
+			<article class="msg msg-right author">	
+		<?php }  else { ?>
+			<article class="msg msg-left">
+		<?php }  ?>
+	<?php } else { ?>
+		<?php if ($message->belongsToUser($author)) { ?>
+			<article class="msg msg-left">
+		<?php } else { if ($message->author == $sessionUser->id) {?>
+			<article class="msg msg-right author">
+		<?php } else { ?>
+			<article class="msg msg-right">
+		<?php }
+		}
+	} 
+}?>
 <?php function drawChat($ticket) { 
 	
 	$chat = $ticket->getChat();
 	$author = User::getUserById($ticket->authorID);
 	$messages = $chat->getMessages();
 	$messages = array_reverse($messages);
+	$session = new Session();
+	$sessionUser = $session->getUser();
 ?>
 	<main>
         <section id="chat">
             <div id="messages">
                 <?php foreach($messages as $message) { ?>
-				
-				<?php if ($message->belongsToUser($author)) { ?>
-                <article class="msg msg-right">
-				<?php }  else { ?>
-				<article class="msg msg-left">
-				<?php } ?>
-                    <figure class="avatar">
-                        <img src="../images/profile.png" alt="Avatar">
-                    </figure>
-                    <div class="bubble">
-                        <?=$message->content?>
-                    </div>
-                </article>
+					<?php getArticleTag($message, $sessionUser, $author) ?>
+						<figure class="avatar">
+							<img src="../images/profile.png" alt="Avatar">
+						</figure>
+						<section class="bubble">
+							<p class="name"><?=$message->authorName?></p>
+							<p class="message"><?=$message->content?></p>
+						</section>
+					</article>
                 <?php } ?>
             </div>
-            <form action="/submit-message" method="post" class="reply">
-                <input type="text">
-                <button>Reply</button>
-            </form>  
+            <section class="reply">
+                <input id="message-input" type="text">
+                <button type="button" id="send-message-button" >Reply</button>
+            </section>  
+			<p hidden id="ticket-id"><?=$ticket->id?></p>
+			<p hidden id="user-id"><?=$sessionUser->id?></p>
+			<p hidden id="ticket-author-id"><?=$author->id?></p>
         </section>   
             
     </main>
@@ -71,7 +90,7 @@ function drawBriefTicket($ticket) {
 			<div class = "person-card">
 				<img src="../images/profile.png" alt="Profile" class="profile-img"></img>
 				<p>Written by <a href="dashboard.php?id=<?=$author->id?>"><?=$author->name?></a> </p>
-			</div>
+			</div>	
 		</article>
 	</aside>
 <?php } ?>

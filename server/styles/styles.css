@@ -277,7 +277,6 @@ figure.avatar img{
 .msg {
   display: flex;
   align-items: center;
-  margin-bottom: 8px;
 }
 
 
@@ -286,11 +285,13 @@ figure.avatar img{
 }
 
 .msg .bubble {
+  max-width: 70%;
   background-color: #fff;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08), 0 2px 2px rgba(0, 0, 0, 0.08),
     0 4px 4px rgba(0, 0, 0, 0.08), 0 8px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1rem;
   border-radius: 20px;
-  padding: 1.5rem 1rem;
+  padding: 0.5rem 1rem;
   font-size: 1rem;
   line-height: 1.4;
   word-wrap: break-word;
@@ -298,19 +299,52 @@ figure.avatar img{
   text-justify:  inter-word;
 }
 
+.msg .bubble p {
+  margin: 0.5rem 0;
+
+}
+
+.msg .bubble .name {
+  font-size: 0.7rem;
+  font-weight: 200;
+  color: #0084ff;
+}
+
 .msg-right {
   display: flex;
   flex-direction: row-reverse;
   margin-left: auto;
 }
-.msg-right .bubble{
+
+
+.msg-right .name {
+  text-align: right;
+  margin-left: 0.5rem;
+  margin-right: 0;
+}
+
+.msg-right.author .bubble{
   background-color: #F7F5FF;
+}
+
+.msg-right.author .bubble .name{
+  color: #3818D9;
+}
+
+.msg .avatar {
+  margin-left: 0.2rem;
+  margin-right: 1rem;
+}
+
+.msg-right .avatar {
+  margin-left: 0.8rem;
+  margin-right: 0.2rem;
 }
 
 
 /* Style for the input field and reply button */
 
-form.reply {
+section.reply {
   margin-bottom: 0.5rem;
   background-color: #fff;
   display: flex;
@@ -318,7 +352,7 @@ form.reply {
   align-items: center;
 }
 
-form.reply input[type="text"] {
+section.reply input[type="text"] {
   flex: 1;
   border: 1px solid #d8d8d8;
   border-radius: 999px;
@@ -330,16 +364,16 @@ form.reply input[type="text"] {
   transition: border 0.3s ease-in-out;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
-form.reply input[type="text"]:hover {
+section.reply input[type="text"]:hover {
   border: 1px solid #000;
   
 }
 
-form.reply input[type="text"]:focus {
+section.reply input[type="text"]:focus {
   border: 1px solid #000;
 }
 
-form.reply button {
+section.reply button {
   background-color: #0084ff;
   color: #fff;
   border: none;
@@ -351,7 +385,7 @@ form.reply button {
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
-form.reply button:hover {
+section.reply button:hover {
   background-color: #006fe6;
 }
 .right-sidebar h2{
