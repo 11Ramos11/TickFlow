@@ -65,13 +65,13 @@ function drawBriefTicket($ticket) {
 		</article>
 		<article class ="assigned-to">
 			<?php if ($assignedTo != null) { ?>
-				<p>Assigned to <a href="profile.php?user=<?=$assignedTo->id?>"><?=$assignedTo->name?></a> </p>
+				<p>Assigned to <a href="dashboard.php?id=<?=$assignedTo->id?>"><?=$assignedTo->name?></a> </p>
 			<?php } else { ?>
 				<p>Not Assigned </p>
 			<?php } ?>
 			<div class = "person-card">
 				<img src="../images/profile.png" alt="Profile" class="profile-img"></img>
-				<p>Written by <a href="profile.php?user=<?=$author->id?>"><?=$author->name?></a> </p>
+				<p>Written by <a href="dashboard.php?id=<?=$author->id?>"><?=$author->name?></a> </p>
 			</div>
 		</article>
 	</aside>
