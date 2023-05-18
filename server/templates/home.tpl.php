@@ -25,22 +25,24 @@
 
 <?php function drawRecentChanges($changes){ ?>
 
-<aside class="right-sidebar">
+<aside class="right-sidebar home-sidebar">
     <section id="recent-changes">
         <h2>Recent Changes</h2>
         <?php foreach($changes as $change){ 
             $ticket = $change->getTicket(); ?>
-            <a href="../pages/ticket.php?ticket=<?=$ticket->id?>">
-            <article class="change">
-                <h3> <?=$ticket->subject?> </h3>
-                <section class="change-info">
-                    <p><?=$change->fieldChanged?>:</p>
-                    <p><?=$change->oldValue?> => <?=$change->newValue?></p>
-                    <p><?=$change->editDate?>, <?=$change->editTime?></p>
-                </section>
-            </article>
-            <a>
-        <?php } ?>
+            <div class="change-card">
+                <a href="../pages/ticket.php?ticket=<?=$ticket->id?>">
+                <article class="change">
+                    <h3> <?=$ticket->subject?> </h3>
+                    <section class="change-info">
+                        <p><?=$change->fieldChanged?>:</p>
+                        <p><?=$change->oldValue?> => <?=$change->newValue?></p>
+                        <p><?=$change->editDate?>, <?=$change->newValue?></p>
+                    </section>
+                </article>
+                </a>
+            </div>
+        <?php } ?>        
     </section>
 </aside>
 
