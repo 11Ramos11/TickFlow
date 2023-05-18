@@ -14,8 +14,10 @@
                     <?php foreach($departments as $department) { ?>
                         <li value=<?=$department->id?>>
                             <p><?=$department->name?></p>
-                            <button><i class="fa-regular fa-pen-to-square"></i></button>
-                            <button><i class="fa-solid fa-xmark"></i></button>
+                            <div>
+                                <button><i class="fa-regular fa-pen-to-square"></i></button>
+                                <button><i class="fa-solid fa-xmark"></i></button>
+                            </div>
                         </li>
                     <?php } ?>
                 </ul>
@@ -48,8 +50,10 @@
                     <?php foreach($priorities as $priority) { ?>
                         <li value=<?=$priority->id?>>
                             <p><?=$priority->name?></p>
-                            <button><i class="fa-regular fa-pen-to-square"></i></button>
-                            <button><i class="fa-solid fa-xmark"></i></button>
+                            <div>
+                                <button><i class="fa-regular fa-pen-to-square"></i></button>
+                                <button><i class="fa-solid fa-xmark"></i></button>
+                            </div>
                         </li>
                     <?php } ?>
                 </ul>
