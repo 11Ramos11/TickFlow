@@ -1247,6 +1247,19 @@ textarea{
   flex-direction: row;
   flex-wrap: nowrap;
 }
+
+.priorities-div
+{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.statuses-div
+{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
 }
 
 /*

@@ -32,7 +32,7 @@
                     <?php foreach($statuses as $status) { ?>
                         <li value=<?=$status->id?>>
                             <p><?=$status->name?></p>
-                            <div>
+                            <div class="statuses-div">
                                 <button><i class="fa-regular fa-pen-to-square"></i></button>
                                 <button><i class="fa-solid fa-xmark"></i></button>
                             </div>
@@ -50,7 +50,7 @@
                     <?php foreach($priorities as $priority) { ?>
                         <li value=<?=$priority->id?>>
                             <p><?=$priority->name?></p>
-                            <div>
+                            <div class="prioririties-div">
                                 <button><i class="fa-regular fa-pen-to-square"></i></button>
                                 <button><i class="fa-solid fa-xmark"></i></button>
                             </div>
