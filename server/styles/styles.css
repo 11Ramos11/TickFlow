@@ -1086,3 +1086,16 @@ textarea{
 .top{
   margin-bottom: 100px;
 }
+
+.card {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 10px;
+  box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.20);
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  box-shadow: 4px 4px 8px 0px rgba(0,0,0,0.30);
+}
