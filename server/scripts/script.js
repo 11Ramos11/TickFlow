@@ -413,6 +413,4 @@ function messagesHandler(){
 
         drawMessages(messages);
     }
-
-    setInterval(updateMessages, 1000);
 }

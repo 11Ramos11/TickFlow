@@ -1,5 +1,5 @@
 <?php 
-function drawTicketCreator($departments) { ?>
+function drawTicketCreator($departments, $priorities) { ?>
     <main class="middle-column">
       <section class="title">
       <h2 class="title">Create a New Ticket</h2>
@@ -20,9 +20,9 @@ function drawTicketCreator($departments) { ?>
             </section>
             <section class="input-container ic2">
               <select id="priority" class="input" name="priority">
-                <option value="Normal">Normal</option>
-                <option value="Urgent">Urgent</option>
-                <option value="Immediate">Immediate</option>
+                <?php foreach ($priorities as $priority){ ?>
+                  <option value=<?=$priority->id?>><?=$priority->name?></option>
+                <?php } ?>
               </select>
               <article class="cut"></article>
               <label for="priority" class="placeholder">Priority</label>

@@ -56,20 +56,23 @@
 				</section>
 			</section>
 			<section id="tickets" class="content">
-				<?php foreach ($tickets as $ticket) { ?>
-				<a class="ticket-info" href="ticket.php?ticket=<?=$ticket->id?>">
-				<article class="ticket-box dash">
-					<h3><?=$ticket->subject?></h3>
-					<p>Status:<span class="status-tag"><?=$ticket->status?></span></p>
-					<p>Priority:<span class="priority-tag"><?=$ticket->priority?></span></p>
-					<p>	<?=$ticket->description?> </p>
-					<ul class="tags">
-						<?php foreach ($ticket->tags as $tag) { ?>
-						<li class="tag"> <?= $tag ?> </li>
-						<?php } ?>
-					</ul>
-				</article>
-				</a>
+				<?php foreach ($tickets as $ticket) { 
+					$status = Status::getStatusById($ticket->status);
+					$priority = Priority::getPriorityById($ticket->priority);
+					?>
+					<a class="ticket-info" href="ticket.php?ticket=<?=$ticket->id?>">
+					<article class="ticket-box dash">
+						<h3><?=$ticket->subject?></h3>
+						<p>Status:<span class="status-tag"><?=$status->name?></span></p>
+						<p>Priority:<span class="priority-tag"><?=$priority->name?></span></p>
+						<p>	<?=$ticket->description?> </p>
+						<ul class="tags">
+							<?php foreach ($ticket->tags as $tag) { ?>
+							<li class="tag"> <?= $tag ?> </li>
+							<?php } ?>
+						</ul>
+					</article>
+					</a>
 				<?php } ?>
 			</section>
 		</section>

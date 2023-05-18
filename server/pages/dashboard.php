@@ -7,7 +7,8 @@
     include_once(__DIR__.'/../classes/user.class.php');
     include_once(__DIR__.'/../classes/ticket.class.php');
     include_once(__DIR__.'/../classes/department.class.php');
-    
+    include_once(__DIR__.'/../classes/status.class.php');
+    include_once(__DIR__.'/../classes/priority.class.php');
 
 	$session = new Session();
 

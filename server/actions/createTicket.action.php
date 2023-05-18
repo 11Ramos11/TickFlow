@@ -20,36 +20,29 @@ $description = $_POST['description'];
 $priority = $_POST['priority'];
 $tags = $_POST['tags'];
 $author =  $user->id;
-$creattionDate = date("Y-m-d");
+$creationDate = date("Y-m-d");
 $creationTime = date("H:i:s");
 $department = $_POST['department'];
 
-error_log($subject);
-error_log($description);
 error_log($priority);
-error_log($tags);
-error_log($author);
-error_log($creattionDate);
-error_log($creationTime);
-error_log($department);
-
 
 $db = getDatabaseConnection();
 
 if ($department == -1){
-    $query = $db->prepare("INSERT INTO Ticket (subject, description, priority, creationDate, creationTime, author) VALUES ('$subject', '$description', '$priority', '$creattionDate', '$creationTime', '$author')");
+    $query = $db->prepare("INSERT INTO Ticket (subject, description, priority, creationDate, creationTime, author) VALUES ('$subject', '$description', '$priority', '$creationDate', '$creationTime', '$author')");
 }
 else {
-    $query = $db->prepare("INSERT INTO Ticket (subject, description, priority, creationDate, creationTime, author, department) VALUES ('$subject', '$description', '$priority', '$creattionDate', '$creationTime', '$author', '$department')");
+    $query = $db->prepare("INSERT INTO Ticket (subject, description, priority, creationDate, creationTime, author, department) VALUES ('$subject', '$description', $priority, '$creationDate', '$creationTime', '$author', '$department')");
 }
 
 if ($query == false){
-    die("Something went wrong");
+    die("Query died");
 }
+
 $result = $query->execute();
 
-if ($result == FALSE){
-    die("Something went wrong");
+if ($result == false){
+    die("Result died");
 }
 
 $ticketID = $db->lastInsertId();

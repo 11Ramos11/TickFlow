@@ -19,21 +19,37 @@ CREATE TABLE User (
     FOREIGN KEY (department) REFERENCES Department(id)
 );
 
+DROP TABLE IF EXISTS Status;
+
+CREATE TABLE Status (
+    id INTEGER CHECK (id >= 1) PRIMARY KEY AUTOINCREMENT,
+    name TEXT UNIQUE NOT NULL
+);
+
+DROP TABLE IF EXISTS Priority;
+
+CREATE TABLE Priority (
+    id INTEGER CHECK (id >= 1) PRIMARY KEY AUTOINCREMENT,
+    name TEXT UNIQUE NOT NULL
+);
+
 DROP TABLE IF EXISTS Ticket;
 
 CREATE TABLE Ticket (
     id INTEGER CHECK (id >= 1) PRIMARY KEY AUTOINCREMENT,
-    status TEXT NOT NULL CHECK (status == 'Pending' OR status == 'Open' OR status == 'Closed') DEFAULT ('Pending'),
-    priority TEXT NOT NULL CHECK (priority == 'Immediate' OR priority == 'Urgent' OR priority == 'Normal'),
     subject TEXT NOT NULL,
     description TEXT NOT NULL,
     creationDate DATE NOT NULL,
     creationTime TIME NOT NULL,
     author INTEGER NOT NULL,
-    assignedTo INTEGER,
+    assignee INTEGER,
+    priority INTEGER NOT NULL,
+    status INTEGER NOT NULL DEFAULT (1),
     department INTEGER,
     FOREIGN KEY (author) REFERENCES User(id),
-    FOREIGN KEY (assignedTo) REFERENCES User(id),
+    FOREIGN KEY (assignee) REFERENCES User(id),
+    FOREIGN KEY (priority) REFERENCES Priority(id),
+    FOREIGN KEY (status) REFERENCES Status(id),
     FOREIGN KEY (department) REFERENCES Department(id)
 );
 
@@ -132,17 +148,22 @@ INSERT INTO User (id, name, email, password, role, department) VALUES
   (18, 'Amy Jones', 'amy.jones@tickflow.com', 'password18', 'Client', 4),
   (19, 'Kevin Davis', 'kevin.davis@tickflow.com', 'password19', 'Client', 4);
 
-INSERT INTO Ticket (id, status, priority, subject, description, creationDate, creationTime, author, assignedTo, department) VALUES
-  (1, 'Open', 'Normal', 'Printer Not Working', 'I am unable to print from my computer. Please help me resolve the issue.', '2023-04-22', '10:00:00', 4, 7, 3),
-  (2, 'Pending', 'Immediate', 'Website Down', 'Our website seems to be down. We need to get it back up and running as soon as possible.', '2023-04-22', '11:30:00', 12, NULL, 3),
-  (3, 'Open', 'Urgent', 'Email Account Issue', 'I am having trouble accessing my email account. Please help me resolve the issue as soon as possible.', '2023-04-22', '12:45:00', 5, 8, 3),
-  (4, 'Open', 'Normal', 'Need New Laptop', 'My current laptop is old and slow. I need a new laptop to be able to work efficiently.', '2023-04-22', '14:00:00', 3, 12, 4),
-  (5, 'Pending', 'Urgent', 'Cannot Access Shared Drive', 'I am unable to access the Marketing shared drive. This is causing a delay in my work. Please help me resolve the issue as soon as possible.', '2023-04-22', '15:15:00', 1, NULL, 2),
-  (6, 'Open', 'Normal', 'Need Additional Monitor', 'I need an additional monitor to be able to work more efficiently.', '2023-04-22', '16:30:00', 8, 11, 4),
-  (7, 'Closed', 'Immediate', 'Server Down', 'One of our servers is down. This is affecting multiple employees. We need to get it back up and running as soon as possible.', '2023-04-22', '17:45:00', 2, 10, 3),
-  (8, 'Open', 'Normal', 'New Software Request', 'I need new software installed on my computer to be able to complete a project. Please install the software for me.', '2023-04-23', '09:00:00', 5, 9, 3),
-  (9, 'Pending', 'Urgent', 'VPN Connection Issue', 'I am unable to connect to the VPN. This is preventing me from accessing important files. Please help me resolve the issue as soon as possible.', '2023-04-23', '10:30:00', 7, NULL, 3),
-  (10, 'Open', 'Normal', 'Need New Desk Chair', 'My current desk chair is causing me back pain. I need a new chair to be able to work comfortably.', '2023-04-23', '12:00:00', 6, 13, 4);
+  
+INSERT INTO Priority (name) VALUES ("Normal"), ("Urgent"), ("Immediate");
+
+INSERT INTO Status (name) VALUES ("Unassigned"), ("Open"), ("Closed");
+
+INSERT INTO Ticket (id, status, priority, subject, description, creationDate, creationTime, author, assignee, department) VALUES
+  (1, 2, 1, 'Printer Not Working', 'I am unable to print from my computer. Please help me resolve the issue.', '2023-04-22', '10:00:00', 4, 7, 3),
+  (2, 1, 3, 'Website Down', 'Our website seems to be down. We need to get it back up and running as soon as possible.', '2023-04-22', '11:30:00', 12, NULL, 3),
+  (3, 2, 2, 'Email Account Issue', 'I am having trouble accessing my email account. Please help me resolve the issue as soon as possible.', '2023-04-22', '12:45:00', 5, 8, 3),
+  (4, 2, 1, 'Need New Laptop', 'My current laptop is old and slow. I need a new laptop to be able to work efficiently.', '2023-04-22', '14:00:00', 3, 12, 4),
+  (5, 1, 2, 'Cannot Access Shared Drive', 'I am unable to access the Marketing shared drive. This is causing a delay in my work. Please help me resolve the issue as soon as possible.', '2023-04-22', '15:15:00', 1, NULL, 2),
+  (6, 2, 1, 'Need Additional Monitor', 'I need an additional monitor to be able to work more efficiently.', '2023-04-22', '16:30:00', 8, 11, 4),
+  (7, 3, 3, 'Server Down', 'One of our servers is down. This is affecting multiple employees. We need to get it back up and running as soon as possible.', '2023-04-22', '17:45:00', 2, 10, 3),
+  (8, 2, 1, 'New Software Request', 'I need new software installed on my computer to be able to complete a project. Please install the software for me.', '2023-04-23', '09:00:00', 5, 9, 3),
+  (9, 1, 2, 'VPN Connection Issue', 'I am unable to connect to the VPN. This is preventing me from accessing important files. Please help me resolve the issue as soon as possible.', '2023-04-23', '10:30:00', 7, NULL, 3),
+  (10, 2, 1, 'Need New Desk Chair', 'My current desk chair is causing me back pain. I need a new chair to be able to work comfortably.', '2023-04-23', '12:00:00', 6, 13, 4);
 
 INSERT INTO Message (content, creationDate, creationTime, author, ticket) VALUES 
   ('Hi, we are pleased to inform you that a technician is already on his way to fix the respective printer. We will notify you once it''s fixed.', '2023-04-22', '10:30:23', 7, 1),
