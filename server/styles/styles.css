@@ -1241,7 +1241,13 @@ textarea{
     transition: background-color 0.3s ease-in-out;
 }
 
-
+.departments-div
+{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+}
 
 /*
 #administration .fa-regular, #administration .fa-solid {
