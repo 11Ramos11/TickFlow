@@ -445,4 +445,23 @@ function adminDialog(){
         });
         
     }
+
+    const adminItems = document.getElementsByClassName("admin-item");
+
+    for (const adminItem of adminItems){
+            
+        const editButton = adminItem.getElementsByClassName("edit-button")[0];
+        const editDialog = adminItem.getElementsByClassName("edit-dialog")[0];
+        
+        editButton.addEventListener("click", function() {
+            editDialog.showModal();
+        });
+        
+        const removeButton = adminItem.getElementsByClassName("remove-button")[0];
+        const removeDialog = adminItem.getElementsByClassName("remove-dialog")[0];
+
+        removeButton.addEventListener("click", function() {
+            removeDialog.showModal();
+        });
+    }
 }
