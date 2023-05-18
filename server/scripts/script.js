@@ -443,7 +443,11 @@ function adminDialog(){
         addButton.addEventListener("click", function() {
             addDialog.showModal();
         });
-        
+
+        const cancelButton = addDialog.getElementsByClassName("cancel-button")[0];
+        cancelButton.addEventListener("click", function() {
+            addDialog.close();
+        });
     }
 
     const adminItems = document.getElementsByClassName("admin-item");
@@ -463,5 +467,16 @@ function adminDialog(){
         removeButton.addEventListener("click", function() {
             removeDialog.showModal();
         });
+
+        const editCancelButton = editDialog.getElementsByClassName("cancel-button")[0];
+        editCancelButton.addEventListener("click", function() {
+            editDialog.close();
+        }); 
+
+        const removeCancelButton = removeDialog.getElementsByClassName("cancel-button")[0];
+        removeCancelButton.addEventListener("click", function() {
+            removeDialog.close();
+        });
+
     }
 }

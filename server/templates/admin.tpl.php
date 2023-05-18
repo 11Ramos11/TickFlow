@@ -8,15 +8,15 @@
             <dialog class="remove-dialog">
                 <form action=<?=$removeAction?>>
                     <h2>Do you want to remove the <?=$itemType?> <?=$item->name?>?<h2>
-                    <button type="submit" >yes</button>
-                    <button type="button">no</button>
+                    <button type="button" class="cancel-button">no</button>
+                    <button type="submit">yes</button>
                 </form>
             </dialog>
             <dialog class="edit-dialog">
                 <form action=<?=$editAction?>>
-                    <h2>Change name to:<h2>
+                    <label for="name">Change <?=$item->name?> name to:</label>
                     <input type="text" name="name" id="name" required>
-                    <button type="button">cancel</button>
+                    <button type="button" class="cancel-button">cancel</button>
                     <button type="submit">submit</button>
                 </form>
             </dialog>
@@ -45,11 +45,10 @@
                 );?>
                 </ul>
                 <dialog class="add-dialog">
-                    <form>
-                        <h2><h2>
+                    <form action="../actions/createPriority.action.php" method="post">
                         <label for="name">New Department Name</label>
                         <input type="text" name="name" id="name" required>
-                        <button type="button">Cancel</button>
+                        <button type="button" class="cancel-button">Cancel</button>
                         <button type="submit">Add</button>
                     </form>
                 </dialog>
@@ -69,11 +68,10 @@
                 );?>
                 </ul>
                 <dialog class="add-dialog">
-                    <form>
-                        <h2><h2>
+                    <form action="../actions/createStatus.action.php" method="post">
                         <label for="name">New Status Name</label>
                         <input type="text" name="name" id="name" required>
-                        <button type="button">Cancel</button>
+                        <button type="button" class="cancel-button">Cancel</button>
                         <button type="submit">Add</button>
                     </form>
                 </dialog>
@@ -93,11 +91,10 @@
                 );?>
                 </ul>
                 <dialog class="add-dialog">
-                    <form>
-                        <h2><h2>
+                    <form action="../actions/createPriority.action.php" method="post">
                         <label for="name">New Priority Name</label>
                         <input type="text" name="name" id="name" required>
-                        <button type="button">Cancel</button>
+                        <button type="button" class="cancel-button">Cancel</button>
                         <button type="submit">Add</button>
                     </form>
                 </dialog>
