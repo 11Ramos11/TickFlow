@@ -824,7 +824,6 @@ section.reply button:hover {
 
 #create-ticket .title {
   color: #eee;
-  font-family: sans-serif;
   font-size: 36px;
   font-weight: 600;
   margin-top: 30px;
@@ -868,7 +867,7 @@ textarea{
 .cut {
   background-color: #3818D9;
   border-radius: 10px;
-  height: 20px;
+  height: 30px;
   left: 20px;
   position: absolute;
   top: -20px;
@@ -888,7 +887,6 @@ textarea{
 
 .placeholder {
   color: #5c5ca0;
-  font-family: sans-serif;
   left: 20px;
   line-height: 14px;
   pointer-events: none;
