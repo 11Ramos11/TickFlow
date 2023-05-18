@@ -30,8 +30,10 @@
                     <?php foreach($statuses as $status) { ?>
                         <li value=<?=$status->id?>>
                             <p><?=$status->name?></p>
-                            <button><i class="fa-regular fa-pen-to-square"></i></button>
-                            <button><i class="fa-solid fa-xmark"></i></button>
+                            <div>
+                                <button><i class="fa-regular fa-pen-to-square"></i></button>
+                                <button><i class="fa-solid fa-xmark"></i></button>
+                            </div>
                         </li>
                     <?php } ?>
                 </ul>
