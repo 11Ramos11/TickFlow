@@ -9,7 +9,7 @@
             
             <?php foreach($departments as $department) {
                 $faqs = $department->getFAQs(); ?>
-                <h2 class="card"> <?=$department->name ?> </h2>
+                <h2> <?=$department->name ?> </h2>
                 <?php foreach($faqs as $faq) { ?>
                 <article class="FAQ card">
                     <h3 class="question"> <?=$faq->question?> </h2>
@@ -25,22 +25,24 @@
 
 <?php function drawRecentChanges($changes){ ?>
 
-<aside class="right-sidebar">
+<aside class="right-sidebar home-sidebar">
     <section id="recent-changes">
         <h2>Recent Changes</h2>
         <?php foreach($changes as $change){ 
             $ticket = $change->getTicket(); ?>
-            <a href="../pages/ticket.php?ticket=<?=$ticket->id?>">
-            <article class="change card">
-                <h3> <?=$ticket->subject?> </h3>
-                <section class="change-info">
-                    <p><?=$change->fieldChanged?>:</p>
-                    <p><?=$change->oldValue?> => <?=$change->newValue?></p>
-                    <p><?=$change->editDate?>, <?=$change->editTime?></p>
-                </section>
-            </article>
-            <a>
-        <?php } ?>
+            <div class="change-card">
+                <a href="../pages/ticket.php?ticket=<?=$ticket->id?>">
+                <article class="change">
+                    <h3> <?=$ticket->subject?> </h3>
+                    <section class="change-info">
+                        <p><?=$change->fieldChanged?>:</p>
+                        <p><?=$change->oldValue?> => <?=$change->newValue?></p>
+                        <p><?=$change->editDate?>, <?=$change->newValue?></p>
+                    </section>
+                </article>
+                </a>
+            </div>
+        <?php } ?>        
     </section>
 </aside>
 

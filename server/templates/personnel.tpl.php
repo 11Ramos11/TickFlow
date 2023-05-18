@@ -58,7 +58,7 @@
 
 <?php function drawDeparmentBar($departments){ ?>
 
-    <aside class="right-sidebar">
+    <aside class="right-sidebar department-sidebar">
         <h2>Departments</h2>
         
         <?php foreach($departments as $department){ ?>

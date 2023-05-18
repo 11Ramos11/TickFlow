@@ -3,8 +3,10 @@
     foreach($items as $item) { ?>
         <li value=<?=$item->id?> class="admin-item">
             <p><?=$item->name?></p>
-            <button class="edit-button">edit name</button>
-            <button class="remove-button">remove</button>
+            <div class="item-div">
+              <button class="edit-button"><i class="fa-regular fa-pen-to-square"></i></button>
+              <button class="remove-button"><i class="fa-solid fa-xmark"></button>
+            </div>
             <dialog class="remove-dialog">
                 <form action=<?=$removeAction?>>
                     <h2>Do you want to remove the <?=$itemType?> <?=$item->name?>?<h2>
@@ -34,7 +36,7 @@
             <article class="category" id="departments">
                 <section class="title">
                     <h3>Departments</h3>
-                    <button class="add-button">Add</button>
+                    <button class="add-button button">Add</button>
                 </section>
                 <ul class="content">
                 <?=drawItems(
@@ -57,7 +59,7 @@
             <article class="category" id="statuses">
                 <section class="title">
                     <h3>Statuses</h3>
-                    <button class="add-button">Add</button>
+                    <button class="add-button button">Add</button>
                 </section>
                 <ul class="content">
                 <?=drawItems(
@@ -80,7 +82,7 @@
             <article class="category" id="prioririties">
                 <section class="title">
                     <h3>Priorities</h3>
-                    <button class="add-button">Add</button>
+                    <button class="add-button button">Add</button>
                 </section>
                 <ul class="content">
                 <?=drawItems(
