@@ -7,7 +7,8 @@
     include_once(__DIR__.'/../classes/user.class.php');
     include_once(__DIR__.'/../classes/ticket.class.php');
     include_once(__DIR__.'/../classes/department.class.php');
-    
+    include_once(__DIR__.'/../classes/status.class.php');
+    include_once(__DIR__.'/../classes/priority.class.php');
 
 	$session = new Session();
 
@@ -31,10 +32,12 @@
     $user = User::getUserById($id);
     $tickets = $user->getAllTickets();
     $departments = Department::getDepartments();
+    $statuses = Status::getStatuses();
+    $priorities = Priority::getPriorities();
 
     $header = $id == $session->userID ? "dashboard" : null;
 	drawHeader($header);
-    drawTickets($departments, $tickets, $user, $session->getUser());
+    drawTickets($departments, $tickets, $user, $session->getUser(), $statuses, $priorities);
 	drawProfile($user);
 	drawFooter();
 ?>

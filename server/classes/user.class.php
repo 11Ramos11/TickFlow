@@ -54,7 +54,7 @@ class User
 
         $db = getDatabaseConnection();
 
-        $query = $db->prepare("SELECT * FROM Ticket WHERE assignedTo = '$this->id'");
+        $query = $db->prepare("SELECT * FROM Ticket WHERE assignee = '$this->id'");
         $query->execute();
 
         $results = $query->fetchAll();
@@ -125,7 +125,7 @@ class User
 
         $db = getDatabaseConnection();
 
-        $query = $db->prepare("SELECT * FROM Ticket WHERE id = '$ticketID' AND (author = '$userID' OR assignedTo = '$userID')");
+        $query = $db->prepare("SELECT * FROM Ticket WHERE id = '$ticketID' AND (author = '$userID' OR assignee = '$userID')");
         $query->execute();
 
         $results = $query->fetchAll();

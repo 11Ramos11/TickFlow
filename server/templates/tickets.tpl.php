@@ -1,4 +1,4 @@
-<?php function drawTickets($departments, $tickets, $user, $sessionUser) {  ?>
+<?php function drawTickets($departments, $tickets, $user, $sessionUser, $statuses, $priorities) {  ?>
 
 	<p hidden id="user-id-holder"><?=$user->id?></p>
     <main class="middle-column">
@@ -26,15 +26,15 @@
 						<?php } ?>
 						<select id="status-filter" class="filter-dropdown">
 							<option value="All">Any Status</option>
-							<option value="Open">Open</option>
-							<option value="Closed">Closed</option>
-							<option value="Pending">Pending</option>
+							<?php foreach($statuses as $status) { ?>
+								<option value=<?=$status->id?>><?=$status->name?></option>
+							<?php } ?>
 						</select>
 						<select id="priority-filter" class="filter-dropdown">
 							<option value="All">Any Priority</option>
-							<option value="Normal">Normal</option>
-							<option value="Urgent">Urgent</option>
-							<option value="Immediate">Immediate</option>
+							<?php foreach($priorities as $priority) { ?>
+								<option value=<?=$priority->id?>><?=$priority->name?></option>
+							<?php } ?>
 						</select>
 						<?php if ($user->role != "Client") { ?> 
 						<select id="department-filter" class="filter-dropdown">
@@ -56,20 +56,23 @@
 				</section>
 			</section>
 			<section id="tickets" class="content">
-				<?php foreach ($tickets as $ticket) { ?>
-				<a class="ticket-info" href="ticket.php?ticket=<?=$ticket->id?>">
-				<article class="ticket-box dash">
-					<h3><?=$ticket->subject?></h3>
-					<p>Status:<span class="status-tag"><?=$ticket->status?></span></p>
-					<p>Priority:<span class="priority-tag"><?=$ticket->priority?></span></p>
-					<p>	<?=$ticket->description?> </p>
-					<ul class="tags">
-						<?php foreach ($ticket->tags as $tag) { ?>
-						<li class="tag"> <?= $tag ?> </li>
-						<?php } ?>
-					</ul>
-				</article>
-				</a>
+				<?php foreach ($tickets as $ticket) { 
+					$status = Status::getStatusById($ticket->status);
+					$priority = Priority::getPriorityById($ticket->priority);
+					?>
+					<a class="ticket-info" href="ticket.php?ticket=<?=$ticket->id?>">
+					<article class="ticket-box dash">
+						<h3><?=$ticket->subject?></h3>
+						<p>Status:<span class="status-tag"><?=$status->name?></span></p>
+						<p>Priority:<span class="priority-tag"><?=$priority->name?></span></p>
+						<p>	<?=$ticket->description?> </p>
+						<ul class="tags">
+							<?php foreach ($ticket->tags as $tag) { ?>
+							<li class="tag"> <?= $tag ?> </li>
+							<?php } ?>
+						</ul>
+					</article>
+					</a>
 				<?php } ?>
 			</section>
 		</section>

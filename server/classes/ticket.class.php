@@ -5,9 +5,9 @@ include_once(__DIR__.'/../classes/chat.class.php');
 
 class Ticket {
 
-    public $id, $subject, $description, $status, $priority, $tags, $date, $time, $authorID, $assignedID, $departmentID;
+    public $id, $subject, $description, $status, $priority, $tags, $date, $time, $authorID, $assigneeID, $departmentID;
 
-    function __construct($id, $subject, $description, $status, $priority, $tags, $date, $time, $authorID, $assignedID, $departmentID){
+    function __construct($id, $subject, $description, $status, $priority, $tags, $date, $time, $authorID, $assigneeID, $departmentID){
         $this->id = $id;
         $this->subject = $subject;
         $this->description = $description;
@@ -17,8 +17,36 @@ class Ticket {
         $this->date = $date;
         $this->time = $time;
         $this->authorID = $authorID;
-        $this->assignedID = $assignedID;
+        $this->assigneeID = $assigneeID;
         $this->departmentID = $departmentID;
+    }
+
+    public function matches($status, $priority, $departmentID, $tags){
+
+        foreach($tags as $tag){
+            if (array_search($tag, $this->tags) === false){
+                return false;
+            }
+        }
+
+        if ($departmentID != "All" && $this->departmentID != $departmentID){
+            return false;
+        }
+        if ($departmentID == "None" && $this->departmentID != null){
+            return false;
+        }
+        if ($status != "All" && $this->status != $status){
+            return false;
+        }
+        if ($priority != "All" && $this->priority != $priority){
+            return false;
+        }
+        return true;
+    }
+
+    public function getChat(){
+
+        return new Chat($this->id);
     }
 
     static public function getAllTickets(){
@@ -46,7 +74,7 @@ class Ticket {
                 $row['creationDate'], 
                 $row['creationTime'], 
                 $row['author'], 
-                $row['assignedTo'],
+                $row['assignee'],
                 $row['department']
             );
         }
@@ -58,8 +86,8 @@ class Ticket {
 
         $db = getDatabaseConnection();
     
-        $query = $db->prepare("SELECT * FROM Ticket WHERE id = '$ticketID'");
-        $query->execute();
+        $query = $db->prepare("SELECT * FROM Ticket WHERE id = ?");
+        $query->execute(array($ticketID));
         
         $results = $query->fetchAll();
     
@@ -77,7 +105,7 @@ class Ticket {
             $result['creationDate'], 
             $result['creationTime'], 
             $result['author'], 
-            $result['assignedTo'],
+            $result['assignee'],
             $result['department']
         );
      
@@ -107,35 +135,6 @@ class Ticket {
         }
     
         return $tags;
-    }
-
-
-    public function matches($status, $priority, $departmentID, $tags){
-
-        foreach($tags as $tag){
-            if (array_search($tag, $this->tags) === false){
-                return false;
-            }
-        }
-
-        if ($departmentID != "All" && $this->departmentID != $departmentID){
-            return false;
-        }
-        if ($departmentID == "None" && $this->departmentID != null){
-            return false;
-        }
-        if ($status != "All" && $this->status != $status){
-            return false;
-        }
-        if ($priority != "All" && $this->priority != $priority){
-            return false;
-        }
-        return true;
-    }
-
-    public function getChat(){
-
-        return new Chat($this->id);
     }
 
     static public function filterByDepartment($tickets, $departmentID){
