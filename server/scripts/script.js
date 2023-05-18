@@ -15,6 +15,7 @@ window.onload = function () {
     editProfile();
     showError();
     messagesHandler();
+    adminDialog();
 };
 
 function createTags() {
@@ -423,5 +424,25 @@ function messagesHandler(){
         const messages = await getMessages();
 
         drawMessages(messages);
+    }
+}
+
+function adminDialog(){
+
+    if (document.getElementById("administration") == null){
+        return;
+    }
+
+    const categories = document.getElementsByClassName("category");
+
+    for (const category of categories){
+        
+        const addButton = category.getElementsByClassName("add-button")[0];
+        const addDialog = category.getElementsByClassName("add-dialog")[0];
+        
+        addButton.addEventListener("click", function() {
+            addDialog.showModal();
+        });
+        
     }
 }
