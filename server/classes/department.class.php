@@ -79,7 +79,33 @@ class Department {
 
         return $department;
     }
+
+    static public function createDepartment($name){
+
+        $db = getDatabaseConnection();
+
+        $query = $db->prepare("INSERT INTO Department (name) VALUES (?)");
+
+        $query->execute(array($name));
+    }
     
+    static public function editDepartment($id, $name){
+
+        $db = getDatabaseConnection();
+
+        $query = $db->prepare("UPDATE Department SET name = ? WHERE id = ?");
+
+        $query->execute(array($name, $id));
+    }
+
+    static public function removeDepartment($departmentID){
+
+        $db = getDatabaseConnection();
+
+        $query = $db->prepare("DELETE FROM Department WHERE id = ?");
+
+        $query->execute(array($departmentID));
+    }
 }
 
 ?>

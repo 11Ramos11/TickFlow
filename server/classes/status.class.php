@@ -60,4 +60,31 @@ class Status {
 
         return $statusesArray;
     }
+
+    static public function createStatus($name){
+
+        $db = getDatabaseConnection();
+
+        $query = $db->prepare("INSERT INTO Status (name) VALUES (?)");
+
+        $query->execute(array($name));
+    }
+
+    static public function editStatus($id, $name){
+
+        $db = getDatabaseConnection();
+
+        $query = $db->prepare("UPDATE Status SET name = ? WHERE id = ?");
+
+        $query->execute(array($name, $id));
+    }
+
+    static public function removeStatus($id){
+
+        $db = getDatabaseConnection();
+
+        $query = $db->prepare("DELETE FROM Status WHERE id = ?");
+
+        $query->execute(array($id));
+    }
 }
