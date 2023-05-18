@@ -14,7 +14,7 @@
                     <?php foreach($departments as $department) { ?>
                         <li value=<?=$department->id?>>
                             <p><?=$department->name?></p>
-                            <button>edit name</button>
+                            <button><i class="fa-regular fa-pen-to-square"></i></button>
                             <button>remove</button>
                         </li>
                     <?php } ?>
