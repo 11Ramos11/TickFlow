@@ -46,8 +46,8 @@
 						</select>
 						<?php } ?>
 					</section>
-					<section class="tags-searchbar">
-						<ul class="tags-box tags" id="tag-creator">
+					<section class="tags-searchbar flex-fix">
+						<ul class="tags-box tags max-width" id="tag-creator">
 							<input type="text" id="tag-input" name="tag" placeholder="Tag">
 						</ul>
 						<input type="hidden" id="tags" name="tags" value="">
