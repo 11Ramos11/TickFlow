@@ -15,7 +15,7 @@
                         <li value=<?=$department->id?>>
                             <p><?=$department->name?></p>
                             <button><i class="fa-regular fa-pen-to-square"></i></button>
-                            <button>remove</button>
+                            <button><i class="fa-solid fa-xmark"></i></button>
                         </li>
                     <?php } ?>
                 </ul>
@@ -30,8 +30,8 @@
                     <?php foreach($statuses as $status) { ?>
                         <li value=<?=$status->id?>>
                             <p><?=$status->name?></p>
-                            <button>edit name</button>
-                            <button>remove</button>
+                            <button><i class="fa-regular fa-pen-to-square"></i></button>
+                            <button><i class="fa-solid fa-xmark"></i></button>
                         </li>
                     <?php } ?>
                 </ul>
@@ -46,8 +46,8 @@
                     <?php foreach($priorities as $priority) { ?>
                         <li value=<?=$priority->id?>>
                             <p><?=$priority->name?></p>
-                            <button>edit name</button>
-                            <button>remove</button>
+                            <button><i class="fa-regular fa-pen-to-square"></i></button>
+                            <button><i class="fa-solid fa-xmark"></i></button>
                         </li>
                     <?php } ?>
                 </ul>
