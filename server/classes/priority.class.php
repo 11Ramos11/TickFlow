@@ -60,4 +60,31 @@ class Priority {
 
         return $prioritiesArray;
     }
+
+    static public function createPriority($name){
+
+        $db = getDatabaseConnection();
+
+        $query = $db->prepare("INSERT INTO Priority (name) VALUES (?)");
+
+        $query->execute(array($name));
+    }
+
+    static public function editPriority($id, $name){
+
+        $db = getDatabaseConnection();
+
+        $query = $db->prepare("UPDATE Priority SET name = ? WHERE id = ?");
+
+        $query->execute(array($name, $id));
+    }
+
+    static public function removePriority($id){
+
+        $db = getDatabaseConnection();
+
+        $query = $db->prepare("DELETE FROM Priority WHERE id = $id");
+
+        $query->execute();
+    }
 }

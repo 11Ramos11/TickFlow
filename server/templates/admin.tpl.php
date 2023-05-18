@@ -1,21 +1,22 @@
 <?php function drawItems($items, $editAction, $removeAction, $itemType){ 
-    
     foreach($items as $item) { ?>
-        <li value=<?=$item->id?> class="admin-item">
+        <li class="admin-item">
             <p><?=$item->name?></p>
             <div class="buttons">
               <button class="edit-button"><i class="fa-regular fa-pen-to-square"></i></button>
               <button class="remove-button"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <dialog class="remove-dialog">
-                <form action=<?=$removeAction?>>
+                <form action=<?=$removeAction?> method="post">
+                    <input type="hidden" name="id" value=<?=$item->id?>>
                     <p>Do you want to remove the <?=$itemType?> <?=$item->name?>?<p>
                     <button type="button" class="cancel-button">no</button>
                     <button type="submit">yes</button>
                 </form>
             </dialog>
             <dialog class="edit-dialog">
-                <form action=<?=$editAction?>>
+                <form action=<?=$editAction?> method="post">
+                    <input type="hidden" name="id" value=<?=$item->id?>>
                     <label for="name">Change <?=$item->name?> name to:</label>
                     <input type="text" name="name" id="name" required>
                     <button type="button" class="cancel-button">cancel</button>
@@ -27,7 +28,6 @@
 } ?>
 
 <?php function drawAdmin($departments, $statuses, $priorities){ ?>
-
     <main class="middle-column">
         <section class="title">
             <h2>TickFlow Manager</h2>
@@ -41,13 +41,13 @@
                 <ul class="content">
                 <?=drawItems(
                     $departments,
-                    "../actions/editDeparment.action.php",
-                    "../actions/removeDeparment.action.php",
+                    "../actions/editDepartment.action.php",
+                    "../actions/removeDepartment.action.php",
                     "department"
                 );?>
                 </ul>
                 <dialog class="add-dialog">
-                    <form action="../actions/createPriority.action.php" method="post">
+                    <form action="../actions/createDepartment.action.php" method="post">
                         <label for="name">New Department Name</label>
                         <input type="text" name="name" id="name" required>
                         <button type="button" class="cancel-button">Cancel</button>
@@ -101,5 +101,4 @@
             </article>
         </section>
     </main>
-
 <?php } ?>
