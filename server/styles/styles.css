@@ -1114,4 +1114,5 @@ textarea{
 
 #FAQs h2 {
   color:var(--main-color);
+  margin: 1rem;
 }
