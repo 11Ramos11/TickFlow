@@ -1055,12 +1055,13 @@ textarea{
 }
 
 #administration {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   justify-content: space-around;
 }
 
 #administration .category {
+  margin: 1rem;
   display: flex;
   flex-direction: column;
 }

@@ -10,15 +10,15 @@
                     <h3>Departments</h3>
                     <button>Add</button>
                 </section>
-                <section class="content">
+                <ul class="content">
                     <?php foreach($departments as $department) { ?>
-                        <article>
+                        <li value=<?=$department->id?>>
                             <p><?=$department->name?></p>
                             <button>edit name</button>
                             <button>remove</button>
-                        </article>
+                        </li>
                     <?php } ?>
-                </section>
+                </ul>
             </article>
 
             <article class="category" id="statuses">
@@ -26,15 +26,15 @@
                     <h3>Statuses</h3>
                     <button>Add</button>
                 </section>
-                <section class="content">
+                <ul class="content">
                     <?php foreach($statuses as $status) { ?>
-                        <article>
+                        <li value=<?=$status->id?>>
                             <p><?=$status->name?></p>
                             <button>edit name</button>
                             <button>remove</button>
-                        </article>
+                        </li>
                     <?php } ?>
-                </section>
+                </ul>
             </article>
 
             <article class="category" id="prioririties">
@@ -42,15 +42,15 @@
                     <h3>Priorities</h3>
                     <button>Add</button>
                 </section>
-                <section class="content">
+                <ul class="content">
                     <?php foreach($priorities as $priority) { ?>
-                        <article>
+                        <li value=<?=$priority->id?>>
                             <p><?=$priority->name?></p>
                             <button>edit name</button>
                             <button>remove</button>
-                        </article>
+                        </li>
                     <?php } ?>
-                </section>
+                </ul>
             </article>
 
         </section>
