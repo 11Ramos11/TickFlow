@@ -1151,7 +1151,7 @@ textarea{
 }
 
 .department-sidebar h3 {
-  color: #005cbf;
+  color: var(--main-color);
   text-transform: uppercase;
   letter-spacing: 1px;
   font-size: 18px;
