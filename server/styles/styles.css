@@ -861,6 +861,7 @@ textarea{
 }
 
 .cut {
+  display: none;
   background-color: #3818D9;
   border-radius: 10px;
   height: 20px;
@@ -878,6 +879,7 @@ textarea{
 
 .input:focus ~ .cut,
 .input:not(:placeholder-shown) ~ .cut {
+  display: block;
   transform: translateY(8px);
 }
 
