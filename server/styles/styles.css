@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
+:root {
+  --main-color: #3818D9;
+}
+
 html{
   scroll-behavior: smooth;
 }
@@ -43,7 +47,7 @@ body {
 }
 .profile-button:hover .fa-solid, .profile-button:hover .fa-regular{
   transition: 0.3s color ease-in-out;
-  color: #3818D9;
+  color: var(--main-color);
 }
 .middle-column {
   min-height: 100vh;
@@ -67,7 +71,7 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  color: #3818D9;
+  color: var(--main-color);
   text-align: center;
   }
 
@@ -111,7 +115,7 @@ nav ul li {
 }
 
 nav ul li.active{
-  background-color: #3818D9;
+  background-color: var(--main-color);
   border-radius: 0.4rem;
 }
 
@@ -149,7 +153,7 @@ nav ul li a .fa-solid, nav ul li a .fa-regular{
   transition: 0.3s ease-in-out;
 }
 nav ul li a:hover .fa-solid, nav ul li a:hover .fa-regular{
-  color: #3818D9;
+  color: var(--main-color);
 }
 
 nav ul li.active a:hover .fa-solid, nav ul li.active a:hover .fa-regular{
@@ -217,7 +221,7 @@ nav ul:last-child li a{
   font-size: 1.5rem;
 }
 .button{
-  background-color: #3818D9;
+  background-color: var(--main-color);
   color: #fff;
   border: none;
   border-radius: 0.2rem;
@@ -328,7 +332,7 @@ figure.avatar img{
 }
 
 .msg-right.author .bubble .name{
-  color: #3818D9;
+  color: var(--main-color);
 }
 
 .msg .avatar {
@@ -442,10 +446,10 @@ section.reply button:hover {
 
 .tags .tag {
   background-color: #eae6ff;
-  border: 1px solid #3818D9;
+  border: 1px solid var(--main-color);
   padding: 0.3rem 0.5rem;
   border-radius: 90rem;
-  color: #3818D9;
+  color: var(--main-color);
   margin: 0.5rem;
 }
 
@@ -456,7 +460,7 @@ section.reply button:hover {
   cursor: pointer;
   margin-left: 0rem;
   font-size: 1rem;
-  color: #3818D9;
+  color: var(--main-color);
   transition: color 0.3s ease-in-out;
 }
 
@@ -497,7 +501,7 @@ section.reply button:hover {
   justify-content: center;
   align-items: center;
   height: 15rem;
-  color: #3818D9; 
+  color: var(--main-color); 
 }
 
 .ticket-info {
@@ -524,7 +528,7 @@ section.reply button:hover {
 .ticket-box h3{
   font-size: 1.2rem;
   font-weight: 600;
-  color: #3818D9;
+  color: var(--main-color);
   align-items: center;
   justify-content: center;
 }
@@ -588,8 +592,17 @@ section.reply button:hover {
   box-shadow: 0px 5px 7px 5px rgb(0 0 0 / 10%);
   border-radius: 0.6rem;
 }
-.assigned-to h3{
-  font-size: 1.4rem;
+
+.assigned-to p{
+  align-items: center;
+  justify-content: center;
+}
+
+.assigned-to a{
+  text-decoration: none;
+  color: var(--main-color);
+  font-size: 1rem;
+
 
 }
 .person-card{
@@ -606,7 +619,6 @@ section.reply button:hover {
 }
 .requester h3{
   font-size: 1.4rem;
-
 }
 @media (max-width: 767px) {
   .grid-container {
@@ -630,7 +642,7 @@ section.reply button:hover {
   font-size: 1.5rem;
   font-weight: 500;
   margin-bottom: 1rem;
-  color: #3818D9;
+  color: var(--main-color);
 }
 
 .right-sidebar p {
@@ -662,7 +674,7 @@ section.reply button:hover {
   margin: 0 2rem;
   padding: 1rem 2rem;
   font-size: 1.3rem;
-  color: #3818D9;
+  color: var(--main-color);
   text-align: center;
 
 }
@@ -802,7 +814,7 @@ section.reply button:hover {
   font-size: 1.2rem;
   font-weight: 500;
   margin-bottom: 0.5rem;
-  color: #3818D9;
+  color: var(--main-color);
 }
 
 .user-card > .email{
@@ -861,11 +873,11 @@ textarea{
 
 .input:hover,
 .input:focus {
-  border: 1px solid #3818D9;
+  border: 1px solid var(--main-color);
 }
 
 .cut {
-  background-color: #3818D9;
+  background-color: var(--main-color);
   border-radius: 10px;
   height: 20px;
   left: 20px;
@@ -910,7 +922,7 @@ textarea{
 }
 
 .submit {
-  background-color: #3818D9;
+  background-color: var(--main-color);
   border-radius: 12px;
   border: 0;
   box-sizing: border-box;
@@ -946,7 +958,7 @@ textarea{
 
 #profile-info.active > #name-info{
   font-size: 2.2rem;
-  color: #3818D9;
+  color: var(--main-color);
 }
 #profile-info.active > #email-info{
   font-size: 1.rem;
@@ -1002,12 +1014,12 @@ textarea{
 
 
 #edit-profile input:hover {
-  border: 1px solid #3818D9;
+  border: 1px solid var(--main-color);
 }
 
 #edit-profile input:focus{
   outline: none;
-  border: 1px solid #3818D9;
+  border: 1px solid var(--main-color);
 }
 
 #edit-profile > form.active{
@@ -1032,7 +1044,7 @@ textarea{
 }
 
 #role-editor:hover {
-  border: 1px solid #3818D9;
+  border: 1px solid var(--main-color);
 }
 
 
