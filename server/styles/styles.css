@@ -1057,3 +1057,16 @@ textarea{
   margin-bottom: 1rem; 
 }
 
+.max-width{
+  max-width: 500px;
+  margin-right: 1rem;
+}
+
+.flex-fix{
+  display: flex;
+  justify-content: flex-start;
+}
+
+.top{
+  margin-bottom: 100px;
+}
