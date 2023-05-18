@@ -1164,3 +1164,63 @@ textarea{
   color: #666;
   margin-bottom: 10px;
 }
+
+.main {
+    padding: 20px;
+}
+
+.category {
+    margin-bottom: 30px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.category .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.category .title h3 {
+    margin: 0;
+    color: #005cbf;
+    text-transform: uppercase;
+    font-size: 18px;
+}
+
+.category .content {
+    list-style: none;
+    padding: 0;
+}
+
+.category .content li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.category .content li:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+.category button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    background-color: #005cbf;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.category button:hover {
+    background-color: #004a9f;
+}
+
