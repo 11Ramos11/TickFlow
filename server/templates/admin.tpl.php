@@ -8,7 +8,7 @@
             <article class="category" id="departments">
                 <section class="title">
                     <h3>Departments</h3>
-                    <button>Add</button>
+                    <button class="button">Add</button>
                 </section>
                 <ul class="content">
                     <?php foreach($departments as $department) { ?>
@@ -24,7 +24,7 @@
             <article class="category" id="statuses">
                 <section class="title">
                     <h3>Statuses</h3>
-                    <button>Add</button>
+                    <button class="button">Add</button>
                 </section>
                 <ul class="content">
                     <?php foreach($statuses as $status) { ?>
@@ -40,7 +40,7 @@
             <article class="category" id="prioririties">
                 <section class="title">
                     <h3>Priorities</h3>
-                    <button>Add</button>
+                    <button class="button">Add</button>
                 </section>
                 <ul class="content">
                     <?php foreach($priorities as $priority) { ?>

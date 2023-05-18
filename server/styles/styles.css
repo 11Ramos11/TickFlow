@@ -1211,21 +1211,42 @@ textarea{
 }
 
 .category button {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.category button > .fa-regular, .category button > .fa-solid {
+  color: #000;
+  font-size: 2rem;
+}
+
+.category p{
+  font-size: 1.5rem;
+}
+
+.category .button{
+  margin: 0 0.5rem;
     padding: 5px 10px;
     border: none;
     border-radius: 3px;
-    background-color: #fff;
+    background-color: var(--main-color);
     color: #fff;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease-in-out;
 }
 
-.category button:hover {
-    background-color: var(--main-color);
-}
 
+
+/*
 #administration .fa-regular, #administration .fa-solid {
     color: var(--main-color);
     text-decoration: none;
     font-size: 1.5rem;
 }
+*/
