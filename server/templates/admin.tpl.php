@@ -3,13 +3,13 @@
     foreach($items as $item) { ?>
         <li value=<?=$item->id?> class="admin-item">
             <p><?=$item->name?></p>
-            <div class="item-div">
+            <div class="buttons">
               <button class="edit-button"><i class="fa-regular fa-pen-to-square"></i></button>
-              <button class="remove-button"><i class="fa-solid fa-xmark"></button>
+              <button class="remove-button"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <dialog class="remove-dialog">
                 <form action=<?=$removeAction?>>
-                    <h2>Do you want to remove the <?=$itemType?> <?=$item->name?>?<h2>
+                    <p>Do you want to remove the <?=$itemType?> <?=$item->name?>?<p>
                     <button type="button" class="cancel-button">no</button>
                     <button type="submit">yes</button>
                 </form>
@@ -55,7 +55,6 @@
                     </form>
                 </dialog>
             </article>
-
             <article class="category" id="statuses">
                 <section class="title">
                     <h3>Statuses</h3>
@@ -78,7 +77,6 @@
                     </form>
                 </dialog>
             </article>
-
             <article class="category" id="prioririties">
                 <section class="title">
                     <h3>Priorities</h3>
