@@ -1224,3 +1224,8 @@ textarea{
     background-color: var(--main-color);
 }
 
+#administration .fa-regular, #administration .fa-solid {
+    color: var(--main-color);
+    text-decoration: none;
+    font-size: 1.5rem;
+}
