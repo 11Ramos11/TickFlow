@@ -830,12 +830,17 @@ section.reply button:hover {
   margin-top: 30px;
 }
 
-.input-container {
+.input-container{
   height: 3.5rem;
   position: relative;
   width: 100%;
   margin-top: 2rem;
 }
+
+.input-container:nth-child(2){
+  height: 10rem;
+}
+
 textarea{
   resize: none;
 }
