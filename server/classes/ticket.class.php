@@ -5,9 +5,9 @@ include_once(__DIR__.'/../classes/chat.class.php');
 
 class Ticket {
 
-    public $id, $subject, $description, $status, $priority, $tags, $date, $time, $authorID, $assignee, $departmentID;
+    public $id, $subject, $description, $status, $priority, $tags, $date, $time, $authorID, $assigneeID, $departmentID;
 
-    function __construct($id, $subject, $description, $status, $priority, $tags, $date, $time, $authorID, $assignee, $departmentID){
+    function __construct($id, $subject, $description, $status, $priority, $tags, $date, $time, $authorID, $assigneeID, $departmentID){
         $this->id = $id;
         $this->subject = $subject;
         $this->description = $description;
@@ -17,7 +17,7 @@ class Ticket {
         $this->date = $date;
         $this->time = $time;
         $this->authorID = $authorID;
-        $this->assignee = $assignee;
+        $this->assigneeID = $assigneeID;
         $this->departmentID = $departmentID;
     }
 

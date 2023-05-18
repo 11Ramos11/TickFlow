@@ -3,6 +3,8 @@ include_once(__DIR__.'/../classes/connection.db.php');
 include_once(__DIR__.'/../classes/session.class.php');
 include_once(__DIR__.'/../classes/user.class.php');
 include_once(__DIR__.'/../classes/ticket.class.php');
+include_once(__DIR__.'/../classes/status.class.php');
+include_once(__DIR__.'/../classes/priority.class.php');
 
 $session = new Session();
 
@@ -65,6 +67,11 @@ foreach($tickets as $ticket){
     }
 }
 
-echo json_encode($filteredTickets);
+$statuses = Status::getStatusesArray();
+$priorities = Priority::getPrioritiesArray();
+
+$result = array("tickets" => $filteredTickets, "statuses" => $statuses, "priorities" => $priorities);
+
+echo json_encode($result);
 
 ?>

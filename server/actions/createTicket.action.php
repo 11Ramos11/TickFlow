@@ -39,10 +39,13 @@ if ($query == false){
     die("Query died");
 }
 
+
+
 $result = $query->execute();
 
-if ($result == false){
-    die("Result died");
+if ($result === false){
+    $errorInfo = $query->errorInfo();
+    die("Query execution failed: " . $errorInfo[2]);
 }
 
 $ticketID = $db->lastInsertId();

@@ -47,4 +47,17 @@ class Priority {
 
         return $priorities;
     }
+
+    static public function getPrioritiesArray(){
+
+        $priorities = Priority::getPriorities();
+
+        $prioritiesArray = array();
+
+        foreach($priorities as $priority){
+            $prioritiesArray[$priority->id] = $priority->name;
+        }
+
+        return $prioritiesArray;
+    }
 }

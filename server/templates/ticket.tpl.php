@@ -3,6 +3,9 @@ include_once(__DIR__.'/../classes/user.class.php');
 include_once(__DIR__.'/../classes/ticket.class.php');
 include_once(__DIR__.'/../classes/department.class.php');
 include_once(__DIR__.'/../classes/chat.class.php');
+include_once(__DIR__.'/../classes/priority.class.php');
+include_once(__DIR__.'/../classes/status.class.php');
+
 ?>
 
 <?php function getArticleTag($message, $sessionUser, $author) {
@@ -62,16 +65,18 @@ include_once(__DIR__.'/../classes/chat.class.php');
 <?php
 function drawBriefTicket($ticket) { 
     $author =  User::getUserById($ticket->authorID);
-	$assignedTo = User::getUserById($ticket->assignedID);
+	$assignee = User::getUserById($ticket->assigneeID);
 	$department = Department::getDepatmentByID($ticket->departmentID);
+	$status = Status::getStatusById($ticket->status);
+	$priority = Status::getStatusById($ticket->priority);
 ?>
 	<aside class="right-sidebar">
 		<article class="ticket-box brief">
 			<h3><?=$ticket->subject?></h3>
 			<section id="ticket-info">
 				<p>Created: <span class="date"><?=$ticket->date?></span></p>
-				<p>Status: <span class="status-tag"><?=$ticket->status?></span></p>
-				<p>Priority: <span class="priority-tag"><?=$ticket->priority?></span></p>
+				<p>Status: <span class="status-tag"><?=$status->name?></span></p>
+				<p>Priority: <span class="priority-tag"><?=$priority->name?></span></p>
 				<ul class="tags">
 					<?php foreach ($ticket->tags as $tag) { ?>
 					<li class="tag"> <?= $tag ?> </li>
@@ -82,8 +87,8 @@ function drawBriefTicket($ticket) {
 			</section>
 		</article>
 		<article class ="assigned-to">
-			<?php if ($assignedTo != null) { ?>
-				<p>Assigned to <a href="dashboard.php?id=<?=$assignedTo->id?>"><?=$assignedTo->name?></a> </p>
+			<?php if ($assignee != null) { ?>
+				<p>Assigned to <a href="dashboard.php?id=<?=$assignee->id?>"><?=$assignee->name?></a> </p>
 			<?php } else { ?>
 				<p>Not Assigned </p>
 			<?php } ?>

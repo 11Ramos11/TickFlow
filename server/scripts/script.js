@@ -47,7 +47,7 @@ function createTags() {
         }
     }
 
-    tagsList.addEventListener("keyup", addTag);
+    tagsList.addEventListener("keydown", addTag);
 
     const submitButton = document.getElementById("submit-button");
 
@@ -110,11 +110,22 @@ function filterTickets(){
                 department: _department,
                 tags: _tags
             });
-            const tickets = await response.json();
+            const result = await response.json();
 
-            if (tickets == null) {
+            if (result == null) {
                 alert("Error fetching tickets");
                 return;
+            }
+
+            const tickets = result["tickets"];
+            const statuses = result["statuses"];
+            const priorities = result["priorities"];
+
+            console.log(tickets);
+
+            for (let ticket of tickets) {
+                ticket.status = statuses[ticket.status];
+                ticket.priority = priorities[ticket.priority];
             }
 
             drawTickets(tickets);

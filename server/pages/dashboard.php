@@ -32,10 +32,12 @@
     $user = User::getUserById($id);
     $tickets = $user->getAllTickets();
     $departments = Department::getDepartments();
+    $statuses = Status::getStatuses();
+    $priorities = Priority::getPriorities();
 
     $header = $id == $session->userID ? "dashboard" : null;
 	drawHeader($header);
-    drawTickets($departments, $tickets, $user, $session->getUser());
+    drawTickets($departments, $tickets, $user, $session->getUser(), $statuses, $priorities);
 	drawProfile($user);
 	drawFooter();
 ?>

@@ -26,7 +26,6 @@ class Status {
         return new Status($result['id'], $result['name']);
     }
 
-
     static public function getStatuses(){
 
         $db = getDatabaseConnection();
@@ -47,5 +46,18 @@ class Status {
         }
 
         return $statuses;
+    }
+
+    static public function getStatusesArray(){
+
+        $statuses = Status::getStatuses();
+
+        $statusesArray = array();
+
+        foreach($statuses as $status){
+            $statusesArray[$status->id] = $status->name;
+        }
+
+        return $statusesArray;
     }
 }

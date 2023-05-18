@@ -57,7 +57,7 @@ DROP TABLE IF EXISTS Change;
 
 CREATE TABLE Change (
     id INTEGER CHECK (id >= 1) PRIMARY KEY AUTOINCREMENT,
-    fieldChanged TEXT NOT NULL CHECK (fieldChanged == 'status' OR fieldChanged == 'priority' OR fieldChanged == 'subject' OR fieldChanged == 'description' OR fieldChanged == 'assignedTo' OR fieldChanged == 'department'),
+    fieldChanged TEXT NOT NULL CHECK (fieldChanged == 'status' OR fieldChanged == 'priority' OR fieldChanged == 'subject' OR fieldChanged == 'description' OR fieldChanged == 'assignee' OR fieldChanged == 'department'),
     newValue TEXT NOT NULL,
     oldValue TEXT NOT NULL,
     editDate DATE NOT NULL,

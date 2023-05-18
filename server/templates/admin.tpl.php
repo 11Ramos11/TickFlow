@@ -1,11 +1,10 @@
-<?php function drawAdmin($departments){ ?>
+<?php function drawAdmin($departments, $statuses, $priorities){ ?>
 
     <main class="middle-column">
-        <section class = "title">
+        <section class="title">
             <h2>TickFlow Manager</h2>
         </section>
-        
-        <section class="administration">
+        <section id="administration">
             <article class="category" id="departments">
                 <section class="title">
                     <h3>Departments</h3>
@@ -15,12 +14,12 @@
                     <?php foreach($departments as $department) { ?>
                         <article>
                             <p><?=$department->name?></p>
-                            <button>edit-name</button>
+                            <button>edit name</button>
                             <button>remove</button>
                         </article>
                     <?php } ?>
                 </section>
-            </artcile>
+            </article>
 
             <article class="category" id="statuses">
                 <section class="title">
@@ -28,7 +27,13 @@
                     <button>Add</button>
                 </section>
                 <section class="content">
-                    
+                    <?php foreach($statuses as $status) { ?>
+                        <article>
+                            <p><?=$status->name?></p>
+                            <button>edit name</button>
+                            <button>remove</button>
+                        </article>
+                    <?php } ?>
                 </section>
             </article>
 
@@ -38,7 +43,13 @@
                     <button>Add</button>
                 </section>
                 <section class="content">
-
+                    <?php foreach($priorities as $priority) { ?>
+                        <article>
+                            <p><?=$priority->name?></p>
+                            <button>edit name</button>
+                            <button>remove</button>
+                        </article>
+                    <?php } ?>
                 </section>
             </article>
 

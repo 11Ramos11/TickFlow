@@ -1054,3 +1054,13 @@ textarea{
   margin-bottom: 1rem; 
 }
 
+#administration {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#administration .category {
+  display: flex;
+  flex-direction: column;
+}
