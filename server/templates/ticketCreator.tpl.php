@@ -2,11 +2,10 @@
 function drawTicketCreator($departments) { ?>
     <main class="middle-column">
       <section class="title">
-      <h2 class="title">Create a New Ticket</h2>
+      <h2>Create a New Ticket</h2>
       </section>
       <section>
         <article class="form" id="create-ticket">
-          <h1 class="title">Create a New Ticket</h1>
           <form action="../actions/createTicket.action.php" method="post">
             <section class="input-container ic1">
               <input id="subject" class="input" type="text" placeholder=" " name="subject" />
