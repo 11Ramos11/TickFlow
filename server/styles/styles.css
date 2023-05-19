@@ -1428,59 +1428,56 @@ scale: 0.99;
 }
 
 /* Styling for dialog boxes */
-dialog {
-  width: 18.75rem; /* 300px */
-  padding: 1.25rem; /* 20px */
-  background-color: #fff;
-  border: none;
-  border-radius: 0.25rem; /* 4px */
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1); /* 0 2px 4px rgba(0, 0, 0, 0.1) */
-}
-
-dialog form {
+.remove-dialog form, .edit-dialog form, .add-dialog form {
   display: flex;
   flex-direction: column;
-}
-
-dialog label {
-  margin-bottom: 0.5rem; /* 8px */
-  font-size: 1rem;
+  gap: 10px;
+  align-items: center;
+  color: #007bff;
   font-weight: bold;
-}
-
-dialog input[type="text"] {
-  margin-bottom: 1rem; /* 16px */
-  padding: 0.5rem; /* 8px */
-  border: 1px solid #ccc;
-  border-radius: 0.25rem; /* 4px */
-  font-size: 1rem;
-}
-
-dialog button {
-  padding: 0.5rem 1rem; /* 8px 16px */
-  margin-right: 0.5rem; /* 8px */
   border: none;
-  border-radius: 0.25rem; /* 4px */
+  border-radius: 15px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  padding: 20px;
+}
+
+.remove-dialog form .button-group, .edit-dialog form .button-group, .add-dialog form .button-group {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.remove-dialog button, .edit-dialog button, .add-dialog button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
   cursor: pointer;
-  outline: none; /* Removes blue outline */
+  transition: all 0.3s ease;
 }
 
-dialog .cancel-button {
-  background-color: #ccc;
+.remove-dialog button[type=submit], 
+.edit-dialog button[type=submit], 
+.add-dialog button[type=submit] {
+  background-color: #007bff;
   color: #fff;
-  font-size: 1rem;
 }
 
-dialog .cancel-button:hover {
-  background-color: #999;
+.remove-dialog button[type=submit]:hover, 
+.edit-dialog button[type=submit]:hover, 
+.add-dialog button[type=submit]:hover {
+  background-color: #0056b3;
 }
 
-dialog .submit-button {
-  background-color: dodgerblue;
+.remove-dialog button[type=button], 
+.edit-dialog button[type=button], 
+.add-dialog button[type=button] {
+  background-color: #6c757d;
   color: #fff;
-  font-size: 1rem;
 }
 
-dialog .submit-button:hover {
-  background-color: royalblue;
+.remove-dialog button[type=button]:hover, 
+.edit-dialog button[type=button]:hover, 
+.add-dialog button[type=button]:hover {
+  background-color: #5a6268;
 }
