@@ -1429,12 +1429,12 @@ scale: 0.99;
 
 /* Styling for dialog boxes */
 dialog {
-  width: 300px;
-  padding: 20px;
+  width: 18.75rem; /* 300px */
+  padding: 1.25rem; /* 20px */
   background-color: #fff;
   border: none;
-  border-radius: 18.75rem;
-  box-shadow: 0 12.5rem 0.25rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.25rem; /* 4px */
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1); /* 0 2px 4px rgba(0, 0, 0, 0.1) */
 }
 
 dialog form {
@@ -1443,24 +1443,24 @@ dialog form {
 }
 
 dialog label {
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem; /* 8px */
   font-size: 1rem;
   font-weight: bold;
 }
 
 dialog input[type="text"] {
-  margin-bottom: 16px;
-  padding: 8px;
+  margin-bottom: 1rem; /* 16px */
+  padding: 0.5rem; /* 8px */
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 0.25rem; /* 4px */
   font-size: 1rem;
 }
 
 dialog button {
-  padding: 0.5rem 1rem;
-  margin-right: 0.5rem;
+  padding: 0.5rem 1rem; /* 8px 16px */
+  margin-right: 0.5rem; /* 8px */
   border: none;
-  border-radius: 0.25rem;
+  border-radius: 0.25rem; /* 4px */
   cursor: pointer;
   outline: none; /* Removes blue outline */
 }
