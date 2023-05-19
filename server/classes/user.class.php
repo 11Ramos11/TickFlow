@@ -111,14 +111,11 @@ class User
         return $this->role == "Client";
     }
 
-    public function hasAccessToTicket($ticketID)
+    public function hasAccessToTicket(int $ticketID)
     {
 
         if ($this->isAdmin()) {
-            error_log("IS ADMIN LETS GOOOO");
             return true;
-        } else {
-            error_log("ITS NOT ADDMIIN, lETS NOT GOT");
         }
 
         $userID = $this->id;
@@ -133,7 +130,15 @@ class User
         return count($results) > 0;
     }
 
-    static public function getUserById($userID)
+    public function isAuthorOf(Ticket $ticket){
+        return $ticket->authorID == $this->id;
+    }
+
+    public function isAssignedTo(Ticket $ticket){
+        return $ticket->assigneeID == $this->id;
+    } 
+
+    static public function getUserById(int $userID)
     {
 
         $db = getDatabaseConnection();
@@ -178,7 +183,7 @@ class User
         return $users;
     }
 
-    static public function getUserByRole($role){
+    static public function getUserByRole(string $role){
 
         $db = getDatabaseConnection();
 

@@ -49,6 +49,14 @@ class Ticket {
         return new Chat($this->id);
     }
 
+    public function removeAuthor(){
+            
+        $db = getDatabaseConnection();
+
+        $query = $db->prepare("UPDATE Ticket SET author = NULL WHERE id = '$this->id'");
+        $query->execute();
+    }
+
     static public function getAllTickets(){
 
         $db = getDatabaseConnection();
@@ -148,6 +156,14 @@ class Ticket {
         }
     
         return $filteredTickets;
+    }
+
+    static public function removeTicket($id){
+
+        $db = getDatabaseConnection();
+    
+        $query = $db->prepare("DELETE FROM Ticket WHERE id = ?");
+        $query->execute(array($id));
     }
 }
 

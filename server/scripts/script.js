@@ -287,15 +287,15 @@ function editProfile(){
 
         cancelButton.addEventListener("click", function() {
             toggleProfile();
+            disablePasswordField();
         });
 
+        const passwordEditor = document.getElementById("password-editor");
         const showPassword = document.getElementById("change-password-button");
 
         if (showPassword != null){
             showPassword.addEventListener("click", function() {
-                const passwordEditor = document.getElementById("password-editor");
-                passwordEditor.classList.toggle("active");
-                showPassword.classList.toggle("active");
+                togglePasswordField();
             });
         }
 
@@ -303,11 +303,21 @@ function editProfile(){
 
         if (cancelPassword != null){
             cancelPassword.addEventListener("click", function() {
-                const passwordEditor = document.getElementById("password-editor");
-                passwordEditor.classList.toggle("active");
-                showPassword.classList.toggle("active");
+                togglePasswordField();
             });
         }
+
+        function disablePasswordField(){
+            passwordEditor.classList.remove("active");
+            if (!showPassword.classList.contains("active"))
+                showPassword.classList.add("active");
+        }
+
+        function togglePasswordField(){
+            passwordEditor.classList.toggle("active");
+            showPassword.classList.toggle("active");
+        }
+
     }
 }
 
@@ -542,4 +552,18 @@ function ticketDropdown(){
             dropdownButton.parentElement.getElementsByClassName("ticket-dropdown")[0].classList.remove("active");
         });
     } 
+
+    const removeButtons = document.getElementsByClassName("remove-ticket");
+
+
+    for (const removeButton of removeButtons){
+        removeButton.addEventListener("click", function() {
+            removeDialog = removeButton.parentElement.parentElement.getElementsByClassName("remove-dialog")[0];
+            console.log(removeDialog);
+            removeDialog.getElementsByClassName("cancel-button")[0].addEventListener("click", function() {
+                removeDialog.close();
+            });
+            removeDialog.showModal();
+        });
+    }
 }

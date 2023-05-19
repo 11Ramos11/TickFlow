@@ -41,7 +41,7 @@ CREATE TABLE Ticket (
     description TEXT NOT NULL,
     creationDate DATE NOT NULL,
     creationTime TIME NOT NULL,
-    author INTEGER NOT NULL,
+    author INTEGER,
     assignee INTEGER,
     priority INTEGER NOT NULL,
     status INTEGER NOT NULL DEFAULT (1),
@@ -106,6 +106,19 @@ CREATE TABLE FAQ (
     FOREIGN KEY (department) REFERENCES Department(id)
 );
 
+CREATE TRIGGER IF NOT EXISTS delete_ticket
+AFTER DELETE ON Ticket
+BEGIN
+    DELETE FROM Message WHERE ticket = OLD.id;
+    DELETE FROM Change WHERE ticket = OLD.id;
+    DELETE FROM Ticket_Hashtag WHERE ticket = OLD.id;
+END;
+
+CREATE TRIGGER IF NOT EXISTS delete_tag_if_unused
+AFTER DELETE ON Ticket_Hashtag
+BEGIN
+    DELETE FROM Hashtag WHERE id = OLD.hashtag AND NOT EXISTS (SELECT * FROM Ticket_Hashtag WHERE hashtag = OLD.hashtag);
+END;
 
 INSERT INTO Department (id, name) VALUES
   (1, 'Sales Department'),

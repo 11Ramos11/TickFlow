@@ -66,8 +66,8 @@
 						<i class="fa-solid fa-ellipsis-vertical"></i> 
 					</button>
 					<div class="ticket-dropdown dropdown">
-						<a href="../pages/editTicket.php?ticket=<?=$ticket->id?>">Edit</a>
-						<a href="../pages/deleteTicket.php?ticket=<?=$ticket->id?>">Delete</a>
+						<a class="dropdown-option" href="../pages/editTicket.php?ticket=<?=$ticket->id?>">Edit</a>
+						<button class="dropdown-option remove-ticket">Delete</a>
 					</div>
 					<?php } ?>
 					<article class="ticket-box dash">
@@ -81,6 +81,16 @@
 							<?php } ?>
 						</ul>
 					</article>
+					<dialog class="remove-dialog">
+						<form action="../actions/removeTicket.action.php" method="post">
+							<input type="hidden" name="id" value="<?=$ticket->id?>">
+							<p>Are you sure you want to remove this ticket?</p>
+							<div class="dialog-buttons">
+								<button type="button" class="button cancel-button" value="Cancel">Cancel</button>
+								<button type="submit" class="button">Remove</button>
+							</div>
+						</form>
+					</dialog>
 					</div>
 				<?php } ?>
 			</section>
