@@ -33,6 +33,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 95vh;
+
 }
 
 .middle-column {
@@ -49,7 +50,7 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -1362,4 +1363,11 @@ scale: 0.99;
 
 .department-ticket-info > p > span{
   color: var(--main-color);
+}
+
+.center{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
