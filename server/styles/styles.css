@@ -440,6 +440,12 @@ section.reply button:hover {
   background-color: #f8f7fc;
 }
 
+.tags::-webkit-scrollbar {
+  width: 0; /* Safari and older versions of Chrome */
+  height: 0;
+  display: none;
+}
+
 .tags {
   display: flex;
   flex-direction: row;
@@ -450,6 +456,8 @@ section.reply button:hover {
   list-style-type: none;
   max-width: 100%;
   overflow-x: auto;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 .tags .tag {
@@ -814,9 +822,9 @@ section.reply button:hover {
   box-sizing: border-box;
   height: auto;
   padding: 20px;
-  width: 100%; /* This will make form take the full width of its parent container */
-  max-width: 1200px; /* You can set a max-width to prevent form from being too wide on larger screens */
-  margin: 0 auto; /* This will center the form if its parent container is wider */
+  width: 100%; 
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 
@@ -855,6 +863,25 @@ textarea{
   transition: border 0.3s ease-in-out;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2
   );
+}
+
+.input-tags{
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #d8d8d8;
+  box-sizing: border-box;
+  color: #333;
+  font-size: 1.2rem;
+  height: 100%;
+  outline: 0;
+
+  width: 100%;
+  transition: border 0.3s ease-in-out;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2 );
+}
+
+.input-tags:hover, .input-tags:focus{
+  border: 1px solid var(--main-color);
 }
 
 .input:hover,
@@ -919,13 +946,15 @@ textarea{
   margin-top: 38px;
   text-align: center;
   width: 100%;
-  transition: background-color 0.3s ease-in-out;
+  transition: scale 0.2s ease-in-out;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
 .submit:hover,
 .submit:active {
-  background-color: #06b;
+scale: 0.99;
+
+
 }
 
 .profile {
