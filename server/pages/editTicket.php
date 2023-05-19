@@ -34,9 +34,10 @@
     $departments = Department::getDepartments();
 	$priorities = Priority::getPriorities();
 	$statuses = Status::getStatuses();
+	$users = User::getAllUsers();
 
 	drawHeader();
-    drawTicketEditor($departments, $priorities, $statuses, $ticket, $sessionUser);
+    drawTicketEditor($departments, $priorities, $statuses, $users, $ticket, $sessionUser);
 	drawBriefTicket($ticket);
 	drawFooter();
 ?>

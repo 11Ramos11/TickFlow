@@ -1,6 +1,5 @@
 <?php function drawTickets($departments, $tickets, $user, $sessionUser, $statuses, $priorities) {  ?>
 
-	<p hidden id="user-id-holder"><?=$user->id?></p>
     <main class="middle-column">
 		<section id="tickets-search">
 			<section class="top">
@@ -13,7 +12,7 @@
 					<?php } ?>
 				</section>
 				<section id="searchBar">
-					<section id="filter-tab">
+					<section id="filter-tab" data-userid=<?=$user->id?>>
 						<?php if ($user->role != "Client") { ?> 
 						<select id="ownership-filter" class="filter-dropdown">
 							<option value="All">All Tickets</option>

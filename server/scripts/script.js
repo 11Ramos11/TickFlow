@@ -101,8 +101,8 @@ function filterTickets(){
         const searchButton = document.getElementById("search-button");
         searchButton.addEventListener("click", async function () {
 
-            const userIdHolder = document.getElementById('user-id-holder');
-            const _userId = userIdHolder != null ? userIdHolder.textContent : null;
+            const _userId = filterTab.dataset.userid;
+            console.log(_userId);
             const ownershipFilter = document.getElementById('ownership-filter');
             const _ownership = ownershipFilter != null ? ownershipFilter.value : 'All';
             const _status = document.getElementById('status-filter').value;
