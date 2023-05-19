@@ -1438,7 +1438,7 @@ scale: 0.99;
   flex-direction: column;
   gap: 10px;
   align-items: center;
-  color: #007bff;
+  color: var(--main-color);
   font-weight: bold;
 }
 
@@ -1460,14 +1460,14 @@ scale: 0.99;
 .remove-dialog button[type=submit], 
 .edit-dialog button[type=submit], 
 .add-dialog button[type=submit] {
-  background-color: #007bff;
+  background-color: var(--main-color);
   color: #fff;
 }
 
 .remove-dialog button[type=submit]:hover, 
 .edit-dialog button[type=submit]:hover, 
 .add-dialog button[type=submit]:hover {
-  background-color: #0056b3;
+  background-color: var(--main-color);
 }
 
 .remove-dialog button[type=button], 
