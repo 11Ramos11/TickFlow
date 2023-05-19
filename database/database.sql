@@ -120,6 +120,53 @@ BEGIN
     DELETE FROM Hashtag WHERE id = OLD.hashtag AND NOT EXISTS (SELECT * FROM Ticket_Hashtag WHERE hashtag = OLD.hashtag);
 END;
 
+
+/* trigger to update Change table when ticket is updated only if value is different.
+For foreign keys, it should get the name of the referenced table */
+
+CREATE TRIGGER IF NOT EXISTS update_ticket
+AFTER UPDATE ON Ticket
+BEGIN
+    INSERT INTO Change (fieldChanged, newValue, oldValue, editDate, editTime, ticket)
+    SELECT 'subject', NEW.subject, OLD.subject, date('now'), time('now'), NEW.id
+    WHERE NEW.subject != OLD.subject;
+
+    INSERT INTO Change (fieldChanged, newValue, oldValue, editDate, editTime, ticket)
+    SELECT 'description', NEW.description, OLD.description, date('now'), time('now'), NEW.id
+    WHERE NEW.description != OLD.description;
+    
+    INSERT INTO Change (fieldChanged, newValue, oldValue, editDate, editTime, ticket)
+    SELECT 'status', 
+        (SELECT name FROM Status WHERE id = NEW.status), 
+        (SELECT name FROM Status WHERE id = OLD.status), 
+        date('now'), time('now'), NEW.id
+    WHERE NEW.status != OLD.status;
+
+    INSERT INTO Change (fieldChanged, newValue, oldValue, editDate, editTime, ticket)
+    SELECT 'priority', 
+        (SELECT name FROM Priority WHERE id = NEW.priority), 
+        (SELECT name FROM Priority WHERE id = OLD.priority), 
+        date('now'), time('now'), NEW.id
+    WHERE NEW.priority != OLD.priority;
+
+    INSERT INTO Change (fieldChanged, newValue, oldValue, editDate, editTime, ticket)
+    SELECT 'assignee', 
+        (SELECT name FROM User WHERE id = NEW.assignee), 
+        (SELECT name FROM User WHERE id = OLD.assignee), 
+        date('now'), time('now'), NEW.id
+    WHERE NEW.assignee != OLD.assignee;
+
+    INSERT INTO Change (fieldChanged, newValue, oldValue, editDate, editTime, ticket)
+    SELECT 'department', 
+        (SELECT name FROM Department WHERE id = NEW.department), 
+        (SELECT name FROM Department WHERE id = OLD.department), 
+        date('now'), time('now'), NEW.id
+    WHERE NEW.department != OLD.department;
+    
+END;
+
+
+
 INSERT INTO Department (id, name) VALUES
   (1, 'Sales Department'),
   (2, 'Marketing Department'),

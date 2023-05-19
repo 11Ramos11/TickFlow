@@ -19,7 +19,7 @@
 <?php function drawAssignee($sessionUser, $users, Ticket $ticket){ 
   if ($sessionUser->isAdmin()) { ?>
     <section class="input-container ic2">
-    <select id="status" class="input" name="status">
+    <select id="status" class="input" name="assignee">
       <?php foreach ($users as  $user){ ?>
         <?php if ($user->id === $ticket->assigneeID) { ?>
           <option value=<?=$user->id?> selected><?=$user->name?></option>
