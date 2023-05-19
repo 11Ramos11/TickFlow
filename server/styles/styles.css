@@ -1432,7 +1432,7 @@ dialog {
   width: 300px;
   padding: 20px;
   background-color: #fff;
-  border: 2px solid var(--main-color);
+  border: none;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -1462,6 +1462,7 @@ dialog button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  outline: none; /* Removes blue outline */
 }
 
 dialog .cancel-button {
@@ -1475,11 +1476,11 @@ dialog .cancel-button:hover {
 }
 
 dialog .submit-button {
-  background-color: var(--main-color);
+  background-color: dodgerblue;
   color: #fff;
   font-size: 1rem;
 }
 
 dialog .submit-button:hover {
-  background-color: #006699;
+  background-color: royalblue;
 }
