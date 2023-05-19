@@ -65,8 +65,8 @@
             <article>
                 <h3><?=$department->name?><h3>
                 <section class="department-ticket-info">
-                    <p>Open Tickets: <?=$department->getOpenTickets()?></p>
-                    <p>Pending Tickets: <?=$department->getPendingTickets()?></p>
+                    <p>Open Tickets: <span><?=$department->getOpenTickets()?></span></p>
+                    <p>Pending Tickets: <span><?=$department->getPendingTickets()?></span></p>
                 </section>
             </article>
         <?php } ?>
