@@ -23,7 +23,7 @@
 
 <?php } ?>
 
-<?php function drawRecentChanges($changes){ ?>
+<?php function drawRecentChanges(array $changes){ ?>
 
 <aside class="right-sidebar home-sidebar">
     <section id="recent-changes">
@@ -37,7 +37,7 @@
                     <section class="change-info">
                         <p><?=$change->fieldChanged?>:</p>
                         <p><span class="old"><?=$change->oldValue?></span> <i class="fa-solid fa-chevron-right"></i> <span class="new"><?=$change->newValue?></span></p>
-                        <p><?=$change->editDate?>, <?=$change->newValue?></p>
+                        <p class="change-time"><?=$change->editDate?>, <?=$change->editTime?></p>
                     </section>
                 </article>
                 </a>

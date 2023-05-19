@@ -42,6 +42,6 @@
     $header = $id == $session->userID ? "dashboard" : null;
 	drawHeader($header);
     drawTickets($departments, $tickets, $user, $session->getUser(), $statuses, $priorities);
-	drawProfile($user);
+	drawProfile($user, $departments);
 	drawFooter();
 ?>

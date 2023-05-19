@@ -16,7 +16,7 @@
 		exit();
 	}
 
-    $user = $session->getUser();
+    $sessionUser = $session->getUser();
 
 	if (isset($_GET["ticket"])){
 		$ticketId = $_GET["ticket"];
@@ -25,7 +25,7 @@
 		exit();
 	}
 
-    if (!$user->hasAccessToTicket($ticketId)){
+    if (!$sessionUser->hasAccessToTicket($ticketId)){
         header("Location: dashboard.php");
         exit();
     }
@@ -33,9 +33,10 @@
     $ticket = Ticket::getTicketByID($ticketId);
     $departments = Department::getDepartments();
 	$priorities = Priority::getPriorities();
+	$statuses = Status::getStatuses();
 
 	drawHeader();
-    drawTicketEditor($departments, $priorities, $ticket);
+    drawTicketEditor($departments, $priorities, $statuses, $ticket, $sessionUser);
 	drawBriefTicket($ticket);
 	drawFooter();
 ?>

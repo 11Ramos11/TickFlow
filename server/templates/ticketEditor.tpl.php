@@ -1,5 +1,22 @@
-<?php 
-function drawTicketEditor($departments, $priorities, $ticket) { ?>
+<?php function drawStatuses($sessionUser, $statuses, $ticket){ 
+  if ($sessionUser->isAdmin() || $sessionUser->isAssignedTo($ticket)) { ?>
+    <section class="input-container ic2">
+    <select id="status" class="input" name="status">
+      <?php foreach ($statuses as  $status){ ?>
+        <?php if ($status->id === $ticket->status) { ?>
+          <option value=<?=$status->id?> selected><?=$status->name?></option>
+        <?php } else { ?>
+          <option value=<?=$status->id?>><?=$status->name?></option>
+        <?php } ?>
+      <?php } ?>
+    </select>
+    <article class="cut"></article>
+    <label for="status" class="placeholder">Status</label>
+  </section>
+<?php } 
+}?>
+
+<?php function drawTicketEditor(array $departments, array $priorities, array $statuses, Ticket $ticket, User $sessionUser) { ?>
     <main class="middle-column">
       <section class="title">
       <h2>Edit Ticket</h2>
@@ -19,7 +36,7 @@ function drawTicketEditor($departments, $priorities, $ticket) { ?>
             </section>
             <section class="input-container ic2">
               <select id="priority" class="input" name="priority">
-                <?php foreach ($priorities as $priority){ ?>
+                <?php foreach ($priorities as  $priority){ ?>
                   <?php if ($priority->id === $ticket->priority) { ?>
                     <option value=<?=$priority->id?> selected><?=$priority->name?></option>
                   <?php } else { ?>
@@ -30,7 +47,7 @@ function drawTicketEditor($departments, $priorities, $ticket) { ?>
               <article class="cut"></article>
               <label for="priority" class="placeholder">Priority</label>
             </section>
-      
+            <?php drawStatuses($sessionUser, $statuses, $ticket); ?>
             <section class="input-container ic2">
               <select id="department" class="input" name="department">
                 <option value="-1">None</option>
@@ -46,16 +63,13 @@ function drawTicketEditor($departments, $priorities, $ticket) { ?>
               <label for="department" class="placeholder">Department</label>
             </section>
             <section class="input-container ic2">
-              <!---<input type="text" id="tag-input" class="input" name="tag" placeholder=" "/>
-              <article class="cut"></article>
-              <label for="tag-input" class="placeholder">Tags</label>-->
               <ul class="tags-box tags input-tags" id="tag-creator">
                 <input type="text" id="tag-input" name="tag" placeholder="Tags">
               </ul>
               <input type="hidden" id="tags" name="tags" value=<?=implode(',',$ticket->tags)?>>
             </section>
+            <input name="id" type="hidden" value="<?= $ticket->id ?>">      
             <button type="text" class="submit" id="submit-button">Submit</button>
-            <input name="id" type="hidden" value="<?= $ticket->id ?>">
           </form>
         </article>
       </section>

@@ -10,7 +10,7 @@ $id = $_POST["id"];
 
 $name = $_POST["name"];
 
-if (!preg_match("/^[a-zA-Z\sãÃ]+$/", $name)){
+if (!preg_match("/^[a-zA-Z\sãÃéÉáÁíÍóÓçÇ]+$/", $name)){
     $session->setError("reg", "Name must only contain letters and spaces");
     header("Location: ../pages/dashboard.php?id=$id");  
     exit();
@@ -20,6 +20,14 @@ $email = $_POST["email"];
 if (!preg_match("/^[a-zA-Z0-9._]+@tickflow.com+$/", $email)){
     $session->setError("reg", "Email must be a valid TickFlow email (@tickflow.com)");
     error_log("Email must be a valid TickFlow email (@tickflow.com)");
+    header("Location: ../pages/dashboard.php?id=$id");  
+    exit();
+}
+
+$department = $_POST["department"];
+
+if (!preg_match("/^[0-9]+$/", $department)){
+    $session->setError("reg", "Department must only contain letters and spaces");
     header("Location: ../pages/dashboard.php?id=$id");  
     exit();
 }
@@ -53,8 +61,8 @@ if ($role != "Admin" && $role != "Agent" && $role != "Client"){
 }
 
 $db = getDatabaseConnection();
-$query = $db->prepare("UPDATE User SET name = ?,email = ?,role = ? WHERE id = ?");
-$result =  $query->execute(array($name,$email,$role, $id));
+$query = $db->prepare("UPDATE User SET name = ?,email = ?,role = ?, department = ? WHERE id = ?");
+$result =  $query->execute(array($name,$email,$role,$department, $id));
 
 header("Location: ../pages/dashboard.php?id=$id");  
 

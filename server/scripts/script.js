@@ -20,11 +20,27 @@ window.onload = function () {
 };
 
 function createTags() {
+
     const tagsList = document.getElementById("tag-creator");
     const input = document.getElementById("tag-input");
 
     if (tagsList == null || input == null){
         return;
+    }
+
+    readTags();
+
+    function readTags(){
+        const tagsInput = document.getElementById("tags");
+        if (tagsInput != null){
+            tagsValue = tagsInput.value;
+            if (tagsValue.trim() == ""){
+                return;
+            }
+            tags = tagsValue.split(",");
+            console.log(tags);
+            addListItem();
+        }
     }
 
     function addListItem() {
@@ -268,6 +284,7 @@ function editProfile(){
             const nameInfo = document.getElementById("name-info");
             const emailInfo = document.getElementById("email-info");
             const roleInfo = document.getElementById("role-info");
+            const departmentInfo = document.getElementById("department-info");
 
             const nameEditor = document.getElementById("name-editor");
             nameEditor.value = nameInfo.textContent;
@@ -277,9 +294,15 @@ function editProfile(){
 
             const roleSelector = document.getElementById("role-editor");
             if (roleSelector != null){
-                
                 const roleOption = document.getElementById(roleInfo.textContent);
                 roleOption.setAttribute("selected",  "selected")
+            }
+
+            const departmentEditor = document.getElementById("department-editor");
+            if (departmentEditor != null){
+                const departmentOption = document.getElementById(departmentInfo.textContent);
+                departmentOption.setAttribute("selected",  "selected")
+
             }
 
             toggleProfile();

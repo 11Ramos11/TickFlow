@@ -902,6 +902,7 @@ textarea{
   resize: none;
 }
 .input {
+  position: relative;
   background-color: #ffffff;
   border-radius: 12px;
   border: 1px solid #d8d8d8;
@@ -913,8 +914,8 @@ textarea{
   padding: 1rem;
   width: 100%;
   transition: border 0.3s ease-in-out;
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2
-  );
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  z-index: 2;
 }
 
 .input-tags{
@@ -942,12 +943,13 @@ textarea{
 }
 
 .cut {
+  z-index: 1;
   background-color: var(--main-color);
   border-radius: 10px;
   height: 20px;
   left: 20px;
-  position: absolute;
-  top: -20px;
+  position: absolute; 
+  top: 0%;
   transform: translateY(0);
   transition: transform 200ms;
   width: 260px;
@@ -959,11 +961,12 @@ textarea{
 
 .input:focus ~ .cut,
 .input:not(:placeholder-shown) ~ .cut {
-  transform: translateY(8px);
+  transform: translateY(-10px);
+  z-index: 2;
 }
 
 .placeholder {
-  color: #5c5ca0;
+  color: #808097;
   left: 20px;
   line-height: 14px;
   pointer-events: none;
@@ -971,19 +974,22 @@ textarea{
   transform-origin: 0 50%;
   transition: transform 200ms, color 200ms;
   top: 20px;
+  z-index: 2;
 }
 
 .input:focus ~ .placeholder,
 .input:not(:placeholder-shown) ~ .placeholder {
-  transform: translateY(-30px) translateX(10px) scale(0.75);
+  transform: translateY(-27px) translateX(10px) scale(0.75);
+  z-index: 2;
+  color: white;
 }
 
 .input:not(:placeholder-shown) ~ .placeholder {
-  color: #808097;
+  color: white;
 }
 
 .input:focus ~ .placeholder {
-  color: #ffffff;
+  font-weight: 700;
 }
 
 .submit {
@@ -1372,12 +1378,12 @@ scale: 0.99;
 
 .change-info > p:first-of-type{
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .change-info > p:last-of-type{
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: light;
 }
 
 .old{

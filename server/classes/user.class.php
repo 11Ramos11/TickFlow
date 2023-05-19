@@ -6,14 +6,15 @@ include_once(__DIR__ . '/../classes/connection.db.php');
 class User
 {
 
-    public $id, $name, $email, $role;
+    public $id, $name, $email, $role, $department;
 
-    public function __construct($id, $name, $email, $role)
+    public function __construct($id, $name, $email, $role, $department)
     {
         $this->id = $id;
         $this->name = $name;
         $this->email = $email;
         $this->role = $role;
+        $this->department = $department;
     }
 
     public function getAuthoredTickets(){
@@ -41,7 +42,7 @@ class User
                 $row['creationDate'],
                 $row['creationTime'],
                 $row['author'],
-                $row['assignedTo'],
+                $row['assignee'],
                 $row['department']
             );
         }
@@ -154,7 +155,7 @@ class User
 
         $result = $results[0];
 
-        $user = new User($result['id'], $result['name'], $result['email'], $result['role']);
+        $user = new User($result['id'], $result['name'], $result['email'], $result['role'], $result['department']);
 
         return $user;
     }
@@ -176,7 +177,8 @@ class User
                 $row['id'],
                 $row['name'],
                 $row['email'],
-                $row['role']
+                $row['role'],
+                $row['department']
             );
         }
 
@@ -200,7 +202,8 @@ class User
                 $row['id'],
                 $row['name'],
                 $row['email'],
-                $row['role']
+                $row['role'],
+                $row['department']
             );
         }
 

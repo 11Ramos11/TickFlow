@@ -1,7 +1,8 @@
-<?php function drawProfile($user){ 
+<?php function drawProfile($user, $departments){ 
 
 	$session = new Session();	
 	$sessionUser = $session->getUser();
+	$department = Department::getDepatmentByID($user->department);
 ?>
 	<aside class="right-sidebar center">
 	
@@ -11,6 +12,7 @@
 				<h2 id="name-info"><?= $user->name ?></h2>
 				<p id="email-info"><?= $user->email ?></p>
 				<p id="role-info"><?= $user->role ?></p>
+				<p id="department-info"><?= $department->name ?></p>
 				<button class="button" id="edit-user-button">Edit</button>
 			</section>
 			<section id="edit-profile">
@@ -21,9 +23,14 @@
 					<input id="email-editor" class="profile-editor" name="email">
 					<?php if ($sessionUser->role == "Admin") { ?>
 					<select id="role-editor" class="profile-editor" name="role">
-						<option id="Client" value="Client">Client</option>
-						<option id="Agent" value="Agent">Agent</option>
-						<option id="Admin" value="Admin">Admin</option>	
+						<option <?php if ($user->role == "Client") echo "selected"?> id="Client" value="Client">Client</option>
+						<option <?php if ($user->role == "Agent") echo "selected"?> id="Agent" value="Agent">Agent</option>
+						<option <?php if ($user->role == "Admin") echo "selected"?>  id="Admin" value="Admin">Admin</option>	
+					</select> 
+					<select id="department-editor" class="profile-editor" name="department">
+						<?php foreach($departments as $department) { ?>
+						<option id="<?=$department->name?>" value="<?=$department->id?>"><?=$department->name?></option>
+						<?php } ?>
 					</select> 
 					<?php } ?>
 					<section class="edit-buttons">
