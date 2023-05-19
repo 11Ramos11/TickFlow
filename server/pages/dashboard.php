@@ -30,7 +30,11 @@
     }
 
     $user = User::getUserById($id);
-    $tickets = $user->getAllTickets();
+    if ($id === $session->userID) {
+        $tickets = $user->getAllTickets();
+    } else {
+        $tickets = array_merge($user->getAuthoredTickets(), $user->getAssignedTickets());
+    }
     $departments = Department::getDepartments();
     $statuses = Status::getStatuses();
     $priorities = Priority::getPriorities();
