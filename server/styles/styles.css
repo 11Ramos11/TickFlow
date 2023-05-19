@@ -936,6 +936,7 @@ textarea{
   box-shadow: 0px 5px 7px 7px rgb(0 0 0 / 10%);
   justify-content: center;
   text-align: center;
+  height: -webkit-fill-available;
 }
 
 #profile-info {
@@ -947,14 +948,6 @@ textarea{
   flex-direction: column;
 }
 
-#edit-profile {
-  display: none;
-}
-
-#edit-profile.active {
-  display: flex;
-  flex-direction: column;
-}
 
 #profile-info.active > #name-info{
   font-size: 2.2rem;
@@ -974,6 +967,15 @@ textarea{
   text-align: center;
 }
 
+#edit-profile {
+  display: none;
+}
+
+#edit-profile.active {
+  display: flex;
+  flex-direction: column;
+}
+
 .edit-profile-img {
   display: block;
   margin: 0 auto;
@@ -986,10 +988,7 @@ textarea{
 }
 
 
-#edit-profile.active{
-  display: flex;
-  flex-direction: column;
-}
+
 
 #edit-profile > form{
   display: flex;
@@ -1275,3 +1274,50 @@ textarea{
     font-size: 1.5rem;
 }
 */
+
+.change-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.change-info > p::first-letter {
+
+  text-transform: capitalize;
+  
+}
+
+.change-info > p:first-of-type{
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.change-info > p:last-of-type{
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.old{
+  background-color: #FFF3F3;
+  border: 1px solid #E0B1B1;
+  color: #A31717;
+  padding: 0.5rem;
+  border-radius: 90rem;
+}
+
+.new{
+  background-color: #F3FFF3;
+  border: 1px solid #B1E0B1;
+  color: #17A317;
+  padding: 0.5rem;
+  border-radius: 90rem;
+}
+
+.fa-chevron-right{
+  color: var(--main-color);
+  font-size: 1rem;
+  padding: 0;
+  margin: 0 0.5rem;
+}

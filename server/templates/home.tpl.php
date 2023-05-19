@@ -36,7 +36,7 @@
                     <h3> <?=$ticket->subject?> </h3>
                     <section class="change-info">
                         <p><?=$change->fieldChanged?>:</p>
-                        <p><?=$change->oldValue?> => <?=$change->newValue?></p>
+                        <p><span class="old"><?=$change->oldValue?></span> <i class="fa-solid fa-chevron-right"></i> <span class="new"><?=$change->newValue?></span></p>
                         <p><?=$change->editDate?>, <?=$change->newValue?></p>
                     </section>
                 </article>
