@@ -1426,3 +1426,60 @@ scale: 0.99;
   justify-content: center;
   align-items: center;
 }
+
+/* Styling for dialog boxes */
+dialog {
+  width: 300px;
+  padding: 20px;
+  background-color: #fff;
+  border: 2px solid var(--main-color);
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+dialog form {
+  display: flex;
+  flex-direction: column;
+}
+
+dialog label {
+  margin-bottom: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+dialog input[type="text"] {
+  margin-bottom: 16px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+dialog button {
+  padding: 8px 16px;
+  margin-right: 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+dialog .cancel-button {
+  background-color: #ccc;
+  color: #fff;
+  font-size: 1rem;
+}
+
+dialog .cancel-button:hover {
+  background-color: #999;
+}
+
+dialog .submit-button {
+  background-color: var(--main-color);
+  color: #fff;
+  font-size: 1rem;
+}
+
+dialog .submit-button:hover {
+  background-color: #006699;
+}
