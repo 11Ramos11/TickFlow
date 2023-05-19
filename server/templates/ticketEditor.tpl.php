@@ -2,13 +2,13 @@
 function drawTicketEditor($departments, $priorities, $ticket) { ?>
     <main class="middle-column">
       <section class="title">
-      <h2>Create a New Ticket</h2>
+      <h2>Edit Ticket</h2>
       </section>
       <section>
         <article class="form" id="edit-ticket">
           <form action="../actions/editTicket.action.php" method="post">
             <section class="input-container ic1">
-              <input value=<?= $ticket->subject ?> id="subject" class="input" type="text" placeholder=" " name="subject" />
+              <input value="<?= $ticket->subject ?>" id="subject" class="input" type="text" placeholder=" " name="subject" />
               <article class="cut"></article>
               <label for="subject" class="placeholder">Subject</label>
             </section>
