@@ -87,4 +87,17 @@ class Status {
 
         $query->execute(array($id));
     }
+
+    static public function getStatusID($name){
+
+        $db = getDatabaseConnection();
+
+        $query = $db->prepare("SELECT * FROM Status WHERE name = ?");
+
+        $query->execute(array($name));
+
+        $results = $query->fetchAll();
+
+        return count($results) > 0 ? $results[0]['id'] : null;
+    }
 }

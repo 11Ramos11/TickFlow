@@ -56,7 +56,7 @@
     
 <?php } ?>
 
-<?php function drawDeparmentBar($departments){ ?>
+<?php function drawDeparmentBar($departments, $statuses){ ?>
 
     <aside class="right-sidebar department-sidebar">
         <h2>Departments</h2>
@@ -65,8 +65,9 @@
             <article>
                 <h3><?=$department->name?><h3>
                 <section class="department-ticket-info">
-                    <p>Open Tickets: <span><?=$department->getOpenTickets()?></span></p>
-                    <p>Pending Tickets: <span><?=$department->getPendingTickets()?></span></p>
+                    <?php foreach($statuses as $status){ ?>
+                    <p><?=$status->name?> Tickets: <span><?=$department->getTicketsByStatus($status->id)?></span></p>
+                    <?php } ?>
                 </section>
             </article>
         <?php } ?>

@@ -68,7 +68,7 @@ function drawBriefTicket($ticket) {
 	$assignee = User::getUserById($ticket->assigneeID);
 	$department = Department::getDepatmentByID($ticket->departmentID);
 	$status = Status::getStatusById($ticket->status);
-	$priority = Status::getStatusById($ticket->priority);
+	$priority = Priority::getPriorityById($ticket->priority);
 ?>
 	<aside class="right-sidebar">
 		<article class="ticket-box brief">

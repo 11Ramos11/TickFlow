@@ -2,6 +2,7 @@
 
 include_once(__DIR__.'/../classes/connection.db.php');
 include_once(__DIR__.'/../classes/faq.class.php');
+include_once(__DIR__.'/../classes/status.class.php');
 
 class Department {
     
@@ -17,13 +18,13 @@ class Department {
         return FAQ::getFAQsByDepartment($this->id);
     }
 
-    public function getTicketsByStatus($status){
+    public function getTicketsByStatus($id){
 
         $db = getDatabaseConnection();
 
         $query = $db->prepare("SELECT * FROM Ticket WHERE department = ? AND status = ?");
 
-        $query->execute(array($this->id, $status));
+        $query->execute(array($this->id, $id));
 
         $results = $query->fetchAll();
 
@@ -35,7 +36,7 @@ class Department {
     }
 
     public function getPendingTickets(){
-        return $this->getTicketsByStatus("Pending");
+        return $this->getTicketsByStatus("Unassigned");
     }
 
     public function getClosedTickets(){
