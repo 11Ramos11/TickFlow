@@ -22,7 +22,6 @@
 				<h1>Sign in</h1>
 				<input type="email" name="email" placeholder="Email" />
 				<input type="password" name="pwd" placeholder="Password" />
-				<a href="#">Forgot your password?</a>
 				<button>Sign In</button>
 			</form>
 		</div>

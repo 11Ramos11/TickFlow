@@ -750,29 +750,6 @@ section.reply button:hover {
   text-decoration: underline;
 }
 
-#profile-info {
-  display: none;
-}
-
-#profile-info.active {
-  display: block;
-}
-
-#edit-profile {
-  display: none;
-}
-
-#edit-profile.active {
-  display: block;
-}
-
-#password-editor {
-  display: none;
-}
-
-#password-editor.active {
-  display: block;
-}
 
 #error {
   visibility: hidden; 
@@ -946,9 +923,7 @@ textarea{
   background-color: #06b;
 }
 
-
-
-#profile-info.active {
+.profile {
   display: flex;
   flex-direction: column;
   padding: 1rem;
@@ -956,8 +931,25 @@ textarea{
   background-color: #fff;
   box-shadow: 0px 5px 7px 7px rgb(0 0 0 / 10%);
   justify-content: center;
-  height: 70vh;
   text-align: center;
+}
+
+#profile-info {
+  display: none;
+}
+
+#profile-info.active {
+  display: flex;
+  flex-direction: column;
+}
+
+#edit-profile {
+  display: none;
+}
+
+#edit-profile.active {
+  display: flex;
+  flex-direction: column;
 }
 
 #profile-info.active > #name-info{
@@ -993,18 +985,26 @@ textarea{
 #edit-profile.active{
   display: flex;
   flex-direction: column;
-  padding: 1rem;
-  border-radius: 1rem;
-  background-color: #fff;
-  box-shadow: 0px 5px 7px 7px rgb(0 0 0 / 10%);
-  justify-content: center;
-  height: 70vh;
 }
 
+#edit-profile > form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
+#edit-profile > form:not(.active){
+  display: none;
+}
+
+#edit-profile button {
+
+  font-size: 1rem;
+}
 
 #edit-profile input{
-  margin: 0.5rem 0;
+  width: 100%;
+  margin: 0.5rem 0rem;
   border-radius: 90rem; 
   color: #202020;
   border: 1px solid #d8d8d8;
@@ -1014,6 +1014,7 @@ textarea{
   outline: none;
   transition: border 0.3s ease-in-out;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  box-sizing: border-box;
 }
 
 
@@ -1024,14 +1025,6 @@ textarea{
 #edit-profile input:focus{
   outline: none;
   border: 1px solid var(--main-color);
-}
-
-#edit-profile > form.active{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
 }
 
 #role-editor{
@@ -1045,12 +1038,12 @@ textarea{
   outline: none;
   transition: border 0.3s ease-in-out;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  
 }
 
 #role-editor:hover {
   border: 1px solid var(--main-color);
 }
-
 
 #edit-profile button{
   text-align: center;
@@ -1059,10 +1052,27 @@ textarea{
   margin: 0.5rem auto;
 }
 
-#edit-buttons.active{
+.edit-buttons{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+#change-password-button{
+  display: none;
+} 
+
+#change-password-button.active{
+  display: block;
+}
+
+#password-editor {
+  display: none;
+  margin-top: 1.5rem;
+}
+
+#password-editor.active {
+  display: block;
 }
 
 .right-sidebar > :first-child{
@@ -1178,7 +1188,7 @@ textarea{
 .category {
     margin-bottom: 30px;
     border: 1px solid #ddd;
-    border-radius: 5px;x\
+    border-radius: 5px;
     padding: 15px;
     box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
 }

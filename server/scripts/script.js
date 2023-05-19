@@ -262,7 +262,17 @@ function editProfile(){
             showPassword.addEventListener("click", function() {
                 const passwordEditor = document.getElementById("password-editor");
                 passwordEditor.classList.toggle("active");
-                showPassword.textContent = showPassword.textContent == "Change Password" ? "Cancel" : "Change Password";
+                showPassword.classList.toggle("active");
+            });
+        }
+
+        const cancelPassword = document.getElementById("cancel-password-button");
+
+        if (cancelPassword != null){
+            cancelPassword.addEventListener("click", function() {
+                const passwordEditor = document.getElementById("password-editor");
+                passwordEditor.classList.toggle("active");
+                showPassword.classList.toggle("active");
             });
         }
     }
