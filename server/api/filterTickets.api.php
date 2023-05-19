@@ -16,7 +16,11 @@ if (!isset($_POST['userId'])) {
     return null;
 }
 
-$userID = $_POST['userId'];
+// convert $_POST['userId'] to integer
+$userID = intval($_POST['userId']);
+
+error_log($_POST['userId']);
+error_log($userID);
 
 $user = User::getUserById($userID);
 

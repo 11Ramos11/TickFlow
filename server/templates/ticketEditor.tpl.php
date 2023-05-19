@@ -1,4 +1,4 @@
-<?php function drawStatuses($sessionUser, $statuses, $ticket){ 
+<?php function drawStatus($sessionUser, $statuses, $ticket){ 
   if ($sessionUser->isAdmin() || $sessionUser->isAssignedTo($ticket)) { ?>
     <section class="input-container ic2">
     <select id="status" class="input" name="status">
@@ -16,7 +16,25 @@
 <?php } 
 }?>
 
-<?php function drawTicketEditor(array $departments, array $priorities, array $statuses, Ticket $ticket, User $sessionUser) { ?>
+<?php function drawAssignee($sessionUser, $users, Ticket $ticket){ 
+  if ($sessionUser->isAdmin()) { ?>
+    <section class="input-container ic2">
+    <select id="status" class="input" name="status">
+      <?php foreach ($users as  $user){ ?>
+        <?php if ($user->id === $ticket->assigneeID) { ?>
+          <option value=<?=$user->id?> selected><?=$user->name?></option>
+        <?php } else { ?>
+          <option value=<?=$user->id?>><?=$user->name?></option>
+        <?php } ?>
+      <?php } ?>
+    </select>
+    <article class="cut"></article>
+    <label for="status" class="placeholder">Assignee</label>
+  </section>
+<?php } 
+}?>
+
+<?php function drawTicketEditor(array $departments, array $priorities, array $statuses, array $users, Ticket $ticket, User $sessionUser) { ?>
     <main class="middle-column">
       <section class="title">
       <h2>Edit Ticket</h2>
@@ -47,7 +65,8 @@
               <article class="cut"></article>
               <label for="priority" class="placeholder">Priority</label>
             </section>
-            <?php drawStatuses($sessionUser, $statuses, $ticket); ?>
+            <?php drawStatus($sessionUser, $statuses, $ticket); ?>
+            <?php drawAssignee($sessionUser, $users, $ticket); ?>
             <section class="input-container ic2">
               <select id="department" class="input" name="department">
                 <option value="-1">None</option>
