@@ -389,7 +389,7 @@ section.reply input[type="text"]:focus {
 }
 
 section.reply button {
-  background-color: #0084ff;
+  background-color: #3818D9;
   color: #fff;
   border: none;
   border-radius: 999px;
@@ -523,10 +523,9 @@ section.reply button:hover {
   color: var(--main-color); 
 }
 
-.ticket-info {
-  text-decoration: none;
-  color:#000;
-  margin: 0 2rem;
+.ticket-container {
+  position: relative;
+  margin:  3rem 8rem;
 }
 
 .ticket-box {
@@ -535,8 +534,32 @@ section.reply button:hover {
 }
 
 .ticket-box.dash{
-  margin:  0.5rem 2rem;
+  position: relative;
+  z-index: 2;
   padding: 0.5rem 1.5rem;
+  background-color: white;
+}
+
+.ticket-box.dash:first-child {
+  margin-top: 5rem;
+}
+
+.ticket-container .dropdown-button {
+  z-index: 3;
+  position:absolute;
+  top: 1rem;
+  right: 0rem;
+  background-color: transparent;
+  color: grey;
+  border-style: none;
+  font-size: 1rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.ticket-box.dash .dropdown-button:hover i {
+  color: var(--main-color);
+  transition: color 0.3s ease-in-out;
 }
 
 .ticket-box.brief {
@@ -550,6 +573,11 @@ section.reply button:hover {
   color: var(--main-color);
   align-items: center;
   justify-content: center;
+}
+
+.ticket-box h3 a, .ticket-box h3 a:visited, .ticket-box h3 a:hover, .ticket-box h3 a:active {
+  text-decoration: none;
+  color: var(--main-color)
 }
 
 .ticket-box p{
@@ -708,10 +736,18 @@ section.reply button:hover {
   padding-inline-start: 0;
 }
 
+.user-container {
+  
+  margin: 1rem 2rem;
+  position: relative;
+  width: 35%
+}
+
 .user-card {
   border-radius: 0.6rem;
   box-shadow: 0px 5px 7px 0px rgb(0 0 0 / 10%);
   position: relative;
+  z-index: 2;
   /*
   background: #3456ff;
 	background: -webkit-linear-gradient(to right, #000a3ebb, #3456ff);
@@ -720,14 +756,13 @@ section.reply button:hover {
   */
   background-color: #F7F5FF;
   padding: 1rem 2rem;
-  width: 30%;
-  margin: 1rem 0;
   border: 1px solid #3456ff;
 }
 .fa-ellipsis-vertical{
   color: #3456ff;
 }
-.user-card > button {
+.user-container > button {
+  z-index: 3;
   position: absolute;
   background-color: transparent;  
   border: none;
@@ -735,34 +770,40 @@ section.reply button:hover {
   top: 1rem;
 }
 
-.user-card > button:hover {
+.user-container > button:hover {
   cursor: pointer;
 }
 
-.user-card > .user-dropdown {
-  display: none;
+.dropdown {
+  z-index: 1;
+  display: flex;
+  flex-direction: column; 
   position: absolute;
-  right: -5.3rem;
+  transition: 0.9s;
+  left: 60%;
   top: 0;
   background-color: white;
   padding: 1rem;
   border-radius: 0.6rem;
-  box-shadow: 0px 5px 7px 0px rgb(0 0 0 / 10%);
-  z-index: 999;
 }
 
-.user-card > .user-dropdown.active {
-  display: flex;
-  flex-direction: column; 
+.dropdown.ticket-dropdown {
+  left: 80%;
 }
 
-.user-card > .user-dropdown > a {
+.dropdown.active {
+  left: 100%;
+  box-shadow: 6px 6px 6px 0px rgb(0 0 0 / 10%);
+  transition: 0.7s;
+}
+
+.dropdown > a {
   margin: 0.5rem 0;
   text-decoration: none;
   color: black;
 }
 
-.user-card > .user-dropdown > a:hover {
+.dropdown > a:hover {
   text-decoration: underline;
 }
 
@@ -778,7 +819,7 @@ section.reply button:hover {
   position: fixed; 
   left: 50%;
   transform: translate(-50%, 0%);
-  z-index: 1; 
+  z-index: 5; 
   bottom: 30px; 
 }
 

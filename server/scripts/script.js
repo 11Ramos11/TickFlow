@@ -16,6 +16,7 @@ window.onload = function () {
     showError();
     messagesHandler();
     adminDialog();
+    ticketDropdown();
 };
 
 function createTags() {
@@ -188,29 +189,23 @@ function filterTickets(){
 
 function userDropdown() {
 
-    const userCards = document.getElementsByClassName("user-card");
-    const dropdowns = document.getElementsByClassName("user-dropdown");
-
-
-    if (dropdowns.length == 0){
-        return;
-    }
-
-    function hideUserDropdowns(){
-        for (const dropdown of dropdowns) {
-            dropdown.classList.remove("active");
-        }
-    }
+    const userContainers = document.getElementsByClassName("user-container");
     
-    for (const card of userCards) {
-        card.addEventListener("click", function () {
-            hideUserDropdowns();
-            const dropdown = this.getElementsByClassName("user-dropdown")[0];
+    if (userContainers.length == 0)
+        return;
+
+    for (const userContainer of userContainers) {
+
+        dropdownButton = userContainer.getElementsByClassName("dropdown-button")[0];
+        userDropdown = userContainer.getElementsByClassName("user-dropdown")[0];
+        dropdownButton.addEventListener("click", function () {
+            console.log("click");
+            const dropdown = userContainer.getElementsByClassName("user-dropdown")[0];
             dropdown.classList.toggle("active");
         });
-
-        card.addEventListener("mouseleave", function () {
-            hideUserDropdowns();
+        userContainer.addEventListener("mouseleave", function () {
+            const dropdown = userContainer.getElementsByClassName("user-dropdown")[0];
+            dropdown.classList.remove("active");
         });
     }
 }
@@ -489,4 +484,24 @@ function adminDialog(){
         });
 
     }
+}
+
+function ticketDropdown(){
+
+    const dropdowns = document.getElementsByClassName("ticket-dropdown");
+
+    if (dropdowns.length == 0){
+        return;
+    }
+    const dropdownButtons = document.getElementsByClassName("dropdown-button");
+
+    for (const dropdownButton of dropdownButtons){
+        dropdownButton.addEventListener("click", function() {
+            dropdownButton.parentElement.getElementsByClassName("ticket-dropdown")[0].classList.toggle("active");
+        });
+
+        dropdownButton.parentElement.addEventListener("mouseleave", function() {
+            dropdownButton.parentElement.getElementsByClassName("ticket-dropdown")[0].classList.remove("active");
+        });
+    } 
 }
