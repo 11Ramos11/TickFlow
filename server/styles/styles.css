@@ -31,7 +31,23 @@ body {
   padding: 1rem 2rem;
   display: flex;
   flex-direction: column;
+  height: 95vh;
 }
+
+.middle-column {
+  min-height: 100vh;
+  border-left: solid 1px #ccc;
+  border-right: solid 1px #ccc;
+}
+
+.right-sidebar {
+  background-color: #fff;
+  padding: 0rem 2rem;
+  margin: auto 0;
+  overflow-y: scroll;
+  height: 100vh;
+}
+
 .left-sidebar .profile-button{
   font-size: 1.5rem;
   color: #3F3F3F;
@@ -53,19 +69,7 @@ body {
   transition: 0.3s color ease-in-out;
   color: var(--main-color);
 }
-.middle-column {
-  min-height: 100vh;
-  border-left: solid 1px #ccc;
-  border-right: solid 1px #ccc;
-}
 
-.right-sidebar {
-  background-color: #fff;
-  padding: 0rem 2rem;
-  margin: auto 0;
-  overflow-y: scroll;
-  height: 100vh;
-}
 
 .right-sidebar::-webkit-scrollbar {
   display: none;
