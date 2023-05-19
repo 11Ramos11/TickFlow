@@ -12,6 +12,7 @@
 
 html{
   scroll-behavior: smooth;
+  box-sizing: border-box;
 }
 body {
   margin: 0;
@@ -46,6 +47,10 @@ body {
   margin: auto 0;
   overflow-y: scroll;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .left-sidebar .profile-button{
@@ -183,10 +188,7 @@ nav ul:last-child li a{
   margin-left: 1rem;
 }
 
-.profile{
-  padding: 0;
-  margin: 0;
-}
+
 
 .middle-column::-webkit-scrollbar {
   display: none;
@@ -402,7 +404,7 @@ section.reply button:hover {
 }
 .right-sidebar h2{
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 400;
 }
 
@@ -960,13 +962,14 @@ scale: 0.99;
 .profile {
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  padding: 3rem 4rem;
   border-radius: 1rem;
   background-color: #fff;
   box-shadow: 0px 5px 7px 7px rgb(0 0 0 / 10%);
   justify-content: center;
   text-align: center;
-  height: -webkit-fill-available;
+  /*height: -webkit-fill-available;*/
+  min-height: max-content;
 }
 
 #profile-info {
@@ -1138,9 +1141,7 @@ scale: 0.99;
   justify-content: flex-start;
 }
 
-.top{
-  margin-bottom: 100px;
-}
+
 
 .card {
   border: 1px solid #ccc;
