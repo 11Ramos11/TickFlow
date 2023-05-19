@@ -122,6 +122,7 @@ function filterTickets(){
             const tickets = result["tickets"];
             const statuses = result["statuses"];
             const priorities = result["priorities"];
+            const isAdmin = result["isAdmin"];
 
             console.log(tickets);
 
@@ -130,24 +131,27 @@ function filterTickets(){
                 ticket.priority = priorities[ticket.priority];
             }
 
-            drawTickets(tickets);
+            drawTickets(tickets, isAdmin);
+
+            ticketDropdown();
         });
 
-        function drawTickets(tickets) {
+        function drawTickets(tickets, isAdmin = false) {
             const section = document.querySelector('#tickets');
             section.innerHTML = '';
             for (const ticket of tickets) {
 
-                const link = document.createElement('a');
-                link.classList.add('ticket-info');
-                link.href = 'ticket.php?ticket=' + ticket.id;
+                const container = document.createElement('div');
+                container.classList.add('ticket-container');
 
                 const article = document.createElement('article');
                 article.classList.add('ticket-box');
                 article.classList.add('dash');
 
                 const subject = document.createElement('h3');
-                subject.textContent = ticket.subject;
+                const subjectLink = document.createElement('a');
+                subjectLink.href = `ticket.php?ticket=${ticket.id}`;
+                subjectLink.textContent = ticket.subject;
 
                 const status = document.createElement('p');
                 status.textContent = "Status:";
@@ -175,13 +179,47 @@ function filterTickets(){
                     tags.appendChild(li);
                 }
 
+                /* convert this to javascript in this context
+                <button type=button class="dropdown-button"> 
+						<i class="fa-solid fa-ellipsis-vertical"></i> 
+                </button>
+                <div class="ticket-dropdown dropdown">
+                    <a href="../pages/editTicket.php?ticket=<?=$ticket->id?>">Edit</a>
+                    <a href="../pages/deleteTicket.php?ticket=<?=$ticket->id?>">Delete</a>
+                </div>*/
+
+    
+                if (isAdmin) {
+                    const dropdownButton = document.createElement('button');
+                    dropdownButton.type = 'button';
+                    dropdownButton.classList.add('dropdown-button');
+                    const dropdownIcon = document.createElement('i');
+                    dropdownIcon.classList.add('fa-solid');
+                    dropdownIcon.classList.add('fa-ellipsis-vertical');
+                    dropdownButton.appendChild(dropdownIcon);
+                    const dropdown = document.createElement('div');
+                    dropdown.classList.add('ticket-dropdown');
+                    dropdown.classList.add('dropdown');
+                    const editLink = document.createElement('a');
+                    editLink.href = `editTicket.php?ticket=${ticket.id}`;
+                    editLink.textContent = "Edit";
+                    const deleteLink = document.createElement('a');
+                    deleteLink.href = `deleteTicket.php?ticket=${ticket.id}`;
+                    deleteLink.textContent = "Delete";
+                    dropdown.appendChild(editLink);
+                    dropdown.appendChild(deleteLink);
+                    container.appendChild(dropdownButton);
+                    container.appendChild(dropdown);
+                }
+
+                subject.appendChild(subjectLink);
                 article.appendChild(subject);
                 article.appendChild(status);
                 article.appendChild(priority);
                 article.appendChild(description);
                 article.appendChild(tags);
-                link.appendChild(article);
-                section.appendChild(link);
+                container.appendChild(article);
+                section.appendChild(container);
             }
         }
     }

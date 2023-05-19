@@ -70,7 +70,7 @@ foreach($tickets as $ticket){
 $statuses = Status::getStatusesArray();
 $priorities = Priority::getPrioritiesArray();
 
-$result = array("tickets" => $filteredTickets, "statuses" => $statuses, "priorities" => $priorities);
+$result = array("tickets" => $filteredTickets, "statuses" => $statuses, "priorities" => $priorities, "isAdmin" => $user->isAdmin());
 
 echo json_encode($result);
 

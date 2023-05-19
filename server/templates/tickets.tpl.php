@@ -66,8 +66,8 @@
 						<i class="fa-solid fa-ellipsis-vertical"></i> 
 					</button>
 					<div class="ticket-dropdown dropdown">
-						<a href="../pages/editTicket.php?id=<?=$ticket->id?>">Edit</a>
-						<a href="../pages/deleteTicket.php?id=<?=$ticket->id?>">Delete</a>
+						<a href="../pages/editTicket.php?ticket=<?=$ticket->id?>">Edit</a>
+						<a href="../pages/deleteTicket.php?ticket=<?=$ticket->id?>">Delete</a>
 					</div>
 					<?php } ?>
 					<article class="ticket-box dash">
