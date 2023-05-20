@@ -15,7 +15,21 @@
 		header("Location: authentication.php");
 		exit();
 	}
+	
+	if (!isset($_GET['id'])) {
+        $id = $session->userID;
+    }
+    else {
+        $id = $_GET['id'];
 
+        if (!$session->isAdmin() && $session->userID != $id) {
+            header("Location: personnel.php");
+            exit();
+        }
+    }
+
+    $user = User::getUserById($id);
+	
 	$departments = Department::getDepartments();
 	$statuses = Status::getStatuses();
 	$priorities = Priority::getPriorities();
