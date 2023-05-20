@@ -587,7 +587,7 @@ section.reply button:hover {
 
 .id-tag{
   background-color: #ECECEC;
-  border: 1px solid #7E7E7E;
+  border: 0.0625rem solid #7E7E7E;
   padding: 0.3rem 0.5rem;
   border-radius: 90rem;
   color: #202020;
@@ -1248,26 +1248,26 @@ scale: 0.99;
 }
 
 .department-sidebar article:hover {
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0.125rem 0.125rem 0.625rem rgba(0, 0, 0, 0.1);
 }
 
 .department-sidebar h3 {
   color: var(--main-color);
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 18px;
-  margin-bottom: 10px;
+  letter-spacing: 0.0625rem;
+  font-size: 1.125rem;
+  margin-bottom: 0.625rem;
 }
 
 .department-sidebar p {
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1.6;
   color: #666;
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem;
 }
 
 .main {
-    padding: 20px;
+    padding: 1.25rem;
 }
 
 #administration {
@@ -1277,25 +1277,25 @@ scale: 0.99;
 }
 
 .category {
-    margin-bottom: 30px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 15px;
-    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.875rem;
+    border: 0.0625rem solid #ddd;
+    border-radius: 0.3125rem;
+    padding: 0.9375rem;
+    box-shadow: 0rem 0.0625rem 0.3125rem rgba(0, 0, 0, 0.1);
 }
 
 .category .title {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 0.9375rem;
 }
 
 .category .title h3 {
     margin: 0;
     color: var(--main-color);
     text-transform: uppercase;
-    font-size: 18px;
+    font-size: 1.125rem;
 }
 
 .category .content {
@@ -1307,9 +1307,9 @@ scale: 0.99;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 10px;
+    margin-bottom: 0.625rem;
+    border-bottom: 0.0625rem solid #ddd;
+    padding-bottom: 0.625rem;
 }
 
 .category .content li:last-child {
@@ -1339,9 +1339,9 @@ scale: 0.99;
 
 .category .button{
   margin: 0 0.5rem;
-    padding: 5px 10px;
+    padding: 0.3125rem 0.625rem;
     border: none;
-    border-radius: 3px;
+    border-radius: 0.1875rem;
     background-color: var(--main-color);
     color: #fff;
     cursor: pointer;
@@ -1389,7 +1389,7 @@ scale: 0.99;
 
 .old{
   background-color: #FFF3F3;
-  border: 1px solid #E0B1B1;
+  border: 0.0625rem solid #E0B1B1;
   color: #A31717;
   padding: 0.5rem;
   border-radius: 90rem;
@@ -1397,7 +1397,7 @@ scale: 0.99;
 
 .new{
   background-color: #F3FFF3;
-  border: 1px solid #B1E0B1;
+  border: 0.0625rem solid #B1E0B1;
   color: #17A317;
   padding: 0.5rem;
   border-radius: 90rem;
@@ -1433,7 +1433,7 @@ scale: 0.99;
 .edit-dialog,
 .add-dialog {
   border: none;
-  border-radius: 1rem; /* 10px */
+  border-radius: 1rem;
 }
 
 .remove-dialog form,
@@ -1461,7 +1461,7 @@ scale: 0.99;
   padding: 0.6rem 1.25rem; 
   border: none;
   border-radius: 0.25rem; 
-  font-size: 1rem; /* 16px */
+  font-size: 1rem; 
   cursor: pointer;
   transition: all 0.3s ease;
 }
