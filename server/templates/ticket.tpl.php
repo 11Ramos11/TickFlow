@@ -36,6 +36,7 @@ include_once(__DIR__.'/../classes/status.class.php');
 	$sessionUser = $session->getUser();
 ?>
 	<main class="middle-column"> 
+		<a href="../pages/ticket.php?ticket=<?=$ticket->id?>"><button id="refresh-button" class="button">Refresh</button></a>
         <section id="chat">
             <div id="messages">
                 <?php foreach($messages as $message) { ?>
@@ -63,18 +64,22 @@ include_once(__DIR__.'/../classes/status.class.php');
 <?php } ?>
 
 <?php
-function drawBriefTicket($ticket) { 
-    $author =  User::getUserById($ticket->authorID);
-	if ($ticket->assigneeID != null)
-		$assignee = User::getUserById($ticket->assigneeID);
-	else
-		$assignee = null;
-	$department = Department::getDepatmentByID($ticket->departmentID);
-	$status = Status::getStatusById($ticket->status);
-	$priority = Priority::getPriorityById($ticket->priority);
-?>
+function drawBriefTicket($ticket, $author, $assignee, $department, $status, $priority, $sessionUser, $page) { ?>
 	<aside class="right-sidebar">
-		<article class="ticket-box brief">
+		<section class="manage-ticket"> 
+			<?php if ($page != "ticket") { ?>
+			<a href="../pages/ticket.php?ticket=<?=$ticket->id?>" id="ticket-button" class="button">Ticket</button></a>
+			<?php } ?>
+			<?php if ($page != "edit") { ?>
+			<a href="../pages/editTicket.php?ticket=<?=$ticket->id?>" id="edit-button" class="button">Edit</button></a>
+			<?php } ?>
+			<?php if ($page != "history") { ?>
+				<?php if ($sessionUser->isAgent()) { ?>
+				<a><button id="changes-button" class="button">History</button></a>
+				<?php } ?>
+			<?php } ?>
+		</section>
+		<article class="ticket-card brief">
 			<h3><?=$ticket->subject?></h3>
 			<section id="ticket-info">
 				<p>Created: <span class="date"><?=$ticket->date?></span></p>

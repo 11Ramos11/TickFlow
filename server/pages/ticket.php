@@ -29,8 +29,17 @@
 
     $ticket = Ticket::getTicketByID($ticketId);
 
+	$author =  User::getUserById($ticket->authorID);
+	if ($ticket->assigneeID != null)
+		$assignee = User::getUserById($ticket->assigneeID);
+	else
+		$assignee = null;
+	$department = Department::getDepatmentByID($ticket->departmentID);
+	$status = Status::getStatusById($ticket->status);
+	$priority = Priority::getPriorityById($ticket->priority);
+
 	drawHeader();
 	drawChat($ticket);
-	drawBriefTicket($ticket);
+	drawBriefTicket($ticket, $author, $assignee, $department, $status, $priority, $user, "ticket");
 	drawFooter();
 ?>

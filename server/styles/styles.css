@@ -219,10 +219,12 @@ nav ul:last-child li a {
 
 #tickets-search {
   display: grid;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: [start] auto [middle] 50vh [end];
 }
 
 #tickets-search #tickets {
+
+  grid-row: middle / end;
 
   overflow-y: scroll;
   -ms-overflow-style: none;
@@ -258,6 +260,7 @@ nav ul:last-child li a {
   padding: 0.7rem 1rem;
   font-size: 1.2rem;
   cursor: pointer;
+  text-decoration: none;
 }
 
 
@@ -272,6 +275,14 @@ figure.avatar img {
   height: 3.75rem;
   border-radius: 50%;
   padding: 5%;
+}
+
+#refresh-button {
+  z-index: 799;
+  position: absolute;
+  left: 50%;
+  top: 1rem;
+  transform: translate(-50%, 0%);
 }
 
 /* Style for the chat container */
@@ -315,8 +326,8 @@ figure.avatar img {
 }
 
 
-.msg:last-child {
-  margin-bottom: 0;
+.msg:last-of-type {
+  margin-top: 4rem;
 }
 
 .msg .bubble {
@@ -636,6 +647,15 @@ section.reply button:hover {
 .edit-container .dropdown-button:hover i {
   color: var(--main-color);
   transition: color 0.3s ease-in-out;
+}
+
+.manage-ticket {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-bottom: 1rem;
 }
 
 .ticket-card.brief {

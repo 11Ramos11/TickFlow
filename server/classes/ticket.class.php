@@ -101,7 +101,7 @@ class Ticket {
     
         $result = $results[0];
     
-        $tags = Ticket::getTagsById($result['id']);
+        $tags = Ticket::getTagsById($ticketID);
     
         $ticket = new Ticket(
             $result['id'],

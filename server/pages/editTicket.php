@@ -36,8 +36,17 @@
 	$statuses = Status::getStatuses();
 	$users = User::getAllUsers();
 
+	$author =  User::getUserById($ticket->authorID);
+	if ($ticket->assigneeID != null)
+		$assignee = User::getUserById($ticket->assigneeID);
+	else
+		$assignee = null;
+	$department = Department::getDepatmentByID($ticket->departmentID);
+	$status = Status::getStatusById($ticket->status);
+	$priority = Priority::getPriorityById($ticket->priority);
+
 	drawHeader();
     drawTicketEditor($departments, $priorities, $statuses, $users, $ticket, $sessionUser);
-	drawBriefTicket($ticket);
+	drawBriefTicket($ticket, $author, $assignee, $department, $status, $priority, $sessionUser, "edit");
 	drawFooter();
 ?>
