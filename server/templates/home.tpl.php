@@ -9,15 +9,16 @@
             
             <?php foreach($departments as $department) {
                 $faqs = $department->getFAQs(); ?>
-                <h2> <?=$department->name ?> </h2>
-                <?php foreach($faqs as $faq) { ?>
-                <article class="FAQ card">
-                    <h3 class="question"> <?=$faq->question?> </h2>
-                    <p class="answer"> <?=$faq->answer?> </p>
-                </article>
-            <?php }
-            }
-            ?>
+                <section class="department-faqs">
+                    <h2> <?=$department->name ?> </h2>
+                    <?php foreach($faqs as $faq) { ?>
+                    <article class="FAQ card">
+                        <h3 class="question"> <?=$faq->question?> </h2>
+                        <p class="answer"> <?=$faq->answer?> </p>
+                    </article>
+                    <?php } ?>
+                </section>
+            <?php } ?>
         </section>
     </main>
 
