@@ -1522,6 +1522,11 @@ textarea {
   color: #A31717;
   padding: 0.5rem;
   border-radius: 90rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 12rem;
+  margin-bottom: 1rem;
 }
 
 .new {
@@ -1530,6 +1535,12 @@ textarea {
   color: #17A317;
   padding: 0.5rem;
   border-radius: 90rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 12rem; 
+  margin-top: 1rem;
+
 }
 
 .fa-chevron-down,
