@@ -1444,7 +1444,7 @@ scale: 0.99;
   gap: 0.6rem;
   align-items: center;
   color: var(--main-color);
-  font-weight: bold;
+  font-weight: 400;
 }
 
 .remove-dialog .button-group,
