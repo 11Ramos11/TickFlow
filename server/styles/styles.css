@@ -1636,13 +1636,31 @@ textarea {
   background-color: #5a6268;
 }
 
+
+/*responsividade com o toggle active
+*/
+/* for small devices query */
+
+
+
 .options {
-  display: flex;
+  display: none;
   background-color: transparent;
+  position: absolute;
+  top: 0;
   border: 0;
   padding: 0;
   margin: 0 1rem;
   color: #000;
+  z-index: 10;
+  z-index: 899;
+}
+
+.options.left {
+  left: 0;
+}
+.options.right{
+  right: 0;
 }
 
 .options>.fa-ellipsis-vertical {
@@ -1650,11 +1668,34 @@ textarea {
 }
 
 
-/*responsividade com o toggle active
-*/
+@media screen and (max-width: 1200px) {
+
+  .options {
+    display: block;
+  }
+  .left-sidebar-active {
+    grid-column: 1/2;
+    z-index: 898;
+  }
+
+  .middle-column-active,
+  .right-sidebar-active {
+    grid-row: 1/2;
+  }
+
+  .middle-column-active {
+    grid-column: 2/5;
+  }
+
+  .right-sidebar-active {
+    grid-column: 3/-1;
+    z-index: 898;
+  }
+}
+/*
 .left-sidebar-active {
   grid-column: 1/2;
-  z-index: 999;
+  z-index: 898;
 }
 
 .middle-column-active,
@@ -1668,6 +1709,6 @@ textarea {
 
 .right-sidebar-active {
   grid-column: 3/-1;
-  z-index: 998;
+  z-index: 898;
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
-}
+}*/

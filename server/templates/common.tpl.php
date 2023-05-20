@@ -33,6 +33,8 @@
 </head>
 
 <body>
+	<button class="options left"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+	<button class="options right"><i class="fa-solid fa-ellipsis-vertical"></i></button>
 	<div class="grid-container" id="#main">
 		<div class="left-sidebar">
 			<header class="header">

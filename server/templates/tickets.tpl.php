@@ -8,9 +8,7 @@
 					<h2>My Tickets</h2>
 					<div class = "title">
 						<a href="ticketCreator.php"><button class = "button">New Ticket</button></a>
-						<button class="options"><i class="fa-solid fa-ellipsis-vertical"></i></button>
 					</div>
-
 					<?php } else { ?>
 					<h2><?=$user->name?>'s Tickets</h2>
 					<?php } ?>
@@ -100,25 +98,4 @@
 			</section>
 		</section>
 	</main>
-
-	<script>
-		window.onload = function() {
-
-		const leftSidebar = document.querySelector(".left-sidebar");
-		const middleColumn = document.querySelector(".middle-column");
-		const rightSidebar = document.querySelector(".right-sidebar");
-
-
-		const optionsButton = document.querySelector(".options");
-
-		optionsButton.addEventListener("click", () => {
-		leftSidebar.classList.toggle("left-sidebar-active");
-		middleColumn.classList.toggle("middle-column-active");
-		rightSidebar.classList.toggle("right-sidebar-active");
-		});
-    	//code goes here
-	}
-	
-	</script>
-
 <?php } ?>
