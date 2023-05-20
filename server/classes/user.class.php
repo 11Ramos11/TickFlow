@@ -113,7 +113,7 @@ class User
         return $this->role == "Client";
     }
 
-    public function hasAccessToTicket(int $ticketID)
+    public function hasAccessToTicket($ticketID)
     {
 
         if ($this->isAdmin()) {
@@ -140,7 +140,7 @@ class User
         return $ticket->assigneeID == $this->id;
     } 
 
-    static public function getUserById(int $userID)
+    static public function getUserById($userID)
     {
 
         $db = getDatabaseConnection();
@@ -186,7 +186,7 @@ class User
         return $users;
     }
 
-    static public function getUserByRole(string $role){
+    static public function getUserByRole($role){
 
         $db = getDatabaseConnection();
 

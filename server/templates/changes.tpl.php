@@ -10,7 +10,7 @@
                     <article class="change">
                         <h3> <?=$ticket->subject?> </h3>
                         <section class="change-info">
-                            <p><?=$change->fieldChanged?>:</p>
+                            <p><?= ucfirst($change->fieldChanged) ?>:</p>
                             <p><span class="old"><?=$change->oldValue?></span> <i class="fa-solid fa-chevron-down"></i> <span class="new"><?=$change->newValue?></span></p>
                             <p class="change-time"><?=$change->editDate?>, <?=$change->editTime?></p>
                         </section>
