@@ -203,7 +203,7 @@ nav ul:last-child li a{
 
 #tickets-search{
   display: grid;
-  grid-template-rows: 35vh 65vh;
+  grid-template-rows: 1fr auto;
 }
 
 #tickets-search #tickets {
