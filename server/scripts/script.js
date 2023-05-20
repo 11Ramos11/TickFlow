@@ -558,10 +558,25 @@ function messagesHandler(){
 function adminDialog(){
 
 
-    const removeButtons = document.getElementsByClassName("remove-ticket");
+    const removeTicketButtons = document.getElementsByClassName("remove-ticket");
 
-    if (removeButtons.length != 0){
-        for (const removeButton of removeButtons){
+    if (removeTicketButtons.length != 0){
+        for (const removeButton of removeTicketButtons){
+            removeTicketButtons.addEventListener("click", function() {
+                removeDialog = removeButton.parentElement.parentElement.getElementsByClassName("remove-dialog")[0];
+                console.log(removeDialog);
+                removeDialog.getElementsByClassName("cancel-button")[0].addEventListener("click", function() {
+                    removeDialog.close();
+                });
+                removeDialog.showModal();
+            });
+        }
+    }
+
+    const removeFAQButtons = document.getElementsByClassName("remove-faq");
+
+    if (removeFAQButtons.length != 0){
+        for (const removeButton of removeFAQButtons){
             removeButton.addEventListener("click", function() {
                 removeDialog = removeButton.parentElement.parentElement.getElementsByClassName("remove-dialog")[0];
                 console.log(removeDialog);
