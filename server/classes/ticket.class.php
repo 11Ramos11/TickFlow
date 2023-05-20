@@ -165,6 +165,57 @@ class Ticket {
         $query = $db->prepare("DELETE FROM Ticket WHERE id = ?");
         $query->execute(array($id));
     }
+
+    static public function updateTicket($id, $subject, $description, $priority, $status, $department, $assignee, $tags){
+
+        $db = getDatabaseConnection();
+
+        $query = $db->prepare("UPDATE Ticket SET subject = ?, description = ?, priority = ?, status = ?, department = ?, assignee = ? WHERE id = ?");
+        $query->execute(array($subject, $description, $priority, $status, $department, $assignee, $id));
+
+        $query = $db->prepare("DELETE FROM Ticket_Hashtag WHERE ticket = ?");
+        $query->execute(array($id));
+
+        foreach ($tags as $tag){
+
+            $query = $db->prepare("SELECT * FROM Hashtag WHERE name = ?");
+            $query->execute(array($tag));
+            $results = $query->fetchAll();
+            if (count($results) == 0){
+                $query = $db->prepare("INSERT INTO Hashtag (name) VALUES (?)");
+                $query->execute(array($tag));
+                $query = $db->prepare("SELECT * FROM Hashtag WHERE name = ?");
+                $query->execute(array($tag));
+                $results = $query->fetchAll();
+            }
+            $tagID = $results[0]['id'];
+            $query = $db->prepare("INSERT INTO Ticket_Hashtag (ticket, hashtag) VALUES (?, ?)");
+            $query->execute(array($id, $tagID));
+
+            Ticket::deleteUnusedHashtags();
+        }
+    }
+
+    public static function deleteUnusedHashtags(){
+
+        $db = getDatabaseConnection();
+
+        $query = $db->prepare("SELECT * FROM Hashtag");
+        $query->execute();
+        $results = $query->fetchAll();
+
+        foreach ($results as $result){
+
+            $query = $db->prepare("SELECT * FROM Ticket_Hashtag WHERE hashtag = ?");
+            $query->execute(array($result['id']));
+            $results = $query->fetchAll();
+
+            if (count($results) == 0){
+                $query = $db->prepare("DELETE FROM Hashtag WHERE id = ?");
+                $query->execute(array($result['id']));
+            }
+        }
+    }
 }
 
 ?>
