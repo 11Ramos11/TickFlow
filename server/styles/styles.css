@@ -1027,11 +1027,9 @@ scale: 0.99;
   padding: 3rem 4rem;
   border-radius: 1rem;
   background-color: #fff;
-  box-shadow: 0rem 0.3125rem 0.4375rem 0.4375rem rgb(0 0 0 / 10%);
+  /*box-shadow: 0rem 0.3125rem 0.4375rem 0.4375rem rgb(0 0 0 / 10%);*/
   justify-content: center;
   text-align: center;
-  /*height: -webkit-fill-available;*/
-  min-height: max-content;
 }
 
 #profile-info {
@@ -1082,13 +1080,9 @@ scale: 0.99;
   box-shadow: 0rem 0.3125rem 0.4375rem 0rem rgb(0 0 0 / 10%);
 }
 
-
-
-
 #edit-profile > form{
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
 #edit-profile > form:not(.active){
@@ -1100,12 +1094,16 @@ scale: 0.99;
   font-size: 1rem;
 }
 
+#edit-profile input, #edit-profile select {
+  max-width: 70%;
+  margin: 0.5rem auto;
+}
+
 #edit-profile input{
-  width: 100%;
-  margin: 0.5rem 0rem;
   border-radius: 90rem; 
   color: #202020;
-  border: 0.625rem solid #d8d8d8;
+  /*border: 0.625rem solid #d8d8d8;*/
+  border: 0.0625rem solid #d8d8d8;  
   background-color: #f3f4f6;
   padding: 0.75rem 1rem;
   font-size: 1rem;
@@ -1125,8 +1123,7 @@ scale: 0.99;
   border: 0.0625rem solid var(--main-color);
 }
 
-#role-editor{
-  margin: 0.5rem auto;
+#edit-profile select {
   border-radius: 90rem; 
   color: #202020;
   border: 0.0625rem solid #d8d8d8;
@@ -1136,7 +1133,7 @@ scale: 0.99;
   outline: none;
   transition: border 0.3s ease-in-out;
   box-shadow: 0 0.1875rem 0.625rem rgb(0 0 0 / 0.2);
-  
+  width: fit-content;
 }
 
 #role-editor:hover {
@@ -1170,7 +1167,8 @@ scale: 0.99;
 }
 
 #password-editor.active {
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 
 .right-sidebar > :first-child{
