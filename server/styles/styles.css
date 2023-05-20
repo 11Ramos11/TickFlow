@@ -661,6 +661,7 @@ section.reply button:hover {
 
 .ticket-card p {
   line-height: 1.7rem;
+  word-break: break-all;
 }
 
 .id-tag {
