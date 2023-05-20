@@ -10,7 +10,7 @@
         <?php } ?>
       <?php } ?>
     </select>
-    <article class="cut"></article>
+    <article class="cut">Status</article>
     <label for="status" class="placeholder">Status</label>
   </section>
 <?php } 
@@ -19,7 +19,7 @@
 <?php function drawAssignee($sessionUser, $users, Ticket $ticket){ 
   if ($sessionUser->isAdmin()) { ?>
     <section class="input-container ic2">
-    <select id="status" class="input" name="assignee">
+    <select id="assignee" class="input" name="assignee">
       <?php foreach ($users as  $user){ ?>
         <?php if ($user->id === $ticket->assigneeID) { ?>
           <option value=<?=$user->id?> selected><?=$user->name?></option>
@@ -28,8 +28,8 @@
         <?php } ?>
       <?php } ?>
     </select>
-    <article class="cut"></article>
-    <label for="status" class="placeholder">Assignee</label>
+    <article class="cut">Assignee</article>
+    <label for="assignee" class="placeholder">Assignee</label>
   </section>
 <?php } 
 }?>
@@ -44,12 +44,12 @@
           <form action="../actions/editTicket.action.php" method="post">
             <section class="input-container ic1">
               <input value="<?= $ticket->subject ?>" id="subject" class="input" type="text" placeholder=" " name="subject" />
-              <article class="cut"></article>
+              <article class="cut">Subject</article>
               <label for="subject" class="placeholder">Subject</label>
             </section>
             <section class="input-container ic2">
               <textarea id="description" class="input" placeholder=" " name="description"><?= $ticket->description ?></textarea>
-              <article class="cut"></article>
+              <article class="cut">Description</article>
               <label for="description" class="placeholder">Description</label>
             </section>
             <section class="input-container ic2">
@@ -62,7 +62,7 @@
                   <?php } ?>
                 <?php } ?>
               </select>
-              <article class="cut"></article>
+              <article class="cut">Priority</article>
               <label for="priority" class="placeholder">Priority</label>
             </section>
             <?php drawStatus($sessionUser, $statuses, $ticket); ?>
@@ -78,7 +78,7 @@
                   <?php } ?>
                 <?php } ?>
               </select>
-              <article class="cut"></article>
+              <article class="cut">Department</article>
               <label for="department" class="placeholder">Department</label>
             </section>
             <section class="input-container ic2">

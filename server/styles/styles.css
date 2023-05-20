@@ -946,6 +946,7 @@ textarea{
 .cut {
   z-index: 1;
   background-color: var(--main-color);
+  color: transparent;
   border-radius: 0.625rem;
   height: 1.25rem;
   left: 1.25rem;
@@ -953,7 +954,8 @@ textarea{
   top: 0%;
   transform: translateY(0);
   transition: transform 200ms;
-  width: 16.25rem;
+  font-size: 0.7rem;
+  padding: 0.12rem 0.5rem 0rem;
 }
 
 .cut-short {
@@ -963,10 +965,13 @@ textarea{
 .input:focus ~ .cut,
 .input:not(:placeholder-shown) ~ .cut {
   transform: translateY(-0.625rem);
+  font-weight: 700;
+  padding-right: 0.625rem;
   z-index: 2;
 }
 
 .placeholder {
+  font-size: 1rem;
   color: #808097;
   left: 1.25rem;
   line-height: 0.875rem;
@@ -980,7 +985,7 @@ textarea{
 
 .input:focus ~ .placeholder,
 .input:not(:placeholder-shown) ~ .placeholder {
-  transform: translateY(-1.6875rem) translateX(-0.625rem) scale(0.75);
+  transform: translateY(-1.6875rem) translateX(0.5rem) scale(0.75);
   z-index: 2;
   color: white;
 }
