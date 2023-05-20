@@ -243,14 +243,14 @@ nav ul:last-child li a{
 
 
 figure.avatar img{
-  width: 60px;
-  height: 60px;
+  width: 3.75rem;
+  height: 3.75rem;
   border-radius: 50%;
 }
 
 .profile-img{
-  width: 60px;
-  height: 60px;
+  width: 3.75rem;
+  height: 3.75rem;
   border-radius: 50%;
   padding: 5%;
 }
@@ -261,8 +261,8 @@ figure.avatar img{
   grid-template-rows: [start] 90vh[middle] auto [end];
   grid-template-columns: [start] 1fr [end];
   margin: auto;
-  border-left: solid 1px #ccc;
-  border-right: solid 1px #ccc;
+  border-left: solid 0.0625 #ccc;
+  border-right: solid 0.0625 #ccc;
   min-height: 100vh;
   justify-content: space-between;
 }
