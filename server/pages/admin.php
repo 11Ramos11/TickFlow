@@ -21,5 +21,6 @@
 
 	drawHeader("admin");
 	drawAdmin($departments, $statuses, $priorities);
+	drawProfile($user, $departments);
 	drawFooter();
 ?>
