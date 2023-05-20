@@ -912,7 +912,7 @@ section.reply button:hover {
   position: fixed;
   left: 50%;
   transform: translate(-50%, 0%);
-  z-index: 5;
+  z-index: 999;
   bottom: 1.875rem;
 }
 
@@ -994,7 +994,7 @@ section.reply button:hover {
 }
 
 
-#create-ticket .title {
+#create-form .title {
   color: #eee;
   font-size: 2.25rem;
   font-weight: 600;

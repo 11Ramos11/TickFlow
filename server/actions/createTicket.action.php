@@ -15,16 +15,81 @@ if (!$session->isLoggedIn()){
 
 $user = $session->getUser();
 
-$subject = $_POST['subject'];
-$description = $_POST['description'];
+if (!isset($_POST['subject'])){
+    $session->setError("No subject", "No subject was provided.");
+    header("Location: ../pages/ticketCreator.php");
+    exit();
+}
+
+if (!isset($_POST['description'])){
+    $session->setError("No description", "No description was provided.");
+    header("Location: ../pages/ticketCreator.php");
+    exit();
+}
+
+if (!isset($_POST['priority'])){
+    $session->setError("No priority", "No priority was provided.");
+    header("Location: ../pages/ticketCreator.php");
+    exit();
+}
+
+if (!isset($_POST['tags'])){
+    $session->setError("No tags", "No tags were provided.");
+    header("Location: ../pages/ticketCreator.php");
+    exit();
+}
+
+if (!isset($_POST['department'])){
+    $session->setError("No department", "No department was provided.");
+    header("Location: ../pages/ticketCreator.php");
+    exit();
+}
+
+$subject = trim($_POST['subject']);
+$description = trim($_POST['description']);
 $priority = $_POST['priority'];
-$tags = $_POST['tags'];
+$tags = trim($_POST['tags']);
 $author =  $user->id;
 $creationDate = date("Y-m-d");
 $creationTime = date("H:i:s");
-$department = $_POST['department'];
+$department = trim($_POST['department']);
 
-error_log($priority);
+
+if ($subject == ""){
+    $session->setError("No subject", "No subject was provided.");
+    header("Location: ../pages/ticketCreator.php");
+    exit();
+}
+
+if ($description == ""){
+    $session->setError("No description", "No description was provided.");
+    header("Location: ../pages/ticketCreator.php");
+    exit();
+}
+
+if ($priority == ""){
+    $session->setError("No priority", "No priority was provided.");
+    header("Location: ../pages/ticketCreator.php");
+    exit();
+}
+
+if ($tags == ""){
+    $session->setError("No tags", "No tags were provided.");
+    header("Location: ../pages/ticketCreator.php");
+    exit();
+}
+
+if ($department == ""){
+    $session->setError("No department", "No department was provided.");
+    header("Location: ../pages/ticketCreator.php");
+    exit();
+}
+
+if (strlen($subject) > 255){
+    $session->setError("Subject too long", "The subject is too long.");
+    header("Location: ../pages/ticketCreator.php");
+    exit();
+}
 
 $db = getDatabaseConnection();
 

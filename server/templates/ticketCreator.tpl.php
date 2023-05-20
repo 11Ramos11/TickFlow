@@ -38,9 +38,6 @@ function drawTicketCreator($departments, $priorities) { ?>
               <label for="department" class="placeholder">Department</label>
             </section>
             <section class="input-container ic2">
-              <!---<input type="text" id="tag-input" class="input" name="tag" placeholder=" "/>
-              <article class="cut"></article>
-              <label for="tag-input" class="placeholder">Tags</label>-->
               <ul class="tags-box tags input-tags" id="tag-creator">
                 <input type="text" id="tag-input" name="tag" placeholder="Tags">
               </ul>

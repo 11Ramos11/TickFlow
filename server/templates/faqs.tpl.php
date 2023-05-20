@@ -3,7 +3,7 @@
 <main class="middle-column">
     <section class = "title">
         <h2> FAQs </h2>
-        <a href="ticketCreator.php"><button class = "button">New FAQ</button> </a>
+        <a href="faqCreator.php"><button class = "button">New FAQ</button> </a>
     </section>
     <section id="FAQs">
         <?php foreach($departments as $department) {
@@ -18,7 +18,7 @@
                         <i class="fa-solid fa-ellipsis-vertical"></i> 
                     </button>
                     <div class="faq-dropdown edit-dropdown">
-                        <a class="dropdown-option" href="../pages/editFAQ.php?faq=<?=$faq->id?>">Edit</a>
+                        <a class="dropdown-option" href="../pages/faqEditor.php?id=<?=$faq->id?>">Edit</a>
                         <button class="dropdown-option remove-faq">Delete</a>
                     </div>
                     <?php } ?>
@@ -27,7 +27,7 @@
                         <p class="answer"> <?=$faq->answer?> </p>
                     </article>
                     <dialog class="remove-dialog">
-                        <form action="../actions/action_removeFAQ.php" method="post">
+                        <form action="../actions/removeFAQ.action.php" method="post">
                             <input type="hidden" name="faq" value="<?=$faq->id?>">
                             <p>Are you sure you want to delete this FAQ?</p>
                             <div class="button-group">
