@@ -421,7 +421,7 @@ section.reply button:hover {
 
 #filter-tab > .filter-dropdown {
   background-color: #fff;
-  border: 1px solid #ccc;
+  border: 0.0625rem solid #ccc;
   border-radius: 0.3rem;
   margin: 0.3rem;
   padding: 0.5rem 1rem;
@@ -429,15 +429,15 @@ section.reply button:hover {
   cursor: pointer;
   outline: none;
   transition: border 0.3s ease-in-out;
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  box-shadow: 0 0.1875rem 0.625rem rgb(0 0 0 / 0.2);
 }
 
 #filter-tab > .filter-dropdown:hover {
-  border: 1px solid #000;
+  border: 0.0625 solid #000;
 }
 
 #filter-tab > .filter-dropdown:focus {
-  border: 1px solid #000;
+  border: 0.0625 solid #000;
 }
 
 #filter-tab > .filter-dropdown > option {
