@@ -1074,7 +1074,7 @@ scale: 0.99;
   border-radius: 50%;
   object-fit: cover;
   object-position: center;
-  box-shadow: 0rem 0.3125rem 0.4375rem 0px rgb(0 0 0 / 10%);
+  box-shadow: 0rem 0.3125rem 0.4375rem 0rem rgb(0 0 0 / 10%);
 }
 
 
@@ -1210,7 +1210,7 @@ scale: 0.99;
 }
 
 .card:hover {
-  box-shadow: 4px 4px 8px 0px rgba(0,0,0,0.30);
+  box-shadow: 0.25rem 0.25rem 0.5rem 0rem rgba(0,0,0,0.30);
 }
 
 #FAQs h2 {
@@ -1219,15 +1219,15 @@ scale: 0.99;
 }
 
 .change-card {
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
-  padding: 15px;
-  border-radius: 5px;
+  margin-bottom: 1.25rem;
+  border: 0.0625rem solid #ddd;
+  padding: 0.9375rem;
+  border-radius: 0.3125rem;
   transition: box-shadow 0.3s ease;
 }
 
 .change-card:hover {
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0.125rem 0.125rem 0.625rem rgba(0, 0, 0, 0.1);
 }
 
 .change-card a {
