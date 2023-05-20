@@ -2,7 +2,8 @@
 
 	include_once(__DIR__.'/../classes/session.class.php');
 	include_once(__DIR__.'/../templates/common.tpl.php');
-	include_once(__DIR__.'/../templates/home.tpl.php');
+	include_once(__DIR__.'/../templates/faqs.tpl.php');
+	include_once(__DIR__.'/../templates/changes.tpl.php');
 	include_once(__DIR__.'/../classes/department.class.php');
 	include_once(__DIR__.'/../classes/change.class.php');
 
