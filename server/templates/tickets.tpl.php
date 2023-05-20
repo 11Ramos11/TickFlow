@@ -55,7 +55,6 @@
 					</section>
 				</section>
 			</section>
-			<!----
 			<section id="tickets" class="content">
 				<?php foreach ($tickets as $ticket) { 
 					$status = Status::getStatusById($ticket->status);
@@ -95,7 +94,6 @@
 					</div>
 				<?php } ?>
 			</section>
-			--->
 		</section>
 	</main>
 <?php } ?>

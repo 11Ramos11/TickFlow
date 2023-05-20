@@ -45,7 +45,7 @@ if ($ownership == 'Assigned'){
 } else if ($ownership == 'Author'){
     $tickets = $user->getAuthoredTickets();
 } else if ($ownership == 'All'){
-    if ($id === $session->userID) {
+    if ($userID === $session->userID) {
         $tickets = $user->getAllTickets();
     } else {
         $tickets = array_merge($user->getAuthoredTickets(), $user->getAssignedTickets());

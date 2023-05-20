@@ -91,6 +91,8 @@ function createTags() {
         }
 
         const tag_input = document.getElementById("tag-input");
+        const autoCompleteUL = document.getElementById("auto-complete");
+        
 
         async function showAutoComplete(){
             const _userId = filterTab.dataset.userid;
@@ -109,9 +111,7 @@ function createTags() {
                 alert("Error fetching tags");
                 return;
             }
-
-            const autoCompleteUL = document.getElementById("auto-complete");
-
+                
             autoCompleteUL.innerHTML = "";
 
             for (const tag of tagsResponse) {
@@ -142,6 +142,10 @@ function createTags() {
 
         tag_input.addEventListener("focus", async function() {
             await showAutoComplete();
+        });
+
+        autoCompleteUL.addEventListener("mouseleave", function() {
+            autoCompleteUL.innerHTML = "";
         });
     }
 }

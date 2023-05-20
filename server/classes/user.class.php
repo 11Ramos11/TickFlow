@@ -86,8 +86,9 @@ class User
 
     public function getAllTickets()
     {
-        if ($this->isAdmin())
+        if ($this->isAdmin()){
             return Ticket::getAllTickets();
+        }
         else if ($this->isAgent())
             return array_merge($this->getAuthoredTickets(), $this->getAssignedTickets());
 
