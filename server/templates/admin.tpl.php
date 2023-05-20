@@ -10,8 +10,10 @@
                 <form action=<?=$removeAction?> method="post">
                     <input type="hidden" name="id" value=<?=$item->id?>>
                     <p>Do you want to remove the <?=$itemType?> <?=$item->name?>?<p>
-                    <button type="button" class="cancel-button">No</button>
-                    <button type="Submit">Yes</button>
+                    <div class="button-group">
+                        <button type="button" class="cancel-button">No</button>
+                        <button type="Submit">Yes</button>
+                    </div>
                 </form>
             </dialog>
             <dialog class="edit-dialog">
@@ -19,8 +21,10 @@
                     <input type="hidden" name="id" value=<?=$item->id?>>
                     <label for="name">Change <?=$item->name?> name to:</label>
                     <input type="text" name="name" id="name" required>
-                    <button type="button" class="cancel-button">Cancel</button>
-                    <button type="submit">Submit</button>
+                    <div class="button-group">
+                        <button type="button" class="cancel-button">Cancel</button>
+                        <button type="submit">Submit</button>
+                    </div>
                 </form>
             </dialog>
         </li>
@@ -50,8 +54,10 @@
                     <form action="../actions/createDepartment.action.php" method="post">
                         <label for="name">New Department Name</label>
                         <input type="text" name="name" id="name" required>
-                        <button type="button" class="cancel-button">Cancel</button>
-                        <button type="submit">Add</button>
+                        <div class="button-group">
+                            <button type="button" class="cancel-button">Cancel</button>
+                            <button type="submit">Add</button>
+                        </div>
                     </form>
                 </dialog>
             </article>
@@ -72,8 +78,10 @@
                     <form action="../actions/createStatus.action.php" method="post">
                         <label for="name">New Status Name</label>
                         <input type="text" name="name" id="name" required>
-                        <button type="button" class="cancel-button">Cancel</button>
-                        <button type="submit">Add</button>
+                        <div class="button-group">
+                            <button type="button" class="cancel-button">Cancel</button>
+                            <button type="submit">Add</button>
+                        </div>
                     </form>
                 </dialog>
             </article>
@@ -94,8 +102,10 @@
                     <form action="../actions/createPriority.action.php" method="post">
                         <label for="name">New Priority Name</label>
                         <input type="text" name="name" id="name" required>
-                        <button type="button" class="cancel-button">Cancel</button>
-                        <button type="submit">Add</button>
+                        <div class="button-group">
+                            <button type="button" class="cancel-button">Cancel</button>
+                            <button type="submit">Add</button>
+                        </div>
                     </form>
                 </dialog>
             </article>
