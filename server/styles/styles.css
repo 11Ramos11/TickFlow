@@ -1124,18 +1124,18 @@ scale: 0.99;
   margin: 0.5rem auto;
   border-radius: 90rem; 
   color: #202020;
-  border: 1px solid #d8d8d8;
+  border: 0.0625rem solid #d8d8d8;
   background-color: #f3f4f6;
   padding: 0.75rem 1rem;
   font-size: 1rem;
   outline: none;
   transition: border 0.3s ease-in-out;
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  box-shadow: 0 0.1875rem 0.625rem rgb(0 0 0 / 0.2);
   
 }
 
 #role-editor:hover {
-  border: 1px solid var(--main-color);
+  border: 0.0625rem solid var(--main-color);
 }
 
 #edit-profile button{
