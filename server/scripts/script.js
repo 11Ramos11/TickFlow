@@ -592,7 +592,6 @@ function messagesHandler(){
         for (const message of messages){
             const messageBox = document.createElement("article");
             messageBox.classList.add("msg");
-            console.log(message.author + "|" + userID);
 
             if (userID == ticketAuthorID){
                 if (message.author == userID){
@@ -616,7 +615,7 @@ function messagesHandler(){
             const figure = document.createElement("figure");
             figure.classList.add("avatar");
             const img = document.createElement("img");
-            img.src = "../images/profile.png";
+            img.src = message.authorPhoto;
             img.alt = "Avatar";
             
             const bubble = document.createElement("section");

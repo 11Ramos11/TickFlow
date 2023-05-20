@@ -8,7 +8,7 @@
 	
 		<section class="profile">
 			<section id="profile-info" class="active">
-				<img src="../images/profile.png" alt="Profile Picture" class="edit-profile-img">
+				<img src=<?=$user->getPhoto()?> alt="Profile Picture" class="edit-profile-img">
 				<h2 id="name-info"><?= $user->name ?></h2>
 				<p id="email-info"><?= $user->email ?></p>
 				<p id="role-info"><?= $user->role ?></p>
@@ -16,8 +16,9 @@
 				<button class="button" id="edit-user-button">Edit</button>
 			</section>
 			<section id="edit-profile">
-			<img src="../images/profile.png" alt="Profile Picture" class="edit-profile-img">
-				<form action="../actions/editUser.action.php" method="post" class="active">
+				<img src=<?=$user->getPhoto()?> alt="Profile Picture" class="edit-profile-img">
+				<form action="../actions/editUser.action.php" method="post" class="active" enctype="multipart/form-data">
+					<input type="file" name="image">
 					<input type="hidden" name="id" value="<?=$user->id?>">
 					<input id="name-editor" class="profile-editor" name="name">
 					<input id="email-editor" class="profile-editor" name="email">

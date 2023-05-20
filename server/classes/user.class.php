@@ -140,6 +140,26 @@ class User
         return $ticket->assigneeID == $this->id;
     } 
 
+    public function getPhoto(){
+        $path = "../images/profiles/".$this->id.".png";
+        if (file_exists($path)){
+            return $path;
+        }
+        else {
+            $path = "../images/profiles/".$this->id.".jpg";
+            if (file_exists($path)){
+                return $path;
+            } else {
+                $path = "../images/profiles/".$this->id.".gif";
+                if (file_exists($path)){
+                    return $path;
+                }
+            }
+        }
+
+        return "../images/default.png";
+    }
+
     static public function getUserById($userID)
     {
 

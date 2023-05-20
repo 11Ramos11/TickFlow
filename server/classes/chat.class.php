@@ -2,7 +2,7 @@
 
 class Message {
 
-    public $id, $content, $date, $time, $author, $ticket, $authorName;
+    public $id, $content, $date, $time, $author, $ticket, $authorName, $authorPhoto, $authorID;
 
     public function __construct($id, $content, $date, $time, $author, $ticket){
         $this->id = $id;
@@ -14,6 +14,8 @@ class Message {
 
         $userAuthor = User::getUserByID($author);
         $this->authorName = $userAuthor->name;
+        $this->authorPhoto = $userAuthor->getPhoto();
+        $this->authorID = $userAuthor->id;
     }
 
     public function belongsToUser($user){
