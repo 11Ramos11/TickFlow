@@ -60,17 +60,17 @@
 					$status = Status::getStatusById($ticket->status);
 					$priority = Priority::getPriorityById($ticket->priority);
 					?>
-					<div class="ticket-container">
-					<?php if ($sessionUser->isAdmin()) { ?>
+					<div class="edit-container ticket-container">
+					<?php if ($sessionUser->hasAccessToTicket($ticket->id)) { ?>
 					<button type=button class="dropdown-button"> 
 						<i class="fa-solid fa-ellipsis-vertical"></i> 
 					</button>
-					<div class="ticket-dropdown dropdown">
+					<div class="ticket-dropdown edit-dropdown">
 						<a class="dropdown-option" href="../pages/editTicket.php?ticket=<?=$ticket->id?>">Edit</a>
 						<button class="dropdown-option remove-ticket">Delete</a>
 					</div>
 					<?php } ?>
-					<article class="ticket-box dash">
+					<article class="edit-card ticket-card dash">
 						<h3><a class="ticket-title" href="ticket.php?ticket=<?=$ticket->id?>"><?=$ticket->subject?></a></h3>
 						<p>Status:<span class="status-tag"><?=$status->name?></span></p>
 						<p>Priority:<span class="priority-tag"><?=$priority->name?></span></p>

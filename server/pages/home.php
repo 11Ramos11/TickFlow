@@ -17,8 +17,10 @@
 
 	$changes = Change::getRecentChanges();
 
+	$sessionUser = $session->getUser();
+
 	drawHeader("home");
-	drawFAQS($departments);
+	drawFAQS($departments, $sessionUser);
 	drawRecentChanges($changes);
 	drawFooter();
 ?>

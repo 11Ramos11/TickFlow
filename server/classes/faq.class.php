@@ -3,10 +3,12 @@
 include_once(__DIR__.'/../classes/connection.db.php');
 
 class FAQ {
+    public $id;
     public $question;
     public $answer;
 
-    function __construct($question, $answer) {
+    function __construct($id, $question, $answer) {
+        $this->id = $id;
         $this->question = $question;
         $this->answer = $answer;
     }
@@ -21,7 +23,7 @@ class FAQ {
         $faqs = array();
 
         foreach ($results as $row) {
-            $faqs[] = new FAQ($row['question'], $row['answer']);
+            $faqs[] = new FAQ($row['id'], $row['question'], $row['answer']);
         }
 
         return $faqs;
@@ -38,7 +40,7 @@ class FAQ {
         $faqs = array();
 
         foreach ($results as $row) {
-            $faqs[] = new FAQ($row['question'], $row['answer']);
+            $faqs[] = new FAQ($row['id'], $row['question'], $row['answer']);
         }
 
         return $faqs;

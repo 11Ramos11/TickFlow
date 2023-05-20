@@ -1,21 +1,30 @@
-<?php function drawFAQs($departments){ ?>
+<?php function drawFAQs($departments, $sessionUser){ ?>
 
     <main class="middle-column">
         <section class = "title">
             <h2> FAQs </h2>
         </section>
-        
         <section id="FAQs">
-            
             <?php foreach($departments as $department) {
                 $faqs = $department->getFAQs(); ?>
                 <section class="department-faqs">
                     <h2> <?=$department->name ?> </h2>
                     <?php foreach($faqs as $faq) { ?>
-                    <article class="FAQ card">
-                        <h3 class="question"> <?=$faq->question?> </h2>
-                        <p class="answer"> <?=$faq->answer?> </p>
-                    </article>
+                    <div class="edit-container faq-container container">
+                        <?php if ($sessionUser->isAgent()) { ?>
+                        <button type=button class="dropdown-button"> 
+                            <i class="fa-solid fa-ellipsis-vertical"></i> 
+                        </button>
+                        <div class="faq-dropdown edit-dropdown">
+                            <a class="dropdown-option" href="../pages/editFAQ.php?faq=<?=$faq->id?>">Edit</a>
+                            <button class="dropdown-option remove-ticket">Delete</a>
+                        </div>
+                        <?php } ?>
+                        <article class="edit-card FAQ-card card">
+                            <h3 class="question"> <?=$faq->question?> </h2>
+                            <p class="answer"> <?=$faq->answer?> </p>
+                        </article>
+                    </div>
                     <?php } ?>
                 </section>
             <?php } ?>

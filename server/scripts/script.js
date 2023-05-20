@@ -11,12 +11,12 @@ function remove(element, tag){
 window.onload = function () {
     createTags();
     filterTickets();
-    userDropdown();
     editProfile();
     showError();
     messagesHandler();
     adminDialog();
-    ticketDropdown();
+
+    dropDown();
 };
 
 async function createTags() {
@@ -316,35 +316,6 @@ function filterTickets(){
     }
 };
 
-function autoComplete(){
-
-    
-
-};
-
-function userDropdown() {
-
-    const userContainers = document.getElementsByClassName("user-container");
-    
-    if (userContainers.length == 0)
-        return;
-
-    for (const userContainer of userContainers) {
-
-        dropdownButton = userContainer.getElementsByClassName("dropdown-button")[0];
-        userDropdown = userContainer.getElementsByClassName("user-dropdown")[0];
-        dropdownButton.addEventListener("click", function () {
-            console.log("click");
-            const dropdown = userContainer.getElementsByClassName("user-dropdown")[0];
-            dropdown.classList.toggle("active");
-        });
-        userContainer.addEventListener("mouseleave", function () {
-            const dropdown = userContainer.getElementsByClassName("user-dropdown")[0];
-            dropdown.classList.remove("active");
-        });
-    }
-}
-
 function editProfile(){
 
     const profileInfo = document.getElementById("profile-info");
@@ -586,6 +557,22 @@ function messagesHandler(){
 
 function adminDialog(){
 
+
+    const removeButtons = document.getElementsByClassName("remove-ticket");
+
+    if (removeButtons.length != 0){
+        for (const removeButton of removeButtons){
+            removeButton.addEventListener("click", function() {
+                removeDialog = removeButton.parentElement.parentElement.getElementsByClassName("remove-dialog")[0];
+                console.log(removeDialog);
+                removeDialog.getElementsByClassName("cancel-button")[0].addEventListener("click", function() {
+                    removeDialog.close();
+                });
+                removeDialog.showModal();
+            });
+        }
+    }
+    
     if (document.getElementById("administration") == null){
         return;
     }
@@ -638,36 +625,24 @@ function adminDialog(){
     }
 }
 
-function ticketDropdown(){
+function dropDown(){
 
-    const dropdowns = document.getElementsByClassName("ticket-dropdown");
+    const dropdownContainers = document.getElementsByClassName("edit-container");
 
-    if (dropdowns.length == 0){
+    if (dropdownContainers.length == 0){
         return;
     }
-    const dropdownButtons = document.getElementsByClassName("dropdown-button");
 
-    for (const dropdownButton of dropdownButtons){
+    for (const dropdownContainer of dropdownContainers){
+
+        const dropdownButton = dropdownContainer.getElementsByClassName("dropdown-button")[0];
+
         dropdownButton.addEventListener("click", function() {
-            dropdownButton.parentElement.getElementsByClassName("ticket-dropdown")[0].classList.toggle("active");
+            dropdownContainer.getElementsByClassName("edit-dropdown")[0].classList.toggle("active");
         });
 
         dropdownButton.parentElement.addEventListener("mouseleave", function() {
-            dropdownButton.parentElement.getElementsByClassName("ticket-dropdown")[0].classList.remove("active");
+            dropdownContainer.getElementsByClassName("edit-dropdown")[0].classList.remove("active");
         });
     } 
-
-    const removeButtons = document.getElementsByClassName("remove-ticket");
-
-
-    for (const removeButton of removeButtons){
-        removeButton.addEventListener("click", function() {
-            removeDialog = removeButton.parentElement.parentElement.getElementsByClassName("remove-dialog")[0];
-            console.log(removeDialog);
-            removeDialog.getElementsByClassName("cancel-button")[0].addEventListener("click", function() {
-                removeDialog.close();
-            });
-            removeDialog.showModal();
-        });
-    }
 }

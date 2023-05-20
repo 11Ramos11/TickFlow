@@ -105,7 +105,7 @@ class User
 
     public function isAgent()
     {
-        return $this->role == "Agent";
+        return $this->role == "Agent" || $this->isAdmin();
     }
 
     public function isClient()
