@@ -1050,7 +1050,7 @@ scale: 0.99;
 
 #role-info{
   background-color: #FFF3F3;
-  border: 1px solid #E0B1B1;
+  border: 0.0625rem solid #E0B1B1;
   color: #A31717;
   padding: 0.5rem 1rem;
   border-radius: 90rem; 
@@ -1069,12 +1069,12 @@ scale: 0.99;
 .edit-profile-img {
   display: block;
   margin: 0 auto;
-  width: 150px;
-  height: 150px;
+  width: 9.375rem;
+  height: 9.375rem;
   border-radius: 50%;
   object-fit: cover;
   object-position: center;
-  box-shadow: 0px 5px 7px 0px rgb(0 0 0 / 10%);
+  box-shadow: 0rem 0.3125rem 0.4375rem 0px rgb(0 0 0 / 10%);
 }
 
 
@@ -1100,24 +1100,24 @@ scale: 0.99;
   margin: 0.5rem 0rem;
   border-radius: 90rem; 
   color: #202020;
-  border: 1px solid #d8d8d8;
+  border: 0.625rem solid #d8d8d8;
   background-color: #f3f4f6;
   padding: 0.75rem 1rem;
   font-size: 1rem;
   outline: none;
   transition: border 0.3s ease-in-out;
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  box-shadow: 0 0.1875rem 0.625rem rgb(0 0 0 / 0.2);
   box-sizing: border-box;
 }
 
 
 #edit-profile input:hover {
-  border: 1px solid var(--main-color);
+  border: 0.0625rem solid var(--main-color);
 }
 
 #edit-profile input:focus{
   outline: none;
-  border: 1px solid var(--main-color);
+  border: 0.0625rem solid var(--main-color);
 }
 
 #role-editor{
