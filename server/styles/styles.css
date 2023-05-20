@@ -957,24 +957,24 @@ textarea{
 }
 
 .cut-short {
-  width: 50px;
+  width: 3.125rem;
 }
 
 .input:focus ~ .cut,
 .input:not(:placeholder-shown) ~ .cut {
-  transform: translateY(-10px);
+  transform: translateY(-0.625rem);
   z-index: 2;
 }
 
 .placeholder {
   color: #808097;
-  left: 20px;
-  line-height: 14px;
+  left: 1.25rem;
+  line-height: 0.875rem;
   pointer-events: none;
   position: absolute;
   transform-origin: 0 50%;
   transition: transform 200ms, color 200ms;
-  top: 20px;
+  top: 1.25rem;
   z-index: 2;
 }
 
