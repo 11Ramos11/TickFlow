@@ -6,9 +6,8 @@
 				<section class = "title">
 					<?php if($user->id == $sessionUser->id) { ?>
 					<h2>My Tickets</h2>
-					<div class = "title">
-						<a href="ticketCreator.php"><button class = "button">New Ticket</button></a>
-					</div>
+					<a href="ticketCreator.php"><button class = "button">New Ticket</button></a>
+					
 					<?php } else { ?>
 					<h2><?=$user->name?>'s Tickets</h2>
 					<?php } ?>

@@ -28,13 +28,20 @@ async function responsiveness(){
     const rightSidebar = document.querySelector(".right-sidebar");
 
 
-    const optionsButton = document.querySelector(".options");
+    const optionsButtonRight = document.querySelector(".options-right");
+    const optionsButtonLeft = document.querySelector(".options-left");
 
-    optionsButton.addEventListener("click", () => {
-		leftSidebar.classList.toggle("left-sidebar-active");
+    optionsButtonRight.addEventListener("click", () => {
 		middleColumn.classList.toggle("middle-column-active");
 		rightSidebar.classList.toggle("right-sidebar-active");
+        optionsButtonRight.classList.toggle("options-right-active");
     });
+
+    optionsButtonLeft.addEventListener("click", () => {
+        leftSidebar.classList.toggle("left-sidebar-active");
+        middleColumn.classList.toggle("middle-column-active");
+    });
+
 }
 
 async function createTags() {
