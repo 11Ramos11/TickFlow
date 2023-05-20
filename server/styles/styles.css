@@ -863,7 +863,7 @@ section.reply button:hover {
   flex-direction: column;
   position: absolute;
   transition: 0.9s;
-  left: 60%;
+  left: 10%;
   top: 0;
   background-color: white;
   padding: 0.5rem;
@@ -871,7 +871,7 @@ section.reply button:hover {
 }
 
 .edit-dropdown.ticket-dropdown {
-  left: 80%;
+  left: 10%;
 } 
 
 .edit-dropdown.active {
