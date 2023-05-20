@@ -117,13 +117,21 @@ function createTags() {
             for (const tag of tagsResponse) {
                 const li = document.createElement("li");
                 li.classList.add("auto-complete-tag");
-                li.textContent = tag;
+                const bold = document.createElement("b");
+                bold.textContent = input;
+                console.log(bold);
+                li.appendChild(bold);
+                const remaining = document.createElement("span");
+                remaining.textContent = tag.substring(input.length);
+                console.log(remaining);
+                li.appendChild(remaining);
                 li.addEventListener("click", function() {
                     tags.push(tag);
                     autoCompleteUL.innerHTML = "";
                     tag_input.value = "";
                     addListItem();
                 });
+                console.log(li);
                 autoCompleteUL.appendChild(li);
             }
         };

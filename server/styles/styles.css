@@ -459,9 +459,6 @@ section.reply button:hover {
   padding: 0;
   list-style-type: none;
   max-width: 100%;
-  overflow-x: auto;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
 }
 
 .tags .tag {
@@ -547,6 +544,8 @@ section.reply button:hover {
   box-shadow: 0 0.1975rem 0.625rem rgb(0 0 0 / 0.2);
   white-space: nowrap;
   flex-wrap: nowrap;
+  overflow-x: scroll;
+  
   margin: 0;
 }
 
@@ -559,6 +558,7 @@ section.reply button:hover {
   outline: none;
   font-size: 1rem;
   margin-right: 0.5rem;
+
 }
 
 #loader {
