@@ -831,12 +831,6 @@ section.reply button:hover {
   box-shadow: 0rem 0.3125rem 0.4375rem 0rem rgb(0 0 0 / 10%);
   position: relative;
   z-index: 2;
-  /*
-  background: #3456ff;
-	background: -webkit-linear-gradient(to right, #000a3ebb, #3456ff);
-	background: linear-gradient(to right,#000a3ebb, #3456ff);
-  color: #fff;
-  */
   background-color: #F7F5FF;
   padding: 1rem 2rem;
   border: 0.0625rem solid #3456ff;
@@ -874,7 +868,7 @@ section.reply button:hover {
 
 .edit-dropdown.ticket-dropdown {
   left: 80%;
-}
+} 
 
 .edit-dropdown.active {
   left: 100%;

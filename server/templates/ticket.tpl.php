@@ -35,7 +35,7 @@ include_once(__DIR__.'/../classes/status.class.php');
 	$session = new Session();
 	$sessionUser = $session->getUser();
 ?>
-	<main>
+	<main class="middle-column"> 
         <section id="chat">
             <div id="messages">
                 <?php foreach($messages as $message) { ?>
