@@ -9,12 +9,12 @@ function drawTicketCreator($departments, $priorities) { ?>
           <form action="../actions/createTicket.action.php" method="post">
             <section class="input-container ic1">
               <input id="subject" class="input" type="text" placeholder=" " name="subject" />
-              <article class="cut"></article>
+              <article class="cut">Subject</article>
               <label for="subject" class="placeholder">Subject</label>
             </section>
             <section class="input-container ic2">
               <textarea id="description" class="input" placeholder=" " name="description"></textarea>
-              <article class="cut"></article>
+              <article class="cut">Description</article>
               <label for="description" class="placeholder">Description</label>
             </section>
             <section class="input-container ic2">
@@ -23,7 +23,7 @@ function drawTicketCreator($departments, $priorities) { ?>
                   <option value=<?=$priority->id?>><?=$priority->name?></option>
                 <?php } ?>
               </select>
-              <article class="cut"></article>
+              <article class="cut">Priority</article>
               <label for="priority" class="placeholder">Priority</label>
             </section>
       
@@ -34,7 +34,7 @@ function drawTicketCreator($departments, $priorities) { ?>
                   <option value="<?= $department->id; ?>"><?= $department->name; ?></option>
                 <?php } ?>
               </select>
-              <article class="cut"></article>
+              <article class="cut">Department</article>
               <label for="department" class="placeholder">Department</label>
             </section>
             <section class="input-container ic2">

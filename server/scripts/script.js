@@ -75,6 +75,67 @@ function createTags() {
             tagsInput.value = tags;
         });
     }
+
+    const filterTab = document.getElementById("filter-tab");
+
+    if (filterTab != null) {
+
+        async function getTags(data) {
+            return fetch('../api/autoCompleteTags.api.php', {
+                method: 'post',
+                headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: encodeForAjax(data)
+            });
+        }
+
+        const tag_input = document.getElementById("tag-input");
+
+        async function showAutoComplete(){
+            const _userId = filterTab.dataset.userid;
+            let input = tag_input.value;
+
+            input = input.trim();
+
+            const response = await getTags({
+                userId: _userId,
+                input: input
+            });
+
+            const tagsResponse = await response.json();
+
+            if (tagsResponse == null) {
+                alert("Error fetching tags");
+                return;
+            }
+
+            const autoCompleteUL = document.getElementById("auto-complete");
+
+            autoCompleteUL.innerHTML = "";
+
+            for (const tag of tagsResponse) {
+                const li = document.createElement("li");
+                li.classList.add("auto-complete-tag");
+                li.textContent = tag;
+                li.addEventListener("click", function() {
+                    tags.push(tag);
+                    autoCompleteUL.innerHTML = "";
+                    tag_input.value = "";
+                    addListItem();
+                });
+                autoCompleteUL.appendChild(li);
+            }
+        };
+
+        tag_input.addEventListener("keyup", async function() {
+            await showAutoComplete();
+        });
+
+        tag_input.addEventListener("focus", async function() {
+            await showAutoComplete();
+        });
+    }
 }
 
 function encodeForAjax(data) {
@@ -239,6 +300,12 @@ function filterTickets(){
             }
         }
     }
+};
+
+function autoComplete(){
+
+    
+
 };
 
 function userDropdown() {

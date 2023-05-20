@@ -485,12 +485,56 @@ section.reply button:hover {
 }
 
 .tags-searchbar {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: [start]5fr [middle] 1fr [end];
+  grid-template-rows: [start] 1fr [middle] auto [end];
   align-items: center;
   justify-content: space-between;
   padding: 1rem 2rem;
   margin-bottom: 1rem;
+}
+
+#tag-creator {
+  grid-column: start / middle;
+  grid-row: start / middle;
+}
+
+#search-button {
+  grid-column: middle / end;
+  grid-row: start / middle;
+  margin-left: 2rem;
+}
+
+#auto-complete {
+  grid-column: start / middle;
+  grid-row: middle / end;
+  z-index: 3;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+#auto-complete > li {
+
+  background-color: var(--main-color);
+  color: white;
+  padding: 0.6rem;
+}
+
+#auto-complete > li:hover {
+  background-color: #846cff;
+  transition: background-color 0.3s ease-in-out;
+  color: white;
+  cursor: pointer;
+}
+
+#auto-complete > li:first-child {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+#auto-complete > li:last-child {
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
 }
 
 .tags-box {
@@ -503,6 +547,7 @@ section.reply button:hover {
   box-shadow: 0 0.1975rem 0.625rem rgb(0 0 0 / 0.2);
   white-space: nowrap;
   flex-wrap: nowrap;
+  margin: 0;
 }
 
 .tags-box #tag-input {
@@ -1194,11 +1239,6 @@ scale: 0.99;
 .max-width{
   max-width: 31.25rem;
   margin-right: 1rem;
-}
-
-.flex-fix{
-  display: flex;
-  justify-content: flex-start;
 }
 
 .card {

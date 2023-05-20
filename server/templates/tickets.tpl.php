@@ -46,14 +46,16 @@
 						<?php } ?>
 					</section>
 					<section class="tags-searchbar flex-fix">
-						<ul class="tags-box tags max-width" id="tag-creator">
+						<ul class="tags-box tags" id="tag-creator">
 							<input type="text" id="tag-input" name="tag" placeholder="Tag">
 						</ul>
-						<input type="hidden" id="tags" name="tags" value="">
+						<ul id="auto-complete"></ul>
 						<button class="button" id="search-button">Search</button>
+						<input type="hidden" id="tags" name="tags" value="">
 					</section>
 				</section>
 			</section>
+			<!----
 			<section id="tickets" class="content">
 				<?php foreach ($tickets as $ticket) { 
 					$status = Status::getStatusById($ticket->status);
@@ -93,6 +95,7 @@
 					</div>
 				<?php } ?>
 			</section>
+			--->
 		</section>
 	</main>
 <?php } ?>

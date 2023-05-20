@@ -65,7 +65,10 @@ include_once(__DIR__.'/../classes/status.class.php');
 <?php
 function drawBriefTicket($ticket) { 
     $author =  User::getUserById($ticket->authorID);
-	$assignee = User::getUserById($ticket->assigneeID);
+	if ($ticket->assigneeID != null)
+		$assignee = User::getUserById($ticket->assigneeID);
+	else
+		$assignee = null;
 	$department = Department::getDepatmentByID($ticket->departmentID);
 	$status = Status::getStatusById($ticket->status);
 	$priority = Priority::getPriorityById($ticket->priority);
