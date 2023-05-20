@@ -661,7 +661,7 @@ section.reply button:hover {
 
 .ticket-card p {
   line-height: 1.7rem;
-  word-break: break-all;
+  word-break: break-word;
 }
 
 .id-tag {
@@ -958,6 +958,7 @@ section.reply button:hover {
 .user-card>.email {
   font-size: 1rem;
   color: #303030;
+  word-break: break-word;
 }
 
 .form {
