@@ -596,7 +596,7 @@ section.reply button:hover {
 
 .status-tag{
   background-color: #F0F9F2;
-  border: 1px solid #6DC580;
+  border: 0.0625rem solid #6DC580;
   padding: 0.3rem 0.5rem;
   border-radius: 90rem;
   color: #03781D;
@@ -607,14 +607,14 @@ section.reply button:hover {
   
   /* colors for normal priority 
   background-color: #FFF5E5;
-  border: 1px solid #FFB366;
+  border: 0.0625rem solid #FFB366;
   color: #FF8000;
 
   */
 
   /* colors for urgent priority */
   background-color: #FFF3F3;
-  border: 1px solid #E0B1B1;
+  border: 0.0625rem solid #E0B1B1;
   color: #A31717;
   padding: 0.3rem 0.5rem;
   border-radius: 90rem;
@@ -631,13 +631,13 @@ section.reply button:hover {
 .ticket-info-sidebar{
   margin: 1.5rem auto;
   padding: 1rem 2rem;
-  box-shadow: 0px 5px 7px 5px rgb(0 0 0 / 10%);
+  box-shadow: 0rem 0.3125rem 0.4375rem 0.3125rem rgb(0 0 0 / 10%);
   border-radius: 0.6rem;
 }
 .assigned-to{
   margin: 1.5rem auto;
   padding: 1rem 2rem;
-  box-shadow: 0px 5px 7px 5px rgb(0 0 0 / 10%);
+  box-shadow: 0rem 0.3125rem 0.4375rem 0.3125rem rgb(0 0 0 / 10%);
   border-radius: 0.6rem;
 }
 
