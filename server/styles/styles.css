@@ -1426,3 +1426,59 @@ scale: 0.99;
   justify-content: center;
   align-items: center;
 }
+
+/* Styling for dialog boxes */
+.remove-dialog, .edit-dialog, .add-dialog {
+  border: none;
+  border-radius: 10px;
+}
+
+.remove-dialog form, .edit-dialog form, .add-dialog form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  color: var(--main-color);
+  font-weight: bold;
+}
+
+.remove-dialog .button-group, .edit-dialog .button-group, .add-dialog .button-group {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.remove-dialog button, .edit-dialog button, .add-dialog button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.remove-dialog button[type=submit], 
+.edit-dialog button[type=submit], 
+.add-dialog button[type=submit] {
+  background-color: var(--main-color);
+  color: #fff;
+}
+
+.remove-dialog button[type=submit]:hover, 
+.edit-dialog button[type=submit]:hover, 
+.add-dialog button[type=submit]:hover {
+  background-color: var(--main-color);
+}
+
+.remove-dialog button[type=button], 
+.edit-dialog button[type=button], 
+.add-dialog button[type=button] {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+.remove-dialog button[type=button]:hover, 
+.edit-dialog button[type=button]:hover, 
+.add-dialog button[type=button]:hover {
+  background-color: #5a6268;
+}
