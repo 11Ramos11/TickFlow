@@ -1236,14 +1236,14 @@ scale: 0.99;
 }
 
 .department-sidebar {
-  padding: 20px;
+  padding: 1.25rem;
 }
 
 .department-sidebar article {
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
-  padding: 15px;
-  border-radius: 5px;
+  margin-bottom: 1.25rem;
+  border: 0.0625rem solid #ddd;
+  padding: 0.9375rem;
+  border-radius: 0.3125rem;
   transition: box-shadow 0.3s ease;
 }
 
