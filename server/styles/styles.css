@@ -905,8 +905,8 @@ textarea{
 .input {
   position: relative;
   background-color: #ffffff;
-  border-radius: 12px;
-  border: 1px solid #d8d8d8;
+  border-radius: 0.75rem;
+  border: 0.0625rem solid #d8d8d8;
   box-sizing: border-box;
   color: #333;
   font-size: 1.2rem;
@@ -915,14 +915,14 @@ textarea{
   padding: 1rem;
   width: 100%;
   transition: border 0.3s ease-in-out;
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  box-shadow: 0 0.1875rem 0.625rem rgb(0 0 0 / 0.2);
   z-index: 2;
 }
 
 .input-tags{
   background-color: #ffffff;
-  border-radius: 12px;
-  border: 1px solid #d8d8d8;
+  border-radius: 0.75rem;
+  border: 0.0625rem solid #d8d8d8;
   box-sizing: border-box;
   color: #333;
   font-size: 1.2rem;
@@ -931,29 +931,29 @@ textarea{
 
   width: 100%;
   transition: border 0.3s ease-in-out;
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2 );
+  box-shadow: 0  0.1875rem 0.625rem rgb(0 0 0 / 0.2 );
 }
 
 .input-tags:hover, .input-tags:focus{
-  border: 1px solid var(--main-color);
+  border: 0.0625rem solid var(--main-color);
 }
 
 .input:hover,
 .input:focus {
-  border: 1px solid var(--main-color);
+  border: 0.0625rem solid var(--main-color);
 }
 
 .cut {
   z-index: 1;
   background-color: var(--main-color);
-  border-radius: 10px;
-  height: 20px;
-  left: 20px;
+  border-radius: 0.625rem;
+  height: 1.25rem;
+  left: 1.25rem;
   position: absolute; 
   top: 0%;
   transform: translateY(0);
   transition: transform 200ms;
-  width: 260px;
+  width: 16.25rem;
 }
 
 .cut-short {
