@@ -8,7 +8,7 @@
             </div>
             <dialog class="remove-dialog">
                 <form action=<?=$removeAction?> method="post">
-                    <input type="hidden" name="id" value=<?=$item->id?>>
+                    <input type="hidden" class="input" name="id" value=<?=$item->id?>>
                     <p>Do you want to remove the <?=$itemType?> <?=$item->name?>?<p>
                     <div class="button-group">
                         <button type="button" class="cancel-button">No</button>
@@ -18,9 +18,9 @@
             </dialog>
             <dialog class="edit-dialog">
                 <form action=<?=$editAction?> method="post">
-                    <input type="hidden" name="id" value=<?=$item->id?>>
+                    <input type="hidden" class="input" name="id" value=<?=$item->id?>>
                     <label for="name">Change <?=$item->name?> name to:</label>
-                    <input type="text" name="name" id="name" required>
+                    <input type="text" class="input" name="name" id="name" required>
                     <div class="button-group">
                         <button type="button" class="cancel-button">Cancel</button>
                         <button type="submit">Submit</button>
@@ -53,7 +53,7 @@
                 <dialog class="add-dialog">
                     <form action="../actions/createDepartment.action.php" method="post">
                         <label for="name">New Department Name</label>
-                        <input type="text" name="name" id="name" required>
+                        <input type="text" class="input" name="name" id="name" required>
                         <div class="button-group">
                             <button type="button" class="cancel-button">Cancel</button>
                             <button type="submit">Add</button>
@@ -77,7 +77,7 @@
                 <dialog class="add-dialog">
                     <form action="../actions/createStatus.action.php" method="post">
                         <label for="name">New Status Name</label>
-                        <input type="text" name="name" id="name" required>
+                        <input type="text" class="input" name="name" id="name" required>
                         <div class="button-group">
                             <button type="button" class="cancel-button">Cancel</button>
                             <button type="submit">Add</button>
@@ -101,7 +101,7 @@
                 <dialog class="add-dialog">
                     <form action="../actions/createPriority.action.php" method="post">
                         <label for="name">New Priority Name</label>
-                        <input type="text" name="name" id="name" required>
+                        <input type="text" class="input" name="name" id="name" required>
                         <div class="button-group">
                             <button type="button" class="cancel-button">Cancel</button>
                             <button type="submit">Add</button>
