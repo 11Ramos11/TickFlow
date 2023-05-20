@@ -1189,7 +1189,7 @@ scale: 0.99;
 }
 
 .max-width{
-  max-width: 500px;
+  max-width: 31.25rem;
   margin-right: 1rem;
 }
 
@@ -1201,11 +1201,11 @@ scale: 0.99;
 
 
 .card {
-  border: 1px solid #ccc;
-  padding: 20px;
-  margin: 10px;
-  box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.20);
-  border-radius: 5px;
+  border: 0.0625rem solid #ccc;
+  padding: 1.25rem;
+  margin: 0.0625rem;
+  box-shadow: 0.125rem 0.125rem 0.375rem 0rem  rgba(0,0,0,0.20);
+  border-radius: 0.3125rem;
   transition: 0.3s;
 }
 
