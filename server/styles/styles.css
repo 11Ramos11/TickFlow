@@ -38,8 +38,8 @@ body {
 
 .middle-column {
   min-height: 100vh;
-  border-left: solid 1px #ccc;
-  border-right: solid 1px #ccc;
+  border-left: solid 0.0625px #ccc;
+  border-right: solid 0.0625px #ccc;
 }
 
 .right-sidebar {
