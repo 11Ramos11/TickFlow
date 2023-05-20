@@ -219,7 +219,7 @@ nav ul:last-child li a {
 
 #tickets-search {
   display: grid;
-  grid-template-rows: [start] auto [middle] 50vh [end];
+  grid-template-rows: [start] auto [middle] 60vh [end];
 }
 
 #tickets-search #tickets {

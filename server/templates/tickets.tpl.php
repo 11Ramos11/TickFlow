@@ -7,7 +7,6 @@
 					<?php if($user->id == $sessionUser->id) { ?>
 					<h2>My Tickets</h2>
 					<a href="ticketCreator.php"><button class = "button">New Ticket</button></a>
-					
 					<?php } else { ?>
 					<h2><?=$user->name?>'s Tickets</h2>
 					<?php } ?>
@@ -68,6 +67,7 @@
 					</button>
 					<div class="ticket-dropdown edit-dropdown">
 						<a class="dropdown-option" href="../pages/editTicket.php?ticket=<?=$ticket->id?>">Edit</a>
+						<a class="dropdown-option" href="../pages/history.php?ticket=<?=$ticket->id?>">History</a>
 						<button class="dropdown-option remove-ticket">Delete</a>
 					</div>
 					<?php } ?>

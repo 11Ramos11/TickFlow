@@ -63,7 +63,9 @@ CREATE TABLE Change (
     editDate DATE NOT NULL,
     editTime TIME NOT NULL,
     ticket INTEGER NOT NULL,
-    FOREIGN KEY (ticket) REFERENCES Ticket(id)
+    author INTEGER,
+    FOREIGN KEY (ticket) REFERENCES Ticket(id),
+    FOREIGN KEY (author) REFERENCES User(id)
 );
 
 DROP TABLE IF EXISTS Message;
@@ -119,10 +121,6 @@ AFTER DELETE ON Ticket_Hashtag
 BEGIN
     DELETE FROM Hashtag WHERE id = OLD.hashtag AND NOT EXISTS (SELECT * FROM Ticket_Hashtag WHERE hashtag = OLD.hashtag);
 END;
-
-
-/* trigger to update Change table when ticket is updated only if value is different.
-For foreign keys, it should get the name of the referenced table */
 
 CREATE TRIGGER IF NOT EXISTS update_ticket
 AFTER UPDATE ON Ticket
@@ -230,14 +228,14 @@ INSERT INTO Message (content, creationDate, creationTime, author, ticket) VALUES
   ('Thank you!', '2023-04-22', '10:31:04', 4, 1),
   ('Servers are already back up and running!', '2023-04-22', '17:47:12', 10, 7);
 
-INSERT INTO Change (fieldChanged, newValue, oldValue, editDate, editTime, ticket) VALUES 
-  ('status', 'Closed', 'Open', '2023-04-22', '17:47:12', 7),
-  ('status', 'Open', 'Pending', '2023-04-22', '10:29:21', 1),
-  ('status', 'Open', 'Pending', '2023-04-22', '12:46:04', 3),
-  ('status', 'Open', 'Pending', '2023-04-22', '14:12:53', 4),
-  ('status', 'Open', 'Pending', '2023-04-22', '16:36:12', 6),
-  ('status', 'Open', 'Pending', '2023-04-23', '09:12:43', 8),
-  ('status', 'Open', 'Pending', '2023-04-23', '13:23:17', 10);
+INSERT INTO Change (fieldChanged, newValue, oldValue, editDate, editTime, ticket, author) VALUES 
+  ('status', 'Closed', 'Open', '2023-04-22', '17:47:12', 7, 1),
+  ('status', 'Open', 'Pending', '2023-04-22', '10:29:21', 1, 1),
+  ('status', 'Open', 'Pending', '2023-04-22', '12:46:04', 3, 1),
+  ('status', 'Open', 'Pending', '2023-04-22', '14:12:53', 4, 1),
+  ('status', 'Open', 'Pending', '2023-04-22', '16:36:12', 6, 1),
+  ('status', 'Open', 'Pending', '2023-04-23', '09:12:43', 8, 1),
+  ('status', 'Open', 'Pending', '2023-04-23', '13:23:17', 10, 1);
 
 INSERT INTO Hashtag (id, name) VALUES 
   (1, 'printer'),

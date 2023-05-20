@@ -4,15 +4,16 @@ include_once(__DIR__.'/../classes/connection.db.php');
 
 class Change {
 
-    public $fieldChanged, $newValue, $oldValue, $editDate, $editTime, $ticketID;
+    public $fieldChanged, $newValue, $oldValue, $editDate, $editTime, $ticketID, $author;
 
-    public function __construct($fieldChanged, $newValue, $oldValue, $editDate, $editTime, $ticketID){
+    public function __construct($fieldChanged, $newValue, $oldValue, $editDate, $editTime, $ticketID, $author){
         $this->fieldChanged = $fieldChanged;
         $this->newValue = $newValue;
         $this->oldValue = $oldValue;
         $this->editDate = $editDate;
         $this->editTime = $editTime;
         $this->ticketID = $ticketID;            
+        $this->author = $author;
     }
 
     public function getTicket(){
@@ -38,7 +39,8 @@ class Change {
                 $row['oldValue'], 
                 $row['editDate'], 
                 $row['editTime'],
-                $row['ticket']
+                $row['ticket'],
+                $row['author']
             );
         }
 

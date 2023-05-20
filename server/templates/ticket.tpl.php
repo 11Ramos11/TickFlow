@@ -75,7 +75,7 @@ function drawBriefTicket($ticket, $author, $assignee, $department, $status, $pri
 			<?php } ?>
 			<?php if ($page != "history") { ?>
 				<?php if ($sessionUser->isAgent()) { ?>
-				<a><button id="changes-button" class="button">History</button></a>
+				<a href="../pages/history.php?ticket=<?=$ticket->id?>"><button id="changes-button" class="button">History</button></a>
 				<?php } ?>
 			<?php } ?>
 		</section>
