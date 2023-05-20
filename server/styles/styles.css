@@ -369,15 +369,15 @@ section.reply {
 
 section.reply input[type="text"] {
   flex: 1;
-  border: 1px solid #d8d8d8;
-  border-radius: 999px;
+  border: 0.0625rem solid #d8d8d8;
+  border-radius: 62.4375rem;
   background-color: #f3f4f6;
   padding: 0.75rem 1rem;
   font-size: 1rem;
   margin-right: 0.5rem;
   outline: none;
   transition: border 0.3s ease-in-out;
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  box-shadow: 0 0.1875rem 0.625rem rgb(0 0 0 / 0.2);
 }
 section.reply input[type="text"]:hover {
   border: 1px solid #000;
