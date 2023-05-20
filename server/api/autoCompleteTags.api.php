@@ -9,12 +9,10 @@ if (!$session->isLoggedIn()){
     header('Location: ../pages/authentication.php');
 }
 
-$tagInput = $_POST['input'];
-
 $db = getDatabaseConnection();
 
-$query = $db->prepare('SELECT * FROM Hashtag WHERE name LIKE ?');
-$query->execute(array($tagInput.'%'));
+$query = $db->prepare('SELECT * FROM Hashtag');
+$query->execute();
 $results = $query->fetchAll();
 
 $tags = array();

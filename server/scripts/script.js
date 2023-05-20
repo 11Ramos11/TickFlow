@@ -19,7 +19,7 @@ window.onload = function () {
     ticketDropdown();
 };
 
-function createTags() {
+async function createTags() {
 
     const tagsList = document.getElementById("tag-creator");
     const input = document.getElementById("tag-input");
@@ -80,41 +80,38 @@ function createTags() {
 
     if (filterTab != null) {
 
-        async function getTags(data) {
+        async function getTags() {
             return fetch('../api/autoCompleteTags.api.php', {
                 method: 'post',
                 headers: {
                   'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: encodeForAjax(data)
+                }
             });
         }
 
         const tag_input = document.getElementById("tag-input");
         const autoCompleteUL = document.getElementById("auto-complete");
         
+        const response = await getTags();
+
+        const allTags = await response.json();
+
+        if (allTags == null) {
+            alert("Error fetching tags");
+            return;
+        }
+
+        console.log(allTags);
 
         async function showAutoComplete(){
-            const _userId = filterTab.dataset.userid;
             let input = tag_input.value;
-
             input = input.trim();
 
-            const response = await getTags({
-                userId: _userId,
-                input: input
-            });
-
-            const tagsResponse = await response.json();
-
-            if (tagsResponse == null) {
-                alert("Error fetching tags");
-                return;
-            }
+            let filteredTags = allTags.filter(tag => tag.toLowerCase().startsWith(input.toLowerCase()));
                 
             autoCompleteUL.innerHTML = "";
 
-            for (const tag of tagsResponse) {
+            for (const tag of filteredTags) {
                 const li = document.createElement("li");
                 li.classList.add("auto-complete-tag");
                 const bold = document.createElement("b");
@@ -130,6 +127,7 @@ function createTags() {
                     autoCompleteUL.innerHTML = "";
                     tag_input.value = "";
                     addListItem();
+                    tag_input.focus();
                 });
                 console.log(li);
                 autoCompleteUL.appendChild(li);
@@ -137,6 +135,10 @@ function createTags() {
         };
 
         tag_input.addEventListener("keyup", async function() {
+            await showAutoComplete();
+        });
+
+        tag_input.addEventListener("click", async function() {
             await showAutoComplete();
         });
 
