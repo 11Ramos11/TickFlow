@@ -213,7 +213,6 @@ function filterTickets(){
             const tickets = result["tickets"];
             const statuses = result["statuses"];
             const priorities = result["priorities"];
-            const isAdmin = result["isAdmin"];
 
             console.log(tickets);
 
@@ -222,95 +221,193 @@ function filterTickets(){
                 ticket.priority = priorities[ticket.priority];
             }
 
-            drawTickets(tickets, isAdmin);
+            drawTickets(tickets);
 
-            ticketDropdown();
+            dropDown();
+            adminDialog();
         });
 
-        function drawTickets(tickets, isAdmin = false) {
+        function drawTickets(tickets) {
             const section = document.querySelector('#tickets');
             section.innerHTML = '';
             for (const ticket of tickets) {
 
-                const container = document.createElement('div');
-                container.classList.add('ticket-container');
+                /* convert this html to js */
 
-                const article = document.createElement('article');
-                article.classList.add('ticket-box');
-                article.classList.add('dash');
-
-                const subject = document.createElement('h3');
-                const subjectLink = document.createElement('a');
-                subjectLink.href = `ticket.php?ticket=${ticket.id}`;
-                subjectLink.textContent = ticket.subject;
-
-                const status = document.createElement('p');
-                status.textContent = "Status:";
-                const statusTag = document.createElement('span');
-                statusTag.classList.add('status-tag');
-                statusTag.textContent = ticket.status;
-                status.appendChild(statusTag);
-
-                const priority = document.createElement('p');
-                priority.textContent = "Priority:";
-                const priorityTag = document.createElement('span');
-                priorityTag.classList.add('priority-tag');
-                priorityTag.textContent = ticket.priority;
-                priority.appendChild(priorityTag);
-
-                const description = document.createElement('p');
-                description.textContent = ticket.description;
-
-                const tags = document.createElement('ul');
-                tags.classList.add('tags');
-                for (const tag of ticket.tags) {
-                    const li = document.createElement('li');
-                    li.classList.add('tag');
-                    li.textContent = tag;
-                    tags.appendChild(li);
-                }
-
-                /* convert this to javascript in this context
-                <button type=button class="dropdown-button"> 
+                /* <div class="edit-container ticket-container">
+					<?php if ($sessionUser->hasAccessToTicket($ticket->id)) { ?>
+					<button type=button class="dropdown-button"> 
 						<i class="fa-solid fa-ellipsis-vertical"></i> 
-                </button>
-                <div class="ticket-dropdown dropdown">
-                    <a href="../pages/editTicket.php?ticket=<?=$ticket->id?>">Edit</a>
-                    <a href="../pages/deleteTicket.php?ticket=<?=$ticket->id?>">Delete</a>
-                </div>*/
+					</button>
+					<div class="ticket-dropdown edit-dropdown">
+						<a class="dropdown-option" href="../pages/editTicket.php?ticket=<?=$ticket->id?>">Edit</a>
+						<button class="dropdown-option remove-ticket">Delete</a>
+					</div>
+					<?php } ?>
+					<article class="edit-card ticket-card dash">
+						<h3><a class="ticket-title" href="ticket.php?ticket=<?=$ticket->id?>"><?=$ticket->subject?></a></h3>
+						<p>Status:<span class="status-tag"><?=$status->name?></span></p>
+						<p>Priority:<span class="priority-tag"><?=$priority->name?></span></p>
+						<p>	<?=$ticket->description?> </p>
+						<ul class="tags">
+							<?php foreach ($ticket->tags as $tag) { ?>
+							<li class="tag"> <?= $tag ?> </li>
+							<?php } ?>
+						</ul>
+					</article>
+					<dialog class="remove-dialog">
+						<form action="../actions/removeTicket.action.php" method="post">
+							<input type="hidden" name="id" value="<?=$ticket->id?>">
+							<p>Are you sure you want to remove this ticket?</p>
+							<div class="dialog-buttons">
+								<button type="button" class="button cancel-button" value="Cancel">Cancel</button>
+								<button type="submit" class="button">Remove</button>
+							</div>
+						</form>
+					</dialog>
+					</div> */
 
-    
-                if (isAdmin) {
-                    const dropdownButton = document.createElement('button');
-                    dropdownButton.type = 'button';
-                    dropdownButton.classList.add('dropdown-button');
-                    const dropdownIcon = document.createElement('i');
-                    dropdownIcon.classList.add('fa-solid');
-                    dropdownIcon.classList.add('fa-ellipsis-vertical');
-                    dropdownButton.appendChild(dropdownIcon);
-                    const dropdown = document.createElement('div');
-                    dropdown.classList.add('ticket-dropdown');
-                    dropdown.classList.add('dropdown');
-                    const editLink = document.createElement('a');
-                    editLink.href = `editTicket.php?ticket=${ticket.id}`;
-                    editLink.textContent = "Edit";
-                    const deleteLink = document.createElement('a');
-                    deleteLink.href = `deleteTicket.php?ticket=${ticket.id}`;
-                    deleteLink.textContent = "Delete";
-                    dropdown.appendChild(editLink);
-                    dropdown.appendChild(deleteLink);
-                    container.appendChild(dropdownButton);
-                    container.appendChild(dropdown);
+                const ticketContainer = document.createElement("div");
+                ticketContainer.classList.add("edit-container");
+                ticketContainer.classList.add("ticket-container");
+
+                const dropdownButton = document.createElement("button");
+                dropdownButton.type = "button";
+                dropdownButton.classList.add("dropdown-button");
+
+                const dropdownIcon = document.createElement("i");
+                dropdownIcon.classList.add("fa-solid");
+                dropdownIcon.classList.add("fa-ellipsis-vertical");
+
+                dropdownButton.appendChild(dropdownIcon);
+
+                const ticketDropdown = document.createElement("div");
+                ticketDropdown.classList.add("ticket-dropdown");
+                ticketDropdown.classList.add("edit-dropdown");
+
+                const editOption = document.createElement("a");
+                editOption.classList.add("dropdown-option");
+                editOption.href = "../pages/editTicket.php?ticket=" + ticket.id;
+                editOption.textContent = "Edit";
+
+                const removeOption = document.createElement("button");
+                removeOption.classList.add("dropdown-option");
+                removeOption.classList.add("remove-ticket");
+                removeOption.textContent = "Delete";
+
+                ticketDropdown.appendChild(editOption);
+                ticketDropdown.appendChild(removeOption);
+
+                ticketContainer.appendChild(dropdownButton);
+                ticketContainer.appendChild(ticketDropdown);
+
+                const ticketCard = document.createElement("article");
+                ticketCard.classList.add("edit-card");
+                ticketCard.classList.add("ticket-card");
+                ticketCard.classList.add("dash");
+
+                const ticketTitle = document.createElement("h3");
+                const ticketTitleLink = document.createElement("a");
+                ticketTitleLink.classList.add("ticket-title");
+                ticketTitleLink.href = "ticket.php?ticket=" + ticket.id;
+                ticketTitleLink.textContent = ticket.subject;
+                ticketTitle.appendChild(ticketTitleLink);
+                                
+                const statusTag = document.createElement("span");
+                statusTag.classList.add("status-tag");
+                statusTag.textContent = ticket.status;
+                                
+                const priorityTag = document.createElement("span");
+                priorityTag.classList.add("priority-tag");
+                priorityTag.textContent = ticket.priority;
+                                
+                const statusParagraph = document.createElement("p");
+                statusParagraph.textContent = "Status:";
+                statusParagraph.appendChild(statusTag);
+                                
+                const priorityParagraph = document.createElement("p");
+                priorityParagraph.textContent = "Priority:";
+                priorityParagraph.appendChild(priorityTag);
+
+                const descriptionParagraph = document.createElement("p");
+                descriptionParagraph.textContent = ticket.description;
+                                
+                const tagsList = document.createElement("ul");
+                tagsList.classList.add("tags");
+                                
+                for (const tag of ticket.tags) {
+
+                    const tagItem = document.createElement("li");
+                    tagItem.classList.add("tag");
+                    tagItem.textContent = tag;
+                    tagsList.appendChild(tagItem);
                 }
 
-                subject.appendChild(subjectLink);
-                article.appendChild(subject);
-                article.appendChild(status);
-                article.appendChild(priority);
-                article.appendChild(description);
-                article.appendChild(tags);
-                container.appendChild(article);
-                section.appendChild(container);
+                ticketCard.appendChild(ticketTitle);
+                ticketCard.appendChild(statusParagraph);
+                ticketCard.appendChild(priorityParagraph);
+                ticketCard.appendChild(descriptionParagraph);
+                ticketCard.appendChild(tagsList);
+
+                const removeDialog = document.createElement("dialog");
+                removeDialog.classList.add("remove-dialog");
+
+                const removeForm = document.createElement("form");
+                removeForm.action = "../actions/removeTicket.action.php";
+                removeForm.method = "post";
+
+                const removeId = document.createElement("input");
+                removeId.type = "hidden";
+                removeId.name = "id";
+                removeId.value = ticket.id;
+
+                const removeParagraph = document.createElement("p");
+                removeParagraph.textContent = "Are you sure you want to remove this ticket?";
+
+                const dialogButtons = document.createElement("div");
+                dialogButtons.classList.add("dialog-buttons");
+
+                const cancelButton = document.createElement("button");
+                cancelButton.type = "button";
+                cancelButton.classList.add("button");
+                cancelButton.classList.add("cancel-button");
+                cancelButton.value = "Cancel";
+                cancelButton.textContent = "Cancel";
+
+                const removeButton = document.createElement("button");
+                removeButton.type = "submit";
+                removeButton.classList.add("button");
+                removeButton.textContent = "Remove";
+
+                dialogButtons.appendChild(cancelButton);
+                dialogButtons.appendChild(removeButton);
+
+                removeForm.appendChild(removeId);
+                removeForm.appendChild(removeParagraph);
+                removeForm.appendChild(dialogButtons);
+
+                removeDialog.appendChild(removeForm);
+
+                ticketContainer.appendChild(ticketCard);
+                ticketContainer.appendChild(removeDialog);
+
+                section.appendChild(ticketContainer);
+
+                const removeTicket = document.querySelector(".remove-ticket");
+                const removeDialogs = document.querySelectorAll(".remove-dialog");
+                const cancelButtons = document.querySelectorAll(".cancel-button");
+
+                for (const cancelButton of cancelButtons) {
+                    cancelButton.addEventListener("click", function() {
+                        cancelButton.parentElement.parentElement.close();
+                    });
+                }
+
+                if (removeTicket != null) {
+                    removeTicket.addEventListener("click", function() {
+                        removeTicket.parentElement.parentElement.querySelector(".remove-dialog").showModal();
+                    });    
+                }        
             }
         }
     }
@@ -562,7 +659,7 @@ function adminDialog(){
 
     if (removeTicketButtons.length != 0){
         for (const removeButton of removeTicketButtons){
-            removeTicketButtons.addEventListener("click", function() {
+            removeButton.addEventListener("click", function() {
                 removeDialog = removeButton.parentElement.parentElement.getElementsByClassName("remove-dialog")[0];
                 console.log(removeDialog);
                 removeDialog.getElementsByClassName("cancel-button")[0].addEventListener("click", function() {
