@@ -20,7 +20,7 @@
                 <form action=<?=$editAction?> method="post">
                     <input type="hidden" class="input" name="id" value=<?=$item->id?>>
                     <label for="name">Change <?=$item->name?> name to:</label>
-                    <input type="text" class="input" name="name" id="name" required>
+                    <input type="text" class="input" name="name" id="name" required value="<?=$item->name?>">
                     <div class="button-group">
                         <button type="button" class="cancel-button">Cancel</button>
                         <button type="submit">Submit</button>

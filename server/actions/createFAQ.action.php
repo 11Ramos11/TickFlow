@@ -42,6 +42,12 @@ $question = trim($_POST["question"]);
 $answer = trim($_POST["answer"]);
 $department = $_POST["department"];
 
+if (preg_match('/[\'^£$%&*}{@#~><>|=_+¬-]/', $question)){
+    $session->setError("Invalid question", "The question contains invalid characters.");
+    header("Location: ../pages/faqCreator.php");
+    exit();
+}
+
 if ($question == ""){
     $session->setError("No question", "No question was provided.");
     header("Location: ../pages/faqCreator.php");
@@ -56,6 +62,18 @@ if (strlen($question) > 255){
 
 if ($answer == ""){
     $session->setError("No answer", "No answer was provided.");
+    header("Location: ../pages/faqCreator.php");
+    exit();
+}
+
+if (!preg_match('/^[a-zA-Z0-9 .,!?\s]+$/i', $answer)){
+    $session->setError("Invalid answer", "The answer contains invalid characters.");
+    header("Location: ../pages/faqCreator.php");
+    exit();
+}
+
+if (!is_numeric($department)){
+    $session->setError("Invalid department", "The department is invalid.");
     header("Location: ../pages/faqCreator.php");
     exit();
 }

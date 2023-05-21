@@ -1800,7 +1800,26 @@ textarea {
 
 }
 
-@media screen and (max-width: 900px) {
+@media only screen and (max-width: 900px) {
+
+  #administration{
+    display: flex;
+    flex-direction: column; 
+    padding: 0 3rem;
+  }
+
+  .edit-dropdown{
+    left: 30%;
+  }
+
+  .edit-dropdown.ticket-dropdown{
+    left: 60%;
+  }
+
+  .personnel-dropdown{
+    left: 10%;
+  }
+
 
   #administration{
     display: flex;

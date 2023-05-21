@@ -76,6 +76,27 @@ if ($department == -1){
     exit();
 }
 
+if (!preg_match('/^[a-zA-Z0-9.,!?\s]+$/i', $question)){
+    
+    $session->setError("Invalid question", "The question contains invalid characters.");
+    header("Location: ../pages/faqEditor.php?id=$id");
+    exit();
+}
+
+error_log($question);
+
+if (!preg_match('/^[a-zA-Z0-9.,!?\s]+$/i', $answer)){
+    $session->setError("Invalid question", "The question contains invalid characters.");
+    header("Location: ../pages/faqEditor.php?id=$id");
+    exit();
+}
+
+if (!is_numeric($department)){
+    $session->setError("Invalid department", "The department is invalid.");
+    header("Location: ../pages/faqEditor.php?id=$id");
+    exit();
+}
+
 FAQ::editFAQ($id, $question, $answer, $department);
 
 $session->setSuccess("FAQ edited", "The FAQ was successfully edited.");

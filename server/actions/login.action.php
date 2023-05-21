@@ -11,8 +11,14 @@ $email = $_POST['email'];
 $password = $_POST['pwd'];
 
 if ($email == "" || $password == ""){
-    $session->setError("Login", "All fields are required");
+    $session->setError("Login", "Please fill both fields");
     header("Location: ../pages/authentication.php");
+    exit();
+}
+
+if (!preg_match("/^[a-zA-Z0-9.]+@tickflow.com$/i", $email)){
+    $session->setError("Login", "Email must be a valid TickFlow email (user.name123@tickflow.com)");
+    header("Location: ../pages/dashboard.php?id=$id");  
     exit();
 }
 

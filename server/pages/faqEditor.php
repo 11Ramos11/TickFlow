@@ -14,7 +14,9 @@
 		exit();
 	}
 
-	if (!$session->getUser()->isAgent()){
+	$sessionUser = $session->getUser();
+
+	if (!$sessionUser->isAgent()){
 		$session->setError("No permissions", "You do not have permissions to create FAQs.");
 		header("Location: home.php");
 		exit();

@@ -19,18 +19,18 @@ function authenticationSwitch() {
 }
 
 function showError() {
-    // Get the snackbar DIV
-    const error = document.getElementById("error");
+  
+    const snackbar = document.getElementsByClassName("snack-bar")[0];
 	const container = document.getElementById('container');
   
-   if (error == null){
+   if (snackbar == null){
         return;
     }
-    error.classList.toggle("show");
+    snackbar.classList.toggle("show");
     
-    setTimeout(function(){ error.classList.toggle("show"); }, 4000);
+    setTimeout(function(){ snackbar.classList.toggle("show"); }, 4000);
 
-	if (error.dataset.code == "Register"){
+	if (snackbar.dataset.code == "Register"){
 		container.classList.add("right-panel-active");
 	}
   }

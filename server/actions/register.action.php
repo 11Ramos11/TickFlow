@@ -6,14 +6,14 @@ $session = new Session();
 
 $name = $_POST["name"];
 
-if (!preg_match("/^[a-zA-Z\sãÃ]+$/", $name)){
+if (!preg_match("/^[a-zA-Z\s]+$/i", $name)){
     $session->setError("Register", "Name must only contain letters and spaces");
     header("Location: ../pages/authentication.php");
     exit();
 }
 $email = $_POST["email"];
 
-if (!preg_match("/^[a-zA-Z0-9]+@tickflow.com+$/", $email)){
+if (!preg_match("/^[a-zA-Z0-9.]+@tickflow.com$/i", $email)){
     $session->setError("Register", "Email must be a valid TickFlow email (@tickflow.com)");
     header("Location: ../pages/authentication.php");
     exit();
