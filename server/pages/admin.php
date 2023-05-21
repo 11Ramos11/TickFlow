@@ -34,7 +34,7 @@
     );
     $scripter = new Scripter("admin.js", $handlers);
 
-	drawHeader("admin", $scripter);
+	drawHeader("admin", $scripter, "admin");
 	drawAdmin($departments, $statuses, $priorities, $session);
 	drawDeparmentBar($departments, $statuses);
 	drawFooter();

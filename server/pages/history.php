@@ -44,7 +44,7 @@
 
 	$scripter = new Scripter();
 
-	drawHeader("none", $scripter);
+	drawHeader("none", $scripter, "history");
 	drawChanges($ticket, $changes);
 	drawBriefTicket($ticket, $author, $assignee, $department, $status, $priority, $user, "history");
 	drawFooter();

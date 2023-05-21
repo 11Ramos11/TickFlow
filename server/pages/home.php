@@ -30,7 +30,7 @@
 	);
 	$scripter = new Scripter("home.js", $handlers);
 
-	drawHeader("home", $scripter);
+	drawHeader("home", $scripter, "home");
 	drawFAQS($departments, $sessionUser);
 	drawRecentChanges($changes);
 	drawFooter();

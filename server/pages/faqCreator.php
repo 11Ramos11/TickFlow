@@ -31,7 +31,7 @@ use function PHPSTORM_META\map;
 
 	$scripter = new Scripter();
 
-	drawHeader("home", $scripter);
+	drawHeader("home", $scripter, "faqCreator");
 	drawFAQcreator($departments, $session);
 	drawRecentChanges($changes);
 	drawFooter();

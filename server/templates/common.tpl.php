@@ -1,4 +1,4 @@
-<?php function drawHeader($activeNavButton="none", Scripter $scripter) { 
+<?php function drawHeader($activeNavButton="none", Scripter $scripter, $style) { 
 
     $home = "";
     $tickets = "";
@@ -29,7 +29,7 @@
 
 <head>
 	<title>TickFlow</title>
-	<link rel="stylesheet" type="text/css" href="../styles/history.css">
+	<link rel="stylesheet" type="text/css" href="../styles/<?=$style?>.css">
 	<script src="https://kit.fontawesome.com/a45efa4a81.js" crossorigin="anonymous"></script>
 	<?php $scripter->loadScripts(); ?>
 </head>

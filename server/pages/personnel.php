@@ -32,7 +32,7 @@
 
     $scripter = new Scripter("personnel.js", $handlers);
 
-    drawHeader("personnel", $scripter);
+    drawHeader("personnel", $scripter, "personnel");
     drawPersonnel($admins, $agents, $clients);
     drawDeparmentBar($departments, $statuses);
     drawFooter();

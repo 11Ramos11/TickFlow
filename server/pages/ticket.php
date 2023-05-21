@@ -49,7 +49,7 @@
 
 	$departments = Department::getDepartments();
 
-	drawHeader("none", $scripter);
+	drawHeader("none", $scripter, "ticket");
 	drawChat($ticket, $departments);
 	drawBriefTicket($ticket, $author, $assignee, $department, $status, $priority, $user, "ticket");
 	drawFooter();

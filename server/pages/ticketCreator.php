@@ -24,7 +24,7 @@
 	);
 	$scripter = new Scripter("ticketCreator.js", $handlers);
 
-	drawHeader("none", $scripter);
+	drawHeader("none", $scripter, "ticketCreator");
 	drawTicketCreator($departments, $priorities, $session);
 	drawFooter();
 ?>

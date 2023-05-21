@@ -59,7 +59,7 @@
     );
     $scripter = new Scripter("dashboard.js", $handlers);
 
-	drawHeader($header, $scripter);
+	drawHeader($header, $scripter, "dashboard");
     drawTickets($departments, $tickets, $user, $session->getUser(), $statuses, $priorities, $session);
 	drawProfile($user, $departments);
 	drawFooter();
