@@ -101,9 +101,9 @@ async function createTags() {
         });
     }
 
-    const filterTab = document.getElementById("filter-tab");
+    const autoCompleteUL = document.getElementById("auto-complete");
 
-    if (filterTab != null) {
+    if (autoCompleteUL != null) {
 
         async function getTags() {
             return fetch('../api/autoCompleteTags.api.php', {
@@ -115,7 +115,6 @@ async function createTags() {
         }
 
         const tag_input = document.getElementById("tag-input");
-        const autoCompleteUL = document.getElementById("auto-complete");
         
         const response = await getTags();
 
@@ -171,8 +170,17 @@ async function createTags() {
             await showAutoComplete();
         });
 
-        autoCompleteUL.addEventListener("mouseleave", function() {
-            autoCompleteUL.innerHTML = "";
+        document.addEventListener("click", function(e) {
+            if (!tag_input.contains(e.target)) {
+                autoCompleteUL.innerHTML = "";
+            }
+        });
+
+        document.addEventListener("keyup", function(e) {
+
+            if (e.code == "Escape") {
+                autoCompleteUL.innerHTML = "";
+            }
         });
     }
 }
@@ -592,7 +600,6 @@ function messagesHandler(){
         for (const message of messages){
             const messageBox = document.createElement("article");
             messageBox.classList.add("msg");
-            console.log(message.author + "|" + userID);
 
             if (userID == ticketAuthorID){
                 if (message.author == userID){
@@ -616,7 +623,7 @@ function messagesHandler(){
             const figure = document.createElement("figure");
             figure.classList.add("avatar");
             const img = document.createElement("img");
-            img.src = "../images/profile.png";
+            img.src = message.authorPhoto;
             img.alt = "Avatar";
             
             const bubble = document.createElement("section");

@@ -20,6 +20,8 @@
 			break;
     }
 
+	$session = new Session();
+	$isAdmin = $session->isAdmin();
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +49,9 @@
 					<li class="<?=$home?>"><a href="home.php"><i class="fa-solid fa-house nav-button"></i>Home</a></li>
 					<li class="<?=$tickets?>"> <a href="dashboard.php"><i class="fa-solid fa-ticket nav-button"></i>Dashboard</a></li>
 					<li class="<?=$personnel?>"><a href="personnel.php"><i class="fa-solid fa-users nav-button"></i>Personnel</a></li>
+					<?php if ($isAdmin) {  ?>
 					<li class="<?=$admin?>"><a href="admin.php"><i class="fa-solid fa-sliders"></i> Administration 	</a></li>
+					<?php } ?>
 				</ul>
 			</nav>
 			<a href="../actions/logout.action.php" class = "profile-button">Logout<i class="fa-solid fa-arrow-right-from-bracket"></i></a>

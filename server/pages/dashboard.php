@@ -24,7 +24,13 @@
         $id = $_GET['id'];
 
         if (!$session->isAdmin() && $session->userID != $id) {
-            header("Location: personnel.php");
+            $session->setError("No perms", "You don't have permission to access that page.");
+            header("Location: dashboard.php");
+            exit();
+        }
+
+        if ($id == $session->userID) {
+            header("Location: dashboard.php");
             exit();
         }
     }

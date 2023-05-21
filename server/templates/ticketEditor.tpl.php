@@ -86,6 +86,7 @@
                 <input type="text" id="tag-input" name="tag" placeholder="Tags">
               </ul>
               <input type="hidden" id="tags" name="tags" value=<?=implode(',',$ticket->tags)?>>
+              <ul id="auto-complete"></ul>
             </section>
             <input name="id" type="hidden" value="<?= $ticket->id ?>">      
             <button type="text" class="submit" id="submit-button">Submit</button>

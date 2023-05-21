@@ -3,6 +3,7 @@
 	include_once(__DIR__.'/../classes/session.class.php');
 	include_once(__DIR__.'/../templates/common.tpl.php');
 	include_once(__DIR__.'/../templates/admin.tpl.php');
+	include_once(__DIR__.'/../templates/personnel.tpl.php');
 	include_once(__DIR__.'/../templates/profile.tpl.php');
 	include_once(__DIR__.'/../classes/department.class.php');
 	include_once(__DIR__.'/../classes/priority.class.php');
@@ -15,20 +16,12 @@
 		header("Location: authentication.php");
 		exit();
 	}
-	
-	if (!isset($_GET['id'])) {
-        $id = $session->userID;
-    }
-    else {
-        $id = $_GET['id'];
 
-        if (!$session->isAdmin() && $session->userID != $id) {
-            header("Location: personnel.php");
-            exit();
-        }
-    }
-
-    $user = User::getUserById($id);
+	if (!$session->isAdmin()){
+		$session->setError("No perms", "You don't have permission to access that page.");
+		header("Location: dashboard.php");
+		exit();
+	}
 	
 	$departments = Department::getDepartments();
 	$statuses = Status::getStatuses();
@@ -36,6 +29,6 @@
 
 	drawHeader("admin");
 	drawAdmin($departments, $statuses, $priorities);
-	drawProfile($user, $departments);
+	drawDeparmentBar($departments, $statuses);
 	drawFooter();
 ?>

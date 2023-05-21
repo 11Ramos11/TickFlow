@@ -10,7 +10,7 @@
         </div>
         <?php } ?>
         <div class="edit-card user-card">
-            <img src="../images/profile.png" alt="Profile" class="profile-img"></img>
+            <img src=<?=$user->getPhoto()?> alt="Profile" class="profile-img"></img>
             <p class="username"><?=$user->name?></p>
             <p class="email"><?=$user->email?></p>
         </div>

@@ -7,7 +7,6 @@
 					<?php if($user->id == $sessionUser->id) { ?>
 					<h2>My Tickets</h2>
 					<a href="ticketCreator.php"><button class = "button">New Ticket</button></a>
-					
 					<?php } else { ?>
 					<h2><?=$user->name?>'s Tickets</h2>
 					<?php } ?>
@@ -36,7 +35,6 @@
 								<option value=<?=$priority->id?>><?=$priority->name?></option>
 							<?php } ?>
 						</select>
-						<?php if ($user->role != "Client") { ?> 
 						<select id="department-filter" class="filter-dropdown">
 							<option value="All">Any Department</option>
 							<?php foreach ($departments as $department) { ?>
@@ -44,7 +42,6 @@
 							<?php } ?>
 							<option value="None">None</option>
 						</select>
-						<?php } ?>
 					</section>
 					<section class="tags-searchbar flex-fix">
 						<ul class="tags-box tags" id="tag-creator">
@@ -68,6 +65,7 @@
 					</button>
 					<div class="ticket-dropdown edit-dropdown">
 						<a class="dropdown-option" href="../pages/editTicket.php?ticket=<?=$ticket->id?>">Edit</a>
+						<a class="dropdown-option" href="../pages/history.php?ticket=<?=$ticket->id?>">History</a>
 						<button class="dropdown-option remove-ticket">Delete</a>
 					</div>
 					<?php } ?>

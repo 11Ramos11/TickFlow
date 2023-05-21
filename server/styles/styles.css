@@ -1,6 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 :root {
   --main-color: #3818D9;
@@ -8,7 +6,6 @@
 
 * {
   font-family: 'Montserrat', sans-serif;
-  /*'Roboto', sans-serif;*/
 }
 
 html {
@@ -219,7 +216,7 @@ nav ul:last-child li a {
 
 #tickets-search {
   display: grid;
-  grid-template-rows: [start] auto [middle] 65vh [end];
+  grid-template-rows: [start] auto [middle] 100vh [end];
 }
 
 #tickets-search #tickets {
@@ -547,12 +544,16 @@ section.reply button:hover {
 
 #auto-complete>li {
 
-  background-color: var(--main-color);
-  color: white;
+  background-color: white;
+  color: var(--main-color);
   padding: 0.6rem;
+  border-right-style: solid;
+  border-left-style: solid;
+  border-width: 0.0625rem;
+  border-color: var(--main-color);
 }
 
-#auto-complete>li:hover {
+#auto-complete>li:hover{
   background-color: #846cff;
   transition: background-color 0.3s ease-in-out;
   color: white;
@@ -562,11 +563,13 @@ section.reply button:hover {
 #auto-complete>li:first-child {
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
+  border-top-style: solid;
 }
 
 #auto-complete>li:last-child {
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
+  border-bottom-style: solid;
 }
 
 .tags-box {
@@ -1133,7 +1136,7 @@ textarea {
   cursor: pointer;
   font-size: 1.125rem;
   height: 3.125rem;
-  margin-top: 2.375rem;
+  margin-top: 3rem;
   text-align: center;
   width: 100%;
   transition: scale 0.2s ease-in-out;
@@ -1517,20 +1520,26 @@ textarea {
   text-align: center;
 }
 
-.change-info>p::first-letter {
-
-  text-transform: capitalize;
-
-}
-
-.change-info>p:first-of-type {
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.change-info>p:last-of-type {
+.change-info>p {
   font-size: 1rem;
   font-weight: light;
+}
+
+.change-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* i want status-change to be a row unless it doesnt fit, then it should be a column */
+
+.status-change {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .old {
