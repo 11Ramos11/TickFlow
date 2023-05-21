@@ -2,7 +2,6 @@
 
 include_once(__DIR__.'/../classes/user.class.php'); 
 include_once(__DIR__.'/../classes/session.class.php'); 
-include_once(__DIR__.'/../classes/my_error.class.php'); 
 include_once(__DIR__.'/../classes/department.class.php'); 
 include_once(__DIR__.'/../classes/status.class.php'); 
 include_once(__DIR__.'/../classes/priority.class.php'); 
@@ -28,6 +27,8 @@ if (!isset($_POST["id"])){
 $id = $_POST["id"];
 
 Priority::removePriority($id);
+
+$session->setSuccess("Item removed", "Priority removed successfully.");
 
 header("Location: ../pages/admin.php");
 ?>

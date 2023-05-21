@@ -11,10 +11,13 @@ $session = new Session();
 
 if (!$session->isLoggedIn()) {
     header('Location: ../pages/authentication.php');
+    exit();
 }
 
 if (!isset($_POST['id'])) {
+    $session->setError('Missing fields', 'Please fill all the required fields.');
     header('Location: ../pages/dashboard.php');
+    exit();
 }
 
 $id = $_POST['id'];
@@ -24,47 +27,62 @@ $ticket = Ticket::getTicketById($id);
 if ($ticket == null) {
     $session->setError('Ticket not found', 'The ticket you are trying to edit does not exist.');
     header('Location: ../pages/dashboard.php');
+    exit();
 }
 
-if (!isset($_POST['subject']) || !isset($_POST['description']) || !isset($_POST['priority']) || !isset($_POST['status']) || !isset($_POST['department'])) {
+if (!isset($_POST['subject']) || !isset($_POST['description']) || !isset($_POST['priority'])) {
     $session->setError('Missing fields', 'Please fill all the required fields.');
     header('Location: ../pages/editTicket.php?ticket='.$id);
+    exit();
 }
 
 $subject = $_POST['subject'];
 $description = $_POST['description'];
 $priority = $_POST['priority'];
-$status = $_POST['status'];
-$department = $_POST['department'];
-$assignee = $_POST['assignee'];
 $tags = $_POST['tags'];
 
-error_log($subject);
-error_log($description);
-error_log($priority);
-error_log($status);
-error_log($department);
-error_log($assignee);
-error_log($tags);
-
-if ($subject == '' || $description == '' || $priority == '' || $status == '' || $department == '') {
+if ($subject == '' || $description == '' || $priority == '') {
     $session->setError('Missing fields', 'Please fill all the required fields.');
     header('Location: ../pages/editTicket.php?ticket='.$id);
-}
-
-if ($assignee == '') {
-    $assignee = null;
+    exit();
 }
 
 if ($tags == '') {
     $tags = null;
 }
 
-error_log($tags);
-
 $tags = explode(',', $tags);
 
-Ticket::updateTicket($id, $subject, $description, $priority, $status, $department, $assignee, $tags);
+$ticket = Ticket::getTicketById($id);
+
+$oldChanges = count($ticket->getChanges());
+
+$ticket->updateTicket($subject, $description, $priority, $tags);
+
+if (isset($_POST['status'])) {
+    $status = $_POST['status'];
+    $ticket->updateStatus($status);
+}
+
+if (isset($_POST['assignee'])){
+    $assignee = $_POST['assignee'];
+    $ticket->updateAssignee($assignee);
+}
+
+if (isset($_POST['department'])){
+    $department = $_POST['department'];
+    $ticket->updateDepartment($department);
+}
+
+$newChanges = count($ticket->getChanges());
+
+$numChanges = $newChanges - $oldChanges;
+
+$authorID = $session->userID;
+
+$ticket->updateChangeAuthor($authorID, $numChanges);
+
+$session->setSuccess('Ticket updated', 'The ticket was successfully updated.');
 
 header('Location: ../pages/ticket.php?ticket='.$id);
 

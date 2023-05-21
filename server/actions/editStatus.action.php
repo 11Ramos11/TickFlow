@@ -2,7 +2,6 @@
 
 include_once(__DIR__.'/../classes/user.class.php'); 
 include_once(__DIR__.'/../classes/session.class.php'); 
-include_once(__DIR__.'/../classes/my_error.class.php'); 
 include_once(__DIR__.'/../classes/department.class.php'); 
 include_once(__DIR__.'/../classes/status.class.php'); 
 include_once(__DIR__.'/../classes/priority.class.php'); 
@@ -35,6 +34,8 @@ if (strlen($name) == 0){
 $name = ucfirst($name);
 
 Status::editStatus($id, $name);
+
+$session->setSuccess("Item edited", "Status edited successfully.");
 
 header("Location: ../pages/admin.php");
 ?>

@@ -42,7 +42,7 @@ include_once(__DIR__.'/../classes/status.class.php');
                 <?php foreach($messages as $message) { ?>
 					<?php getArticleTag($message, $sessionUser, $author) ?>
 						<figure class="avatar">
-							<img src="../images/profile.png" alt="Avatar">
+							<img src=<?=$message->authorPhoto?> alt="Avatar">
 						</figure>
 						<section class="bubble">
 							<p class="name"><?=$message->authorName?></p>
@@ -96,12 +96,15 @@ function drawBriefTicket($ticket, $author, $assignee, $department, $status, $pri
 		</article>
 		<article class ="assigned-to">
 			<?php if ($assignee != null) { ?>
+			<div class = "person-card">
+				<img src=<?=$assignee->getPhoto()?> alt="Profile" class="profile-img"></img>
 				<p>Assigned to <a href="dashboard.php?id=<?=$assignee->id?>"><?=$assignee->name?></a> </p>
+			</div>
 			<?php } else { ?>
 				<p>Not Assigned </p>
 			<?php } ?>
 			<div class = "person-card">
-				<img src="../images/profile.png" alt="Profile" class="profile-img"></img>
+				<img src=<?=$author->getPhoto()?> alt="Profile" class="profile-img"></img>
 				<p>Written by <a href="dashboard.php?id=<?=$author->id?>"><?=$author->name?></a> </p>
 			</div>	
 		</article>

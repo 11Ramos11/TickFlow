@@ -3,7 +3,6 @@
 
 include_once(__DIR__.'/../classes/user.class.php'); 
 include_once(__DIR__.'/../classes/session.class.php'); 
-include_once(__DIR__.'/../classes/my_error.class.php'); 
 include_once(__DIR__.'/../classes/connection.db.php');
 
 $session = new Session();
@@ -29,12 +28,6 @@ if (!isset($_POST['description'])){
 
 if (!isset($_POST['priority'])){
     $session->setError("No priority", "No priority was provided.");
-    header("Location: ../pages/ticketCreator.php");
-    exit();
-}
-
-if (!isset($_POST['tags'])){
-    $session->setError("No tags", "No tags were provided.");
     header("Location: ../pages/ticketCreator.php");
     exit();
 }
@@ -69,12 +62,6 @@ if ($description == ""){
 
 if ($priority == ""){
     $session->setError("No priority", "No priority was provided.");
-    header("Location: ../pages/ticketCreator.php");
-    exit();
-}
-
-if ($tags == ""){
-    $session->setError("No tags", "No tags were provided.");
     header("Location: ../pages/ticketCreator.php");
     exit();
 }
@@ -135,6 +122,8 @@ foreach($tags as $tag){
     $query = $db->prepare("INSERT INTO Ticket_Hashtag (ticket, hashtag) VALUES ('$ticketID', '$hashtagID')");
     $query->execute();
 }
+
+$session->setSuccess("Ticket created", "The ticket was successfully created.");
 
 header("Location: ../pages/ticket.php?ticket=$ticketID");
 

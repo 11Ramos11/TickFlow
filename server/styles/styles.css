@@ -1,6 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 :root {
   --main-color: #3818D9;
@@ -8,7 +6,6 @@
 
 * {
   font-family: 'Montserrat', sans-serif;
-  /*'Roboto', sans-serif;*/
 }
 
 html {
@@ -218,8 +215,10 @@ nav ul:last-child li a {
 }
 
 #tickets-search {
+  max-height: 100%;
+  overflow-y: hidden;
   display: grid;
-  grid-template-rows: [start] auto [middle] 100vh [end];
+  grid-template-rows: [start] 40vh [middle] 60vh [end];
 }
 
 #tickets-search #tickets {
@@ -230,6 +229,8 @@ nav ul:last-child li a {
   -ms-overflow-style: none;
   /* IE and Edge */
   scrollbar-width: none;
+
+  z-index: 1;
   /* Firefox */
 }
 
@@ -275,6 +276,7 @@ figure.avatar img {
   height: 3.75rem;
   border-radius: 50%;
   padding: 5%;
+  object-fit: cover;
 }
 
 #refresh-button {
@@ -547,12 +549,16 @@ section.reply button:hover {
 
 #auto-complete>li {
 
-  background-color: var(--main-color);
-  color: white;
+  background-color: white;
+  color: var(--main-color);
   padding: 0.6rem;
+  border-right-style: solid;
+  border-left-style: solid;
+  border-width: 0.0625rem;
+  border-color: var(--main-color);
 }
 
-#auto-complete>li:hover {
+#auto-complete>li:hover{
   background-color: #846cff;
   transition: background-color 0.3s ease-in-out;
   color: white;
@@ -562,11 +568,13 @@ section.reply button:hover {
 #auto-complete>li:first-child {
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
+  border-top-style: solid;
 }
 
 #auto-complete>li:last-child {
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
+  border-bottom-style: solid;
 }
 
 .tags-box {
@@ -863,18 +871,29 @@ section.reply button:hover {
   flex-direction: column;
   position: absolute;
   transition: 0.9s;
-  left: 10%;
+  left: 75%;
   top: 0;
   background-color: white;
   padding: 0.5rem;
   border-radius: 0.6rem;
 }
 
+.personnel-dropdown{
+  left: 60%;
+}
+
 .edit-dropdown.ticket-dropdown {
-  left: 10%;
+  left: 80%;
 } 
 
 .edit-dropdown.active {
+  left: 100%;
+  box-shadow: 0.375rem 0.375rem 0.375rem 0rem rgb(0 0 0 / 10%);
+  transition: 0.7s;
+  z-index: 3;
+}
+
+.edit-dropdown.ticket-dropdown.active {
   left: 100%;
   box-shadow: 0.375rem 0.375rem 0.375rem 0rem rgb(0 0 0 / 10%);
   transition: 0.7s;
@@ -900,10 +919,9 @@ section.reply button:hover {
   cursor: pointer;
 }
 
-#error {
+.snack-bar {
   visibility: hidden;
   min-width: 15.625rem;
-  background-color: rgb(255, 110, 110);
   color: #fff;
   text-align: center;
   border-radius: 0.125rem;
@@ -915,7 +933,15 @@ section.reply button:hover {
   bottom: 1.875rem;
 }
 
-#error.show {
+.snack-bar#error{
+  background-color: rgb(255, 110, 110);
+}
+
+.snack-bar#success{
+  background-color: #5aff89;
+}
+
+.snack-bar.show {
   visibility: visible;
   -webkit-animation: fadein 0.5s, fadeout 0.5s 3.5s;
   animation: fadein 0.5s, fadeout 0.5s 3.5s;
@@ -1122,7 +1148,7 @@ textarea {
   cursor: pointer;
   font-size: 1.125rem;
   height: 3.125rem;
-  margin-top: 2.375rem;
+  margin-top: 3rem;
   text-align: center;
   width: 100%;
   transition: scale 0.2s ease-in-out;
@@ -1296,11 +1322,7 @@ textarea {
   margin-bottom: 1rem;
 }
 
-#administration {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  justify-content: space-around;
-}
+
 
 #administration .category {
   margin: 1rem;
@@ -1339,7 +1361,7 @@ textarea {
 
 .department-faqs h2 {
   color: var(--main-color);
-  margin: 1rem;
+  margin: 3rem;
 }
 
 .faq-card {
@@ -1348,6 +1370,10 @@ textarea {
 
 .faq-container {
   margin: 1rem 7rem;
+}
+
+#ticket-changes {
+  padding: 3rem;
 }
 
 .change-card {
@@ -1365,6 +1391,11 @@ textarea {
 .change-card a {
   text-decoration: none;
   color: inherit;
+}
+
+.no-changes {
+  margin: 10rem 1rem;
+  text-align: center;
 }
 
 .department-sidebar {
@@ -1506,20 +1537,26 @@ textarea {
   text-align: center;
 }
 
-.change-info>p::first-letter {
-
-  text-transform: capitalize;
-
-}
-
-.change-info>p:first-of-type {
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.change-info>p:last-of-type {
+.change-info>p {
   font-size: 1rem;
   font-weight: light;
+}
+
+.change-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* i want status-change to be a row unless it doesnt fit, then it should be a column */
+
+.status-change {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .old {
@@ -1532,7 +1569,7 @@ textarea {
   white-space: nowrap;
   overflow: hidden;
   max-width: 12rem;
-  margin-bottom: 1rem;
+  margin: 0.5rem 0;
 }
 
 .new {
@@ -1545,8 +1582,21 @@ textarea {
   white-space: nowrap;
   overflow: hidden;
   max-width: 12rem; 
-  margin-top: 1rem;
+  margin: 0.5rem 0;
+}
 
+#ticket-changes .status-change {
+  margin: 0.5rem 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+  align-self: center;
+}
+#ticket-changes .new, #ticket-changes .old {
+  border-radius: 0.5rem;
+  margin: 0 2rem;
+  white-space: normal;
 }
 
 .fa-chevron-down,
@@ -1690,11 +1740,28 @@ textarea {
   #administration{
     display: flex;
     flex-direction: column; 
+    padding: 0 2.5rem;
   }
   
 }
 
 @media screen and (min-width: 1200px) {
+
+  #filter-tab{
+    padding-right: 4rem;
+  }
+
+  .tags-searchbar{
+    padding-right: 4.2rem;
+  }
+
+  .edit-dropdown.ticket-dropdown{
+    left: 75%;
+  }
+
+  .personnel-dropdown{
+    left: 55%;
+  }
 
   .title{
     margin-top: 4rem;
@@ -1733,6 +1800,25 @@ textarea {
 }
 
 @media only screen and (min-width: 900px) {
+
+  #administration{
+    display: flex;
+    flex-direction: column; 
+    padding: 0 3rem;
+  }
+
+  .edit-dropdown{
+    left: 30%;
+  }
+
+  .edit-dropdown.ticket-dropdown{
+    left: 60%;
+  }
+
+  .personnel-dropdown{
+    left: 10%;
+  }
+
 
   .logo{
     margin-left: 2rem;

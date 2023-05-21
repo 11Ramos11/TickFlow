@@ -1,7 +1,7 @@
 <?php
 
 	include_once(__DIR__.'/../classes/session.class.php');
-	include_once(__DIR__.'/../classes/my_error.class.php');
+	include_once(__DIR__.'/../classes/errorMsg.class.php');
 	include_once(__DIR__.'/../templates/authentication.tpl.php');
 
 	$session = new Session();
@@ -10,11 +10,18 @@
 		header("Location: home.php");
 		exit();
 	}
-
+	
 	$error = null;
-	if ($session->hasError()){
+	if ($session->hasError()) {
 		$error = $session->getError();
+		$session->unsetError();
 	}
 
-	drawAuthentication($error);
+	$success = null;
+	if ($session->hasSuccess()) {
+		$success = $session->getSuccess();
+		$session->unsetSuccess();
+	}
+
+	drawAuthentication($error, $success);
 ?>

@@ -54,17 +54,17 @@ class Ticket {
             
         $db = getDatabaseConnection();
 
-        $query = $db->prepare("UPDATE Ticket SET author = NULL WHERE id = '$this->id'");
-        $query->execute();
+        $query = $db->prepare("UPDATE Ticket SET author = NULL WHERE id = ?");
+        $query->execute(array($this->id));
     }
 
     public function getChanges(){
 
         $db = getDatabaseConnection();
 
-        $query = $db->prepare("SELECT * FROM Change WHERE ticket = '$this->id' ORDER BY editDate DESC, editTime DESC");
+        $query = $db->prepare("SELECT * FROM Change WHERE ticket = ? ORDER BY editDate DESC, editTime DESC");
 
-        $query->execute();
+        $query->execute(array($this->id));
 
         $results = $query->fetchAll();
 
@@ -153,8 +153,8 @@ class Ticket {
 
         $db = getDatabaseConnection();
     
-        $query = $db->prepare("SELECT * FROM Ticket_Hashtag WHERE ticket = '$id'");
-        $query->execute();
+        $query = $db->prepare("SELECT * FROM Ticket_Hashtag WHERE ticket = ?");
+        $query->execute(array($id));
         
         $results = $query->fetchAll();
     
@@ -162,8 +162,8 @@ class Ticket {
     
         foreach ($results as $row){
     
-            $query = $db->prepare("SELECT * FROM Hashtag WHERE id = '$row[hashtag]'");
-            $query->execute();
+            $query = $db->prepare("SELECT * FROM Hashtag WHERE id = ?");
+            $query->execute(array($row['hashtag']));
     
             $results = $query->fetchAll();
             $tag = $results[0]['name'];
@@ -195,15 +195,15 @@ class Ticket {
         $query->execute(array($id));
     }
 
-    static public function updateTicket($id, $subject, $description, $priority, $status, $department, $assignee, $tags){
+    public function updateTicket($subject, $description, $priority, $tags){
 
         $db = getDatabaseConnection();
 
-        $query = $db->prepare("UPDATE Ticket SET subject = ?, description = ?, priority = ?, status = ?, department = ?, assignee = ? WHERE id = ?");
-        $query->execute(array($subject, $description, $priority, $status, $department, $assignee, $id));
+        $query = $db->prepare("UPDATE Ticket SET subject = ?, description = ?, priority = ? WHERE id = ?");
+        $query->execute(array($subject, $description, $priority, $this->id));
 
         $query = $db->prepare("DELETE FROM Ticket_Hashtag WHERE ticket = ?");
-        $query->execute(array($id));
+        $query->execute(array($this->id));
 
         foreach ($tags as $tag){
 
@@ -219,32 +219,63 @@ class Ticket {
             }
             $tagID = $results[0]['id'];
             $query = $db->prepare("INSERT INTO Ticket_Hashtag (ticket, hashtag) VALUES (?, ?)");
-            $query->execute(array($id, $tagID));
+            $query->execute(array($this->id, $tagID));
         }
 
         Ticket::deleteUnusedHashtags();
-
-        $session = new Session();
-        $authorID = $session->userID;
-
-        Ticket::updateChangeAuthor($id, $authorID);
     }
 
-    public static function updateChangeAuthor($ticketID, $authorID){
+    public function updateStatus($status){
+
+        $db = getDatabaseConnection();
+
+        $query = $db->prepare("UPDATE Ticket SET status = ? WHERE id = ?");
+        $query->execute(array($status, $this->id));
+    }
+
+    public function updateAssignee($assignee){
+
+        $db = getDatabaseConnection();
+
+        if ($assignee != -1){
+            $query = $db->prepare("UPDATE Ticket SET assignee = ? WHERE id = ?");
+            $query->execute(array($assignee, $this->id));
+        }
+        else {
+            $query = $db->prepare("UPDATE Ticket SET assignee = NULL WHERE id = ?");
+            $query->execute(array($this->id));
+        }
+    }
+
+    public function updateDepartment($department){
+
+        $db = getDatabaseConnection();
+
+        if ($department != -1){
+            $query = $db->prepare("UPDATE Ticket SET department = ? WHERE id = ?");
+            $query->execute(array($department, $this->id));
+        } else {
+            $query = $db->prepare("UPDATE Ticket SET department = NULL WHERE id = ?");
+            $query->execute(array($this->id));
+        }
+    }
+
+    public function updateChangeAuthor($authorID,  $numChanges){
 
         $db = getDatabaseConnection();
 
         // update latest Change author with this ticketID
 
-        $query = $db->prepare("SELECT * FROM Change WHERE ticket = ? ORDER BY editDate DESC, editTime DESC LIMIT 1");
-        $query->execute(array($ticketID));
+        $query = $db->prepare("SELECT * FROM Change WHERE ticket = ? ORDER BY editDate DESC, editTime DESC LIMIT ?");
+        $query->execute(array($this->id, $numChanges));
 
         $results = $query->fetchAll();
+        
+        foreach ($results as $result){
 
-        $changeID = $results[0]['id'];
-
-        $query = $db->prepare("UPDATE Change SET author = ? WHERE id = ?");
-        $query->execute(array($authorID, $changeID));
+            $query = $db->prepare("UPDATE Change SET author = ? WHERE id = ?");
+            $query->execute(array($authorID, $result['id']));
+        }
     }
 
     public static function deleteUnusedHashtags(){

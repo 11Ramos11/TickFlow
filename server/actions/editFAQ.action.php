@@ -5,7 +5,6 @@ include_once(__DIR__.'/../classes/session.class.php');
 include_once(__DIR__.'/../classes/department.class.php'); 
 include_once(__DIR__.'/../classes/status.class.php'); 
 include_once(__DIR__.'/../classes/priority.class.php'); 
-include_once(__DIR__.'/../classes/my_error.class.php'); 
 include_once(__DIR__.'/../classes/connection.db.php');
 
 $session = new Session();
@@ -78,6 +77,8 @@ if ($department == -1){
 }
 
 FAQ::editFAQ($id, $question, $answer, $department);
+
+$session->setSuccess("FAQ edited", "The FAQ was successfully edited.");
 
 header("Location: ../pages/home.php");
 ?>

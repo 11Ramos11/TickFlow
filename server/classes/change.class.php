@@ -20,13 +20,20 @@ class Change {
         return Ticket::getTicketByID($this->ticketID);
     }
 
-    static public function getRecentChanges(){
+    static public function getRecentChanges($userID){
 
         $db = getDatabaseConnection();
 
-        $query = $db->prepare("SELECT * FROM Change ORDER BY editDate DESC, editTime DESC LIMIT 10");
+        $user = User::getUserByID($userID);
 
-        $query->execute();
+        if (!$user->isAdmin()){
+            $query = $db->prepare("SELECT * FROM Change WHERE ticket IN (SELECT id FROM Ticket WHERE author = ? OR assignee = ?) ORDER BY editDate DESC, editTime DESC LIMIT 10");
+            $query->execute(array($userID, $userID));
+        }
+        else {
+            $query = $db->prepare("SELECT * FROM Change ORDER BY editDate DESC, editTime DESC LIMIT 10");
+            $query->execute();
+        }
 
         $results = $query->fetchAll();
 

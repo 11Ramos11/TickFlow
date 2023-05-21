@@ -2,7 +2,6 @@
 
 include_once(__DIR__.'/../classes/user.class.php'); 
 include_once(__DIR__.'/../classes/session.class.php'); 
-include_once(__DIR__.'/../classes/my_error.class.php'); 
 include_once(__DIR__.'/../classes/connection.db.php');
 
 
@@ -12,7 +11,7 @@ $email = $_POST['email'];
 $password = $_POST['pwd'];
 
 if ($email == "" || $password == ""){
-    $session->setError("log", "All fields are required");
+    $session->setError("Login", "All fields are required");
     header("Location: ../pages/authentication.php");
     exit();
 }
@@ -32,12 +31,12 @@ if ($count == 1){
 
     $user = new User( $user_info['id'], $user_info['name'], $user_info['email'], $user_info['role'], $user_info['department']);
     $session->login($user->id);
-    $session->unsetError();
+
     header("Location: ../pages/home.php");
     exit();
 }
 else{       
-    $session->setError("log", "Email or password incorrect");
+    $session->setError("Login", "Email or password incorrect");
     header("Location: ../pages/authentication.php");
     exit();
 }

@@ -22,7 +22,7 @@
 
 	$departments = Department::getDepartments();
 
-	$changes = Change::getRecentChanges();
+	$changes = Change::getRecentChanges($sessionUser->id);
 
 	if (!isset($_GET["id"])){
 		$session->setError("No ID", "No ID was provided.");

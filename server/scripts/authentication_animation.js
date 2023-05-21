@@ -20,15 +20,18 @@ function authenticationSwitch() {
 
 function showError() {
     // Get the snackbar DIV
-    var error = document.getElementById("error");
+    const error = document.getElementById("error");
 	const container = document.getElementById('container');
   
    if (error == null){
         return;
     }
     error.classList.toggle("show");
-    // After 3 seconds, remove the show class from DIV
-	container.classList.add("right-panel-active");
+    
     setTimeout(function(){ error.classList.toggle("show"); }, 4000);
+
+	if (error.dataset.code == "Register"){
+		container.classList.add("right-panel-active");
+	}
   }
   

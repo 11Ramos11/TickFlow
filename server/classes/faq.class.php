@@ -35,8 +35,8 @@ class FAQ {
 
         $db = getDatabaseConnection();
 
-        $query = $db->prepare("SELECT * FROM FAQ WHERE department = '$departmentID'");
-        $query->execute();
+        $query = $db->prepare("SELECT * FROM FAQ WHERE department = ?");
+        $query->execute(array($departmentID));
         $results = $query->fetchAll();
 
         $faqs = array();
@@ -51,8 +51,8 @@ class FAQ {
     static public function removeFAQ($id){
         $db = getDatabaseConnection();
 
-        $query = $db->prepare("DELETE FROM FAQ WHERE id = '$id'");
-        $query->execute();
+        $query = $db->prepare("DELETE FROM FAQ WHERE id = ?");
+        $query->execute(array($id));
     }
 
     static public function createFAQ($question, $answer, $department){
@@ -69,16 +69,16 @@ class FAQ {
 
         $db = getDatabaseConnection();
 
-        $query = $db->prepare("UPDATE FAQ SET question = '$question', answer = '$answer', department = '$department' WHERE id = '$id'");
-        $query->execute();
+        $query = $db->prepare("UPDATE FAQ SET question = ?, answer = ?, department = ? WHERE id = ?");
+        $query->execute(array($question, $answer, $department, $id));
     }
 
     static public function getFAQbyID($id){
 
         $db = getDatabaseConnection();
 
-        $query = $db->prepare("SELECT * FROM FAQ WHERE id = '$id'");
-        $query->execute();
+        $query = $db->prepare("SELECT * FROM FAQ WHERE id = ?");
+        $query->execute(array($id));
         $results = $query->fetchAll();
 
         $row = $results[0];

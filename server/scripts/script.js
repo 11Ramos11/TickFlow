@@ -14,12 +14,77 @@ window.onload = function () {
     createTags();
     filterTickets();
     editProfile();
-    showError();
+    showSnackBar();
     messagesHandler();
     adminDialog();
 
     dropDown();
+
+    editTicket();
 };
+
+async function editTicket(){
+
+    const editTicketForm = document.getElementById("edit-ticket")
+
+    if (editTicketForm == null){
+        return;
+    }
+
+    async function getDepartmentUsers(data) {
+        return fetch('../api/departmentUsers.api.php', {
+            method: 'post',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: encodeForAjax(data)
+        });
+    }
+
+    const departmentSelector = document.getElementById('department');
+    const assigneeSelector = document.getElementById('assignee');
+
+    departmentSelector.addEventListener('change', async (event) => {
+        const departmentID = event.target.value;
+
+        const response = await getDepartmentUsers({
+            department: departmentID
+        });
+
+        const users = await response.json();
+
+        const userRole = editTicketForm.dataset.role;
+        const userDepartment = editTicketForm.dataset.department;
+        const assigneeID = editTicketForm.dataset.assigneeid;
+
+        assigneeSelector.innerHTML = '';
+
+        const option = document.createElement('option');
+        option.value = '-1';
+        option.innerText = 'To be assigned';
+        assigneeSelector.appendChild(option);
+
+        const hasPerms = userRole == 'Admin' || userDepartment == departmentID;
+
+        users.forEach(user => {
+
+            console.log(user + ' | ' + assigneeID);
+            console.log();
+            if (hasPerms){ 
+                const option = document.createElement('option');
+                option.value = user.id;
+                option.innerText = user.name;
+                assigneeSelector.appendChild(option);
+            } else if (user.id == assigneeID) {
+                const option = document.createElement('option');
+                option.value = user.id;
+                option.innerText = `${user.name} (current)`;
+                assigneeSelector.appendChild(option);
+            }
+        });
+    });
+}
+
 
 async function responsiveness(){
 
@@ -63,7 +128,6 @@ async function createTags() {
                 return;
             }
             tags = tagsValue.split(",");
-            console.log(tags);
             addListItem();
         }
     }
@@ -101,9 +165,9 @@ async function createTags() {
         });
     }
 
-    const filterTab = document.getElementById("filter-tab");
+    const autoCompleteUL = document.getElementById("auto-complete");
 
-    if (filterTab != null) {
+    if (autoCompleteUL != null) {
 
         async function getTags() {
             return fetch('../api/autoCompleteTags.api.php', {
@@ -115,7 +179,6 @@ async function createTags() {
         }
 
         const tag_input = document.getElementById("tag-input");
-        const autoCompleteUL = document.getElementById("auto-complete");
         
         const response = await getTags();
 
@@ -125,8 +188,6 @@ async function createTags() {
             alert("Error fetching tags");
             return;
         }
-
-        console.log(allTags);
 
         async function showAutoComplete(){
             let input = tag_input.value;
@@ -141,11 +202,11 @@ async function createTags() {
                 li.classList.add("auto-complete-tag");
                 const bold = document.createElement("b");
                 bold.textContent = input;
-                console.log(bold);
+      
                 li.appendChild(bold);
                 const remaining = document.createElement("span");
                 remaining.textContent = tag.substring(input.length);
-                console.log(remaining);
+
                 li.appendChild(remaining);
                 li.addEventListener("click", function() {
                     tags.push(tag);
@@ -154,7 +215,6 @@ async function createTags() {
                     addListItem();
                     tag_input.focus();
                 });
-                console.log(li);
                 autoCompleteUL.appendChild(li);
             }
         };
@@ -171,8 +231,17 @@ async function createTags() {
             await showAutoComplete();
         });
 
-        autoCompleteUL.addEventListener("mouseleave", function() {
-            autoCompleteUL.innerHTML = "";
+        document.addEventListener("click", function(e) {
+            if (!tag_input.contains(e.target)) {
+                autoCompleteUL.innerHTML = "";
+            }
+        });
+
+        document.addEventListener("keyup", function(e) {
+
+            if (e.code == "Escape") {
+                autoCompleteUL.innerHTML = "";
+            }
         });
     }
 }
@@ -202,7 +271,7 @@ function filterTickets(){
         searchButton.addEventListener("click", async function () {
 
             const _userId = filterTab.dataset.userid;
-            console.log(_userId);
+      
             const ownershipFilter = document.getElementById('ownership-filter');
             const _ownership = ownershipFilter != null ? ownershipFilter.value : 'All';
             const _status = document.getElementById('status-filter').value;
@@ -239,8 +308,6 @@ function filterTickets(){
             const statuses = result["statuses"];
             const priorities = result["priorities"];
 
-            console.log(tickets);
-
             for (let ticket of tickets) {
                 ticket.status = statuses[ticket.status];
                 ticket.priority = priorities[ticket.priority];
@@ -256,41 +323,6 @@ function filterTickets(){
             const section = document.querySelector('#tickets');
             section.innerHTML = '';
             for (const ticket of tickets) {
-
-                /* convert this html to js */
-
-                /* <div class="edit-container ticket-container">
-					<?php if ($sessionUser->hasAccessToTicket($ticket->id)) { ?>
-					<button type=button class="dropdown-button"> 
-						<i class="fa-solid fa-ellipsis-vertical"></i> 
-					</button>
-					<div class="ticket-dropdown edit-dropdown">
-						<a class="dropdown-option" href="../pages/editTicket.php?ticket=<?=$ticket->id?>">Edit</a>
-						<button class="dropdown-option remove-ticket">Delete</a>
-					</div>
-					<?php } ?>
-					<article class="edit-card ticket-card dash">
-						<h3><a class="ticket-title" href="ticket.php?ticket=<?=$ticket->id?>"><?=$ticket->subject?></a></h3>
-						<p>Status:<span class="status-tag"><?=$status->name?></span></p>
-						<p>Priority:<span class="priority-tag"><?=$priority->name?></span></p>
-						<p>	<?=$ticket->description?> </p>
-						<ul class="tags">
-							<?php foreach ($ticket->tags as $tag) { ?>
-							<li class="tag"> <?= $tag ?> </li>
-							<?php } ?>
-						</ul>
-					</article>
-					<dialog class="remove-dialog">
-						<form action="../actions/removeTicket.action.php" method="post">
-							<input type="hidden" name="id" value="<?=$ticket->id?>">
-							<p>Are you sure you want to remove this ticket?</p>
-							<div class="dialog-buttons">
-								<button type="button" class="button cancel-button" value="Cancel">Cancel</button>
-								<button type="submit" class="button">Remove</button>
-							</div>
-						</form>
-					</dialog>
-					</div> */
 
                 const ticketContainer = document.createElement("div");
                 ticketContainer.classList.add("edit-container");
@@ -315,12 +347,18 @@ function filterTickets(){
                 editOption.href = "../pages/editTicket.php?ticket=" + ticket.id;
                 editOption.textContent = "Edit";
 
+                const historyOption = document.createElement("a");
+                historyOption.classList.add("dropdown-option");
+                historyOption.href = "../pages/history.php?ticket=" + ticket.id;
+                historyOption.textContent = "History";
+
                 const removeOption = document.createElement("button");
                 removeOption.classList.add("dropdown-option");
                 removeOption.classList.add("remove-ticket");
                 removeOption.textContent = "Delete";
 
                 ticketDropdown.appendChild(editOption);
+                ticketDropdown.appendChild(historyOption);  
                 ticketDropdown.appendChild(removeOption);
 
                 ticketContainer.appendChild(dropdownButton);
@@ -442,8 +480,6 @@ function editProfile(){
 
     const profileInfo = document.getElementById("profile-info");
 
-    console.log(profileInfo);
-
     if (profileInfo != null){
 
         const editButton = document.getElementById("edit-user-button");
@@ -520,16 +556,17 @@ function editProfile(){
     }
 }
 
-function showError() {
+function showSnackBar() {
     // Get the snackbar DIV
-    var error = document.getElementById("error");
+   const snackbar = document.getElementsByClassName("snack-bar")[0];
   
-   if (error == null){
+   if (snackbar == null){
         return;
     }
-    error.classList.toggle("show");
+
+    snackbar.classList.toggle("show");
     // After 3 seconds, remove the show class from DIV
-    setTimeout(function(){ error.classList.toggle("show"); }, 4000);
+    setTimeout(function(){ snackbar.classList.toggle("show"); }, 4000);
   }
 
 function messagesHandler(){
@@ -592,7 +629,6 @@ function messagesHandler(){
         for (const message of messages){
             const messageBox = document.createElement("article");
             messageBox.classList.add("msg");
-            console.log(message.author + "|" + userID);
 
             if (userID == ticketAuthorID){
                 if (message.author == userID){
@@ -616,7 +652,7 @@ function messagesHandler(){
             const figure = document.createElement("figure");
             figure.classList.add("avatar");
             const img = document.createElement("img");
-            img.src = "../images/profile.png";
+            img.src = message.authorPhoto;
             img.alt = "Avatar";
             
             const bubble = document.createElement("section");
@@ -688,7 +724,7 @@ function adminDialog(){
         for (const removeButton of removeTicketButtons){
             removeButton.addEventListener("click", function() {
                 removeDialog = removeButton.parentElement.parentElement.getElementsByClassName("remove-dialog")[0];
-                console.log(removeDialog);
+    
                 removeDialog.getElementsByClassName("cancel-button")[0].addEventListener("click", function() {
                     removeDialog.close();
                 });
@@ -703,7 +739,7 @@ function adminDialog(){
         for (const removeButton of removeFAQButtons){
             removeButton.addEventListener("click", function() {
                 removeDialog = removeButton.parentElement.parentElement.getElementsByClassName("remove-dialog")[0];
-                console.log(removeDialog);
+             
                 removeDialog.getElementsByClassName("cancel-button")[0].addEventListener("click", function() {
                     removeDialog.close();
                 });

@@ -16,7 +16,9 @@
 
 	$departments = Department::getDepartments();
 
-	$changes = Change::getRecentChanges();
+	$sessionUser = $session->getUser();
+
+	$changes = Change::getRecentChanges($sessionUser->id);
 
 	$sessionUser = $session->getUser();
 

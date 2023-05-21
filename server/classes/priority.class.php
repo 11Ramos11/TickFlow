@@ -15,9 +15,9 @@ class Priority {
 
         $db = getDatabaseConnection();
 
-        $query = $db->prepare("SELECT * FROM Priority WHERE id = $id");
+        $query = $db->prepare("SELECT * FROM Priority WHERE id = ?");
 
-        $query->execute();
+        $query->execute(array($id));
 
         $results = $query->fetchAll();
 

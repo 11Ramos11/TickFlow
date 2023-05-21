@@ -4,13 +4,13 @@
             
         <?php $session = new Session(); if ($session->isAdmin()) { ?> 
         <button class="dropdown-button"> <i class="fa-solid fa-ellipsis-vertical"></i> </button>
-        <div class="user-dropdown edit-dropdown">
+        <div class="user-dropdown edit-dropdown personnel-dropdown">
             <a class="dropdown-option" href="../pages/dashboard.php?id=<?=$user->id?>">Manage</a>
             <a class="dropdown-option" href="../pages/deleteUser.php?id=<?=$user->id?>">Delete</a>
         </div>
         <?php } ?>
         <div class="edit-card user-card">
-            <img src="../images/profile.png" alt="Profile" class="profile-img"></img>
+            <img src=<?=$user->getPhoto()?> alt="Profile" class="profile-img"></img>
             <p class="username"><?=$user->name?></p>
             <p class="email"><?=$user->email?></p>
         </div>

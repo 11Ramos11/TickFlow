@@ -5,7 +5,6 @@ include_once(__DIR__.'/../classes/session.class.php');
 include_once(__DIR__.'/../classes/department.class.php'); 
 include_once(__DIR__.'/../classes/status.class.php'); 
 include_once(__DIR__.'/../classes/priority.class.php'); 
-include_once(__DIR__.'/../classes/my_error.class.php'); 
 include_once(__DIR__.'/../classes/connection.db.php');
 
 $session = new Session();
@@ -41,6 +40,8 @@ if ($lastWord != "department"){
 }
 
 Department::createDepartment($name);
+
+$session->setSuccess("New item", "Department created successfully.");
 
 header("Location: ../pages/admin.php");
 ?>
