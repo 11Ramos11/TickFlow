@@ -3,11 +3,14 @@
 declare(strict_types=1);
 
 include_once(__DIR__.'/../classes/user.class.php');
+include_once(__DIR__.'/../classes/errorMsg.class.php');
+include_once(__DIR__.'/../classes/successMsg.class.php');
 
 class Session {
 
     public $userID;
     public $error;
+    public $success;
     
     public function __construct() {
 
@@ -28,8 +31,14 @@ class Session {
         } 
 
         if (isset($_SESSION["error"])){
-            if ($_SESSION["error"] instanceof MyError){
+            if ($_SESSION["error"] instanceof ErrorMsg){
                 $this->error = $_SESSION["error"];
+            }
+        }
+
+        if (isset($_SESSION["success"])){
+            if ($_SESSION["success"] instanceof SuccessMsg){
+                $this->success = $_SESSION["success"];
             }
         }
     }
@@ -59,7 +68,9 @@ class Session {
 
     public function setError($code, $msg) {
 
-        $error = new MyError($code, $msg);
+        $this->unsetSuccess();
+        
+        $error = new ErrorMsg($code, $msg);
         $_SESSION["error"] = $error;
         $this->error = $error;
     }
@@ -79,6 +90,32 @@ class Session {
 
     public function unsetError() {
         unset($_SESSION["error"]);
+    }
+
+    public function setSuccess($code, $msg) {
+
+        $this->unsetError();
+
+        $success = new SuccessMsg($code, $msg);
+        $_SESSION["success"] = $success;
+        $this->success = $success;
+    }
+
+    public function getSuccess() {
+        if (isset($_SESSION["success"])) {
+            $this->success = $_SESSION["success"];
+            unset($_SESSION["success"]);
+            return $this->success;
+        }
+        return null;
+    }
+
+    public function hasSuccess() {
+        return $this->success != null;
+    }
+
+    public function unsetSuccess() {
+        unset($_SESSION["success"]);
     }
 }
 

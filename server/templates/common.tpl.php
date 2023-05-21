@@ -70,10 +70,19 @@ function drawFooter() {
 		$error = $_SESSION['error'];
 		unset($_SESSION['error']);
 	}
+
+	$success = null;
+	if (isset($_SESSION['success'])) {
+		$success = $_SESSION['success'];
+		unset($_SESSION['success']);
+	}
 ?>
 	</div>
 	<?php if ($error != null) { ?>
-		<div id="error"> <?= $error->msg ?> </div>
+		<div class="snack-bar" id="error"> <?= $error->msg ?> </div>
+	<?php } ?>
+	<?php if ($success != null) { ?>
+		<div class="snack-bar" id="success"> <?= $success->msg ?> </div>
 	<?php } ?>
 </body>
 

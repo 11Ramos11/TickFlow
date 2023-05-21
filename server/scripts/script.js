@@ -14,7 +14,7 @@ window.onload = function () {
     createTags();
     filterTickets();
     editProfile();
-    showError();
+    showSnackBar();
     messagesHandler();
     adminDialog();
 
@@ -499,16 +499,19 @@ function editProfile(){
     }
 }
 
-function showError() {
+function showSnackBar() {
     // Get the snackbar DIV
-    var error = document.getElementById("error");
+   const snackbar = document.getElementsByClassName("snack-bar")[0];
+
+   console.log(snackbar);
   
-   if (error == null){
+   if (snackbar == null){
         return;
     }
-    error.classList.toggle("show");
+
+    snackbar.classList.toggle("show");
     // After 3 seconds, remove the show class from DIV
-    setTimeout(function(){ error.classList.toggle("show"); }, 4000);
+    setTimeout(function(){ snackbar.classList.toggle("show"); }, 4000);
   }
 
 function messagesHandler(){

@@ -1,7 +1,6 @@
 <?php
 
 include_once(__DIR__.'/../classes/session.class.php');
-include_once(__DIR__.'/../classes/my_error.class.php');
 include_once(__DIR__.'/../classes/connection.db.php');
 
 
@@ -68,6 +67,8 @@ if ($noSpaces){
 
 $user = $session->getUser();
 $user->setPassword($password);
+
+$session->setSuccess("Field changed","Your password has been changed successfully");
 
 header("Location: ../pages/dashboard.php");  
 
