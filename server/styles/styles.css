@@ -216,7 +216,7 @@ nav ul:last-child li a {
 
 #tickets-search {
   display: grid;
-  grid-template-rows: [start] auto [middle] 60vh [end];
+  grid-template-rows: [start] auto [middle] 100vh [end];
 }
 
 #tickets-search #tickets {
