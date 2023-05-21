@@ -1320,11 +1320,7 @@ textarea {
   margin-bottom: 1rem;
 }
 
-#administration {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  justify-content: space-around;
-}
+
 
 #administration .category {
   margin: 1rem;
@@ -1363,7 +1359,7 @@ textarea {
 
 .department-faqs h2 {
   color: var(--main-color);
-  margin: 1rem;
+  margin: 3rem;
 }
 
 .faq-card {
@@ -1725,11 +1721,24 @@ textarea {
   #administration{
     display: flex;
     flex-direction: column; 
+    padding: 0 2.5rem;
   }
   
 }
 
 @media screen and (max-width: 1200px) {
+
+  #filter-tab{
+    padding-right: 4rem;
+  }
+
+  .tags-searchbar{
+    padding-right: 4.2rem;
+  }
+
+  .edit-dropdown.ticket-dropdown{
+    left: 75%;
+  }
 
   .personnel-dropdown{
     left: 55%;
@@ -1772,6 +1781,12 @@ textarea {
 }
 
 @media screen and (max-width: 900px) {
+
+  #administration{
+    display: flex;
+    flex-direction: column; 
+    padding: 0 3rem;
+  }
 
   .edit-dropdown{
     left: 30%;
