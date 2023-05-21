@@ -8,6 +8,7 @@
 	include_once(__DIR__.'/../templates/ticket.tpl.php');
 	include_once(__DIR__.'/../templates/ticketEditor.tpl.php');
 	include_once(__DIR__.'/../templates/common.tpl.php');
+	include_once(__DIR__.'/../classes/scripter.class.php');
 
 	$session = new Session();
 
@@ -49,7 +50,15 @@
 	else
 		$users = array();
 
-	drawHeader();
+	$handlers = array(
+		"tags.js",
+		"ticketEditor.js",
+		"responsiveness.js", 
+		"snackbar.js"
+	);
+	$scripter = new Scripter("ticketEditor.js", $handlers);
+
+	drawHeader("none", $scripter);
     drawTicketEditor($departments, $priorities, $statuses, $users, $ticket, $sessionUser, $session);
 	drawBriefTicket($ticket, $author, $assignee, $department, $status, $priority, $sessionUser, "edit");
 	drawFooter();

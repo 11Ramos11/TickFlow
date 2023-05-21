@@ -16,19 +16,19 @@ if (!$session->isLoggedIn()){
 
 if (!isset($_POST['csrf'])){
     $session->setError("Missing arguments","Refresh and try again");
-    header("Location: ../pages/dashboard.php");
+    header("Location: ../pages/faqCreator.php");
     exit();
 }
 
 if ($_POST['csrf'] !== $session->token){
     $session->setError("Unauthorized","Refresh and try again");
-    header("Location: ../pages/dashboard.php");
+    header("Location: ../pages/faqCreator.php");
     exit();
 }
 
 if (!$session->getUser()->isAgent()){
     $session->setError("No permissions", "You do not have permissions to remove this FAQ");
-    header("Location: ../pages/index.php");
+    header("Location: ../pages/faqCreator.php");
     exit();
 }
 

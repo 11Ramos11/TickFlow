@@ -6,6 +6,7 @@
 	include_once(__DIR__.'/../templates/changes.tpl.php');
 	include_once(__DIR__.'/../templates/ticket.tpl.php');
 	include_once(__DIR__.'/../templates/common.tpl.php');
+	include_once(__DIR__.'/../classes/scripter.class.php');
 
 	$session = new Session();
 
@@ -41,9 +42,9 @@
 
 	$changes = $ticket->getChanges();
 
-	error_log($ticket->subject);
+	$scripter = new Scripter();
 
-	drawHeader();
+	drawHeader("none", $scripter);
 	drawChanges($ticket, $changes);
 	drawBriefTicket($ticket, $author, $assignee, $department, $status, $priority, $user, "history");
 	drawFooter();

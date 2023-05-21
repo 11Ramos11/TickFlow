@@ -1,5 +1,5 @@
 <?php 
-function drawFAQeditor($departments, $faq) { ?>
+function drawFAQeditor($departments, $faq, $session) { ?>
     <main class="middle-column">
       <section class="title">
       <h2>Edit FAQ</h2>
@@ -32,6 +32,7 @@ function drawFAQeditor($departments, $faq) { ?>
               <label for="department" class="placeholder">Department</label>
             </section>
             <input type="hidden" name="id" value="<?=$faq->id?>">
+            <input hidden type="text" name="csrf" value=<?=$session->token?>>
             <button type="text" class="submit" id="submit-button">Submit</button>
           </form>
         </article>

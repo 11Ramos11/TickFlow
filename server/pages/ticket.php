@@ -5,6 +5,7 @@
 	include_once(__DIR__.'/../classes/ticket.class.php');
 	include_once(__DIR__.'/../templates/ticket.tpl.php');
 	include_once(__DIR__.'/../templates/common.tpl.php');
+	include_once(__DIR__.'/../classes/scripter.class.php');
 
 	$session = new Session();
 
@@ -38,7 +39,14 @@
 	$status = Status::getStatusById($ticket->status);
 	$priority = Priority::getPriorityById($ticket->priority);
 
-	drawHeader();
+	$handlers = array(
+		"chat.js",
+		"responsiveness.js", 
+		"snackbar.js"
+	);
+	$scripter = new Scripter("ticket.js", $handlers);
+
+	drawHeader("none", $scripter);
 	drawChat($ticket);
 	drawBriefTicket($ticket, $author, $assignee, $department, $status, $priority, $user, "ticket");
 	drawFooter();

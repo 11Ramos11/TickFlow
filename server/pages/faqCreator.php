@@ -1,11 +1,14 @@
 <?php
 
+use function PHPSTORM_META\map;
+
 	include_once(__DIR__.'/../classes/session.class.php');
 	include_once(__DIR__.'/../templates/common.tpl.php');
 	include_once(__DIR__.'/../templates/faqCreator.tpl.php');
 	include_once(__DIR__.'/../templates/changes.tpl.php');
 	include_once(__DIR__.'/../classes/department.class.php');
 	include_once(__DIR__.'/../classes/change.class.php');
+	include_once(__DIR__.'/../classes/scripter.class.php');
 
 	$session = new Session();
 
@@ -26,8 +29,10 @@
 
 	$changes = Change::getRecentChanges($sessionUser->id);
 
-	drawHeader("home");
-	drawFAQcreator($departments);
+	$scripter = new Scripter();
+
+	drawHeader("home", $scripter);
+	drawFAQcreator($departments, $session);
 	drawRecentChanges($changes);
 	drawFooter();
 ?>

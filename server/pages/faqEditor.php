@@ -6,6 +6,7 @@
 	include_once(__DIR__.'/../templates/changes.tpl.php');
 	include_once(__DIR__.'/../classes/department.class.php');
 	include_once(__DIR__.'/../classes/change.class.php');
+	include_once(__DIR__.'/../classes/scripter.class.php');
 
 	$session = new Session();
 
@@ -36,8 +37,10 @@
 
 	$faq = FAQ::getFAQbyID($id);
 
-	drawHeader("home");
-	drawFAQeditor($departments, $faq);
+	$scripter = new Scripter();
+
+	drawHeader("home", $scripter);
+	drawFAQeditor($departments, $faq, $session);
 	drawRecentChanges($changes);
 	drawFooter();
 ?>

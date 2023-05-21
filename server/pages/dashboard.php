@@ -9,6 +9,7 @@
     include_once(__DIR__.'/../classes/department.class.php');
     include_once(__DIR__.'/../classes/status.class.php');
     include_once(__DIR__.'/../classes/priority.class.php');
+    include_once(__DIR__.'/../classes/scripter.class.php');
 
 	$session = new Session();
 
@@ -46,7 +47,18 @@
     $priorities = Priority::getPriorities();
 
     $header = $id == $session->userID ? "dashboard" : null;
-	drawHeader($header);
+
+    $handlers = array(
+        "tags.js",
+        "ticketSearch.js", 
+        "dropdown.js", 
+        "profileEditor.js", 
+        "responsiveness.js", 
+        "snackbar.js"
+    );
+    $scripter = new Scripter("dashboard.js", $handlers);
+
+	drawHeader($header, $scripter);
     drawTickets($departments, $tickets, $user, $session->getUser(), $statuses, $priorities);
 	drawProfile($user, $departments);
 	drawFooter();

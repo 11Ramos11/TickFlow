@@ -5,6 +5,7 @@
 	require_once(__DIR__.'/../classes/priority.class.php');
 	include_once(__DIR__.'/../templates/common.tpl.php');
 	include_once(__DIR__.'/../templates/ticketCreator.tpl.php');
+	include_once(__DIR__.'/../classes/scripter.class.php');
 
 	$session = new Session();
 
@@ -16,7 +17,14 @@
 	$departments = Department::getDepartments();
 	$priorities = Priority::getPriorities();
 
-	drawHeader();
+	$handlers = array(
+		"tags.js",
+		"responsiveness.js", 
+		"snackbar.js"
+	);
+	$scripter = new Scripter("ticketCreator.js", $handlers);
+
+	drawHeader("none", $scripter);
 	drawTicketCreator($departments, $priorities, $session);
 	drawFooter();
 ?>

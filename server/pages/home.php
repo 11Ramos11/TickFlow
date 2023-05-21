@@ -6,6 +6,7 @@
 	include_once(__DIR__.'/../templates/changes.tpl.php');
 	include_once(__DIR__.'/../classes/department.class.php');
 	include_once(__DIR__.'/../classes/change.class.php');
+	include_once(__DIR__.'/../classes/scripter.class.php');
 
 	$session = new Session();
 
@@ -22,7 +23,14 @@
 
 	$sessionUser = $session->getUser();
 
-	drawHeader("home");
+	$handlers = array(
+		"dropdown.js",
+		"responsiveness.js", 
+		"snackbar.js"
+	);
+	$scripter = new Scripter("home.js", $handlers);
+
+	drawHeader("home", $scripter);
 	drawFAQS($departments, $sessionUser);
 	drawRecentChanges($changes);
 	drawFooter();

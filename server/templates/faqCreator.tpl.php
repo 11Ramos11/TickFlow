@@ -1,5 +1,5 @@
 <?php 
-function drawFAQcreator($departments) { ?>
+function drawFAQcreator($departments, $session) { ?>
     <main class="middle-column">
       <section class="title">
       <h2>Create a New FAQ</h2>
@@ -28,6 +28,7 @@ function drawFAQcreator($departments) { ?>
               <label for="department" class="placeholder">Department</label>
             </section>
             <button type="text" class="submit" id="submit-button">Submit</button>
+            <input hidden type="text" name="csrf" value=<?=$session->token?>>
           </form>
         </article>
       </section>

@@ -8,7 +8,7 @@
 	include_once(__DIR__.'/../classes/department.class.php');
 	include_once(__DIR__.'/../classes/priority.class.php');
 	include_once(__DIR__.'/../classes/status.class.php');
-
+	include_once(__DIR__.'/../classes/scripter.class.php');
 
 	$session = new Session();
 
@@ -27,7 +27,14 @@
 	$statuses = Status::getStatuses();
 	$priorities = Priority::getPriorities();
 
-	drawHeader("admin");
+	$handlers = array(
+        "admin.js", 
+        "responsiveness.js", 
+        "snackbar.js"
+    );
+    $scripter = new Scripter("admin.js", $handlers);
+
+	drawHeader("admin", $scripter);
 	drawAdmin($departments, $statuses, $priorities, $session);
 	drawDeparmentBar($departments, $statuses);
 	drawFooter();
