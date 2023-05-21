@@ -265,41 +265,6 @@ function filterTickets(){
             section.innerHTML = '';
             for (const ticket of tickets) {
 
-                /* convert this html to js */
-
-                /* <div class="edit-container ticket-container">
-					<?php if ($sessionUser->hasAccessToTicket($ticket->id)) { ?>
-					<button type=button class="dropdown-button"> 
-						<i class="fa-solid fa-ellipsis-vertical"></i> 
-					</button>
-					<div class="ticket-dropdown edit-dropdown">
-						<a class="dropdown-option" href="../pages/editTicket.php?ticket=<?=$ticket->id?>">Edit</a>
-						<button class="dropdown-option remove-ticket">Delete</a>
-					</div>
-					<?php } ?>
-					<article class="edit-card ticket-card dash">
-						<h3><a class="ticket-title" href="ticket.php?ticket=<?=$ticket->id?>"><?=$ticket->subject?></a></h3>
-						<p>Status:<span class="status-tag"><?=$status->name?></span></p>
-						<p>Priority:<span class="priority-tag"><?=$priority->name?></span></p>
-						<p>	<?=$ticket->description?> </p>
-						<ul class="tags">
-							<?php foreach ($ticket->tags as $tag) { ?>
-							<li class="tag"> <?= $tag ?> </li>
-							<?php } ?>
-						</ul>
-					</article>
-					<dialog class="remove-dialog">
-						<form action="../actions/removeTicket.action.php" method="post">
-							<input type="hidden" name="id" value="<?=$ticket->id?>">
-							<p>Are you sure you want to remove this ticket?</p>
-							<div class="dialog-buttons">
-								<button type="button" class="button cancel-button" value="Cancel">Cancel</button>
-								<button type="submit" class="button">Remove</button>
-							</div>
-						</form>
-					</dialog>
-					</div> */
-
                 const ticketContainer = document.createElement("div");
                 ticketContainer.classList.add("edit-container");
                 ticketContainer.classList.add("ticket-container");
@@ -323,12 +288,18 @@ function filterTickets(){
                 editOption.href = "../pages/editTicket.php?ticket=" + ticket.id;
                 editOption.textContent = "Edit";
 
+                const historyOption = document.createElement("a");
+                historyOption.classList.add("dropdown-option");
+                historyOption.href = "../pages/history.php?ticket=" + ticket.id;
+                historyOption.textContent = "History";
+
                 const removeOption = document.createElement("button");
                 removeOption.classList.add("dropdown-option");
                 removeOption.classList.add("remove-ticket");
                 removeOption.textContent = "Delete";
 
                 ticketDropdown.appendChild(editOption);
+                ticketDropdown.appendChild(historyOption);  
                 ticketDropdown.appendChild(removeOption);
 
                 ticketContainer.appendChild(dropdownButton);

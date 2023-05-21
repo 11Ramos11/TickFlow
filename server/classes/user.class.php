@@ -21,8 +21,8 @@ class User
 
         $db = getDatabaseConnection();
 
-        $query = $db->prepare("SELECT * FROM Ticket WHERE author = '$this->id'");
-        $query->execute();
+        $query = $db->prepare("SELECT * FROM Ticket WHERE author = ?");
+        $query->execute(array($this->id));
 
         $results = $query->fetchAll();
 
@@ -55,8 +55,8 @@ class User
 
         $db = getDatabaseConnection();
 
-        $query = $db->prepare("SELECT * FROM Ticket WHERE assignee = '$this->id'");
-        $query->execute();
+        $query = $db->prepare("SELECT * FROM Ticket WHERE assignee = ?");
+        $query->execute(array($this->id));
 
         $results = $query->fetchAll();
 
@@ -124,8 +124,8 @@ class User
 
         $db = getDatabaseConnection();
 
-        $query = $db->prepare("SELECT * FROM Ticket WHERE id = '$ticketID' AND (author = '$userID' OR assignee = '$userID')");
-        $query->execute();
+        $query = $db->prepare("SELECT * FROM Ticket WHERE id = ? AND (author = ? OR assignee = ?)");
+        $query->execute(array($ticketID, $userID, $userID));
 
         $results = $query->fetchAll();
 
@@ -166,13 +166,21 @@ class User
         return "../images/default.png";
     }
 
-    static public function getUserById($userID)
-    {
+    public function setPassword($password){
 
         $db = getDatabaseConnection();
 
-        $query = $db->prepare("SELECT * FROM User WHERE id = '$userID'");
-        $query->execute();
+        $query = $db->prepare("UPDATE User SET password = ? WHERE id = ?");
+
+        $query->execute(array($password, $this->id));
+    }
+
+    static public function getUserById($userID) {
+
+        $db = getDatabaseConnection();
+
+        $query = $db->prepare("SELECT * FROM User WHERE id = ?");
+        $query->execute(array($userID));
 
         $results = $query->fetchAll();
 
@@ -216,8 +224,8 @@ class User
 
         $db = getDatabaseConnection();
 
-        $query = $db->prepare("SELECT * FROM User WHERE role = '$role'");
-        $query->execute();
+        $query = $db->prepare("SELECT * FROM User WHERE role = ?");
+        $query->execute(array($role));
 
         $results = $query->fetchAll();
 

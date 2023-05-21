@@ -40,11 +40,12 @@
 					</section>
 				</form>
 				<?php if ($sessionUser->id == $user->id) { ?>
-				<form action="../actions/changePassword.action.php" id="password-editor">
+				<form action="../actions/changePassword.action.php" id="password-editor" method="post">
+					<input type="hidden" name="id" value="<?=$user->id?>">
 					<label for="pwd">New Password</label>
-					<input id="new-password" class="password profile-editor" name="pwd">
-					<label for="pwd">Confirm Password</label>
-					<input id="confirm-password" class="password profile-editor" name="confirm-pwd">
+					<input id="new-password" class="password profile-editor" name="pwd" type="password">
+					<label for="confirm-pwd">Confirm Password</label>
+					<input id="confirm-password" class="password profile-editor" name="confirm-pwd" type="password">
 					<section class="edit-buttons">
 						<button class="button" type="button" id="cancel-password-button">cancel</button>
 						<button class="button">Save</button>

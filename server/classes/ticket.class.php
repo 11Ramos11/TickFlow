@@ -54,17 +54,17 @@ class Ticket {
             
         $db = getDatabaseConnection();
 
-        $query = $db->prepare("UPDATE Ticket SET author = NULL WHERE id = '$this->id'");
-        $query->execute();
+        $query = $db->prepare("UPDATE Ticket SET author = NULL WHERE id = ?");
+        $query->execute(array($this->id));
     }
 
     public function getChanges(){
 
         $db = getDatabaseConnection();
 
-        $query = $db->prepare("SELECT * FROM Change WHERE ticket = '$this->id' ORDER BY editDate DESC, editTime DESC");
+        $query = $db->prepare("SELECT * FROM Change WHERE ticket = ? ORDER BY editDate DESC, editTime DESC");
 
-        $query->execute();
+        $query->execute(array($this->id));
 
         $results = $query->fetchAll();
 
@@ -153,8 +153,8 @@ class Ticket {
 
         $db = getDatabaseConnection();
     
-        $query = $db->prepare("SELECT * FROM Ticket_Hashtag WHERE ticket = '$id'");
-        $query->execute();
+        $query = $db->prepare("SELECT * FROM Ticket_Hashtag WHERE ticket = ?");
+        $query->execute(array($id));
         
         $results = $query->fetchAll();
     
@@ -162,8 +162,8 @@ class Ticket {
     
         foreach ($results as $row){
     
-            $query = $db->prepare("SELECT * FROM Hashtag WHERE id = '$row[hashtag]'");
-            $query->execute();
+            $query = $db->prepare("SELECT * FROM Hashtag WHERE id = ?");
+            $query->execute(array($row['hashtag']));
     
             $results = $query->fetchAll();
             $tag = $results[0]['name'];
@@ -254,8 +254,8 @@ class Ticket {
 
         // update latest Change author with this ticketID
 
-        $query = $db->prepare("SELECT * FROM Change WHERE ticket = ? ORDER BY editDate DESC, editTime DESC LIMIT $numChanges");
-        $query->execute(array($ticketID));
+        $query = $db->prepare("SELECT * FROM Change WHERE ticket = ? ORDER BY editDate DESC, editTime DESC LIMIT ?");
+        $query->execute(array($ticketID, $numChanges));
 
         $results = $query->fetchAll();
         
