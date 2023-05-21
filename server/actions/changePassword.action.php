@@ -27,13 +27,23 @@ $password = $_POST['pwd'];
 $confirmPassword = $_POST['confirm-pwd'];
 $id = $_POST['id'];
 
-if ($session->userID != $id){
+// password cant contain ?, < and > because of html and sql injection risk 
+
+if (strpos($password, '?') !== false || strpos($password, '<') !== false || strpos($password, '>') !== false){
+    $session->setError("Bad input","Password can't contain '?', '<' or '>'");
+    header("Location: ../pages/dashboard.php");
+    exit();
+}
+
+$id = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
+
+if ($session->userID !== $id){
     $session->setError("Unauthorized","You can only change your own password");
     header("Location: ../pages/dashboard.php");
     exit();
 }
 
-if ($password != $confirmPassword){
+if ($password !== $confirmPassword){
     $session->setError("Bad input","Passwords do not match");
     header("Location: ../pages/dashboard.php");
     exit();
@@ -71,6 +81,5 @@ $user->setPassword($password);
 $session->setSuccess("Field changed","Your password has been changed successfully");
 
 header("Location: ../pages/dashboard.php");  
-
 
 ?>

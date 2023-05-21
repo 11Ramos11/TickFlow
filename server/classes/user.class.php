@@ -259,4 +259,42 @@ class User
 
         return User::getUserByRole("Client");
     }
+
+    static public function createUser($name, $email, $password, $session){
+
+        $db = new PDO('sqlite:../../database/database.db');
+        $query = $db->prepare("INSERT INTO User (name,email,password) VALUES (?,?,?)");
+
+        if ($query == false){
+            $session->setError("Register", "Email already exists");
+            header("Location: ../pages/authentication.php");
+            exit();
+        }
+
+        $result = $query->execute(array($name, $email, $password));
+
+        if ($result == false){
+            $session->setError("Register", "Email already exists");
+            header("Location: ../pages/authentication.php");
+            exit();
+        }
+    }
+
+    public static function getUserByLogin($email, $password){
+
+        $db = getDatabaseConnection();
+
+        $query = $db->prepare("SELECT * FROM User WHERE email = ? AND password = ?");
+        $query->execute(array($email, $password));
+
+        $users = $query->fetchAll();
+
+        if (count($users) == 0){
+            return null;
+        }
+
+        $user = $users[0];
+
+        return new User($user['id'], $user['name'], $user['email'], $user['role'], $user['department']);
+    }
 }

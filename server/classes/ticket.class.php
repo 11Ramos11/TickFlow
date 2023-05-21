@@ -298,6 +298,51 @@ class Ticket {
             }
         }
     }
+
+    public static function createTicket($subject, $description, $priority, $creationDate, $creationTime, $author, $department, $tags){
+
+        
+        $db = getDatabaseConnection();
+
+        if ($department == -1){
+            $query = $db->prepare("INSERT INTO Ticket (subject, description, priority, creationDate, creationTime, author) VALUES (?, ?, ?, ?, ?, ?)");
+            $result = $query->execute(array($subject, $description, $priority, $creationDate, $creationTime, $author));
+        }
+        else {
+            $query = $db->prepare("INSERT INTO Ticket (subject, description, priority, creationDate, creationTime, author, department) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            $result = $query->execute(array($subject, $description, $priority, $creationDate, $creationTime, $author, $department));
+        }
+
+        $result = $query->execute();
+
+        if ($result === false){
+            $errorInfo = $query->errorInfo();
+            die("Query execution failed: " . $errorInfo[2]);
+        }
+
+        $ticketID = $db->lastInsertId();
+
+        $tags = trim($tags);
+        $tags = $tags == "" ? [] : explode(",", $tags);
+
+        foreach($tags as $tag){
+
+            $tag = trim($tag);
+            $query = $db->prepare("SELECT * FROM Hashtag WHERE name = ?");
+            $query->execute(array($tag));
+            $results = $query->fetchAll();
+            if(count($results) == 0){
+                $query = $db->prepare("INSERT INTO Hashtag (name) VALUES (?)");
+                $query->execute(array($tag));
+                $hashtagID = $db->lastInsertId();
+            } else {
+                $hashtagID = $results[0]['id'];
+            }
+
+            $query = $db->prepare("INSERT INTO Ticket_Hashtag (ticket, hashtag) VALUES (?, ?)");
+            $query->execute(array($ticketID, $hashtagID));
+        }
+    }
 }
 
 ?>

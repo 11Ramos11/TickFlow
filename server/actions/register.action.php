@@ -27,7 +27,6 @@ $specialChars = preg_match('@[^\w]@', $password);
 
 if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8){
 
-
     $session->setError("Register", "Password must be have at least 8 characters.\n Must contain at least one upper case letter, one number, and one special character.");
     header("Location: ../pages/authentication.php");
     exit();
@@ -39,22 +38,7 @@ if ($name == "" || $email == "" || $password == ""){
     exit();
 }
 
-$db = new PDO('sqlite:../../database/database.db');
-$query = $db->prepare("INSERT INTO User (name,email,password) VALUES ('$name','$email','$password')");
-
-if ($query == false){
-    $session->setError("Register", "Email already exists");
-    header("Location: ../pages/authentication.php");
-    exit();
-}
-
-$result = $query->execute();
-
-if ($result == false){
-    $session->setError("Register", "Email already exists");
-    header("Location: ../pages/authentication.php");
-    exit();
-}
+User::createUser($name, $email, $password, $session);
 
 $session->setSuccess("Created Account", "Account created successfully");
 

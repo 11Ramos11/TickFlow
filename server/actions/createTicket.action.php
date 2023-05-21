@@ -78,50 +78,7 @@ if (strlen($subject) > 255){
     exit();
 }
 
-$db = getDatabaseConnection();
-
-if ($department == -1){
-    $query = $db->prepare("INSERT INTO Ticket (subject, description, priority, creationDate, creationTime, author) VALUES ('$subject', '$description', '$priority', '$creationDate', '$creationTime', '$author')");
-}
-else {
-    $query = $db->prepare("INSERT INTO Ticket (subject, description, priority, creationDate, creationTime, author, department) VALUES ('$subject', '$description', $priority, '$creationDate', '$creationTime', '$author', '$department')");
-}
-
-if ($query == false){
-    die("Query died");
-}
-
-
-
-$result = $query->execute();
-
-if ($result === false){
-    $errorInfo = $query->errorInfo();
-    die("Query execution failed: " . $errorInfo[2]);
-}
-
-$ticketID = $db->lastInsertId();
-
-$tags = trim($tags);
-$tags = $tags == "" ? [] : explode(",", $tags);
-
-foreach($tags as $tag){
-
-    $tag = trim($tag);
-    $query = $db->prepare("SELECT * FROM Hashtag WHERE name = '$tag'");
-    $query->execute();
-    $results = $query->fetchAll();
-    if(count($results) == 0){
-        $query = $db->prepare("INSERT INTO Hashtag (name) VALUES ('$tag')");
-        $query->execute();
-        $hashtagID = $db->lastInsertId();
-    } else {
-        $hashtagID = $results[0]['id'];
-    }
-
-    $query = $db->prepare("INSERT INTO Ticket_Hashtag (ticket, hashtag) VALUES ('$ticketID', '$hashtagID')");
-    $query->execute();
-}
+Ticket::createTicket($subject, $description, $priority, $creationDate, $creationTime, $author, $department, $tags);
 
 $session->setSuccess("Ticket created", "The ticket was successfully created.");
 

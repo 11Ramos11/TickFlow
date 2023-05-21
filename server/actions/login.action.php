@@ -16,20 +16,10 @@ if ($email == "" || $password == ""){
     exit();
 }
 
-$db = getDatabaseConnection();
+$user = User::getUserByLogin($email, $password);
 
-$query = $db->prepare("SELECT * FROM User WHERE email = '$email' AND password = '$password' ");
-$query->execute();
+if ($user != null){
 
-$users = $query->fetchAll();
-
-$count = count($users);
-
-if ($count == 1){
-
-    $user_info = $users[0];
-
-    $user = new User( $user_info['id'], $user_info['name'], $user_info['email'], $user_info['role'], $user_info['department']);
     $session->login($user->id);
 
     header("Location: ../pages/home.php");
