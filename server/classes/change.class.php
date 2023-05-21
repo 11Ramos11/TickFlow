@@ -20,13 +20,15 @@ class Change {
         return Ticket::getTicketByID($this->ticketID);
     }
 
-    static public function getRecentChanges(){
+    static public function getRecentChanges($user){
 
         $db = getDatabaseConnection();
 
-        $query = $db->prepare("SELECT * FROM Change ORDER BY editDate DESC, editTime DESC LIMIT 10");
+        // get 10 last changes that user has access to
 
-        $query->execute();
+        $query = $db->prepare("SELECT * FROM Change WHERE ticket IN (SELECT id FROM Ticket WHERE author = ? OR assignee = ?) ORDER BY editDate DESC, editTime DESC LIMIT 10");
+
+        $query->execute(array($user, $user));
 
         $results = $query->fetchAll();
 

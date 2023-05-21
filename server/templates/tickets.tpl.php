@@ -35,7 +35,6 @@
 								<option value=<?=$priority->id?>><?=$priority->name?></option>
 							<?php } ?>
 						</select>
-						<?php if ($user->role != "Client") { ?> 
 						<select id="department-filter" class="filter-dropdown">
 							<option value="All">Any Department</option>
 							<?php foreach ($departments as $department) { ?>
@@ -43,7 +42,6 @@
 							<?php } ?>
 							<option value="None">None</option>
 						</select>
-						<?php } ?>
 					</section>
 					<section class="tags-searchbar flex-fix">
 						<ul class="tags-box tags" id="tag-creator">

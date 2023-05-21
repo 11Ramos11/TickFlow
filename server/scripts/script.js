@@ -101,9 +101,9 @@ async function createTags() {
         });
     }
 
-    const filterTab = document.getElementById("filter-tab");
+    const autoCompleteUL = document.getElementById("auto-complete");
 
-    if (filterTab != null) {
+    if (autoCompleteUL != null) {
 
         async function getTags() {
             return fetch('../api/autoCompleteTags.api.php', {
@@ -115,7 +115,6 @@ async function createTags() {
         }
 
         const tag_input = document.getElementById("tag-input");
-        const autoCompleteUL = document.getElementById("auto-complete");
         
         const response = await getTags();
 
@@ -171,8 +170,17 @@ async function createTags() {
             await showAutoComplete();
         });
 
-        autoCompleteUL.addEventListener("mouseleave", function() {
-            autoCompleteUL.innerHTML = "";
+        document.addEventListener("click", function(e) {
+            if (!tag_input.contains(e.target)) {
+                autoCompleteUL.innerHTML = "";
+            }
+        });
+
+        document.addEventListener("keyup", function(e) {
+
+            if (e.code == "Escape") {
+                autoCompleteUL.innerHTML = "";
+            }
         });
     }
 }

@@ -15,20 +15,12 @@
 		header("Location: authentication.php");
 		exit();
 	}
-	
-	if (!isset($_GET['id'])) {
-        $id = $session->userID;
-    }
-    else {
-        $id = $_GET['id'];
 
-        if (!$session->isAdmin() && $session->userID != $id) {
-            header("Location: personnel.php");
-            exit();
-        }
-    }
-
-    $user = User::getUserById($id);
+	if (!$session->isAdmin()){
+		$session->setError("No perms", "You don't have permission to access that page.");
+		header("Location: dashboard.php");
+		exit();
+	}
 	
 	$departments = Department::getDepartments();
 	$statuses = Status::getStatuses();
@@ -36,6 +28,5 @@
 
 	drawHeader("admin");
 	drawAdmin($departments, $statuses, $priorities);
-	drawProfile($user, $departments);
 	drawFooter();
 ?>

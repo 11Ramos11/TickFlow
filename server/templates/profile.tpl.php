@@ -18,7 +18,7 @@
 			<section id="edit-profile">
 				<img src=<?=$user->getPhoto()?> alt="Profile Picture" class="edit-profile-img">
 				<form action="../actions/editUser.action.php" method="post" class="active" enctype="multipart/form-data">
-					<input type="file" name="image">
+					<?php if ($sessionUser->id == $user->id) { ?><input type="file" name="image"> <?php } ?>
 					<input type="hidden" name="id" value="<?=$user->id?>">
 					<input id="name-editor" class="profile-editor" name="name">
 					<input id="email-editor" class="profile-editor" name="email">

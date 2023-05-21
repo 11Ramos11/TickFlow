@@ -41,6 +41,7 @@ function drawTicketCreator($departments, $priorities) { ?>
               <ul class="tags-box tags input-tags" id="tag-creator">
                 <input type="text" id="tag-input" name="tag" placeholder="Tags">
               </ul>
+              <ul id="auto-complete"></ul>
               <input type="hidden" id="tags" name="tags" value="">
             </section>
             <button type="text" class="submit" id="submit-button">Submit</button>
