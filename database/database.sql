@@ -218,25 +218,25 @@ INSERT INTO FAQ (id, question, answer, department) VALUES
   (12, 'What is the process for requesting a purchase order?', 'To request a purchase order, please submit a request through the purchasing portal. Please include a description of the item or service being requested, as well as the cost.', 4);
 
 INSERT INTO User (id, name, email, password, role, department) VALUES 
-  (1, 'John Smith', 'john.smith@tickflow.com', 'password1', 'Admin', 1),
-  (2, 'Jane Doe', 'jane.doe@tickflow.com', 'password2', 'Client', NULL),
-  (3, 'Bob Johnson', 'bob.johnson@tickflow.com', 'password3', 'Agent', 1),
-  (4, 'Alice Williams', 'alice.williams@tickflow.com', 'password4', 'Client', NULL),
-  (5, 'Charlie Brown', 'charlie.brown@tickflow.com', 'password5', 'Agent', 2),
-  (6, 'Emily Davis', 'emily.davis@tickflow.com', 'password6', 'Agent', 2),
-  (7, 'George Rodriguez', 'george.rodriguez@tickflow.com', 'password7', 'Agent', 3),
-  (8, 'Megan Lee', 'megan.lee@tickflow.com', 'password8', 'Agent', 3),
-  (9, 'David Kim', 'david.kim@tickflow.com', 'password9', 'Agent', 3),
-  (10, 'Karen Chen', 'karen.chen@tickflow.com', 'password10', 'Agent', 3),
-  (11, 'Tom Brown', 'tom.brown@tickflow.com', 'password11', 'Agent', 4),
-  (12, 'Emma Wilson', 'emma.wilson@tickflow.com', 'password12', 'Agent', 4),
-  (13, 'Chris Lee', 'chris.lee@tickflow.com', 'password13', 'Agent', 4),
-  (14, 'Lisa Miller', 'lisa.miller@tickflow.com', 'password14', 'Client', NULL),
-  (15, 'Mike Davis', 'mike.davis@tickflow.com', 'password15', 'Client', NULL),
-  (16, 'Sarah Wilson', 'sarah.wilson@tickflow.com', 'password16', 'Client', NULL),
-  (17, 'Steven Miller', 'steven.miller@tickflow.com', 'password17', 'Client', NULL),
-  (18, 'Amy Jones', 'amy.jones@tickflow.com', 'password18', 'Client', NULL),
-  (19, 'Kevin Davis', 'kevin.davis@tickflow.com', 'password19', 'Client', NULL);
+  (1, 'John Smith', 'john.smith@tickflow.com', '$2y$10$zN9l0Esef1vGFxf83TvrKOJcBQgU4SuAE1xXIc7hOx4Ej0460yOIu', 'Admin', 1),
+  (2, 'Jane Doe', 'jane.doe@tickflow.com', '$2y$10$zN9l0Esef1vGFxf83TvrKOJcBQgU4SuAE1xXIc7hOx4Ej0460yOIu', 'Client', NULL),
+  (3, 'Bob Johnson', 'bob.johnson@tickflow.com', '$2y$10$zN9l0Esef1vGFxf83TvrKOJcBQgU4SuAE1xXIc7hOx4Ej0460yOIu', 'Agent', 1),
+  (4, 'Alice Williams', 'alice.williams@tickflow.com', '$2y$10$zN9l0Esef1vGFxf83TvrKOJcBQgU4SuAE1xXIc7hOx4Ej0460yOIu', 'Client', NULL),
+  (5, 'Charlie Brown', 'charlie.brown@tickflow.com', '$2y$10$zN9l0Esef1vGFxf83TvrKOJcBQgU4SuAE1xXIc7hOx4Ej0460yOIu', 'Agent', 2),
+  (6, 'Emily Davis', 'emily.davis@tickflow.com', '$2y$10$zN9l0Esef1vGFxf83TvrKOJcBQgU4SuAE1xXIc7hOx4Ej0460yOIu', 'Agent', 2),
+  (7, 'George Rodriguez', 'george.rodriguez@tickflow.com', '$2y$10$zN9l0Esef1vGFxf83TvrKOJcBQgU4SuAE1xXIc7hOx4Ej0460yOIu', 'Agent', 3),
+  (8, 'Megan Lee', 'megan.lee@tickflow.com', '$2y$10$zN9l0Esef1vGFxf83TvrKOJcBQgU4SuAE1xXIc7hOx4Ej0460yOIu', 'Agent', 3),
+  (9, 'David Kim', 'david.kim@tickflow.com', '$2y$10$zN9l0Esef1vGFxf83TvrKOJcBQgU4SuAE1xXIc7hOx4Ej0460yOIu', 'Agent', 3),
+  (10, 'Karen Chen', 'karen.chen@tickflow.com', '$2y$10$zN9l0Esef1vGFxf83TvrKOJcBQgU4SuAE1xXIc7hOx4Ej0460yOIu', 'Agent', 3),
+  (11, 'Tom Brown', 'tom.brown@tickflow.com', '$2y$10$zN9l0Esef1vGFxf83TvrKOJcBQgU4SuAE1xXIc7hOx4Ej0460yOIu', 'Agent', 4),
+  (12, 'Emma Wilson', 'emma.wilson@tickflow.com', '$2y$10$zN9l0Esef1vGFxf83TvrKOJcBQgU4SuAE1xXIc7hOx4Ej0460yOIu', 'Agent', 4),
+  (13, 'Chris Lee', 'chris.lee@tickflow.com', '$2y$10$zN9l0Esef1vGFxf83TvrKOJcBQgU4SuAE1xXIc7hOx4Ej0460yOIu', 'Agent', 4),
+  (14, 'Lisa Miller', 'lisa.miller@tickflow.com', '$2y$10$zN9l0Esef1vGFxf83TvrKOJcBQgU4SuAE1xXIc7hOx4Ej0460yOIu', 'Client', NULL),
+  (15, 'Mike Davis', 'mike.davis@tickflow.com', '$2y$10$zN9l0Esef1vGFxf83TvrKOJcBQgU4SuAE1xXIc7hOx4Ej0460yOIu', 'Client', NULL),
+  (16, 'Sarah Wilson', 'sarah.wilson@tickflow.com', '$2y$10$zN9l0Esef1vGFxf83TvrKOJcBQgU4SuAE1xXIc7hOx4Ej0460yOIu', 'Client', NULL),
+  (17, 'Steven Miller', 'steven.miller@tickflow.com', '$2y$10$zN9l0Esef1vGFxf83TvrKOJcBQgU4SuAE1xXIc7hOx4Ej0460yOIu', 'Client', NULL),
+  (18, 'Amy Jones', 'amy.jones@tickflow.com', '$2y$10$zN9l0Esef1vGFxf83TvrKOJcBQgU4SuAE1xXIc7hOx4Ej0460yOIu', 'Client', NULL),
+  (19, 'Kevin Davis', 'kevin.davis@tickflow.com', '$2y$10$zN9l0Esef1vGFxf83TvrKOJcBQgU4SuAE1xXIc7hOx4Ej0460yOIu', 'Client', NULL);
 
   
 INSERT INTO Priority (name) VALUES ("Normal"), ("Urgent"), ("Immediate");

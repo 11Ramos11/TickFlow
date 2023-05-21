@@ -271,7 +271,7 @@ class User
             exit();
         }
 
-        $result = $query->execute(array($name, $email, $password));
+        $result = $query->execute(array($name, $email, password_hash($password, PASSWORD_DEFAULT)));
 
         if ($result == false){
             $session->setError("Register", "Email already exists");
@@ -284,8 +284,8 @@ class User
 
         $db = getDatabaseConnection();
 
-        $query = $db->prepare("SELECT * FROM User WHERE email = ? AND password = ?");
-        $query->execute(array($email, $password));
+        $query = $db->prepare("SELECT * FROM User WHERE email = ?");
+        $query->execute(array($email));
 
         $users = $query->fetchAll();
 
@@ -295,6 +295,10 @@ class User
 
         $user = $users[0];
 
+        if (!password_verify($password, $user['password'])){
+            return null;
+        }
+        
         return new User($user['id'], $user['name'], $user['email'], $user['role'], $user['department']);
     }
 }
