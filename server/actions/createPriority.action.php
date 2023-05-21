@@ -30,6 +30,13 @@ if (strlen($name) == 0){
     header("Location: ../pages/admin.php");
     exit();
 }
+
+if (!preg_match('/^[a-zA-Z0-9 .,!?\s]+$/i', $name)){
+    $session->setError("Invalid name", "The name of the priority cannot contain special characters.");
+    header("Location: ../pages/admin.php");
+    exit();
+}
+
 $name = ucfirst($name);
 
 Priority::createPriority($name);

@@ -9,24 +9,24 @@ $id = $_POST["id"];
 
 $name = $_POST["name"];
 
-if (!preg_match("/^[a-zA-Z\sãÃéÉáÁíÍóÓçÇ]+$/", $name)){
-    $session->setError("reg", "Name must only contain letters and spaces");
+if (!preg_match('/^[a-zA-Z\s]+$/i', $name)){
+    $session->setError("Invalid Input", "Name must only contain letters and spaces");
     header("Location: ../pages/dashboard.php?id=$id");  
     exit();
 }
+
 $email = $_POST["email"];
 
-if (!preg_match("/^[a-zA-Z0-9._]+@tickflow.com+$/", $email)){
-    $session->setError("reg", "Email must be a valid TickFlow email (@tickflow.com)");
-    error_log("Email must be a valid TickFlow email (@tickflow.com)");
+if (!preg_match("/^[a-zA-Z0-9.]+@tickflow.com$/i", $email)){
+    $session->setError("Invalid Input", "Email must be a valid TickFlow email (user.name123@tickflow.com)");
     header("Location: ../pages/dashboard.php?id=$id");  
     exit();
 }
 
 $department = $_POST["department"];
 
-if (!preg_match("/^[0-9]+$/", $department)){
-    $session->setError("reg", "Department must only contain letters and spaces");
+if (!is_numeric($department)){
+    $session->setError("Invalid Input", "Department must be a valid department");
     header("Location: ../pages/dashboard.php?id=$id");  
     exit();
 }
@@ -54,7 +54,7 @@ if ($sessionUser->role == "Admin" && User::getUserById($id)->role == "Admin" && 
 }
 
 if ($role != "Admin" && $role != "Agent" && $role != "Client"){
-    $session->setError("reg", "Role must be Admin, Agent or Client");
+    $session->setError("Invalid Input", "Role must be Admin, Agent or Client");
     header("Location: ../pages/dashboard.php?id=$id");  
     exit();
 }

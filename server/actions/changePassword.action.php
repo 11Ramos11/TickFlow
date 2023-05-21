@@ -29,13 +29,17 @@ $id = $_POST['id'];
 
 // password cant contain ?, < and > because of html and sql injection risk 
 
+if (!is_numeric($id)){
+    $session->setError("Bad input","Refresh and try again");
+    header("Location: ../pages/dashboard.php");
+    exit();
+}
+
 if (strpos($password, '?') !== false || strpos($password, '<') !== false || strpos($password, '>') !== false){
     $session->setError("Bad input","Password can't contain '?', '<' or '>'");
     header("Location: ../pages/dashboard.php");
     exit();
 }
-
-$id = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
 
 if ($session->userID !== $id){
     $session->setError("Unauthorized","You can only change your own password");

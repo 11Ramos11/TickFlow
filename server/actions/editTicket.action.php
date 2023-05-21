@@ -47,11 +47,36 @@ if ($subject == '' || $description == '' || $priority == '') {
     exit();
 }
 
+if (!preg_match('/^[a-zA-Z0-9.,!?\s]+$/i', $subject)){
+    $session->setError("Invalid input", "The subject contains invalid characters.");
+    header("Location: ../pages/admin.php");
+    exit();
+}
+
+if (!preg_match('/^[a-zA-Z0-9.,!?\s]+$/i', $description)){
+    $session->setError("Invalid input", "The description contains invalid characters.");
+    header("Location: ../pages/admin.php");
+    exit();
+}
+
+if (!preg_match('/^[a-zA-Z0-9,\s]+$/i', $tags)){
+    $session->setError("Invalid input", "The tags cannot contain special characters.");
+    header("Location: ../pages/admin.php");
+    exit();
+}
+
+if (!is_numeric($priority)) {
+    $session->setError('Invalid input', 'The priority must be a number.');
+    header('Location: ../pages/editTicket.php?ticket='.$id);
+    exit();
+}
+
 if ($tags == '') {
     $tags = null;
 }
 
 $tags = explode(',', $tags);
+
 
 $ticket = Ticket::getTicketById($id);
 
@@ -61,16 +86,37 @@ $ticket->updateTicket($subject, $description, $priority, $tags);
 
 if (isset($_POST['status'])) {
     $status = $_POST['status'];
+
+    if (!is_numeric($status)){
+        $session->setError("Invalid input", "The status cannot contain special characters.");
+        header("Location: ../pages/admin.php");
+        exit();
+    }
+
     $ticket->updateStatus($status);
 }
 
 if (isset($_POST['assignee'])){
+
+    if (!is_numeric($assignee)){
+        $session->setError("Invalid input", "The assignee cannot contain special characters.");
+        header("Location: ../pages/admin.php");
+        exit();
+    }
+
     $assignee = $_POST['assignee'];
     $ticket->updateAssignee($assignee);
 }
 
 if (isset($_POST['department'])){
     $department = $_POST['department'];
+
+    if (!is_numeric($department)){
+        $session->setError("Invalid input", "The department cannot contain special characters.");
+        header("Location: ../pages/admin.php");
+        exit();
+    }
+
     $ticket->updateDepartment($department);
 }
 
