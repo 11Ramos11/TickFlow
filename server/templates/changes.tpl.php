@@ -8,11 +8,17 @@
             <div class="change-card">
                 <a href="../pages/ticket.php?ticket=<?=$ticket->id?>">
                 <article class="change">
-                    <h3> <?=$change->editDate?>, <?=$change->editTime?> </h3>
+                    <h4>Change of <b><?=ucfirst($change->fieldChanged)?></b> Field</h3>
                     <section class="change-info">
-                        <p><?= ucfirst($change->fieldChanged) ?>:</p>
-                        <p><span class="old"><?=$change->oldValue?></span> <i class="fa-solid fa-chevron-down"></i> <span class="new"><?=$change->newValue?></span></p>
-                        <p class="change-author"><?=$author->name?></p> 
+                        <p class="status-change">
+                            <span class="old"><?=$change->oldValue?></span> 
+                            <i class="fa-solid fa-chevron-down"></i> 
+                            <span class="new"><?=$change->newValue?></span>
+                        </p>
+                        <section class="change-details">
+                            <p class="change-time"> <?=$change->editDate?>, <?=$change->editTime?>
+                            <p class="change-author">By <a href="../pages/dashboard.php?id=<?=$author->id?>"><?=$author->name?></a></p> 
+                        </section>
                     </section>
                 </article>
                 </a>
@@ -35,7 +41,7 @@
                     <article class="change">
                         <h3> <?=$ticket->subject?> </h3>
                         <section class="change-info">
-                            <p><?= ucfirst($change->fieldChanged) ?>:</p>
+                            <h4><?= ucfirst($change->fieldChanged) ?>:</h4>
                             <p><span class="old"><?=$change->oldValue?></span> <i class="fa-solid fa-chevron-down"></i> <span class="new"><?=$change->newValue?></span></p>
                             <p class="change-time"><?=$change->editDate?>, <?=$change->editTime?></p>
                         </section>

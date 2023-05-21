@@ -199,6 +199,13 @@ class Ticket {
 
         $db = getDatabaseConnection();
 
+        // count ammount of changes on Change table before updating ticket
+
+        $query = $db->prepare("SELECT * FROM Change WHERE ticket = ?");
+        $query->execute(array($id));
+        $results = $query->fetchAll();
+        $oldChanges = count($results);
+
         $query = $db->prepare("UPDATE Ticket SET subject = ?, description = ?, priority = ?, status = ?, department = ?, assignee = ? WHERE id = ?");
         $query->execute(array($subject, $description, $priority, $status, $department, $assignee, $id));
 
@@ -227,24 +234,36 @@ class Ticket {
         $session = new Session();
         $authorID = $session->userID;
 
-        Ticket::updateChangeAuthor($id, $authorID);
+        // count ammount of changes on Change table after updating ticket
+
+        $query = $db->prepare("SELECT * FROM Change WHERE ticket = ?");
+        $query->execute(array($id));
+        $results = $query->fetchAll();
+        $newChanges = count($results);
+
+        // if there are new changes, update latest Change author with this ticketID
+
+        $numChanges = $newChanges - $oldChanges;
+
+        Ticket::updateChangeAuthor($id, $authorID, $numChanges);
     }
 
-    public static function updateChangeAuthor($ticketID, $authorID){
+    public static function updateChangeAuthor($ticketID, $authorID,  $numChanges){
 
         $db = getDatabaseConnection();
 
         // update latest Change author with this ticketID
 
-        $query = $db->prepare("SELECT * FROM Change WHERE ticket = ? ORDER BY editDate DESC, editTime DESC LIMIT 1");
+        $query = $db->prepare("SELECT * FROM Change WHERE ticket = ? ORDER BY editDate DESC, editTime DESC LIMIT $numChanges");
         $query->execute(array($ticketID));
 
         $results = $query->fetchAll();
+        
+        foreach ($results as $result){
 
-        $changeID = $results[0]['id'];
-
-        $query = $db->prepare("UPDATE Change SET author = ? WHERE id = ?");
-        $query->execute(array($authorID, $changeID));
+            $query = $db->prepare("UPDATE Change SET author = ? WHERE id = ?");
+            $query->execute(array($authorID, $result['id']));
+        }
     }
 
     public static function deleteUnusedHashtags(){

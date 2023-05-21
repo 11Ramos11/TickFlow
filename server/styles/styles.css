@@ -1,6 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 :root {
   --main-color: #3818D9;
@@ -8,7 +6,6 @@
 
 * {
   font-family: 'Montserrat', sans-serif;
-  /*'Roboto', sans-serif;*/
 }
 
 html {
@@ -1512,20 +1509,26 @@ textarea {
   text-align: center;
 }
 
-.change-info>p::first-letter {
-
-  text-transform: capitalize;
-
-}
-
-.change-info>p:first-of-type {
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.change-info>p:last-of-type {
+.change-info>p {
   font-size: 1rem;
   font-weight: light;
+}
+
+.change-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* i want status-change to be a row unless it doesnt fit, then it should be a column */
+
+.status-change {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .old {
