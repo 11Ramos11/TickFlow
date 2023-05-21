@@ -14,6 +14,18 @@ if (!$session->isLoggedIn()){
     exit();
 }
 
+if (!isset($_POST['csrf'])){
+    $session->setError("Missing arguments","Refresh and try again");
+    header("Location: ../pages/dashboard.php");
+    exit();
+}
+
+if ($_POST['csrf'] !== $session->token){
+    $session->setError("Unauthorized","Refresh and try again");
+    header("Location: ../pages/dashboard.php");
+    exit();
+}
+
 if (!$session->getUser()->isAdmin()){
     header("Location: ../pages/index.php");
     exit();
@@ -29,7 +41,7 @@ $id = $_POST["id"];
 
 Department::removeDepartment($id);
 
-$session->setSuccess("Item removed", "Department removed successfully.");
+$session->setSuccess("Item removed", "Department removed successfully");
 
 header("Location: ../pages/admin.php");
 ?>

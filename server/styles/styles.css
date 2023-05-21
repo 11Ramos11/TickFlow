@@ -220,7 +220,7 @@ nav ul:last-child li a {
 }
 
 #tickets-search {
-  max-height: 100%;
+  height: 100%;
   overflow-y: hidden;
   display: grid;
   grid-template-rows: [start] 40vh [middle] 60vh [end];

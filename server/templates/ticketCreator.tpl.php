@@ -1,5 +1,5 @@
 <?php 
-function drawTicketCreator($departments, $priorities) { ?>
+function drawTicketCreator($departments, $priorities, $session) { ?>
     <main class="middle-column">
       <section class="title">
       <h2>Create a New Ticket</h2>
@@ -45,6 +45,7 @@ function drawTicketCreator($departments, $priorities) { ?>
               <input type="hidden" id="tags" name="tags" value="">
             </section>
             <button type="text" class="submit" id="submit-button">Submit</button>
+					  <input type="hidden" name="csrf" value="<?=$session->token?>">
           </form>
         </article>
       </section>

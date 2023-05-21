@@ -54,7 +54,7 @@
   <?php } ?>
 <?php } ?>
 
-<?php function drawTicketEditor($departments, $priorities, $statuses, $users, $ticket, $sessionUser) { ?>
+<?php function drawTicketEditor($departments, $priorities, $statuses, $users, $ticket, $sessionUser, $session) { ?>
     <main class="middle-column">
       <section class="title">
       <h2>Edit Ticket</h2>
@@ -96,6 +96,7 @@
               <ul id="auto-complete"></ul>
             </section>
             <input name="id" type="hidden" value="<?= $ticket->id ?>">      
+					  <input type="hidden" name="csrf" value="<?=$session->token?>">
             <button type="text" class="submit" id="submit-button">Submit</button>
           </form>
         </article>

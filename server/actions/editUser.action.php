@@ -24,15 +24,18 @@ if ($_POST['csrf'] !== $session->token){
 
 $sessionUser = $session->getUser();
 
-error_log($session->userID);
-error_log($sessionUser->id);
-error_log($sessionUser->name);
-error_log($sessionUser->role);
-
 if (!isset($_POST["role"])){
     $role = $sessionUser->role; 
 } else {
     $role = $_POST["role"];
+}
+
+$id = $_POST["id"];
+
+if (!is_numeric($id)){
+    $session->setError("Invalid Input", "Refresh and try again");
+    header("Location: ../pages/dashboard.php?id=$id");  
+    exit();
 }
 
 if ($sessionUser->role == "Admin" && $role != "Admin" && $sessionUser->id == $id){
@@ -55,7 +58,6 @@ if ($role != "Admin" && $role != "Agent" && $role != "Client"){
     exit();
 }
 
-$id = $_POST["id"];
 
 $name = $_POST["name"];
 

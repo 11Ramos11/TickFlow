@@ -28,7 +28,7 @@
 	$priorities = Priority::getPriorities();
 
 	drawHeader("admin");
-	drawAdmin($departments, $statuses, $priorities);
+	drawAdmin($departments, $statuses, $priorities, $session);
 	drawDeparmentBar($departments, $statuses);
 	drawFooter();
 ?>

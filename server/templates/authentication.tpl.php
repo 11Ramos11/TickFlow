@@ -1,4 +1,4 @@
-<?php function drawAuthentication($error, $success){ ?>
+<?php function drawAuthentication($error, $success, $session){ ?>
 
 <html>  
 <head>  
@@ -15,6 +15,7 @@
 				<input type="email" name="email" placeholder="Email" />
 				<input type="password" name="pwd" placeholder="Password" />
 				<button>Sign Up</button>
+				<input type="hidden" name="csrf" value="<?=$session->token?>">
 			</form>
 		</div>
 		<div class="form-container sign-in-container">
@@ -23,6 +24,7 @@
 				<input type="email" name="email" placeholder="Email" />
 				<input type="password" name="pwd" placeholder="Password" />
 				<button>Sign In</button>
+				<input type="hidden" name="csrf" value="<?=$session->token?>">
 			</form>
 		</div>
 		<div class="overlay-container">	

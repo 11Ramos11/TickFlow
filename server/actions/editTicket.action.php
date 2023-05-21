@@ -14,8 +14,32 @@ if (!$session->isLoggedIn()) {
     exit();
 }
 
+if (!isset($_POST['csrf'])){
+    $session->setError("Missing arguments","Refresh and try again");
+    header("Location: ../pages/dashboard.php");
+    exit();
+}
+
+if ($_POST['csrf'] !== $session->token){
+    $session->setError("Unauthorized","Refresh and try again");
+    header("Location: ../pages/dashboard.php");
+    exit();
+}
+
+if (!isset($_POST['csrf'])){
+    $session->setError("Missing arguments","Refresh and try again");
+    header("Location: ../pages/dashboard.php");
+    exit();
+}
+
+if ($_POST['csrf'] !== $session->token){
+    $session->setError("Unauthorized","Refresh and try again");
+    header("Location: ../pages/dashboard.php");
+    exit();
+}
+
 if (!isset($_POST['id'])) {
-    $session->setError('Missing fields', 'Please fill all the required fields.');
+    $session->setError('Missing fields', 'Please fill all the required fields');
     header('Location: ../pages/dashboard.php');
     exit();
 }
@@ -25,13 +49,13 @@ $id = $_POST['id'];
 $ticket = Ticket::getTicketById($id);
 
 if ($ticket == null) {
-    $session->setError('Ticket not found', 'The ticket you are trying to edit does not exist.');
+    $session->setError('Ticket not found', 'The ticket you are trying to edit does not exist');
     header('Location: ../pages/dashboard.php');
     exit();
 }
 
 if (!isset($_POST['subject']) || !isset($_POST['description']) || !isset($_POST['priority'])) {
-    $session->setError('Missing fields', 'Please fill all the required fields.');
+    $session->setError('Missing fields', 'Please fill all the required fields');
     header('Location: ../pages/editTicket.php?ticket='.$id);
     exit();
 }
@@ -42,31 +66,31 @@ $priority = $_POST['priority'];
 $tags = $_POST['tags'];
 
 if ($subject == '' || $description == '' || $priority == '') {
-    $session->setError('Missing fields', 'Please fill all the required fields.');
+    $session->setError('Missing fields', 'Please fill all the required fields');
     header('Location: ../pages/editTicket.php?ticket='.$id);
     exit();
 }
 
 if (!preg_match('/^[a-zA-Z0-9.,!?\s]+$/i', $subject)){
-    $session->setError("Invalid input", "The subject contains invalid characters.");
-    header("Location: ../pages/admin.php");
+    $session->setError("Invalid input", "The subject contains invalid characters");
+    header("Location: ../pages/editTicket.php?ticket=$id");
     exit();
 }
 
 if (!preg_match('/^[a-zA-Z0-9.,!?\s]+$/i', $description)){
-    $session->setError("Invalid input", "The description contains invalid characters.");
-    header("Location: ../pages/admin.php");
+    $session->setError("Invalid input", "The description contains invalid characters");
+    header("Location: ../pages/editTicket.php?ticket=$id");
     exit();
 }
 
 if (!preg_match('/^[a-zA-Z0-9,\s]+$/i', $tags)){
-    $session->setError("Invalid input", "The tags cannot contain special characters.");
-    header("Location: ../pages/admin.php");
+    $session->setError("Invalid input", "The tags cannot contain special characters");
+    header("Location: ../pages/editTicket.php?ticket=$id");
     exit();
 }
 
 if (!is_numeric($priority)) {
-    $session->setError('Invalid input', 'The priority must be a number.');
+    $session->setError('Invalid input', 'The priority is invalid');
     header('Location: ../pages/editTicket.php?ticket='.$id);
     exit();
 }
@@ -88,8 +112,8 @@ if (isset($_POST['status'])) {
     $status = $_POST['status'];
 
     if (!is_numeric($status)){
-        $session->setError("Invalid input", "The status cannot contain special characters.");
-        header("Location: ../pages/admin.php");
+        $session->setError("Invalid input", "The status is invalid");
+        header("Location: ../pages/editTicket.php?ticket=$id");
         exit();
     }
 
@@ -98,13 +122,15 @@ if (isset($_POST['status'])) {
 
 if (isset($_POST['assignee'])){
 
+    $assignee = $_POST['assignee'];
+
     if (!is_numeric($assignee)){
-        $session->setError("Invalid input", "The assignee cannot contain special characters.");
-        header("Location: ../pages/admin.php");
+        $session->setError("Invalid input", "The assignee is invalid");
+        header("Location: ../pages/editTicket.php?ticket=$id");
+
         exit();
     }
 
-    $assignee = $_POST['assignee'];
     $ticket->updateAssignee($assignee);
 }
 
@@ -112,8 +138,8 @@ if (isset($_POST['department'])){
     $department = $_POST['department'];
 
     if (!is_numeric($department)){
-        $session->setError("Invalid input", "The department cannot contain special characters.");
-        header("Location: ../pages/admin.php");
+        $session->setError("Invalid input", "The department is invalid");
+        header("Location: ../pages/editTicket.php?ticket=$id");
         exit();
     }
 
@@ -128,7 +154,7 @@ $authorID = $session->userID;
 
 $ticket->updateChangeAuthor($authorID, $numChanges);
 
-$session->setSuccess('Ticket updated', 'The ticket was successfully updated.');
+$session->setSuccess('Ticket updated', 'The ticket was successfully updated');
 
 header('Location: ../pages/ticket.php?ticket='.$id);
 

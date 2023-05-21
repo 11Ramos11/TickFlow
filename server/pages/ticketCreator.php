@@ -17,6 +17,6 @@
 	$priorities = Priority::getPriorities();
 
 	drawHeader();
-	drawTicketCreator($departments, $priorities);
+	drawTicketCreator($departments, $priorities, $session);
 	drawFooter();
 ?>

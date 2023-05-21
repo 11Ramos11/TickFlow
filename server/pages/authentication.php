@@ -23,5 +23,5 @@
 		$session->unsetSuccess();
 	}
 
-	drawAuthentication($error, $success);
+	drawAuthentication($error, $success, $session);
 ?>

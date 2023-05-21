@@ -4,6 +4,18 @@ include_once(__DIR__.'/../classes/session.class.php');
 
 $session = new Session();
 
+if (!isset($_POST['csrf'])){
+    $session->setError("Missing arguments","Refresh and try again");
+    header("Location: ../pages/dashboard.php");
+    exit();
+}
+
+if ($_POST['csrf'] !== $session->token){
+    $session->setError("Unauthorized","Refresh and try again");
+    header("Location: ../pages/dashboard.php");
+    exit();
+}
+
 $name = $_POST["name"];
 
 if (!preg_match("/^[a-zA-Z\s]+$/i", $name)){
@@ -27,7 +39,7 @@ $specialChars = preg_match('@[^\w]@', $password);
 
 if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8){
 
-    $session->setError("Register", "Password must be have at least 8 characters.\n Must contain at least one upper case letter, one number, and one special character.");
+    $session->setError("Register", "Password must be have at least 8 characters.\n Must contain at least one upper case letter, one number, and one special character");
     header("Location: ../pages/authentication.php");
     exit();
 }

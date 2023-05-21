@@ -342,6 +342,8 @@ class Ticket {
             $query = $db->prepare("INSERT INTO Ticket_Hashtag (ticket, hashtag) VALUES (?, ?)");
             $query->execute(array($ticketID, $hashtagID));
         }
+
+        return $ticketID;
     }
 }
 

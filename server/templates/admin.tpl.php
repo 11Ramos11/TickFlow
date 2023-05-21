@@ -1,4 +1,4 @@
-<?php function drawItems($items, $editAction, $removeAction, $itemType){ 
+<?php function drawItems($items, $editAction, $removeAction, $itemType, $session){ 
     foreach($items as $item) { ?>
         <li class="admin-item">
             <p><?=$item->name?></p>
@@ -14,6 +14,7 @@
                         <button type="button" class="cancel-button">No</button>
                         <button type="Submit">Yes</button>
                     </div>
+                    <input type="hidden" name="csrf" value="<?=$session->token?>">
                 </form>
             </dialog>
             <dialog class="edit-dialog">
@@ -25,13 +26,14 @@
                         <button type="button" class="cancel-button">Cancel</button>
                         <button type="submit">Submit</button>
                     </div>
+                    <input type="hidden" name="csrf" value="<?=$session->token?>">
                 </form>
             </dialog>
         </li>
     <?php } 
 } ?>
 
-<?php function drawAdmin($departments, $statuses, $priorities){ ?>
+<?php function drawAdmin($departments, $statuses, $priorities, $session){ ?>
     <main class="middle-column">
         <section class="title">
             <h2>TickFlow Manager</h2>
@@ -47,7 +49,8 @@
                     $departments,
                     "../actions/editDepartment.action.php",
                     "../actions/removeDepartment.action.php",
-                    "department"
+                    "department",
+                    $session
                 );?>
                 </ul>
                 <dialog class="add-dialog">
@@ -58,6 +61,7 @@
                             <button type="button" class="cancel-button">Cancel</button>
                             <button type="submit">Add</button>
                         </div>
+					    <input type="hidden" name="csrf" value="<?=$session->token?>">
                     </form>
                 </dialog>
             </article>
@@ -71,7 +75,8 @@
                     $statuses, 
                     "../actions/editStatus.action.php",  
                     "../actions/removeStatus.action.php",
-                    "status"
+                    "status",
+                    $session
                 );?>
                 </ul>
                 <dialog class="add-dialog">
@@ -82,6 +87,7 @@
                             <button type="button" class="cancel-button">Cancel</button>
                             <button type="submit">Add</button>
                         </div>
+					    <input type="hidden" name="csrf" value="<?=$session->token?>">
                     </form>
                 </dialog>
             </article>
@@ -95,7 +101,8 @@
                     $priorities, 
                     "../actions/editPriority.action.php",  
                     "../actions/removePriority.action.php",
-                    "priority"
+                    "priority",
+                    $session
                 );?>
                 </ul>
                 <dialog class="add-dialog">
@@ -106,6 +113,7 @@
                             <button type="button" class="cancel-button">Cancel</button>
                             <button type="submit">Add</button>
                         </div>
+					    <input type="hidden" name="csrf" value="<?=$session->token?>">
                     </form>
                 </dialog>
             </article>

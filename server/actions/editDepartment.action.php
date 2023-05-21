@@ -14,6 +14,18 @@ if (!$session->isLoggedIn()){
     exit();
 }
 
+if (!isset($_POST['csrf'])){
+    $session->setError("Missing arguments","Refresh and try again");
+    header("Location: ../pages/dashboard.php");
+    exit();
+}
+
+if ($_POST['csrf'] !== $session->token){
+    $session->setError("Unauthorized","Refresh and try again");
+    header("Location: ../pages/dashboard.php");
+    exit();
+}
+
 if (!$session->getUser()->isAdmin()){
     header("Location: ../pages/index.php");
     exit();
@@ -33,7 +45,7 @@ if (strlen($name) == 0){
 }
 
 if (!preg_match('/^[a-zA-Z0-9\s]+$/i', $name)){
-    $session->setError("Invalid name", "The name of the department cannot contain special characters.");
+    $session->setError("Invalid name", "The name of the department cannot contain special characters");
     header("Location: ../pages/admin.php");
     exit();
 }
@@ -49,7 +61,7 @@ if ($lastWord != "department"){
 
 Department::editDepartment($id, $name);
 
-$session->setSuccess("Item edited", "Department edited successfully.");
+$session->setSuccess("Item edited", "Department edited successfully");
 
 header("Location: ../pages/admin.php");
 ?>

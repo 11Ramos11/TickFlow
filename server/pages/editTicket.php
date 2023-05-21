@@ -50,7 +50,7 @@
 		$users = array();
 
 	drawHeader();
-    drawTicketEditor($departments, $priorities, $statuses, $users, $ticket, $sessionUser);
+    drawTicketEditor($departments, $priorities, $statuses, $users, $ticket, $sessionUser, $session);
 	drawBriefTicket($ticket, $author, $assignee, $department, $status, $priority, $sessionUser, "edit");
 	drawFooter();
 ?>

@@ -15,14 +15,26 @@ if (!$session->isLoggedIn()){
     exit();
 }
 
+if (!isset($_POST['csrf'])){
+    $session->setError("Missing arguments","Refresh and try again");
+    header("Location: ../pages/dashboard.php");
+    exit();
+}
+
+if ($_POST['csrf'] !== $session->token){
+    $session->setError("Unauthorized","Refresh and try again");
+    header("Location: ../pages/dashboard.php");
+    exit();
+}
+
 if (!$session->getUser()->isAgent()){
-    $session->setError("No permissions", "You do not have permissions to remove this FAQ.");
+    $session->setError("No permissions", "You do not have permissions to remove this FAQ");
     header("Location: ../pages/home.php");
     exit();
 }
 
 if (!isset($_POST["faq"])){
-    $session->setError("No FAQ", "No FAQ was provided.");
+    $session->setError("No FAQ", "No FAQ was provided");
     header("Location: ../pages/home.php");
     exit();
 }
@@ -31,7 +43,7 @@ $faq = $_POST["faq"];
 
 FAQ::removeFAQ($faq);
 
-$session->setSuccess("Item removed", "FAQ removed successfully.");
+$session->setSuccess("Item removed", "FAQ removed successfully");
 
 header("Location: ../pages/home.php");
 ?>
