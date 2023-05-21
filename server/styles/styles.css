@@ -1372,6 +1372,10 @@ textarea {
   margin: 1rem 7rem;
 }
 
+#ticket-changes {
+  padding: 3rem;
+}
+
 .change-card {
   margin-bottom: 1.25rem;
   border: 0.0625rem solid #ddd;
@@ -1565,7 +1569,7 @@ textarea {
   white-space: nowrap;
   overflow: hidden;
   max-width: 12rem;
-  margin-bottom: 1rem;
+  margin: 0.5rem 0;
 }
 
 .new {
@@ -1578,8 +1582,21 @@ textarea {
   white-space: nowrap;
   overflow: hidden;
   max-width: 12rem; 
-  margin-top: 1rem;
+  margin: 0.5rem 0;
+}
 
+#ticket-changes .status-change {
+  margin: 0.5rem 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+  align-self: center;
+}
+#ticket-changes .new, #ticket-changes .old {
+  border-radius: 0.5rem;
+  margin: 0 2rem;
+  white-space: normal;
 }
 
 .fa-chevron-down,

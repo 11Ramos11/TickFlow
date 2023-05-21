@@ -1,5 +1,4 @@
-
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 * {
 	box-sizing: border-box;
@@ -166,8 +165,8 @@ input {
 
 .overlay {
 	background: #3456ff;
-	background: -webkit-linear-gradient(to right, #000a3ebb, #3456ff);
-	background: linear-gradient(to right,#000a3ebb, #3456ff);
+	background: -webkit-linear-gradient(to right, #8e5affbb, #3456ff);
+	background: linear-gradient(to right,#8e5affbb, #3456ff);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;

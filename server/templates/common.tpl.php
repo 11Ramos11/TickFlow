@@ -60,9 +60,6 @@
 <?php } ?>
 
 <?php 
-
-include_once('../classes/my_error.class.php');
-
 function drawFooter() { 
 
 	$session = new Session();

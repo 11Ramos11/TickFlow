@@ -195,22 +195,15 @@ class Ticket {
         $query->execute(array($id));
     }
 
-    static public function updateTicket($id, $subject, $description, $priority, $status, $department, $assignee, $tags){
+    public function updateTicket($subject, $description, $priority, $department, $tags){
 
         $db = getDatabaseConnection();
 
-        // count ammount of changes on Change table before updating ticket
-
-        $query = $db->prepare("SELECT * FROM Change WHERE ticket = ?");
-        $query->execute(array($id));
-        $results = $query->fetchAll();
-        $oldChanges = count($results);
-
-        $query = $db->prepare("UPDATE Ticket SET subject = ?, description = ?, priority = ?, status = ?, department = ?, assignee = ? WHERE id = ?");
-        $query->execute(array($subject, $description, $priority, $status, $department, $assignee, $id));
+        $query = $db->prepare("UPDATE Ticket SET subject = ?, description = ?, priority = ?, department = ? WHERE id = ?");
+        $query->execute(array($subject, $description, $priority, $department, $this->id));
 
         $query = $db->prepare("DELETE FROM Ticket_Hashtag WHERE ticket = ?");
-        $query->execute(array($id));
+        $query->execute(array($this->id));
 
         foreach ($tags as $tag){
 
@@ -226,36 +219,36 @@ class Ticket {
             }
             $tagID = $results[0]['id'];
             $query = $db->prepare("INSERT INTO Ticket_Hashtag (ticket, hashtag) VALUES (?, ?)");
-            $query->execute(array($id, $tagID));
+            $query->execute(array($this->id, $tagID));
         }
 
         Ticket::deleteUnusedHashtags();
-
-        $session = new Session();
-        $authorID = $session->userID;
-
-        // count ammount of changes on Change table after updating ticket
-
-        $query = $db->prepare("SELECT * FROM Change WHERE ticket = ?");
-        $query->execute(array($id));
-        $results = $query->fetchAll();
-        $newChanges = count($results);
-
-        // if there are new changes, update latest Change author with this ticketID
-
-        $numChanges = $newChanges - $oldChanges;
-
-        Ticket::updateChangeAuthor($id, $authorID, $numChanges);
     }
 
-    public static function updateChangeAuthor($ticketID, $authorID,  $numChanges){
+    public function updateStatus($status){
+
+        $db = getDatabaseConnection();
+
+        $query = $db->prepare("UPDATE Ticket SET status = ? WHERE id = ?");
+        $query->execute(array($status, $this->id));
+    }
+
+    public function updateAssignee($assignee){
+
+        $db = getDatabaseConnection();
+
+        $query = $db->prepare("UPDATE Ticket SET assignee = ? WHERE id = ?");
+        $query->execute(array($assignee, $this->id));
+    }
+
+    public function updateChangeAuthor($authorID,  $numChanges){
 
         $db = getDatabaseConnection();
 
         // update latest Change author with this ticketID
 
         $query = $db->prepare("SELECT * FROM Change WHERE ticket = ? ORDER BY editDate DESC, editTime DESC LIMIT ?");
-        $query->execute(array($ticketID, $numChanges));
+        $query->execute(array($this->id, $numChanges));
 
         $results = $query->fetchAll();
         

@@ -1,7 +1,6 @@
 <?php
 
 include_once(__DIR__.'/../classes/session.class.php');
-include_once(__DIR__.'/../classes/my_error.class.php');
 
 $session = new Session();
 

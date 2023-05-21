@@ -1,5 +1,5 @@
 <?php function drawStatus($sessionUser, $statuses, $ticket){ 
-  if ($sessionUser->isAdmin() || $sessionUser->isAssignedTo($ticket)) { ?>
+  if ($sessionUser->isAgent() || $sessionUser->isAssignedTo($ticket)) { ?>
     <section class="input-container ic2">
     <select id="status" class="input" name="status">
       <?php foreach ($statuses as  $status){ ?>
