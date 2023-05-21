@@ -1737,6 +1737,41 @@ textarea {
 }
 
 
+#faq-dialog {
+  width: 60%;
+  height: 80%;
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  overflow-y: scroll;
+}
+
+#faq-button {
+  margin-right: 0.5rem;
+}
+.use-faq {
+  position: absolute;
+  right: 0;
+  top: 0;
+  border: none;
+  background-color: transparent;
+  padding: 0.5rem;
+  border-radius: 5rem	;
+  cursor: pointer;
+  z-index: 4;
+}
+.use-faq i {
+  color: blue;
+}
+#refresh-button {
+  font-size: 1.5rem;
+  padding: 0.8rem;
+  background-color: blue;
+  color: white;
+  border-radius: 100%;
+}
+
+
 @media screen and (max-width: 1576px){
   #administration{
     display: flex;
@@ -1903,38 +1938,8 @@ textarea {
     font-size: 0.8rem; /* reduces the font size of the dropdowns */
     margin-right: 0.5rem; /* adds some space between the dropdowns */
   }
-}
 
-#faq-dialog {
-  width: 60%;
-  height: 80%;
-  background-color: white;
-  border-radius: 10px;
-  padding: 20px;
-  overflow-y: scroll;
-}
-
-#faq-button {
-  margin-right: 0.5rem;
-}
-.use-faq {
-  position: absolute;
-  right: 0;
-  top: 0;
-  border: none;
-  background-color: transparent;
-  padding: 0.5rem;
-  border-radius: 5rem	;
-  cursor: pointer;
-  z-index: 4;
-}
-.use-faq i {
-  color: blue;
-}
-#refresh-button {
-  font-size: 1.5rem;
-  padding: 0.8rem;
-  background-color: blue;
-  color: white;
-  border-radius: 100%;
+  #faq-dialog .faq-container {
+    margin: 1rem 0;
+  }
 }
