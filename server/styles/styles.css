@@ -272,6 +272,7 @@ figure.avatar img {
   height: 3.75rem;
   border-radius: 50%;
   padding: 5%;
+  object-fit: cover;
 }
 
 #refresh-button {
