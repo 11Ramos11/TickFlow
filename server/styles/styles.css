@@ -1370,6 +1370,11 @@ textarea {
   color: inherit;
 }
 
+.no-changes {
+  margin: 10rem 1rem;
+  text-align: center;
+}
+
 .department-sidebar {
   padding: 1.25rem;
 }
