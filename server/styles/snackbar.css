@@ -1,0 +1,28 @@
+
+.snack-bar {
+    visibility: hidden;
+    min-width: 15.625rem;
+    color: #fff;
+    text-align: center;
+    border-radius: 0.125rem;
+    padding: 1.3rem;
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    z-index: 999;
+    bottom: 1.875rem;
+  }
+  
+  .snack-bar#error{
+    background-color: rgb(255, 110, 110);
+  }
+  
+  .snack-bar#success{
+    background-color: #5aff89;
+  }
+  
+  .snack-bar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 3.5s;
+    animation: fadein 0.5s, fadeout 0.5s 3.5s;
+  }
