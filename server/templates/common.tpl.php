@@ -29,7 +29,7 @@
 
 <head>
 	<title>TickFlow</title>
-	<link rel="stylesheet" type="text/css" href="../styles/styles.css">
+	<link rel="stylesheet" type="text/css" href="../styles/home.css">
 	<script src="https://kit.fontawesome.com/a45efa4a81.js" crossorigin="anonymous"></script>
 	<?php $scripter->loadScripts(); ?>
 </head>
