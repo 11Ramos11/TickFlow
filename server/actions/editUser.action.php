@@ -5,33 +5,29 @@ include_once(__DIR__.'/../classes/connection.db.php');
 
 $session = new Session();
 
-$id = $_POST["id"];
-
-$name = $_POST["name"];
-
-if (!preg_match('/^[a-zA-Z\s]+$/i', $name)){
-    $session->setError("Invalid Input", "Name must only contain letters and spaces");
-    header("Location: ../pages/dashboard.php?id=$id");  
+if (!$session->isLoggedIn()){
+    header("Location: ../pages/authentication.php");
     exit();
 }
 
-$email = $_POST["email"];
-
-if (!preg_match("/^[a-zA-Z0-9.]+@tickflow.com$/i", $email)){
-    $session->setError("Invalid Input", "Email must be a valid TickFlow email (user.name123@tickflow.com)");
-    header("Location: ../pages/dashboard.php?id=$id");  
+if (!isset($_POST['csrf'])){
+    $session->setError("Missing arguments","Refresh and try again");
+    header("Location: ../pages/dashboard.php");
     exit();
 }
 
-$department = $_POST["department"];
-
-if (!is_numeric($department)){
-    $session->setError("Invalid Input", "Department must be a valid department");
-    header("Location: ../pages/dashboard.php?id=$id");  
+if ($_POST['csrf'] !== $session->token){
+    $session->setError("Unauthorized","Refresh and try again");
+    header("Location: ../pages/dashboard.php");
     exit();
 }
 
 $sessionUser = $session->getUser();
+
+error_log($session->userID);
+error_log($sessionUser->id);
+error_log($sessionUser->name);
+error_log($sessionUser->role);
 
 if (!isset($_POST["role"])){
     $role = $sessionUser->role; 
@@ -59,9 +55,33 @@ if ($role != "Admin" && $role != "Agent" && $role != "Client"){
     exit();
 }
 
-$db = getDatabaseConnection();
-$query = $db->prepare("UPDATE User SET name = ?,email = ?,role = ?, department = ? WHERE id = ?");
-$result =  $query->execute(array($name,$email,$role,$department, $id));
+$id = $_POST["id"];
+
+$name = $_POST["name"];
+
+if (!preg_match('/^[a-zA-Z\s]+$/i', $name)){
+    $session->setError("Invalid Input", "Name must only contain letters and spaces");
+    header("Location: ../pages/dashboard.php?id=$id");  
+    exit();
+}
+
+$email = $_POST["email"];
+
+if (!preg_match("/^[a-zA-Z0-9.]+@tickflow.com$/i", $email)){
+    $session->setError("Invalid Input", "Email must be a valid TickFlow email (user.name123@tickflow.com)");
+    header("Location: ../pages/dashboard.php?id=$id");  
+    exit();
+}
+
+$department = $_POST["department"];
+
+if (!is_numeric($department)){
+    $session->setError("Invalid Input", "Department must be a valid department");
+    header("Location: ../pages/dashboard.php?id=$id");  
+    exit();
+}
+
+User::editUser($id, $name,$email,$role,$department);
 
 if (!empty($_FILES['image']['tmp_name'])){
 

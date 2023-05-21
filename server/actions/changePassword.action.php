@@ -11,6 +11,18 @@ if (!$session->isLoggedIn()){
     exit();
 }
 
+if (!isset($_POST['csrf'])){
+    $session->setError("Missing arguments","Refresh and try again");
+    header("Location: ../pages/dashboard.php");
+    exit();
+}
+
+if ($_POST['csrf'] !== $session->token){
+    $session->setError("Unauthorized","Refresh and try again");
+    header("Location: ../pages/dashboard.php");
+    exit();
+}
+
 if (!isset($_POST['pwd']) || !isset($_POST['confirm-pwd'])){
     $session->setError("Missing arguments","Please fill both fields");
     header("Location: ../pages/dashboard.php");

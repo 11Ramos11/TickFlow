@@ -11,6 +11,7 @@ class Session {
     public $userID;
     public $error;
     public $success;
+    public $token;
     
     public function __construct() {
 
@@ -20,6 +21,8 @@ class Session {
         
         $this->userID = null;
         $this->error = null;
+        $this->success = null;
+        $this->token = null;
 
         if (isset($_SESSION["userID"])) {
 
@@ -41,6 +44,11 @@ class Session {
                 $this->success = $_SESSION["success"];
             }
         }
+
+        if (!isset($_SESSION['csrf'])) {
+            $_SESSION['csrf'] = $this->generate_random_token();
+        }
+        $this->token = $_SESSION['csrf'];
     }
 
     public function login(int $userID) {
@@ -116,6 +124,14 @@ class Session {
 
     public function unsetSuccess() {
         unset($_SESSION["success"]);
+    }
+
+    public function tokenMatches($token) {
+        return $token === $this->token;
+    }
+
+    private function generate_random_token() {
+        return bin2hex(openssl_random_pseudo_bytes(32));
     }
 }
 

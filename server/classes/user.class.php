@@ -280,6 +280,14 @@ class User
         }
     }
 
+
+    static public function editUser($id, $name,$email,$role,$department){
+
+        $db = getDatabaseConnection();
+        $query = $db->prepare("UPDATE User SET name = ?,email = ?,role = ?, department = ? WHERE id = ?");
+        $query->execute(array($name,$email,$role,$department, $id));
+    }
+
     public static function getUserByLogin($email, $password){
 
         $db = getDatabaseConnection();

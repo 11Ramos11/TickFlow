@@ -20,6 +20,7 @@
 				<form action="../actions/editUser.action.php" method="post" class="active" enctype="multipart/form-data">
 					<?php if ($sessionUser->id == $user->id) { ?><input type="file" name="image"> <?php } ?>
 					<input type="hidden" name="id" value="<?=$user->id?>">
+					<input type="hidden" name="csrf" value="<?=$session->token?>">
 					<input id="name-editor" class="profile-editor" name="name">
 					<input id="email-editor" class="profile-editor" name="email">
 					<?php if ($sessionUser->role == "Admin") { ?>
@@ -42,6 +43,7 @@
 				<?php if ($sessionUser->id == $user->id) { ?>
 				<form action="../actions/changePassword.action.php" id="password-editor" method="post">
 					<input type="hidden" name="id" value="<?=$user->id?>">
+					<input type="hidden" name="csrf" value="<?=$session->token?>">
 					<label for="pwd">New Password</label>
 					<input id="new-password" class="password profile-editor" name="pwd" type="password">
 					<label for="confirm-pwd">Confirm Password</label>
