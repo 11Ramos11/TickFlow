@@ -4,8 +4,7 @@
     <section class="title">
         <h2>"<?=$ticket->subject?>" Changes</h2>
     </section>
-    <section id="ticket-changes">
-        
+    <section id="ticket-changes"> 
         <?php if (count($changes) == 0) { ?>
                 <p class="no-changes">No changes to show.</p>
         <?php } else {?>
@@ -13,7 +12,7 @@
                 $author = User::getUserById($change->author)?>
                 <div class="change-card">
                     <article class="change">
-                        <h4>Change of <b><?=ucfirst($change->fieldChanged)?></b> Field</h3>
+                        <h4>Change of <b><?=ucfirst($change->fieldChanged)?></b></h3>
                         <section class="change-info">
                             <p class="status-change">
                                 <span class="old"><?=$change->oldValue?></span> 

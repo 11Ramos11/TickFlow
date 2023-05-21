@@ -32,7 +32,7 @@ async function editTicket(){
     }
 
     async function getDepartmentUsers(data) {
-        return fetch('../api/departmentUser.api.php', {
+        return fetch('../api/departmentUsers.api.php', {
             method: 'post',
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded'

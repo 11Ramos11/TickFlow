@@ -147,19 +147,51 @@ BEGIN
         date('now'), time('now'), NEW.id
     WHERE NEW.priority != OLD.priority;
 
+    /* Do for assignee but if new assignee is null, then it is unassigned */
+
     INSERT INTO Change (fieldChanged, newValue, oldValue, editDate, editTime, ticket)
     SELECT 'assignee', 
         (SELECT name FROM User WHERE id = NEW.assignee), 
         (SELECT name FROM User WHERE id = OLD.assignee), 
         date('now'), time('now'), NEW.id
-    WHERE NEW.assignee != OLD.assignee;
+    WHERE NEW.assignee != OLD.assignee AND NEW.assignee IS NOT NULL AND OLD.assignee IS NOT NULL;
+
+    INSERT INTO Change (fieldChanged, newValue, oldValue, editDate, editTime, ticket)
+    SELECT 'assignee', 
+        'Unassigned', 
+        (SELECT name FROM User WHERE id = OLD.assignee), 
+        date('now'), time('now'), NEW.id
+    WHERE NEW.assignee IS NULL AND OLD.assignee IS NOT NULL;
+
+    INSERT INTO Change (fieldChanged, newValue, oldValue, editDate, editTime, ticket)
+    SELECT 'assignee', 
+        (SELECT name FROM User WHERE id = NEW.assignee), 
+        'Unassigned', 
+        date('now'), time('now'), NEW.id
+    WHERE NEW.assignee IS NOT NULL AND OLD.assignee iS NULL;
+
+    /* Do for department but if new department is null, then it is unassigned */
 
     INSERT INTO Change (fieldChanged, newValue, oldValue, editDate, editTime, ticket)
     SELECT 'department', 
         (SELECT name FROM Department WHERE id = NEW.department), 
         (SELECT name FROM Department WHERE id = OLD.department), 
         date('now'), time('now'), NEW.id
-    WHERE NEW.department != OLD.department;
+    WHERE NEW.department != OLD.department AND NEW.department IS NOT NULL AND OLD.department IS NOT NULL;
+
+    INSERT INTO Change (fieldChanged, newValue, oldValue, editDate, editTime, ticket)
+    SELECT 'department', 
+        'No Department', 
+        (SELECT name FROM Department WHERE id = OLD.department), 
+        date('now'), time('now'), NEW.id
+    WHERE NEW.department IS NULL AND OLD.department IS NOT NULL;
+
+    INSERT INTO Change (fieldChanged, newValue, oldValue, editDate, editTime, ticket)
+    SELECT 'department', 
+        (SELECT name FROM Department WHERE id = NEW.department), 
+        'No Department', 
+        date('now'), time('now'), NEW.id
+    WHERE NEW.department IS NOT NULL AND OLD.department IS NULL;
     
 END;
 

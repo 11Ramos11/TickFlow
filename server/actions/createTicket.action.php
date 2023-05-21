@@ -32,12 +32,6 @@ if (!isset($_POST['priority'])){
     exit();
 }
 
-if (!isset($_POST['tags'])){
-    $session->setError("No tags", "No tags were provided.");
-    header("Location: ../pages/ticketCreator.php");
-    exit();
-}
-
 if (!isset($_POST['department'])){
     $session->setError("No department", "No department was provided.");
     header("Location: ../pages/ticketCreator.php");
@@ -68,12 +62,6 @@ if ($description == ""){
 
 if ($priority == ""){
     $session->setError("No priority", "No priority was provided.");
-    header("Location: ../pages/ticketCreator.php");
-    exit();
-}
-
-if ($tags == ""){
-    $session->setError("No tags", "No tags were provided.");
     header("Location: ../pages/ticketCreator.php");
     exit();
 }

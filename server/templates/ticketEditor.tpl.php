@@ -35,7 +35,8 @@
 <?php } 
 }?>
 
-<?php function drawDepartment($departments, $ticket) { ?>
+<?php function drawDepartment($departments, $ticket, $sessionUser) { ?>
+  <?php if ($sessionUser->isAgent()) { ?>
   <section class="input-container ic2">
     <select id="department" class="input" name="department">
       <option value="-1">None</option>
@@ -50,6 +51,7 @@
     <article class="cut">Department</article>
     <label for="department" class="placeholder">Department</label>
   </section>
+  <?php } ?>
 <?php } ?>
 
 <?php function drawTicketEditor($departments, $priorities, $statuses, $users, $ticket, $sessionUser) { ?>
@@ -84,7 +86,7 @@
               <label for="priority" class="placeholder">Priority</label>
             </section>
             <?php drawStatus($sessionUser, $statuses, $ticket); ?>
-            <?php drawDepartment($departments, $ticket); ?>
+            <?php drawDepartment($departments, $ticket, $sessionUser); ?>
             <?php drawAssignee($sessionUser, $users, $ticket); ?>
             <section class="input-container ic2">
               <ul class="tags-box tags input-tags" id="tag-creator">

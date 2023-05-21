@@ -30,7 +30,7 @@ if ($ticket == null) {
     exit();
 }
 
-if (!isset($_POST['subject']) || !isset($_POST['description']) || !isset($_POST['priority']) || !isset($_POST['department'])) {
+if (!isset($_POST['subject']) || !isset($_POST['description']) || !isset($_POST['priority'])) {
     $session->setError('Missing fields', 'Please fill all the required fields.');
     header('Location: ../pages/editTicket.php?ticket='.$id);
     exit();
@@ -39,25 +39,17 @@ if (!isset($_POST['subject']) || !isset($_POST['description']) || !isset($_POST[
 $subject = $_POST['subject'];
 $description = $_POST['description'];
 $priority = $_POST['priority'];
-$department = $_POST['department'];
-$assignee = $_POST['assignee'];
 $tags = $_POST['tags'];
 
-if ($subject == '' || $description == '' || $priority == '' || $department == '') {
+if ($subject == '' || $description == '' || $priority == '') {
     $session->setError('Missing fields', 'Please fill all the required fields.');
     header('Location: ../pages/editTicket.php?ticket='.$id);
     exit();
 }
 
-if ($assignee == '') {
-    $assignee = null;
-}
-
 if ($tags == '') {
     $tags = null;
 }
-
-error_log($tags);
 
 $tags = explode(',', $tags);
 
@@ -65,7 +57,7 @@ $ticket = Ticket::getTicketById($id);
 
 $oldChanges = count($ticket->getChanges());
 
-$ticket->updateTicket($subject, $description, $priority, $department, $tags);
+$ticket->updateTicket($subject, $description, $priority, $tags);
 
 if (isset($_POST['status'])) {
     $status = $_POST['status'];
@@ -75,6 +67,11 @@ if (isset($_POST['status'])) {
 if (isset($_POST['assignee'])){
     $assignee = $_POST['assignee'];
     $ticket->updateAssignee($assignee);
+}
+
+if (isset($_POST['department'])){
+    $department = $_POST['department'];
+    $ticket->updateDepartment($department);
 }
 
 $newChanges = count($ticket->getChanges());

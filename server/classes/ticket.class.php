@@ -195,12 +195,12 @@ class Ticket {
         $query->execute(array($id));
     }
 
-    public function updateTicket($subject, $description, $priority, $department, $tags){
+    public function updateTicket($subject, $description, $priority, $tags){
 
         $db = getDatabaseConnection();
 
-        $query = $db->prepare("UPDATE Ticket SET subject = ?, description = ?, priority = ?, department = ? WHERE id = ?");
-        $query->execute(array($subject, $description, $priority, $department, $this->id));
+        $query = $db->prepare("UPDATE Ticket SET subject = ?, description = ?, priority = ? WHERE id = ?");
+        $query->execute(array($subject, $description, $priority, $this->id));
 
         $query = $db->prepare("DELETE FROM Ticket_Hashtag WHERE ticket = ?");
         $query->execute(array($this->id));
@@ -237,8 +237,27 @@ class Ticket {
 
         $db = getDatabaseConnection();
 
-        $query = $db->prepare("UPDATE Ticket SET assignee = ? WHERE id = ?");
-        $query->execute(array($assignee, $this->id));
+        if ($assignee != -1){
+            $query = $db->prepare("UPDATE Ticket SET assignee = ? WHERE id = ?");
+            $query->execute(array($assignee, $this->id));
+        }
+        else {
+            $query = $db->prepare("UPDATE Ticket SET assignee = NULL WHERE id = ?");
+            $query->execute(array($this->id));
+        }
+    }
+
+    public function updateDepartment($department){
+
+        $db = getDatabaseConnection();
+
+        if ($department != -1){
+            $query = $db->prepare("UPDATE Ticket SET department = ? WHERE id = ?");
+            $query->execute(array($department, $this->id));
+        } else {
+            $query = $db->prepare("UPDATE Ticket SET department = NULL WHERE id = ?");
+            $query->execute(array($this->id));
+        }
     }
 
     public function updateChangeAuthor($authorID,  $numChanges){

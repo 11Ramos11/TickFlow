@@ -29,6 +29,7 @@ $departmentId = $_POST["department"];
 $department = Department::getDepatmentByID($departmentId);
 
 if ($department == null){
+    echo json_encode(array());
     exit();
 }
 
