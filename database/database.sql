@@ -187,9 +187,9 @@ INSERT INTO FAQ (id, question, answer, department) VALUES
 
 INSERT INTO User (id, name, email, password, role, department) VALUES 
   (1, 'John Smith', 'john.smith@tickflow.com', 'password1', 'Admin', 1),
-  (2, 'Jane Doe', 'jane.doe@tickflow.com', 'password2', 'Client', 1),
+  (2, 'Jane Doe', 'jane.doe@tickflow.com', 'password2', 'Client', NULL),
   (3, 'Bob Johnson', 'bob.johnson@tickflow.com', 'password3', 'Agent', 1),
-  (4, 'Alice Williams', 'alice.williams@tickflow.com', 'password4', 'Client', 2),
+  (4, 'Alice Williams', 'alice.williams@tickflow.com', 'password4', 'Client', NULL),
   (5, 'Charlie Brown', 'charlie.brown@tickflow.com', 'password5', 'Agent', 2),
   (6, 'Emily Davis', 'emily.davis@tickflow.com', 'password6', 'Agent', 2),
   (7, 'George Rodriguez', 'george.rodriguez@tickflow.com', 'password7', 'Agent', 3),
@@ -199,12 +199,12 @@ INSERT INTO User (id, name, email, password, role, department) VALUES
   (11, 'Tom Brown', 'tom.brown@tickflow.com', 'password11', 'Agent', 4),
   (12, 'Emma Wilson', 'emma.wilson@tickflow.com', 'password12', 'Agent', 4),
   (13, 'Chris Lee', 'chris.lee@tickflow.com', 'password13', 'Agent', 4),
-  (14, 'Lisa Miller', 'lisa.miller@tickflow.com', 'password14', 'Client', 3),
-  (15, 'Mike Davis', 'mike.davis@tickflow.com', 'password15', 'Client', 3),
-  (16, 'Sarah Wilson', 'sarah.wilson@tickflow.com', 'password16', 'Client', 3),
-  (17, 'Steven Miller', 'steven.miller@tickflow.com', 'password17', 'Client', 4),
-  (18, 'Amy Jones', 'amy.jones@tickflow.com', 'password18', 'Client', 4),
-  (19, 'Kevin Davis', 'kevin.davis@tickflow.com', 'password19', 'Client', 4);
+  (14, 'Lisa Miller', 'lisa.miller@tickflow.com', 'password14', 'Client', NULL),
+  (15, 'Mike Davis', 'mike.davis@tickflow.com', 'password15', 'Client', NULL),
+  (16, 'Sarah Wilson', 'sarah.wilson@tickflow.com', 'password16', 'Client', NULL),
+  (17, 'Steven Miller', 'steven.miller@tickflow.com', 'password17', 'Client', NULL),
+  (18, 'Amy Jones', 'amy.jones@tickflow.com', 'password18', 'Client', NULL),
+  (19, 'Kevin Davis', 'kevin.davis@tickflow.com', 'password19', 'Client', NULL);
 
   
 INSERT INTO Priority (name) VALUES ("Normal"), ("Urgent"), ("Immediate");

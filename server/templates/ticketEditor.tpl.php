@@ -24,7 +24,7 @@
       <?php foreach ($users as  $user){ ?>
         <?php if ($user->id === $ticket->assigneeID) { ?>
           <option value=<?=$user->id?> selected><?=$user->name?> (current)</option>
-        <?php } else if ($ticket->departmentID == $sessionUser->department) { ?>
+        <?php } else if ($ticket->departmentID == $sessionUser->department || $sessionUser->isAdmin()) { ?>
           <option value=<?=$user->id?>><?=$user->name?></option>
         <?php } ?>
       <?php } ?>
