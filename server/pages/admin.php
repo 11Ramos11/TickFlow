@@ -3,6 +3,7 @@
 	include_once(__DIR__.'/../classes/session.class.php');
 	include_once(__DIR__.'/../templates/common.tpl.php');
 	include_once(__DIR__.'/../templates/admin.tpl.php');
+	include_once(__DIR__.'/../templates/personnel.tpl.php');
 	include_once(__DIR__.'/../templates/profile.tpl.php');
 	include_once(__DIR__.'/../classes/department.class.php');
 	include_once(__DIR__.'/../classes/priority.class.php');
@@ -28,5 +29,6 @@
 
 	drawHeader("admin");
 	drawAdmin($departments, $statuses, $priorities);
+	drawDeparmentBar($departments, $statuses);
 	drawFooter();
 ?>
