@@ -866,18 +866,29 @@ section.reply button:hover {
   flex-direction: column;
   position: absolute;
   transition: 0.9s;
-  left: 10%;
+  left: 75%;
   top: 0;
   background-color: white;
   padding: 0.5rem;
   border-radius: 0.6rem;
 }
 
+.personnel-dropdown{
+  left: 60%;
+}
+
 .edit-dropdown.ticket-dropdown {
-  left: 10%;
+  left: 80%;
 } 
 
 .edit-dropdown.active {
+  left: 100%;
+  box-shadow: 0.375rem 0.375rem 0.375rem 0rem rgb(0 0 0 / 10%);
+  transition: 0.7s;
+  z-index: 3;
+}
+
+.edit-dropdown.ticket-dropdown.active {
   left: 100%;
   box-shadow: 0.375rem 0.375rem 0.375rem 0rem rgb(0 0 0 / 10%);
   transition: 0.7s;
@@ -1710,6 +1721,10 @@ textarea {
 
 @media screen and (max-width: 1200px) {
 
+  .personnel-dropdown{
+    left: 55%;
+  }
+
   .title{
     margin-top: 4rem;
     margin-right: 1.5rem;
@@ -1747,6 +1762,19 @@ textarea {
 }
 
 @media screen and (max-width: 900px) {
+
+  .edit-dropdown{
+    left: 30%;
+  }
+
+  .edit-dropdown.ticket-dropdown{
+    left: 60%;
+  }
+
+  .personnel-dropdown{
+    left: 10%;
+  }
+
 
   .logo{
     margin-left: 2rem;
