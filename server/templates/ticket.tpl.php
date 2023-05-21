@@ -85,7 +85,7 @@ function drawBriefTicket($ticket, $author, $assignee, $department, $status, $pri
 				<p>Created: <span class="date"><?=$ticket->date?></span></p>
 				<p>Status: <span class="status-tag"><?=$status->name?></span></p>
 				<p>Priority: <span class="priority-tag"><?=$priority->name?></span></p>
-				<ul class="tags">x
+				<ul class="tags">
 					<?php foreach ($ticket->tags as $tag) { ?>
 					<li class="tag"> <?= $tag ?> </li>
 					<?php } ?>

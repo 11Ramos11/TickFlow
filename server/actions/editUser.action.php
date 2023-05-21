@@ -64,14 +64,15 @@ $db = getDatabaseConnection();
 $query = $db->prepare("UPDATE User SET name = ?,email = ?,role = ?, department = ? WHERE id = ?");
 $result =  $query->execute(array($name,$email,$role,$department, $id));
 
-if (isset($_FILES['image'])){
+if (!empty($_FILES['image']['tmp_name'])){
+
     if (!is_dir('../images')) mkdir('../images');
     if (!is_dir('../images/profiles')) mkdir('../images/profiles');
 
     // PHP saves the file temporarily here
     // Image is the name of the file input in the form
     $tempFileName = $_FILES['image']['tmp_name'];
-
+    
     // Create an image representation of the original image
     // @ before function is to prevent warning messages
     $original = @imagecreatefromjpeg($tempFileName);
@@ -81,6 +82,15 @@ if (isset($_FILES['image'])){
     if (!$original) {
         $session->setError('Bad Format', 'Unknown image format');
         header("Location: ../pages/dashboard.php?id=$id");
+        exit();
+    }
+
+    // delete previous image in any format
+
+    $files = glob("../images/profiles/$id.*"); // get all file names
+    foreach($files as $file){ // iterate files
+        if(is_file($file))
+            unlink($file); // delete file
     }
 
     // Generate filenames for original, small and medium files
@@ -92,12 +102,15 @@ if (isset($_FILES['image'])){
     $height = imagesy($original);    // height of the original image
     $square = min($width, $height);  // size length of the maximum square
 
-    // Create and save a small square thumbnail
+    // Create and save a small square thumbnail 350x350
 
-    // Create an empty canvas (black)
-    $small = imagecreatetruecolor(200, 200);
-    // Resize the original image into the small square
-    imagecopyresized($small, $original, 0, 0, ($width>$square)?($width-$square)/2:0, ($height>$square)?($height-$square)/2:0, 200, 200, $square, $square);
+    // Create an empty canvas (white)
+    $small = imagecreatetruecolor(350, 350);
+    $white = imagecolorallocate($small, 255, 255, 255);
+    imagefill($small, 0, 0, $white);
+
+    // Resize the original into the small square
+    imagecopyresized($small, $original, 0, 0, ($width>$square)?($width-$square)/2:0, ($height>$square)?($height-$square)/2:0, 350, 350, $square, $square);
     // Save the small square thumbnail
     imagejpeg($small, $originalFileName);
 }

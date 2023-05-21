@@ -154,6 +154,12 @@ class User
                 if (file_exists($path)){
                     return $path;
                 }
+                else {
+                    $path = "../images/profiles/".$this->id.".jpeg";
+                    if (file_exists($path)){
+                        return $path;
+                    }
+                }
             }
         }
 
