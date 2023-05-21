@@ -1,4 +1,4 @@
-<?php function drawAuthentication($error){ ?>
+<?php function drawAuthentication($error, $success){ ?>
 
 <html>  
 <head>  
@@ -42,7 +42,10 @@
 	</div>
 	</div>
 	<?php if ($error != null) { ?>
-		<div id="error"> <?= $error->msg ?> </div>
+		<div class="snack-bar" id="error" data-code=<?=$error->code?> > <?= $error->msg ?> </div>
+	<?php } ?>
+	<?php if ($success != null) { ?>
+		<div class="snack-bar" id="success" data-code=<?=$success->code?> > <?= $success->msg ?> </div>
 	<?php } ?>
 </body>     
 </html>  

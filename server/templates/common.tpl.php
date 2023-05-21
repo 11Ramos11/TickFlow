@@ -64,25 +64,27 @@
 include_once('../classes/my_error.class.php');
 
 function drawFooter() { 
+
+	$session = new Session();
 	
 	$error = null;
-	if (isset($_SESSION['error'])) {
-		$error = $_SESSION['error'];
-		unset($_SESSION['error']);
+	if ($session->hasError()) {
+		$error = $session->getError();
+		$session->unsetError();
 	}
 
 	$success = null;
-	if (isset($_SESSION['success'])) {
-		$success = $_SESSION['success'];
-		unset($_SESSION['success']);
+	if ($session->hasSuccess()) {
+		$success = $session->getSuccess();
+		$session->unsetSuccess();
 	}
 ?>
 	</div>
 	<?php if ($error != null) { ?>
-		<div class="snack-bar" id="error"> <?= $error->msg ?> </div>
+		<div class="snack-bar" id="error" data-code=<?=$error->code?> > <?= $error->msg ?> </div>
 	<?php } ?>
 	<?php if ($success != null) { ?>
-		<div class="snack-bar" id="success"> <?= $success->msg ?> </div>
+		<div class="snack-bar" id="success" data-code=<?=$success->code?> > <?= $success->msg ?> </div>
 	<?php } ?>
 </body>
 

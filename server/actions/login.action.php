@@ -12,7 +12,7 @@ $email = $_POST['email'];
 $password = $_POST['pwd'];
 
 if ($email == "" || $password == ""){
-    $session->setError("log", "All fields are required");
+    $session->setError("Login", "All fields are required");
     header("Location: ../pages/authentication.php");
     exit();
 }
@@ -37,7 +37,7 @@ if ($count == 1){
     exit();
 }
 else{       
-    $session->setError("log", "Email or password incorrect");
+    $session->setError("Login", "Email or password incorrect");
     header("Location: ../pages/authentication.php");
     exit();
 }

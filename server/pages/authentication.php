@@ -10,11 +10,18 @@
 		header("Location: home.php");
 		exit();
 	}
-
+	
 	$error = null;
-	if ($session->hasError()){
+	if ($session->hasError()) {
 		$error = $session->getError();
+		$session->unsetError();
 	}
 
-	drawAuthentication($error);
+	$success = null;
+	if ($session->hasSuccess()) {
+		$success = $session->getSuccess();
+		$session->unsetSuccess();
+	}
+
+	drawAuthentication($error, $success);
 ?>
