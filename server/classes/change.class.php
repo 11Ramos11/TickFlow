@@ -24,18 +24,14 @@ class Change {
 
         $db = getDatabaseConnection();
 
-        // get 10 last changes that user has access to
         $user = User::getUserByID($userID);
 
         if (!$user->isAdmin()){
             $query = $db->prepare("SELECT * FROM Change WHERE ticket IN (SELECT id FROM Ticket WHERE author = ? OR assignee = ?) ORDER BY editDate DESC, editTime DESC LIMIT 10");
-
             $query->execute(array($userID, $userID));
         }
         else {
-
             $query = $db->prepare("SELECT * FROM Change ORDER BY editDate DESC, editTime DESC LIMIT 10");
-
             $query->execute();
         }
 

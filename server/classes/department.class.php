@@ -64,9 +64,9 @@ class Department {
 
         $db = getDatabaseConnection();
         
-        $query = $db->prepare("SELECT * FROM Department WHERE id = '$id'");
+        $query = $db->prepare("SELECT * FROM Department WHERE id = ?");
 
-        $query->execute();
+        $query->execute(array($id));
 
         $results = $query->fetchAll();
 

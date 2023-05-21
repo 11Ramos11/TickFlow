@@ -15,9 +15,9 @@ class Status {
 
         $db = getDatabaseConnection();
 
-        $query = $db->prepare("SELECT * FROM Status WHERE id = $id");
+        $query = $db->prepare("SELECT * FROM Status WHERE id = ?");
 
-        $query->execute();
+        $query->execute(array($id));
 
         $results = $query->fetchAll();
 
