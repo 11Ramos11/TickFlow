@@ -41,13 +41,16 @@
 
 	$handlers = array(
 		"chat.js",
+		"faqChat.js",
 		"responsiveness.js", 
 		"snackbar.js"
 	);
 	$scripter = new Scripter("ticket.js", $handlers);
 
+	$departments = Department::getDepartments();
+
 	drawHeader("none", $scripter);
-	drawChat($ticket);
+	drawChat($ticket, $departments);
 	drawBriefTicket($ticket, $author, $assignee, $department, $status, $priority, $user, "ticket");
 	drawFooter();
 ?>

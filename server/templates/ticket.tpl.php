@@ -26,7 +26,7 @@ include_once(__DIR__.'/../classes/status.class.php');
 		}
 	} 
 }?>
-<?php function drawChat($ticket) { 
+<?php function drawChat($ticket, $departments) { 
 	
 	$chat = $ticket->getChat();
 	$author = User::getUserById($ticket->authorID);
@@ -36,7 +36,9 @@ include_once(__DIR__.'/../classes/status.class.php');
 	$sessionUser = $session->getUser();
 ?>
 	<main class="middle-column"> 
-		<a href="../pages/ticket.php?ticket=<?=$ticket->id?>"><button id="refresh-button" class="button">Refresh</button></a>
+		<a href="../pages/ticket.php?ticket=<?=$ticket->id?>">
+		<i id="refresh-button" class="fa-solid fa-arrows-rotate"></i>
+		</a>
         <section id="chat">
             <div id="messages">
                 <?php foreach($messages as $message) { ?>
@@ -52,6 +54,9 @@ include_once(__DIR__.'/../classes/status.class.php');
                 <?php } ?>
             </div>
             <section class="reply">
+				<?php if ($sessionUser->isAgent()) { ?>
+				<button type="button" id="faq-button">FAQ's</button>
+				<?php } ?>
                 <input id="message-input" type="text">
                 <button type="button" id="send-message-button" >Reply</button>
             </section>  
@@ -59,7 +64,61 @@ include_once(__DIR__.'/../classes/status.class.php');
 			<p hidden id="user-id"><?=$sessionUser->id?></p>
 			<p hidden id="ticket-author-id"><?=$author->id?></p>
         </section>   
-            
+		<dialog id="faq-dialog">
+		<?php foreach($departments as $department) {
+            $faqs = $department->getFAQs(); ?>
+            <?php if (count($faqs) == 0) continue; ?>
+            <section class="department-faqs">
+                <h2> <?=$department->name ?> </h2>
+                <?php foreach($faqs as $faq) { ?>
+                <div class="edit-container faq-container container">
+					<button class="use-faq" type="button" data-question="<?=$faq->question?>" data-answer="<?=$faq->answer?>">
+					<i class="fa-solid fa-paste"></i>
+					</button>
+                    <article class="edit-card FAQ-card card">
+                        <h3 class="question"> <?=$faq->question?> </h2>
+                        <p class="answer"> <?=$faq->answer?> </p>
+                    </article>
+                </div>
+                <?php } ?>
+            </section>
+        <?php } ?>
+		</dialog> 
+		<style>
+			#faq-dialog {
+				width: 60%;
+				height: 80%;
+				background-color: white;
+				border-radius: 10px;
+				padding: 20px;
+				overflow-y: scroll;
+			}
+
+			#faq-button {
+				margin-right: 0.5rem;
+			}
+			.use-faq {
+				position: absolute;
+				right: 0;
+				top: 0;
+				border: none;
+				background-color: transparent;
+				padding: 0.5rem;
+				border-radius: 5rem	;
+				cursor: pointer;
+				z-index: 4;
+			}
+			.use-faq i {
+				color: blue;
+			}
+			#refresh-button {
+				font-size: 1.5rem;
+				padding: 0.8rem;
+				background-color: blue;
+				color: white;
+				border-radius: 100%;
+			}
+		</style>
     </main>
 <?php } ?>
 
