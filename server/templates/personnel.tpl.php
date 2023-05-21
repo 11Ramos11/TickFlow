@@ -4,7 +4,7 @@
             
         <?php $session = new Session(); if ($session->isAdmin()) { ?> 
         <button class="dropdown-button"> <i class="fa-solid fa-ellipsis-vertical"></i> </button>
-        <div class="user-dropdown edit-dropdown">
+        <div class="user-dropdown edit-dropdown personnel-dropdown">
             <a class="dropdown-option" href="../pages/dashboard.php?id=<?=$user->id?>">Manage</a>
             <a class="dropdown-option" href="../pages/deleteUser.php?id=<?=$user->id?>">Delete</a>
         </div>
