@@ -68,5 +68,7 @@ if ($department == -1){
 
 FAQ::createFAQ($question, $answer, $department);
 
+$session->setSuccess("New item", "FAQ created successfully.");
+
 header("Location: ../pages/home.php");
 ?>

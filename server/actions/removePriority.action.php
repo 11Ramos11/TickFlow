@@ -29,5 +29,7 @@ $id = $_POST["id"];
 
 Priority::removePriority($id);
 
+$session->setSuccess("Item removed", "Priority removed successfully.");
+
 header("Location: ../pages/admin.php");
 ?>

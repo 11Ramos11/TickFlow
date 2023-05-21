@@ -36,5 +36,7 @@ $name = ucfirst($name);
 
 Status::editStatus($id, $name);
 
+$session->setSuccess("Item edited", "Status edited successfully.");
+
 header("Location: ../pages/admin.php");
 ?>

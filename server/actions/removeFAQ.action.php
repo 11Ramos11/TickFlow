@@ -32,5 +32,7 @@ $faq = $_POST["faq"];
 
 FAQ::removeFAQ($faq);
 
+$session->setSuccess("Item removed", "FAQ removed successfully.");
+
 header("Location: ../pages/home.php");
 ?>

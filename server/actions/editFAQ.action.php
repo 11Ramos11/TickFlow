@@ -79,5 +79,7 @@ if ($department == -1){
 
 FAQ::editFAQ($id, $question, $answer, $department);
 
+$session->setSuccess("FAQ edited", "The FAQ was successfully edited.");
+
 header("Location: ../pages/home.php");
 ?>

@@ -34,5 +34,7 @@ $name = ucfirst($name);
 
 Status::createStatus($name);
 
+$session->setSuccess("New item", "Status added successfully.");
+
 header("Location: ../pages/admin.php");
 ?>

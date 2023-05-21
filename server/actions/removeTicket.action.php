@@ -45,5 +45,7 @@ if ($sessionUser->isClient()){
 
 Ticket::removeTicket($id);
 
+$session->setSuccess("Ticket removed", "Ticket removed successfully."); 
+
 header("Location: ../pages/dashboard.php");
 ?>

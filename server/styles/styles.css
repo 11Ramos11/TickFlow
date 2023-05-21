@@ -218,7 +218,7 @@ nav ul:last-child li a {
   max-height: 100%;
   overflow-y: hidden;
   display: grid;
-  grid-template-rows: [start] auto [middle] 100vh [end];
+  grid-template-rows: [start] 40% [middle] 100vh [end];
 }
 
 #tickets-search #tickets {
@@ -229,6 +229,8 @@ nav ul:last-child li a {
   -ms-overflow-style: none;
   /* IE and Edge */
   scrollbar-width: none;
+
+  z-index: 1;
   /* Firefox */
 }
 

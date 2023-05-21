@@ -30,5 +30,7 @@ $id = $_POST["id"];
 
 Department::removeDepartment($id);
 
+$session->setSuccess("Item removed", "Department removed successfully.");
+
 header("Location: ../pages/admin.php");
 ?>

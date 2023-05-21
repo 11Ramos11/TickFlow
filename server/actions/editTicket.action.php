@@ -40,14 +40,6 @@ $department = $_POST['department'];
 $assignee = $_POST['assignee'];
 $tags = $_POST['tags'];
 
-error_log($subject);
-error_log($description);
-error_log($priority);
-error_log($status);
-error_log($department);
-error_log($assignee);
-error_log($tags);
-
 if ($subject == '' || $description == '' || $priority == '' || $status == '' || $department == '') {
     $session->setError('Missing fields', 'Please fill all the required fields.');
     header('Location: ../pages/editTicket.php?ticket='.$id);
@@ -66,6 +58,8 @@ error_log($tags);
 $tags = explode(',', $tags);
 
 Ticket::updateTicket($id, $subject, $description, $priority, $status, $department, $assignee, $tags);
+
+$session->setSuccess('Ticket updated', 'The ticket was successfully updated.');
 
 header('Location: ../pages/ticket.php?ticket='.$id);
 

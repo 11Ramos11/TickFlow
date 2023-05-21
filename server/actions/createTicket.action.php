@@ -135,6 +135,8 @@ foreach($tags as $tag){
     $query->execute();
 }
 
+$session->setSuccess("Ticket created", "The ticket was successfully created.");
+
 header("Location: ../pages/ticket.php?ticket=$ticketID");
 
 ?>

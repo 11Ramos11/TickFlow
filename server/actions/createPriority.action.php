@@ -34,5 +34,7 @@ $name = ucfirst($name);
 
 Priority::createPriority($name);
 
+$session->setSuccess("New item", "Priority added successfully.");
+
 header("Location: ../pages/admin.php");
 ?>

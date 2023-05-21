@@ -43,5 +43,7 @@ if ($lastWord != "department"){
 
 Department::editDepartment($id, $name);
 
+$session->setSuccess("Item edited", "Department edited successfully.");
+
 header("Location: ../pages/admin.php");
 ?>

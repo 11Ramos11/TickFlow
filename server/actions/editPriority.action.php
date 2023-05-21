@@ -36,5 +36,7 @@ $name = ucfirst($name);
 
 Priority::editPriority($id, $name);
 
+$session->setSuccess("Item edited", "Priority edited successfully.");
+
 header("Location: ../pages/admin.php");
 ?>

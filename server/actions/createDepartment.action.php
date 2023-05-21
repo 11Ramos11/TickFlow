@@ -41,5 +41,7 @@ if ($lastWord != "department"){
 
 Department::createDepartment($name);
 
+$session->setSuccess("New item", "Department created successfully.");
+
 header("Location: ../pages/admin.php");
 ?>

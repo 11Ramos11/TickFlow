@@ -29,5 +29,7 @@ $id = $_POST["id"];
 
 Status::removeStatus($id);
 
+$session->setSuccess("Item removed", "Status removed successfully.");
+
 header("Location: ../pages/admin.php");
 ?>

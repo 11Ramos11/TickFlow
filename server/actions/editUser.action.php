@@ -115,6 +115,8 @@ if (!empty($_FILES['image']['tmp_name'])){
     imagejpeg($small, $originalFileName);
 }
 
+$session->setSuccess("User Updated", "User updated successfully");
+
 header("Location: ../pages/dashboard.php?id=$id");  
 
 

@@ -57,6 +57,8 @@ if ($result == false){
     exit();
 }
 
+$session->setSuccess("Created Account", "Account created successfully");
+
 header("Location: ../pages/authentication.php");  
 
 ?>
