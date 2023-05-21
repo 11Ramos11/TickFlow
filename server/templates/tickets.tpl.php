@@ -1,4 +1,4 @@
-<?php function drawTickets($departments, $tickets, $user, $sessionUser, $statuses, $priorities) {  ?>
+<?php function drawTickets($departments, $tickets, $user, $sessionUser, $statuses, $priorities, $session) {  ?>
 
     <main class="middle-column">
 		<section id="tickets-search">
@@ -18,8 +18,9 @@
 							<option value="All">All Tickets</option>
 							<option value="Author">Created Tickets</option>
 							<option value="Assigned">Assigned Tickets</option>
-							<?php if ($user->role == "Admin" && $sessionUser->id == $user->id) { ?> 
-							<option value="Others">Others' Tickets</option>
+							<?php if ($user->isAgent() && $sessionUser->id == $user->id) { ?> 
+								<option value="Others">Others' Tickets</option>
+								<option value="Unassigned">Unassigned Tickets</option>
 							<?php } ?>	
 						</select>
 						<?php } ?>
@@ -35,6 +36,7 @@
 								<option value=<?=$priority->id?>><?=$priority->name?></option>
 							<?php } ?>
 						</select>
+						<?php if ($user->id == $sessionUser->id || $sessionUser->isAdmin()) { ?>
 						<select id="department-filter" class="filter-dropdown">
 							<option value="All">Any Department</option>
 							<?php foreach ($departments as $department) { ?>
@@ -42,6 +44,7 @@
 							<?php } ?>
 							<option value="None">None</option>
 						</select>
+						<?php } ?>
 					</section>
 					<section class="tags-searchbar flex-fix">
 						<ul class="tags-box tags" id="tag-creator">
@@ -53,7 +56,7 @@
 					</section>
 				</section>
 			</section>
-			<section id="tickets" class="content">
+			<section id="tickets" class="content" data-token="<?=$session->token?>" data-isagent=<?=$sessionUser->isAgent()?>>
 				<?php foreach ($tickets as $ticket) { 
 					$status = Status::getStatusById($ticket->status);
 					$priority = Priority::getPriorityById($ticket->priority);
@@ -66,7 +69,9 @@
 					<div class="ticket-dropdown edit-dropdown">
 						<a class="dropdown-option" href="../pages/editTicket.php?ticket=<?=$ticket->id?>">Edit</a>
 						<a class="dropdown-option" href="../pages/history.php?ticket=<?=$ticket->id?>">History</a>
+						<?php if ($sessionUser->isAgent()) { ?>
 						<button class="dropdown-option remove-ticket">Delete</a>
+						<?php } ?>
 					</div>
 					<?php } ?>
 					<article class="edit-card ticket-card dash">
@@ -83,6 +88,7 @@
 					<dialog class="remove-dialog">
 						<form action="../actions/removeTicket.action.php" method="post">
 							<input type="hidden" name="id" value="<?=$ticket->id?>">
+							<input hidden name="csrf" type="text" value="<?=$session->token?>">
 							<p>Are you sure you want to remove this ticket?</p>
 							<div class="dialog-buttons">
 								<button type="button" class="button cancel-button" value="Cancel">Cancel</button>

@@ -44,7 +44,7 @@ if ($ticket == null){
 
 $sessionUser = $session->getUser();
 
-if (!$sessionUser->hasAccessToTicket($id)){
+if (!($sessionUser->isAgent() && $sessionUser->department != $ticket->departmentID) && !$sessionUser->isAdmin()){
     $session->setError("No permissions", "You do not have permissions to remove this ticket");
     header("Location: ../pages/dashboard.php");
     exit();

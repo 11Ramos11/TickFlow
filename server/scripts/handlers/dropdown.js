@@ -1,8 +1,9 @@
 function dropdownHandler(){
 
     const dropdownContainers = document.getElementsByClassName("edit-container");
+    const dropdownButtons = document.getElementsByClassName("dropdown-button");
 
-    if (dropdownContainers.length == 0){
+    if (dropdownContainers.length == 0 || dropdownButtons.length == 0){
         return;
     }
 

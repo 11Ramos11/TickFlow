@@ -27,16 +27,32 @@ if ($_POST['csrf'] !== $session->token){
 }
 
 if (!$session->getUser()->isAdmin()){
+    $session->setError("No permissions", "You do not have permissions to remove priorities");
     header("Location: ../pages/index.php");
     exit();
 }
 
 if (!isset($_POST["id"])){
+    $session->setError("Invalid input", "Try again later");
     header("Location: ../pages/admin.php");
     exit();
 }
 
 $id = $_POST["id"];
+
+$priority = Priority::getPriorityById($id);
+
+if ($priority->name == "Normal") {
+    $session->setError("Invalid input", "You cannot remove the default priority");
+    header("Location: ../pages/admin.php");
+    exit();
+}
+
+if (Ticket::existsTicketsWithPriority($id)) {
+    $session->setError("Priority in use", "You cannot remove a priority that is in use");
+    header("Location: ../pages/admin.php");
+    exit();
+}
 
 Priority::removePriority($id);
 

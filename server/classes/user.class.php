@@ -2,6 +2,7 @@
 
 include_once(__DIR__ . '/../classes/ticket.class.php');
 include_once(__DIR__ . '/../classes/connection.db.php');
+include_once(__DIR__ . '/../classes/department.class.php');
 
 class User
 {
@@ -89,9 +90,12 @@ class User
         if ($this->isAdmin()){
             return Ticket::getAllTickets();
         }
-        else if ($this->isAgent())
-            return array_merge($this->getAuthoredTickets(), $this->getAssignedTickets());
+        else if ($this->isAgent()){
+            $tickets = array_merge($this->getAuthoredTickets(), $this->getAssignedTickets());
+            $department = Department::getDepatmentById($this->department);
 
+            return array_merge($department->getTickets(), $tickets);
+        }
         else if ($this->isClient())
             return $this->getAuthoredTickets();
         else
@@ -120,16 +124,19 @@ class User
             return true;
         }
 
-        $userID = $this->id;
+        $ticket = Ticket::getTicketById($ticketID);
 
-        $db = getDatabaseConnection();
+        if ($ticket == null) {
+            return false;
+        }
 
-        $query = $db->prepare("SELECT * FROM Ticket WHERE id = ? AND (author = ? OR assignee = ?)");
-        $query->execute(array($ticketID, $userID, $userID));
+        if ($this->isAuthorOf($ticket)) {
+            return true;
+        }
 
-        $results = $query->fetchAll();
-
-        return count($results) > 0;
+        if ($this->isAgent() && $this->department == $ticket->departmentID) {
+            return true;
+        }
     }
 
     public function isAuthorOf(Ticket $ticket){
@@ -308,5 +315,13 @@ class User
         }
         
         return new User($user['id'], $user['name'], $user['email'], $user['role'], $user['department']);
+    }
+
+    static public function removeUser($id){
+            
+            $db = getDatabaseConnection();
+    
+            $query = $db->prepare("DELETE FROM User WHERE id = ?");
+            $query->execute(array($id));
     }
 }

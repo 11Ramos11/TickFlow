@@ -52,6 +52,7 @@
         "tags.js",
         "ticketSearch.js", 
         "dropdown.js", 
+        "admin.js",
         "profileEditor.js", 
         "responsiveness.js", 
         "snackbar.js"
@@ -59,7 +60,7 @@
     $scripter = new Scripter("dashboard.js", $handlers);
 
 	drawHeader($header, $scripter);
-    drawTickets($departments, $tickets, $user, $session->getUser(), $statuses, $priorities);
+    drawTickets($departments, $tickets, $user, $session->getUser(), $statuses, $priorities, $session);
 	drawProfile($user, $departments);
 	drawFooter();
 ?>

@@ -6,7 +6,7 @@
         <button class="dropdown-button"> <i class="fa-solid fa-ellipsis-vertical"></i> </button>
         <div class="user-dropdown edit-dropdown personnel-dropdown">
             <a class="dropdown-option" href="../pages/dashboard.php?id=<?=$user->id?>">Manage</a>
-            <a class="dropdown-option" href="../pages/deleteUser.php?id=<?=$user->id?>">Delete</a>
+            <a class="dropdown-option" href="../actions/removeUser.action.php?id=<?=$user->id?>&csrf=<?=$session->token?>">Delete</a>
         </div>
         <?php } ?>
         <div class="edit-card user-card">

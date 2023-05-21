@@ -77,6 +77,8 @@ if (!preg_match("/^[a-zA-Z0-9.]+@tickflow.com$/i", $email)){
 
 $department = $_POST["department"];
 
+error_log($department);
+
 if (!is_numeric($department)){
     $session->setError("Invalid Input", "Department must be a valid department");
     header("Location: ../pages/dashboard.php?id=$id");  

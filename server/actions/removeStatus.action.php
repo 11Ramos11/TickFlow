@@ -38,6 +38,20 @@ if (!isset($_POST["id"])){
 
 $id = $_POST["id"];
 
+$status = Status::getStatusById($id);
+
+if ($status->name == "Open") {
+    $session->setError("Invalid input", "You cannot remove the default status");
+    header("Location: ../pages/admin.php");
+    exit();
+}
+
+if (Ticket::existsTicketsWithStatus($id)) {
+    $session->setError("Status in use", "You cannot remove a status that is in use");
+    header("Location: ../pages/admin.php");
+    exit();
+}
+
 Status::removeStatus($id);
 
 $session->setSuccess("Item removed", "Status removed successfully");

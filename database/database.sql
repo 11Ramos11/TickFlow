@@ -108,6 +108,33 @@ CREATE TABLE FAQ (
     FOREIGN KEY (department) REFERENCES Department(id)
 );
 
+CREATE TRIGGER IF NOT EXISTS demote_to_client
+AFTER UPDATE ON User
+BEGIN
+    UPDATE Ticket SET assignee = NULL WHERE assignee = OLD.id AND NEW.role = 'Client';
+END;
+
+CREATE TRIGGER IF NOT EXISTS delete_user
+AFTER DELETE ON User
+BEGIN
+    UPDATE Ticket SET assignee = NULL WHERE assignee = OLD.id;
+END;
+
+
+CREATE TRIGGER IF NOT EXISTS delete_ticket_if_author_deleted
+AFTER DELETE ON User
+BEGIN
+    DELETE FROM Ticket WHERE author = OLD.id;
+END;
+
+
+
+CREATE TRIGGER IF NOT EXISTS delete_department
+AFTER DELETE ON Department
+BEGIN
+    UPDATE User SET department = NULL WHERE department = OLD.id;
+END;
+
 CREATE TRIGGER IF NOT EXISTS delete_ticket
 AFTER DELETE ON Ticket
 BEGIN
@@ -241,19 +268,19 @@ INSERT INTO User (id, name, email, password, role, department) VALUES
   
 INSERT INTO Priority (name) VALUES ("Normal"), ("Urgent"), ("Immediate");
 
-INSERT INTO Status (name) VALUES ("Unassigned"), ("Open"), ("Closed");
+INSERT INTO Status (name) VALUES ("Open"), ("Closed");
 
 INSERT INTO Ticket (id, status, priority, subject, description, creationDate, creationTime, author, assignee, department) VALUES
-  (1, 2, 1, 'Printer Not Working', 'I am unable to print from my computer. Please help me resolve the issue.', '2023-04-22', '10:00:00', 4, 7, 3),
+  (1, 1, 1, 'Printer Not Working', 'I am unable to print from my computer. Please help me resolve the issue.', '2023-04-22', '10:00:00', 4, 7, 3),
   (2, 1, 3, 'Website Down', 'Our website seems to be down. We need to get it back up and running as soon as possible.', '2023-04-22', '11:30:00', 12, NULL, 3),
-  (3, 2, 2, 'Email Account Issue', 'I am having trouble accessing my email account. Please help me resolve the issue as soon as possible.', '2023-04-22', '12:45:00', 5, 8, 3),
-  (4, 2, 1, 'Need New Laptop', 'My current laptop is old and slow. I need a new laptop to be able to work efficiently.', '2023-04-22', '14:00:00', 3, 12, 4),
+  (3, 1, 2, 'Email Account Issue', 'I am having trouble accessing my email account. Please help me resolve the issue as soon as possible.', '2023-04-22', '12:45:00', 5, 8, 3),
+  (4, 1, 1, 'Need New Laptop', 'My current laptop is old and slow. I need a new laptop to be able to work efficiently.', '2023-04-22', '14:00:00', 3, 12, 4),
   (5, 1, 2, 'Cannot Access Shared Drive', 'I am unable to access the Marketing shared drive. This is causing a delay in my work. Please help me resolve the issue as soon as possible.', '2023-04-22', '15:15:00', 1, NULL, 2),
-  (6, 2, 1, 'Need Additional Monitor', 'I need an additional monitor to be able to work more efficiently.', '2023-04-22', '16:30:00', 8, 11, 4),
-  (7, 3, 3, 'Server Down', 'One of our servers is down. This is affecting multiple employees. We need to get it back up and running as soon as possible.', '2023-04-22', '17:45:00', 2, 10, 3),
+  (6, 1, 1, 'Need Additional Monitor', 'I need an additional monitor to be able to work more efficiently.', '2023-04-22', '16:30:00', 8, 11, 4),
+  (7, 1, 3, 'Server Down', 'One of our servers is down. This is affecting multiple employees. We need to get it back up and running as soon as possible.', '2023-04-22', '17:45:00', 2, 10, 3),
   (8, 2, 1, 'New Software Request', 'I need new software installed on my computer to be able to complete a project. Please install the software for me.', '2023-04-23', '09:00:00', 5, 9, 3),
   (9, 1, 2, 'VPN Connection Issue', 'I am unable to connect to the VPN. This is preventing me from accessing important files. Please help me resolve the issue as soon as possible.', '2023-04-23', '10:30:00', 7, NULL, 3),
-  (10, 2, 1, 'Need New Desk Chair', 'My current desk chair is causing me back pain. I need a new chair to be able to work comfortably.', '2023-04-23', '12:00:00', 6, 13, 4);
+  (10, 1, 1, 'Need New Desk Chair', 'My current desk chair is causing me back pain. I need a new chair to be able to work comfortably.', '2023-04-23', '12:00:00', 6, 13, 4);
 
 INSERT INTO Message (content, creationDate, creationTime, author, ticket) VALUES 
   ('Hi, we are pleased to inform you that a technician is already on his way to fix the respective printer. We will notify you once it''s fixed.', '2023-04-22', '10:30:23', 7, 1),
@@ -261,13 +288,7 @@ INSERT INTO Message (content, creationDate, creationTime, author, ticket) VALUES
   ('Servers are already back up and running!', '2023-04-22', '17:47:12', 10, 7);
 
 INSERT INTO Change (fieldChanged, newValue, oldValue, editDate, editTime, ticket, author) VALUES 
-  ('status', 'Closed', 'Open', '2023-04-22', '17:47:12', 7, 1),
-  ('status', 'Open', 'Pending', '2023-04-22', '10:29:21', 1, 1),
-  ('status', 'Open', 'Pending', '2023-04-22', '12:46:04', 3, 1),
-  ('status', 'Open', 'Pending', '2023-04-22', '14:12:53', 4, 1),
-  ('status', 'Open', 'Pending', '2023-04-22', '16:36:12', 6, 1),
-  ('status', 'Open', 'Pending', '2023-04-23', '09:12:43', 8, 1),
-  ('status', 'Open', 'Pending', '2023-04-23', '13:23:17', 10, 1);
+  ('status', 'Closed', 'Open', '2023-04-22', '17:47:12', 7, 1);
 
 INSERT INTO Hashtag (id, name) VALUES 
   (1, 'printer'),

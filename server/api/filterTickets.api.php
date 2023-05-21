@@ -49,8 +49,25 @@ if ($ownership == 'Assigned'){
 } else if ($ownership == 'Others' && $user->role == 'Admin'){
     $tickets = Ticket::getAllTickets();
     $tickets = array_filter($tickets, function($ticket) use ($user){
-        return $ticket->authorID != $user->id && $ticket->assignedID != $user->id;
+        return $ticket->authorID != $user->id && $ticket->assigneeID != $user->id;
     });
+    } else if ($ownership == 'Others' && $user->role == 'Agent'){
+    $tickets = Ticket::getAllTickets();
+    $tickets = array_filter($tickets, function($ticket) use ($user){
+        return $ticket->departmentID != $user->department;
+    });
+    } else if ($ownership == 'Unassigned' && $user->role == 'Admin'){
+    $tickets = Ticket::getAllTickets();
+    $tickets = array_filter($tickets, function($ticket) {
+        return $ticket->assigneeID == null;
+    });
+} else if ($ownership == 'Unassigned' && $user->role == 'Agent'){
+    $tickets = Ticket::getAllTickets();
+    $tickets = array_filter($tickets, function($ticket) use ($user){
+        return $ticket->assigneeID == null && $ticket->departmentID == $user->department;
+    });
+} else {
+    return null;
 }
 
 if (!isset($_POST['status']) || !isset($_POST['priority']) || !isset($_POST['department']) || !isset($_POST['tags'])){

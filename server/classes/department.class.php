@@ -43,6 +43,40 @@ class Department {
         return $this->getTicketsByStatus("Closed");
     }
 
+    public function getTickets(){
+
+        $db = getDatabaseConnection();
+
+        $query = $db->prepare("SELECT * FROM Ticket WHERE department = ?");
+
+        $query->execute(array($this->id));
+
+        $results = $query->fetchAll();
+
+        $tickets = array();
+
+        foreach($results as $row){
+
+            $tags = Ticket::getTagsById($row['id']);
+
+            $tickets[] = new Ticket(
+                $row['id'],
+                $row['subject'],
+                $row['description'],
+                $row['status'],
+                $row['priority'],
+                $tags,
+                $row['creationDate'],
+                $row['creationTime'],
+                $row['author'],
+                $row['assignee'],
+                $row['department']
+            );
+        }
+
+        return $tickets;
+    }
+
     public function getUsers(){
 
         $db = getDatabaseConnection();

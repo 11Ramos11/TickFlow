@@ -61,13 +61,14 @@ function ticketSearcher(){
 
             drawTickets(tickets);
 
-            dropDown();
-            adminDialog();
+
         });
 
         function drawTickets(tickets) {
             const section = document.querySelector('#tickets');
             section.innerHTML = '';
+            const isAgent = section.dataset.isagent == '1';
+            const token = section.dataset.token;
             for (const ticket of tickets) {
 
                 const ticketContainer = document.createElement("div");
@@ -105,7 +106,10 @@ function ticketSearcher(){
 
                 ticketDropdown.appendChild(editOption);
                 ticketDropdown.appendChild(historyOption);  
-                ticketDropdown.appendChild(removeOption);
+
+                if (isAgent) {
+                    ticketDropdown.appendChild(removeOption);
+                }
 
                 ticketContainer.appendChild(dropdownButton);
                 ticketContainer.appendChild(ticketDropdown);
@@ -165,6 +169,16 @@ function ticketSearcher(){
                 removeForm.action = "../actions/removeTicket.action.php";
                 removeForm.method = "post";
 
+                const tokenInput = document.createElement("input");
+                tokenInput.hidden = true;
+                tokenInput.value = token;
+                tokenInput.type = "text";
+                tokenInput.name = "csrf";
+
+                // token value is not appearing in the form
+
+                console.log(token); 
+
                 const removeId = document.createElement("input");
                 removeId.type = "hidden";
                 removeId.name = "id";
@@ -192,32 +206,30 @@ function ticketSearcher(){
                 dialogButtons.appendChild(removeButton);
 
                 removeForm.appendChild(removeId);
+                removeForm.appendChild(tokenInput);
                 removeForm.appendChild(removeParagraph);
                 removeForm.appendChild(dialogButtons);
 
                 removeDialog.appendChild(removeForm);
 
                 ticketContainer.appendChild(ticketCard);
+
                 ticketContainer.appendChild(removeDialog);
 
                 section.appendChild(ticketContainer);
 
                 const removeTicket = document.querySelector(".remove-ticket");
-                const removeDialogs = document.querySelectorAll(".remove-dialog");
                 const cancelButtons = document.querySelectorAll(".cancel-button");
 
                 for (const cancelButton of cancelButtons) {
                     cancelButton.addEventListener("click", function() {
-                        cancelButton.parentElement.parentElement.close();
+                        cancelButton.parentElement.parentElement.parentElement.close();
                     });
                 }
 
-                if (removeTicket != null) {
-                    removeTicket.addEventListener("click", function() {
-                        removeTicket.parentElement.parentElement.querySelector(".remove-dialog").showModal();
-                    });    
-                }        
             }
+            dropdownHandler();
+            adminHandler();
         }
     }
 };

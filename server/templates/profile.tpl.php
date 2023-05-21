@@ -12,7 +12,13 @@
 				<h2 id="name-info"><?= $user->name ?></h2>
 				<p id="email-info"><?= $user->email ?></p>
 				<p id="role-info"><?= $user->role ?></p>
-				<p id="department-info"><?= $department->name ?></p>
+				<p id="department-info"><?php 
+					if($department != null){
+						echo $department->name;
+					} else {
+						echo "No Department";
+					}  
+				?></p>
 				<button class="button" id="edit-user-button">Edit</button>
 			</section>
 			<section id="edit-profile">
@@ -33,6 +39,7 @@
 						<?php foreach($departments as $department) { ?>
 						<option id="<?=$department->name?>" value="<?=$department->id?>"><?=$department->name?></option>
 						<?php } ?>
+						<option id="None" value="-1">None</option>
 					</select> 
 					<?php } ?>
 					<section class="edit-buttons">

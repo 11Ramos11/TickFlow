@@ -345,6 +345,50 @@ class Ticket {
 
         return $ticketID;
     }
+
+    public static function existsTicketsWithPriority($priority) {
+
+        $db = getDatabaseConnection();
+
+        $query = $db->prepare("SELECT * FROM Ticket WHERE priority = ?");
+        $query->execute(array($priority));
+        $results = $query->fetchAll();
+
+        return count($results) > 0;
+    }
+
+    public static function existsTicketsWithDepartment($department) {
+
+        $db = getDatabaseConnection();
+
+        $query = $db->prepare("SELECT * FROM Ticket WHERE department = ?");
+        $query->execute(array($department));
+        $results = $query->fetchAll();
+
+        return count($results) > 0;
+    }
+
+    public static function existsTicketsWithAssignee($assignee) {
+
+        $db = getDatabaseConnection();
+
+        $query = $db->prepare("SELECT * FROM Ticket WHERE assignee = ?");
+        $query->execute(array($assignee));
+        $results = $query->fetchAll();
+
+        return count($results) > 0;
+    }
+
+    public static function existsTicketsWithStatus($status) {
+
+        $db = getDatabaseConnection();
+
+        $query = $db->prepare("SELECT * FROM Ticket WHERE status = ?");
+        $query->execute(array($status));
+        $results = $query->fetchAll();
+
+        return count($results) > 0;
+    }
 }
 
 ?>

@@ -34,8 +34,15 @@ function profileEditor(){
 
             const departmentEditor = document.getElementById("department-editor");
             if (departmentEditor != null){
-                const departmentOption = document.getElementById(departmentInfo.textContent);
-                departmentOption.setAttribute("selected",  "selected")
+        
+                if (departmentInfo.textContent != "No Department"){
+                    const departmentOption = document.getElementById(departmentInfo.textContent);
+                    departmentOption.setAttribute("selected",  "selected")
+                }
+                else {
+                    const departmentOption = document.getElementById("None");
+                    departmentOption.setAttribute("selected",  "selected")
+                }
 
             }
 
