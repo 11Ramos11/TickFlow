@@ -1686,7 +1686,7 @@ textarea {
 }
 
 
-@media screen and (max-width: 1576px){
+@media screen and (min-width: 1576px){
   #administration{
     display: flex;
     flex-direction: column; 
@@ -1694,7 +1694,7 @@ textarea {
   
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (min-width: 1200px) {
 
   .title{
     margin-top: 4rem;
@@ -1732,7 +1732,7 @@ textarea {
 
 }
 
-@media screen and (max-width: 900px) {
+@media only screen and (min-width: 900px) {
 
   .logo{
     margin-left: 2rem;
