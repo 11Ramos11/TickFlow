@@ -16,14 +16,15 @@
 <?php } 
 }?>
 
-<?php function drawAssignee($sessionUser, $users, Ticket $ticket){ 
-  if ($sessionUser->isAdmin()) { ?>
+<?php function drawAssignee($sessionUser, $users, $ticket){ 
+  if ($sessionUser->isAgent()) { ?>
     <section class="input-container ic2">
     <select id="assignee" class="input" name="assignee">
+      <option value=-1 selected>To be assigned</option>
       <?php foreach ($users as  $user){ ?>
         <?php if ($user->id === $ticket->assigneeID) { ?>
-          <option value=<?=$user->id?> selected><?=$user->name?></option>
-        <?php } else { ?>
+          <option value=<?=$user->id?> selected><?=$user->name?> (current)</option>
+        <?php } else if ($ticket->departmentID == $sessionUser->department) { ?>
           <option value=<?=$user->id?>><?=$user->name?></option>
         <?php } ?>
       <?php } ?>
@@ -34,13 +35,30 @@
 <?php } 
 }?>
 
-<?php function drawTicketEditor(array $departments, array $priorities, array $statuses, array $users, Ticket $ticket, User $sessionUser) { ?>
+<?php function drawDepartment($departments, $ticket) { ?>
+  <section class="input-container ic2">
+    <select id="department" class="input" name="department">
+      <option value="-1">None</option>
+      <?php foreach ($departments as $department) { ?>
+        <?php if ($department->id === $ticket->departmentID) { ?>
+          <option value="<?= $department->id; ?>" selected><?= $department->name; ?></option>
+        <?php } else { ?>
+          <option value="<?= $department->id; ?>"><?= $department->name; ?></option>
+        <?php } ?>
+      <?php } ?>
+    </select>
+    <article class="cut">Department</article>
+    <label for="department" class="placeholder">Department</label>
+  </section>
+<?php } ?>
+
+<?php function drawTicketEditor($departments, $priorities, $statuses, $users, $ticket, $sessionUser) { ?>
     <main class="middle-column">
       <section class="title">
       <h2>Edit Ticket</h2>
       </section>
       <section>
-        <article class="form" id="edit-ticket">
+        <article class="form" id="edit-ticket" data-role=<?=$sessionUser->role?>  data-department=<?=$sessionUser->department?> data-assigneeID=<?=$ticket->assigneeID?>>
           <form action="../actions/editTicket.action.php" method="post">
             <section class="input-container ic1">
               <input value="<?= $ticket->subject ?>" id="subject" class="input" type="text" placeholder=" " name="subject" />
@@ -66,21 +84,8 @@
               <label for="priority" class="placeholder">Priority</label>
             </section>
             <?php drawStatus($sessionUser, $statuses, $ticket); ?>
+            <?php drawDepartment($departments, $ticket); ?>
             <?php drawAssignee($sessionUser, $users, $ticket); ?>
-            <section class="input-container ic2">
-              <select id="department" class="input" name="department">
-                <option value="-1">None</option>
-                <?php foreach ($departments as $department) { ?>
-                  <?php if ($department->id === $ticket->departmentID) { ?>
-                    <option value="<?= $department->id; ?>" selected><?= $department->name; ?></option>
-                  <?php } else { ?>
-                    <option value="<?= $department->id; ?>"><?= $department->name; ?></option>
-                  <?php } ?>
-                <?php } ?>
-              </select>
-              <article class="cut">Department</article>
-              <label for="department" class="placeholder">Department</label>
-            </section>
             <section class="input-container ic2">
               <ul class="tags-box tags input-tags" id="tag-creator">
                 <input type="text" id="tag-input" name="tag" placeholder="Tags">
@@ -94,5 +99,13 @@
         </article>
       </section>
     </main>
+
+    <script> 
+    // I want this script to fetch users from department that is selected when user alters the department
+
+    
+
+
+    </script>
 
 <?php } ?>

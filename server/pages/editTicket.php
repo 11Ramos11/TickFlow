@@ -34,7 +34,6 @@
     $departments = Department::getDepartments();
 	$priorities = Priority::getPriorities();
 	$statuses = Status::getStatuses();
-	$users = User::getAllUsers();
 
 	$author =  User::getUserById($ticket->authorID);
 	if ($ticket->assigneeID != null)
@@ -44,6 +43,8 @@
 	$department = Department::getDepatmentByID($ticket->departmentID);
 	$status = Status::getStatusById($ticket->status);
 	$priority = Priority::getPriorityById($ticket->priority);
+
+	$users = $department->getUsers();
 
 	drawHeader();
     drawTicketEditor($departments, $priorities, $statuses, $users, $ticket, $sessionUser);

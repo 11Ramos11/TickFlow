@@ -19,7 +19,72 @@ window.onload = function () {
     adminDialog();
 
     dropDown();
+
+    editTicket();
 };
+
+async function editTicket(){
+
+    const editTicketForm = document.getElementById("edit-ticket")
+
+    if (editTicketForm == null){
+        return;
+    }
+
+    async function getDepartmentUsers(data) {
+        return fetch('../api/departmentUser.api.php', {
+            method: 'post',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: encodeForAjax(data)
+        });
+    }
+
+    const departmentSelector = document.getElementById('department');
+    const assigneeSelector = document.getElementById('assignee');
+
+    departmentSelector.addEventListener('change', async (event) => {
+        const departmentID = event.target.value;
+
+        const response = await getDepartmentUsers({
+            department: departmentID
+        });
+
+        const users = await response.json();
+
+        const userRole = editTicketForm.dataset.role;
+        const userDepartment = editTicketForm.dataset.department;
+        const assigneeID = editTicketForm.dataset.assigneeid;
+
+        assigneeSelector.innerHTML = '';
+
+        const option = document.createElement('option');
+        option.value = '-1';
+        option.innerText = 'To be assigned';
+        assigneeSelector.appendChild(option);
+
+        const hasPerms = userRole == 'Admin' || userDepartment == departmentID;
+
+        users.forEach(user => {
+
+            console.log(user + ' | ' + assigneeID);
+            console.log();
+            if (hasPerms){ 
+                const option = document.createElement('option');
+                option.value = user.id;
+                option.innerText = user.name;
+                assigneeSelector.appendChild(option);
+            } else if (user.id == assigneeID) {
+                const option = document.createElement('option');
+                option.value = user.id;
+                option.innerText = `${user.name} (current)`;
+                assigneeSelector.appendChild(option);
+            }
+        });
+    });
+}
+
 
 async function responsiveness(){
 
@@ -63,7 +128,6 @@ async function createTags() {
                 return;
             }
             tags = tagsValue.split(",");
-            console.log(tags);
             addListItem();
         }
     }
@@ -125,8 +189,6 @@ async function createTags() {
             return;
         }
 
-        console.log(allTags);
-
         async function showAutoComplete(){
             let input = tag_input.value;
             input = input.trim();
@@ -140,11 +202,11 @@ async function createTags() {
                 li.classList.add("auto-complete-tag");
                 const bold = document.createElement("b");
                 bold.textContent = input;
-                console.log(bold);
+      
                 li.appendChild(bold);
                 const remaining = document.createElement("span");
                 remaining.textContent = tag.substring(input.length);
-                console.log(remaining);
+
                 li.appendChild(remaining);
                 li.addEventListener("click", function() {
                     tags.push(tag);
@@ -153,7 +215,6 @@ async function createTags() {
                     addListItem();
                     tag_input.focus();
                 });
-                console.log(li);
                 autoCompleteUL.appendChild(li);
             }
         };
@@ -210,7 +271,7 @@ function filterTickets(){
         searchButton.addEventListener("click", async function () {
 
             const _userId = filterTab.dataset.userid;
-            console.log(_userId);
+      
             const ownershipFilter = document.getElementById('ownership-filter');
             const _ownership = ownershipFilter != null ? ownershipFilter.value : 'All';
             const _status = document.getElementById('status-filter').value;
@@ -246,8 +307,6 @@ function filterTickets(){
             const tickets = result["tickets"];
             const statuses = result["statuses"];
             const priorities = result["priorities"];
-
-            console.log(tickets);
 
             for (let ticket of tickets) {
                 ticket.status = statuses[ticket.status];
@@ -421,8 +480,6 @@ function editProfile(){
 
     const profileInfo = document.getElementById("profile-info");
 
-    console.log(profileInfo);
-
     if (profileInfo != null){
 
         const editButton = document.getElementById("edit-user-button");
@@ -502,8 +559,6 @@ function editProfile(){
 function showSnackBar() {
     // Get the snackbar DIV
    const snackbar = document.getElementsByClassName("snack-bar")[0];
-
-   console.log(snackbar);
   
    if (snackbar == null){
         return;
@@ -669,7 +724,7 @@ function adminDialog(){
         for (const removeButton of removeTicketButtons){
             removeButton.addEventListener("click", function() {
                 removeDialog = removeButton.parentElement.parentElement.getElementsByClassName("remove-dialog")[0];
-                console.log(removeDialog);
+    
                 removeDialog.getElementsByClassName("cancel-button")[0].addEventListener("click", function() {
                     removeDialog.close();
                 });
@@ -684,7 +739,7 @@ function adminDialog(){
         for (const removeButton of removeFAQButtons){
             removeButton.addEventListener("click", function() {
                 removeDialog = removeButton.parentElement.parentElement.getElementsByClassName("remove-dialog")[0];
-                console.log(removeDialog);
+             
                 removeDialog.getElementsByClassName("cancel-button")[0].addEventListener("click", function() {
                     removeDialog.close();
                 });

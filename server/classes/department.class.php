@@ -43,6 +43,25 @@ class Department {
         return $this->getTicketsByStatus("Closed");
     }
 
+    public function getUsers(){
+
+        $db = getDatabaseConnection();
+
+        $query = $db->prepare("SELECT * FROM User WHERE department = ?");
+
+        $query->execute(array($this->id));
+
+        $results = $query->fetchAll();
+
+        $users = array();
+
+        foreach($results as $row){
+            $users[] = new User($row['id'], $row['name'], $row['email'], $row['role'], $row['department']);
+        }
+
+        return $users;
+    }
+
     static function getDepartments(){
 
         $db = getDatabaseConnection();
