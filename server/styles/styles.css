@@ -1736,7 +1736,7 @@ textarea {
 }
 
 
-@media screen and (min-width: 1576px){
+@media screen and (max-width: 1576px){
   #administration{
     display: flex;
     flex-direction: column; 
@@ -1745,7 +1745,7 @@ textarea {
   
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (max-width: 1200px) {
 
   #filter-tab{
     padding-right: 4rem;
@@ -1799,7 +1799,7 @@ textarea {
 
 }
 
-@media only screen and (min-width: 900px) {
+@media only screen and (max-width: 900px) {
 
   #administration{
     display: flex;
