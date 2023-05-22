@@ -1812,7 +1812,6 @@ textarea {
   }
 
 
-
   .middle-column{
     grid-column: 2/-1;
   }
@@ -1919,27 +1918,19 @@ textarea {
     height: -webkit-fill-available;
   }
 
-  #tickets-search {
-    display: inline;
-    grid-template-rows: [start] 100% [middle] 100vh [end];
-  }
-
-  #filter-tab {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between; /* adjust as per your liking */
-    flex-wrap: wrap; /* if you have too many buttons */
-    align-items: center; /* align items vertically in the center */
-  }
-
-  #filter-tab .filter-dropdown {
-    /* adjust dropdown size */
-    padding: 0.2rem 0.5rem;
-    font-size: 0.8rem; /* reduces the font size of the dropdowns */
-    margin-right: 0.5rem; /* adds some space between the dropdowns */
+  #faq-dialog h2 {
+    margin: 0.5rem;
   }
 
   #faq-dialog .faq-container {
     margin: 1rem 0;
+  }
+
+  section.reply {
+    padding: 0;
+  }
+
+  section.reply * {
+    margin: 0;
   }
 }

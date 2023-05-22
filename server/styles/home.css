@@ -974,4 +974,13 @@ textarea {
     box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
     height: -webkit-fill-available;
   }
+
+  .edit-container {
+    margin: 1rem 2rem
+  }
+
+  .edit-dropdown.active {
+    left: 85%;
+    top: 3.2rem;
+  }
 }

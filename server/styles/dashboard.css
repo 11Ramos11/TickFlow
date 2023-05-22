@@ -698,13 +698,6 @@ figure.avatar img {
   z-index: 3;
 }
 
-.edit-dropdown.ticket-dropdown.active {
-  left: 100%;
-  box-shadow: 0.375rem 0.375rem 0.375rem 0rem rgb(0 0 0 / 10%);
-  transition: 0.7s;
-  z-index: 3;
-}
-
 .edit-dropdown>.dropdown-option {
 
   text-decoration: none;
@@ -1477,5 +1470,18 @@ textarea {
     padding: 0.2rem 0.5rem;
     font-size: 0.8rem; /* reduces the font size of the dropdowns */
     margin-right: 0.5rem; /* adds some space between the dropdowns */
+  }
+
+  
+  .edit-dropdown.ticket-dropdown {
+    left: 70%;
+  } 
+
+  .edit-container {
+    margin: 1rem 2rem
+  }
+
+  .edit-dropdown.active {
+    top: 3.2rem;
   }
 }
