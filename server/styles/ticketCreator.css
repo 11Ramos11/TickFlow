@@ -481,13 +481,6 @@ section.reply button:hover {
   background-color: #f8f7fc;
 }
 
-.tags::-webkit-scrollbar {
-  width: 0;
-  /* Safari and older versions of Chrome */
-  height: 0;
-  display: none;
-}
-
 .tags {
   display: flex;
   flex-direction: row;
@@ -591,9 +584,11 @@ section.reply button:hover {
   white-space: nowrap;
   flex-wrap: nowrap;
   overflow-x: scroll;
+  overflow-y: hidden;
 
   margin: 0;
 }
+  
 
 .tags-box #tag-input {
   display: flex;

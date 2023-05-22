@@ -322,12 +322,7 @@ figure.avatar img {
   background-color: #f8f7fc;
 }
 
-.tags::-webkit-scrollbar {
-  width: 0;
-  /* Safari and older versions of Chrome */
-  height: 0;
-  display: none;
-}
+
 
 .tags {
   display: flex;
@@ -432,9 +427,10 @@ figure.avatar img {
   white-space: nowrap;
   flex-wrap: nowrap;
   overflow-x: scroll;
-
   margin: 0;
 }
+
+
 
 .tags-box #tag-input {
   display: flex;
