@@ -39,7 +39,7 @@
 
 	$scripter = new Scripter();
 
-	drawHeader("home", $scripter, "faqEditor");
+	drawHeader("home", $scripter, "faqForm");
 	drawFAQeditor($departments, $faq, $session);
 	drawRecentChanges($changes);
 	drawFooter();

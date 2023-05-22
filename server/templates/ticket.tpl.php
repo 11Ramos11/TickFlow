@@ -104,7 +104,7 @@ function drawBriefTicket($ticket, $author, $assignee, $department, $status, $pri
 				<?php } ?>
 			<?php } ?>
 		</section>
-		<article class="ticket-card brief">
+		<article class="ticket-card brief container">
 			<h3><?=$ticket->subject?></h3>
 			<section id="ticket-info">
 				<p>Created: <span class="date"><?=$ticket->date?></span></p>

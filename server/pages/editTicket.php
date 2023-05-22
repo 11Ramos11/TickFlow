@@ -58,7 +58,7 @@
 	);
 	$scripter = new Scripter("ticketEditor.js", $handlers);
 
-	drawHeader("none", $scripter, "editTicket");
+	drawHeader("none", $scripter, "ticketForm");
     drawTicketEditor($departments, $priorities, $statuses, $users, $ticket, $sessionUser, $session);
 	drawBriefTicket($ticket, $author, $assignee, $department, $status, $priority, $sessionUser, "edit");
 	drawFooter();

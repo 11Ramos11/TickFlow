@@ -30,9 +30,12 @@
 <head>
 	<title>TickFlow</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="../styles/<?=$style?>.css">
 	<link rel="stylesheet" type="text/css" href="../styles/snackbar.css">
 	<link rel="stylesheet" type="text/css" href="../styles/layout.css">
+	<link rel="stylesheet" type="text/css" href="../styles/util.css">
+	<link rel="stylesheet" type="text/css" href="../styles/<?=$style?>.css">
+	<link rel="stylesheet" type="text/css" href="../styles/responsiveness.css">
+
 	<script src="https://kit.fontawesome.com/a45efa4a81.js" crossorigin="anonymous"></script>
 	<?php $scripter->loadScripts(); ?>
 </head>
