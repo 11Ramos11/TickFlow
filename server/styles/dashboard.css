@@ -1353,14 +1353,6 @@ textarea {
 
 @media screen and (max-width: 1200px) {
 
-  #filter-tab{
-    padding-right: 4rem;
-  }
-
-  .tags-searchbar{
-    padding-right: 4.2rem;
-  }
-
   .edit-dropdown.ticket-dropdown{
     left: 75%;
   }
@@ -1376,8 +1368,6 @@ textarea {
   .options-right{
     display: block;
   }
-
-
 
   .middle-column{
     grid-column: 2/-1;
@@ -1403,14 +1393,6 @@ textarea {
 
 @media only screen and (max-width: 900px) {
 
-  #filter-tab{
-    padding-left: 4rem;
-  }
-
-  .tags-searchbar{
-    padding-left: 4.2rem;
-  }
-
   .edit-dropdown{
     left: 30%;
   }
@@ -1420,7 +1402,7 @@ textarea {
   }
 
   .title {
-    margin-left: 2rem;
+    padding: 1rem;
   }
 
   .left-sidebar {
@@ -1453,8 +1435,8 @@ textarea {
   }
 
   #tickets-search {
-    display: inline;
-    grid-template-rows: [start] 100% [middle] 100vh [end];
+    display: grid;
+    grid-template-rows: [start] auto [middle] 100vh [end];
   }
 
   #filter-tab {
@@ -1463,12 +1445,13 @@ textarea {
     justify-content: space-between; /* adjust as per your liking */
     flex-wrap: wrap; /* if you have too many buttons */
     align-items: center; /* align items vertically in the center */
+    padding: 1rem;
   }
 
   #filter-tab .filter-dropdown {
     /* adjust dropdown size */
     padding: 0.2rem 0.5rem;
-    font-size: 0.8rem; /* reduces the font size of the dropdowns */
+    font-size: 1rem; /* reduces the font size of the dropdowns */
     margin-right: 0.5rem; /* adds some space between the dropdowns */
   }
 
