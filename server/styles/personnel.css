@@ -846,12 +846,6 @@ figure.avatar img {
 
 @media only screen and (max-width: 900px) {
 
-  #administration{
-    display: flex;
-    flex-direction: column; 
-    padding: 0 3rem;
-  }
-
   .edit-dropdown{
     left: 30%;
   }
@@ -862,13 +856,6 @@ figure.avatar img {
 
   .personnel-dropdown{
     left: 10%;
-  }
-
-
-  #administration{
-    display: flex;
-    flex-direction: column; 
-    padding: 0 3rem;
   }
 
   #filter-tab{

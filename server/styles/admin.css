@@ -839,8 +839,9 @@ textarea {
 @media screen and (max-width: 1200px) {
 
   .title{
-    margin-top: 4rem;
-    margin-right: 1.5rem;
+    margin-top: 2rem;
+    margin-right: 0.5rem;
+    padding: 0.5rem;
   }
   .right-sidebar{
     display: none;
@@ -877,7 +878,7 @@ textarea {
   #administration{
     display: flex;
     flex-direction: column; 
-    padding: 0 3rem;
+    padding: 0 0.5rem;
   }
 
   .edit-dropdown{
