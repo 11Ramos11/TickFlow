@@ -34,15 +34,13 @@
         box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
     }
 
+    .right-sidebar :first-child{
+        margin-top: 5rem;
+    }
+
 }
 
 @media only screen and (max-width: 900px) {
-
-    #administration {
-        display: flex;
-        flex-direction: column;
-        padding: 0 0.5rem;
-    }
 
     .logo {
         margin-left: 2rem;
@@ -85,12 +83,26 @@
         margin: 1rem 2rem
     }
 
-    .edit-container.edit-dropdown {
-        left: 70%
+    .edit-dropdown {
+        left: 65%
     }
 
-    .edit-dropdown.edit-dropdown.active {
+    .edit-dropdown.active {
         left: 70%;
         top: 3.2rem;
+    }
+
+    .edit-dropdown.ticket-dropdown {
+        left: 65%;
+    }
+
+    .edit-dropdown.ticket-dropdown.active {
+        left: 70%;
+    }
+
+    #administration {
+        display: flex;
+        flex-direction: column;
+        padding: 0 0.5rem;
     }
 }
