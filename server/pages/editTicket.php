@@ -45,10 +45,12 @@
 	$status = Status::getStatusById($ticket->status);
 	$priority = Priority::getPriorityById($ticket->priority);
 
-	if ($department != null)
-		$users = $department->getUsers();
-	else
+	if ($department != null){
+		$users = $department->getAgents();
+	}
+	else{
 		$users = array();
+	}
 
 	$handlers = array(
 		"tags.js",

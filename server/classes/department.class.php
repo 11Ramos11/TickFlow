@@ -77,6 +77,25 @@ class Department {
         return $tickets;
     }
 
+    public function getAgents(){
+
+        $db = getDatabaseConnection();
+
+        $query = $db->prepare("SELECT * FROM User WHERE department = ? AND (role = 'Agent' OR role = 'Admin')");
+
+        $query->execute(array($this->id));
+
+        $results = $query->fetchAll();
+
+        $users = array();
+
+        foreach($results as $row){
+            $users[] = new User($row['id'], $row['name'], $row['email'], $row['role'], $row['department']);
+        }
+
+        return $users;
+    }
+
     public function getUsers(){
 
         $db = getDatabaseConnection();

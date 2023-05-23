@@ -443,4 +443,70 @@ figure.avatar img {
   margin: 1rem;
   display: flex;
   flex-direction: column;
+}/* Styling for dialog boxes */
+
+dialog {
+  border: none;
+  border-radius: 1rem;
+  padding: 2rem 0rem;
+}
+
+dialog form {
+  display: flex;
+  padding: 1.2rem 0.8rem;
+  flex-direction: column;
+  gap: 0.6rem;
+  align-items: center;
+  color: var(--main-color);
+  font-weight: 400;
+}
+
+dialog form input {
+
+  padding: 0.6rem 1.25rem;
+  border: 0.0625rem solid var(--main-color);
+  margin: 3rem 3rem;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+dialog form label, dialog form > p {
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-align: center;
+  max-width: 70%;
+}
+
+dialog .button-group {
+  display: flex;
+  justify-content: space-around;
+  width: 70%;
+}
+
+dialog form button {
+  padding: 0.6rem 1.25rem;
+  border: none;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+dialog button[type=submit] {
+  background-color: var(--main-color);
+  color: #fff;
+}
+
+dialog button[type=submit]:hover {
+  background-color: var(--main-color);
+}
+
+dialog button[type=button] {
+  background-color: #A31717;
+  color: #fff;
+}
+
+dialog button[type=button]:hover {
+  background-color: #5a6268;
 }

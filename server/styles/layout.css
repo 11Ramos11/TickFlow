@@ -86,6 +86,11 @@ body {
     display: none;
 }
 
+.right-sidebar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+}
 .header {
     display: flex;
     flex-direction: row;

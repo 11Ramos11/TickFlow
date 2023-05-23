@@ -25,13 +25,14 @@
 
 	$handlers = array(
 		"dropdown.js",
+		"admin.js",
 		"responsiveness.js", 
 		"snackbar.js"
 	);
 	$scripter = new Scripter("home.js", $handlers);
 
 	drawHeader("home", $scripter, "home");
-	drawFAQS($departments, $sessionUser);
+	drawFAQS($departments, $sessionUser, $session);
 	drawRecentChanges($changes);
 	drawFooter();
 ?>

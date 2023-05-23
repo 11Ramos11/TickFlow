@@ -33,6 +33,6 @@ if ($department == null){
     exit();
 }
 
-$users = $department->getUsers();
+$users = $department->getAgents();
 
 echo json_encode($users);

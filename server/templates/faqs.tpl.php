@@ -1,9 +1,11 @@
-<?php function drawFAQs($departments, $sessionUser){ ?>
+<?php function drawFAQs($departments, $sessionUser, $session){ ?>
 
 <main class="middle-column">
     <section class = "title">
         <h2> FAQs </h2>
+        <?php if ($sessionUser->isAgent()) { ?>
         <a href="faqCreator.php"><button class = "button">New FAQ</button> </a>
+        <?php } ?>
     </section>
     <section id="FAQs">
         <?php foreach($departments as $department) {
@@ -29,6 +31,7 @@
                     <dialog class="remove-dialog">
                         <form action="../actions/removeFAQ.action.php" method="post">
                             <input type="hidden" name="faq" value="<?=$faq->id?>">
+                            <input type="hidden" name="csrf" value="<?=$session->token?>">
                             <p>Are you sure you want to delete this FAQ?</p>
                             <div class="button-group">
                                 <button type="button" class="cancel-button">No</button>
