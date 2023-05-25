@@ -116,4 +116,13 @@
         padding: 1rem;
 
     }
+
+    .department-faqs {
+      margin: 0;
+    }
+
+    .faq-container {
+        margin: 0;
+    }
+    
 }
