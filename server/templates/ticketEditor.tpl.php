@@ -1,5 +1,5 @@
 <?php function drawStatus($sessionUser, $statuses, $ticket){ 
-  if ($sessionUser->isAgent() || $sessionUser->isAssignedTo($ticket)) { ?>
+  if ($sessionUser->isAgent() && $sessionUser->id != $ticket->authorID) { ?>
     <section class="input-container ic2">
     <select id="status" class="input" name="status">
       <?php foreach ($statuses as  $status){ ?>
@@ -17,7 +17,7 @@
 }?>
 
 <?php function drawAssignee($sessionUser, $users, $ticket){ 
-  if ($sessionUser->isAgent()) { ?>
+  if ($sessionUser->isAgent() && $sessionUser->id != $ticket->authorID) { ?>
     <section class="input-container ic2">
     <select id="assignee" class="input" name="assignee">
       <option value=-1 selected>To be assigned</option>

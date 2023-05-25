@@ -1,1 +1,42 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=10521947&assignment_repo_type=AssignmentRepo)
+# TickFlow
+
+## Group
+- João Ramos 
+- Miguel Rocha
+- Miguel Pedrosa 
+
+
+## Running the project
+
+### Requirements
+
+- php-gd
+```bash
+sudo apt-get install php-gd
+```
+
+
+### Instructions
+
+```bash
+git clone https://github.com/FEUP-LTW-2023/project-ltw08g04
+git checkout final-delivery-v1
+cd database
+sqlite3 database.db < database.sql
+cd ../server
+php -S localhost:9000
+```
+
+## Credentials
+
+### Admin
+- Email: john.smith@tickflow.com
+- Password: *Password1!*
+
+### Agent
+- Email: bob.johnson@tickflow.com
+- Password: *Password1!*
+
+### Client
+- Email: jane.doe@tickflow.com
+- Password: *Password1*!

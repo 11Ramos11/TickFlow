@@ -101,6 +101,7 @@
   white-space: nowrap;
   flex-wrap: nowrap;
   overflow-x: scroll;
+  overflow-y: hidden;
 
   margin: 0;
 }
