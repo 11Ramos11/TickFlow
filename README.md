@@ -21,9 +21,7 @@ sudo apt-get install php-gd
 ```bash
 git clone https://github.com/FEUP-LTW-2023/project-ltw08g04
 git checkout final-delivery-v1
-cd database
-sqlite3 database.db < database.sql
-cd ../server
+cd server
 php -S localhost:9000
 ```
 
