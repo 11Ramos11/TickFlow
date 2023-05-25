@@ -1,9 +1,8 @@
 @media screen and (max-width: 1200px) {
 
     .title {
-        margin-top: 2rem;
-        margin-right: 0.5rem;
-        padding: 0.5rem;
+        margin-top: 4rem;
+        margin-right: 1rem;
     }
 
     .right-sidebar {
@@ -48,7 +47,9 @@
 
     .title {
         margin-left: 2rem;
+
     }
+
 
     .left-sidebar {
         display: none;
@@ -103,6 +104,12 @@
     #administration {
         display: flex;
         flex-direction: column;
-        padding: 0 0.5rem;
+        padding: 0 2rem;
+    }
+
+    #administration .title{
+        margin: 1rem;
+        padding: 1rem;
+
     }
 }
