@@ -469,13 +469,23 @@ textarea {
   transition: color 0.3s ease-in-out;
 }
 
-.faq-card {
-  margin: 0.6rem;
+
+#faq-dialog {
+  width: 60%;
+  height: 80%;
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  overflow-y: scroll;
 }
 
-.faq-container {
-  margin: 1rem 7rem;
+
+.department-faqs {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
 }
+
 
 .container {
   border: 0.0625rem solid #ccc;
@@ -494,14 +504,14 @@ textarea {
   position: relative;
 }
 
-#faq-dialog {
-  width: 60%;
-  height: 80%;
-  background-color: white;
-  border-radius: 10px;
-  padding: 20px;
-  overflow-y: scroll;
+.faq-card {
+  margin: 0.6rem;
 }
+
+.faq-container {
+  margin: 1rem 7rem;
+}
+
 
 .use-faq {
   position: absolute;
@@ -513,4 +523,7 @@ textarea {
   border-radius: 5rem;
   cursor: pointer;
   z-index: 4;
+}
+.use-faq i {
+  color: blue;
 }
