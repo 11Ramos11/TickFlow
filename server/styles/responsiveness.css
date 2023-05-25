@@ -85,20 +85,24 @@
     }
 
     .edit-dropdown {
-        left: 65%
+        left: unset;
+        right: 0    
     }
 
     .edit-dropdown.active {
-        left: 70%;
+        left: unset;
+        right: 0;
         top: 3.2rem;
     }
 
     .edit-dropdown.ticket-dropdown {
-        left: 65%;
+        left: unset;
+        right: 0;
     }
 
     .edit-dropdown.ticket-dropdown.active {
-        left: 70%;
+        left: unset;
+        right: 0;
     }
 
     #administration {
